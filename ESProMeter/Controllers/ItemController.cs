@@ -4,6 +4,7 @@ using System.Data;
 using System.Collections.Generic;
 using ESProMeter.DataAccess;
 using ESProMeter.Services;
+using ESProMeter.IVews;
 
 namespace ESProMeter.Controllers
 {
@@ -59,10 +60,13 @@ namespace ESProMeter.Controllers
         {
             var sql = columns.Length == 0 ? "*" : string.Join(",", columns); 
 
-            instance.UseSql($"SELECT TOP(10) {sql} FROM [dbo].[VItem] WHERE NOT [ItemType]='BillOfQuantity' AND [ItemName] LIKE @itemName+'%';")
-               .FindAsTable(new { itemName = itemName })
-               .UseDataTableAsGridView(grid);
+            if(instance.UseSql($"SELECT {sql} FROM [dbo].[VItem] WHERE NOT [ItemType]='BillOfQuantity' AND [ItemName] LIKE @itemName+'%';")
+               .FindAsTable(new { itemName = itemName },out DataTable table))
+            {
+                table.UseDataTableAsGridView(grid);
+            }
         }
+
         public static List<object> SearchItemList(this Form form,long itemId, params string[] columns)
         {
             List<object?> list = new List<object?>();
@@ -128,7 +132,7 @@ namespace ESProMeter.Controllers
         }
         public static void ShowItemList(this Form form, DataGridView grid)
         {
-            instance.UseSql($"SELECT * FROM [dbo].[VItem];")
+            instance.UseSql($"SELECT * FROM [dbo].[VItem] ORDER BY ID DESC;")
                .FindAsTable<dynamic?>(null)
                .UseDataTableAsGridView(grid);
         }
@@ -335,10 +339,35 @@ namespace ESProMeter.Controllers
             column.ValueMember = "ItemID";
 
         }
-        public static void CreateNewItem(this Form form,object data)
+        public static void CreateNewItem(this Form form,IItem item)
         {
-            instance.UseProcedure("")
+            instance.UseProcedure("ITEM_INSERT")
+                    .InsertOrUpdate(new
+                    {
+                        ITEMNAME = item.ItemName,
+                        DESCRIPTION = item.Description,
+                        ITEMTYPE = item.ItemType,
+                        UOMID = item.UomId,
+                        COST = item.Cost,
+                        ISRATE = 0
+                    });
+        }
+        public static void CreateNewItem(this Form form, object data)
+        {
+            instance.UseProcedure("ITEM_INSERT")
                     .InsertOrUpdate(data);
+        }
+        public static void UpdateItem(this Form form,IItem item)
+        {
+            instance.UseProcedure("ItemUpdate")
+                    .InsertOrUpdate(new {
+                        ITEMNAME=item.ItemName,
+                        DESCRIPTION=item.Description,
+                        ITEMTYPE=item.ItemType,
+                        UOMID=item.UomId,
+                        COST=item.Cost,
+                        ISRATE=0
+                    });
         }
         public static void UpdateItem(this Form form, object data)
         {

@@ -13,5 +13,6 @@ namespace ESProMeter.IVews
         long UomId { get; set; }
         decimal Cost { get; set; }
         string Description { get; set; }
+        bool IsActive { get; set; }
     }
 }

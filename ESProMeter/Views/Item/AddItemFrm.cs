@@ -2,6 +2,7 @@
 using ESProMeter.Extensions;
 using ESProMeter.IVews;
 using System;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -29,22 +30,25 @@ namespace ESProMeter.Views.Items
             get => textDescription.Text.Trim(); 
             set => textDescription.SetText(value); 
         }
+        public bool IsActive { 
+            get => !chkIsInActive.Checked; 
+            set => chkIsInActive.Checked=value; 
+        }
 
         public AddItemFrm()
         {
             InitializeComponent();
-            //sdsdsdsds
-            //weywyewyew7eyweyw
         }
 
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
             if (((TextBox)sender).Text.Length > 0)
             {
+                ((DataTable)dgvItem.DataSource)?.Clear();
+                this.SearchItemList(dgvItem, ((TextBox)sender).Text,"ID", "ItemName", "ItemType", "Uom", "UomID", "Cost");
                 dgvItem.Visible = true;
                 dgvItem.BringToFront();
-                dgvItem.Location = new Point(((TextBox)sender).Location.X , ((TextBox)sender).Location.Y + ((TextBox)sender).Height);
-                this.SearchItemList(dgvItem, ((TextBox)sender).Text,"ID","ItemName","ItemType","Uom","UomID","Cost");
+                dgvItem.Location = new Point(((TextBox)sender).Location.X, ((TextBox)sender).Location.Y + ((TextBox)sender).Height);
                 return;
             }
             dgvItem.Visible = false;
@@ -70,8 +74,8 @@ namespace ESProMeter.Views.Items
                 this.Controls.Add(this.groupBoq);
                 this.Height = 594;
                 this.textCost.Enabled = false;
-                this.materialButton1.Location = new Point(386, 504);
-                this.materialButton2.Location = new Point(518, 504);
+                this.materialButton1.Location = new Point(416, 504);
+                this.materialButton2.Location = new Point(548, 504);
             }
             else
             {
@@ -79,8 +83,8 @@ namespace ESProMeter.Views.Items
                 this.Controls.RemoveByKey(groupBoq.Name);
                 this.Height = 300;
                 this.textCost.Enabled = true;
-                this.materialButton1.Location = new Point(386, 220);
-                this.materialButton2.Location = new Point(518, 220);
+                this.materialButton1.Location = new Point(416, 220);
+                this.materialButton2.Location = new Point(548, 220);
             }
         }
 
@@ -89,23 +93,64 @@ namespace ESProMeter.Views.Items
             
         }
 
+        int itemSequence = 1;
         private void dgvItem_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvItem.Columns[e.ColumnIndex].Name== "Column1" &&
                     (dgvItem.Columns[e.ColumnIndex] is DataGridViewButtonColumn))
             {
                 var id = dgvItem.GetValue<long>(e.RowIndex, "ItemID");
+                if (CheckItemExist(id))
+                {
+                    dgvItem.Visible = false;
+                    dgvItem.SendToBack();
+                    textBox1.Text = "";
+                    return;
+                }
                 var data=this.SearchItemList(id, "ID", "ItemName", "ItemType", "Uom", "UomID");
-                data.Add(Utility.NumberString(1));
+                data.Add(Utility.NumberString(1,"N2"));
+                data.Add(itemSequence);
                 dgvBoq.Rows.Add(data.ToArray());
                 dgvItem.Visible = false;
                 dgvItem.SendToBack();
+                textBox1.Text = "";
+                itemSequence++;
             }
         }
 
         private void dgvBoq_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
 
+        }
+
+
+
+        private bool CheckItemExist(object value)
+        {
+            foreach (DataGridViewRow item in dgvBoq.Rows)
+            {
+                if (item.Cells["ID"].Value.Equals(value))
+                {
+                    return true;
+                }
+                    
+            }
+            return false;
+        }
+
+        private void materialButton1_Click(object sender, EventArgs e)
+        {
+            if (cmbType.SelectedIndex > 0)
+            {
+                this.CreateNewItem(this);
+                this.ClearForm(textName, textDescription, textCost);
+                textCost.SetText("0.00");
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+            {
+
+            }
         }
 
         //    private void TextCost_LostFocus(object sender, EventArgs e)

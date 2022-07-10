@@ -94,10 +94,10 @@ namespace ESProMeter.Views.Items
                     }
                     else
                     {
-                        this.CreateNewItem(data);
-                        this.ClearForm(textName, textDescription);
-                        this.DialogResult = DialogResult.OK;
-                    }
+                    this.CreateNewItem(data);
+                    this.ClearForm(textName, textDescription);
+                    this.DialogResult = DialogResult.OK;
+                }
             }
             else
             {

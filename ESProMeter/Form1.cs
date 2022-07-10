@@ -110,7 +110,6 @@ namespace ESProMeter
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            //ItemListFrm frmItem = new ItemListFrm();
             var p = panel2.Controls.Find("ItemListFrm", true);
             if (p.Length>0)
             {

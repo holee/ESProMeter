@@ -24,7 +24,7 @@ namespace ESProMeter.Views.Items
 			if(form.ShowDialog() == DialogResult.OK)
             {
                 var rows = this.AsControl<ComboBox>("cmdNumberRows").AsNumber<int>();
-                this.ShowItemList(rows);
+                this.ShowItemList(this.dataItemList);
             }
 		}
 

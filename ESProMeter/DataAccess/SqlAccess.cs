@@ -115,10 +115,7 @@ namespace ESProMeter.DataAccess
             DataTable table = new DataTable();
             var result = _connection.ExecuteReader(_sql, param: parameters,transaction:_transaction,commandType:_commandType);
             table.Load(result);
-            if (table.Rows.Count > 0)
-                return table;
-            else
-                return null;
+             return table;
         }
         public DataRow FindAsDataRow<TCol,TValue>(string colName,TValue value)
         {
