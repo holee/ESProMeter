@@ -33,6 +33,8 @@ namespace ESProMeter.Views.Items
         public AddItemFrm()
         {
             InitializeComponent();
+            //sdsdsdsds
+            //weywyewyew7eyweyw
         }
 
         private void textBox1_KeyUp(object sender, KeyEventArgs e)

@@ -185,7 +185,7 @@ namespace ESProMeter.Views.Items
             this.textCost.Location = new System.Drawing.Point(50, 22);
             this.textCost.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textCost.Name = "textCost";
-            this.textCost.Size = new System.Drawing.Size(160, 23);
+            this.textCost.Size = new System.Drawing.Size(236, 23);
             this.textCost.TabIndex = 19;
             this.textCost.Tag = "Cost";
             this.textCost.Text = "0";
