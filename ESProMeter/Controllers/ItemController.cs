@@ -160,6 +160,13 @@ namespace ESProMeter.Controllers
                .UseDataTableAsGridView(grid);
         }
 
+        /// <summary>
+        /// BOQ Operation
+        /// </summary>
+        /// <param name="form"></param>
+        /// <param name="itemId"></param>
+        /// <param name="item"></param>
+        /// <param name="columns"></param>
         public static void ShowItemFormUpdate(this Form form,long itemId,IItem item, params string[] columns)
         {
             var sql = columns.Length == 0 ? "*" : string.Join(",", columns);
@@ -176,7 +183,97 @@ namespace ESProMeter.Controllers
                 item.ItemType = row.GetValue<string>("ItemType");
             }
         }
+        public static void CreateNewItem(this Form form, IItem item)
+        {
+            instance.UseProcedure("ITEM_INSERT")
+                    .InsertOrUpdate(new
+                    {
+                        ITEMNAME = item.ItemName,
+                        DESCRIPTION = item.Description,
+                        ITEMTYPE = item.ItemType,
+                        UOMID = item.UomId,
+                        COST = item.Cost,
+                        ISRATE = 0
+                    });
+        }
+        public static void UpdateExistingItem(this Form form, IItem item) 
+        {
+            instance.UseProcedure("ITEM_UPDATE_SP")
+                    .InsertOrUpdate(new
+                    {
+                        ID=item.Id,
+                        ITEMNAME = item.ItemName,
+                        DESCRIPTION = item.Description,
+                        ITEMTYPE = item.ItemType,
+                        UOMID = item.UomId,
+                        COST = item.Cost,
+                        ISRATE = 0
+                    });
+        }
+        public static void CreateNewBoqItem(this Form form, IItem item, DataGridView grid)
+        {
+            try
+            {
+                instance.StartTransaction();
+                //create new item
+                var id = instance.UseProcedure("ITEM_INSERT")
+                        .InserGetId<long, dynamic>(new
+                        {
+                            ITEMNAME = item.ItemName,
+                            DESCRIPTION = item.Description,
+                            ITEMTYPE = item.ItemType,
+                            UOMID = item.UomId,
+                            COST = item.Cost,
+                            ISRATE = 0
+                        });
+                //create boq item line
+                var table = ToTable(grid, id);
+                instance.UseProcedure("SP_BoqItemLineInert")
+                        .InsertFromTable(new { BoqItemLine = table.AsTableValuedParameter("udt_BoqItemLine_Insert") });
 
+                instance.ComitTransaction();
+            }
+            catch
+            {
+                instance.RollbackTransaction();
+                throw;
+            }
+
+        }
+        public static void UpdateExistingBoqItem(this Form form, IItem item, DataGridView grid) 
+        {
+            try
+            {
+                instance.StartTransaction();
+                //update existing boq item
+                var id = instance.UseProcedure("ITEM_UPDATE_SP")
+                        .InserGetId<long, dynamic>(new
+                        {
+                            ITEMNAME = item.ItemName,
+                            DESCRIPTION = item.Description,
+                            ITEMTYPE = item.ItemType,
+                            UOMID = item.UomId,
+                            COST = item.Cost,
+                            ISRATE = 0
+                        });
+                //remove existing item
+                instance.UseSql("DELETE FROM TBOQITEMLINE WHERE ID=@id;")
+                        .Delete<dynamic>(new { id = id });
+
+                //update existing boq_item_line
+                var table = ToTable(grid, id);
+                instance.UseProcedure("SP_BoqItemLineInert")
+                        .InsertFromTable(new { BoqItemLine = table.AsTableValuedParameter("udt_BoqItemLine_Insert") });
+
+                instance.ComitTransaction();
+            }
+            catch
+            {
+                instance.RollbackTransaction();
+                throw;
+            }
+
+        }
         public static void ShowItemType(this Form form)
         {
             instance.UseSql("SELECT * FROM [dbo].[TTYPE];")
@@ -336,49 +433,7 @@ namespace ESProMeter.Controllers
             column.ValueMember = "ItemID";
 
         }
-        public static void CreateNewItem(this Form form,IItem item)
-        {
-            instance.UseProcedure("ITEM_INSERT")
-                    .InsertOrUpdate(new
-                    {
-                        ITEMNAME = item.ItemName,
-                        DESCRIPTION = item.Description,
-                        ITEMTYPE = item.ItemType,
-                        UOMID = item.UomId,
-                        COST = item.Cost,
-                        ISRATE = 0
-                    });
-        }
-        public static void CreateNewBoqItem(this Form form, IItem item,DataGridView grid)
-        {
-            try
-            {
-                instance.StartTransaction();
-                var id=instance.UseProcedure("ITEM_INSERT")
-                        .InserGetId<long, dynamic>(new
-                        {
-                            ITEMNAME = item.ItemName,
-                            DESCRIPTION = item.Description,
-                            ITEMTYPE = item.ItemType,
-                            UOMID = item.UomId,
-                            COST = item.Cost,
-                            ISRATE = 0
-                        });
-
-                var table = ToTable(grid,id);
-                instance.UseProcedure("SP_BoqItemLineInert")
-                        .InsertFromTable(new { BoqItemLine=table.AsTableValuedParameter("udt_BoqItemLine_Insert") });
-                
-                
-                instance.ComitTransaction();
-            }
-            catch (System.Exception ex)
-            {
-                instance.RollbackTransaction();
-                throw ex;
-            }
-            
-        }
+       
         public static void CreateNewItem(this Form form, object data)
         {
             instance.UseProcedure("ITEM_INSERT")

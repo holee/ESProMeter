@@ -22,10 +22,12 @@ namespace ESProMeter.Views.Items
 
 		private void tslNewClick(object sender, EventArgs e)
 		{
-			Form form=new AddItemFrm();
+            AddItemFrm form =new AddItemFrm();
+            actionType = 0;
+            _itemType = 0;
 			if(form.ShowDialog() == DialogResult.OK)
             {
-                var rows = this.AsControl<ComboBox>("cmdNumberRows").AsNumber<int>();
+                this.CreateNewItem(form);
                 this.ShowItemList(this.dataItemList);
             }
 		}
@@ -47,23 +49,30 @@ namespace ESProMeter.Views.Items
         {
             if (dataItemList.Rows.Count > 0)
             {
-				var index = dataItemList.CurrentRow.Index;
-				var itemType = dataItemList.AsValue<string>(index, "Column3");
+                var index = dataItemList.CurrentRow.Index;
+                var itemType = dataItemList.AsValue<string>(index, "Column3");
                 var id = dataItemList.AsNumber<long>(index, "Column1");
                 if (itemType == "BillOfQuantity")
                 {
                     AddItemFrm form = new AddItemFrm(id);
                     actionType = 1;
                     _itemType = 0;
-                    form.ShowDialog();
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {
+                        this.UpdateExistingBoqItem(form, form.dgvBoq);
+                    }
                 }
                 else
                 {
                     AddItemFrm form = new AddItemFrm(id);
                     _itemType = 1;
-                    form.ShowDialog();
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {
+                        this.UpdateExistingItem(form);
+                        this.ShowItemList(this.dataItemList);
+                    }
+
                 }
-				
             }
         }
 

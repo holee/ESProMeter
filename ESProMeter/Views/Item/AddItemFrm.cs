@@ -39,11 +39,14 @@ namespace ESProMeter.Views.Items
             set => lblItemID.SetText(value); 
         }
 
+  
+
         public AddItemFrm()
         {
             InitializeComponent();
             this.ShowItemType(this.cmbType);
             this.ShowUom(this.cmbUom);
+            materialButton1.Text = "Save";
         }
         public AddItemFrm(long Id)
         {
@@ -51,6 +54,7 @@ namespace ESProMeter.Views.Items
             this.ShowItemType(this.cmbType);
             this.ShowUom(this.cmbUom);
             this.ShowItemFormUpdate(Id, this);
+            materialButton1.Text = "Update";
         }
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
@@ -73,8 +77,8 @@ namespace ESProMeter.Views.Items
             this.Controls.RemoveByKey(groupBoq.Name);
             this.Height = 300;
             this.textCost.Enabled = true;
-            this.materialButton1.Location = new Point(416, 220);
-            this.materialButton2.Location = new Point(548, 220);
+            this.materialButton1.Location = new Point(460, 220);
+            this.materialButton2.Location = new Point(585, 220);
         }
         private void ShowBoqItemOnlyForm() 
         {
@@ -82,19 +86,28 @@ namespace ESProMeter.Views.Items
             this.Controls.Add(this.groupBoq);
             this.Height = 594;
             this.textCost.Enabled = false;
-            this.materialButton1.Location = new Point(416, 504);
-            this.materialButton2.Location = new Point(548, 504);
+            this.materialButton1.Location = new Point(460, 498);
+            this.materialButton2.Location = new Point(585, 498);
         }
         private void AddItemFrm_Load(object sender, EventArgs e)
         {
             
             if (ItemListFrm.actionType == 1)
             {
+               
                 this.cmbType.Enabled = false;
+            }
+            else
+            {
+               
             }
             if(ItemListFrm._itemType != 0)
             {
                 ShowItemOnlyForm();
+            }
+            else
+            {
+                ShowBoqItemOnlyForm();
             }
         }
 
@@ -161,16 +174,41 @@ namespace ESProMeter.Views.Items
         {
             if (cmbType.SelectedIndex > 0)
             {
-                this.CreateNewItem(this);
-                this.ClearForm(textName, textDescription, textCost);
-                textCost.SetText("0.00");
-                this.DialogResult = DialogResult.OK;
+                if (this.IsValid(textName, textDescription, textCost))
+                {
+                    this.DialogResult = DialogResult.OK;
+                }
+                
             }
             else
             {
-                this.CreateNewBoqItem(this, this.dgvBoq);
+                if (this.IsValid(textName, textDescription, textCost))
+                {
+                    this.CreateNewBoqItem(this, this.dgvBoq);
+                }
+                
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         //    private void TextCost_LostFocus(object sender, EventArgs e)
         //    {

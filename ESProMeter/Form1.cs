@@ -148,11 +148,12 @@ namespace ESProMeter
         private void createBoqToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Views.Boq.BoQFrm form = new Views.Boq.BoQFrm();
-            form.TopLevel = false;
-            form.TopMost = true;
-            form.FormBorderStyle= FormBorderStyle.None;
-            panel2.Controls.Add(form);
-            form.Show();
+            //form.TopLevel = false;
+            //form.TopMost = true;
+            //form.FormBorderStyle= FormBorderStyle.None;
+            //panel2.Controls.Add(form);
+            //form.Show();
+            DisplayFormInPanel(form, panel2);
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
@@ -167,6 +168,17 @@ namespace ESProMeter
                 panel2.Controls.Clear();
                 return;
             }
+        }
+        private void DisplayFormInPanel(Form form,Panel container)
+        {
+            form.TopLevel = false;
+            form.TopMost = true;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.WindowState = FormWindowState.Normal;
+            container?.Controls?.Clear();
+            container?.Controls.Add(form);
+            form.StartPosition = FormStartPosition.CenterParent;
+            form.Show();
         }
     }
 }

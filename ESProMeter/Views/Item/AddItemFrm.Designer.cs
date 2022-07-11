@@ -242,10 +242,10 @@ namespace ESProMeter.Views.Items
             this.materialButton2.IconColor = System.Drawing.Color.White;
             this.materialButton2.IconSize = 32;
             this.materialButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.materialButton2.Location = new System.Drawing.Point(548, 498);
+            this.materialButton2.Location = new System.Drawing.Point(585, 498);
             this.materialButton2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.materialButton2.Name = "materialButton2";
-            this.materialButton2.Size = new System.Drawing.Size(126, 42);
+            this.materialButton2.Size = new System.Drawing.Size(89, 42);
             this.materialButton2.TabIndex = 6;
             this.materialButton2.Text = "Close";
             this.materialButton2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -262,10 +262,10 @@ namespace ESProMeter.Views.Items
             this.materialButton1.IconColor = System.Drawing.Color.White;
             this.materialButton1.IconSize = 27;
             this.materialButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.materialButton1.Location = new System.Drawing.Point(416, 498);
+            this.materialButton1.Location = new System.Drawing.Point(460, 498);
             this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.materialButton1.Name = "materialButton1";
-            this.materialButton1.Size = new System.Drawing.Size(126, 42);
+            this.materialButton1.Size = new System.Drawing.Size(124, 42);
             this.materialButton1.TabIndex = 7;
             this.materialButton1.Text = "Save";
             this.materialButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -976,7 +976,6 @@ namespace ESProMeter.Views.Items
         private System.Windows.Forms.DataGridViewComboBoxColumn mnrItemName;
         private System.Windows.Forms.GroupBox groupBoq;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridView dgvBoq;
         private System.Windows.Forms.DataGridView dgvItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewComboBoxColumn2;
@@ -994,5 +993,6 @@ namespace ESProMeter.Views.Items
         private System.Windows.Forms.DataGridViewTextBoxColumn BOQITEMLINESEQ;
         private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn1;
         private System.Windows.Forms.Label lblItemID;
+        internal System.Windows.Forms.DataGridView dgvBoq;
     }
 }
