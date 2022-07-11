@@ -45,18 +45,6 @@ namespace ESProMeter.Views.Items
             this.textSearch = new System.Windows.Forms.TextBox();
             this.cmbFieldName = new System.Windows.Forms.ComboBox();
             this.dataItemList = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -76,6 +64,18 @@ namespace ESProMeter.Views.Items
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbSortBy = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tlDelete.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataItemList)).BeginInit();
             this.SuspendLayout();
@@ -244,120 +244,6 @@ namespace ESProMeter.Views.Items
             this.dataItemList.Size = new System.Drawing.Size(921, 419);
             this.dataItemList.TabIndex = 3;
             this.dataItemList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataItemList_CellClick);
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "ItemID";
-            this.Column1.HeaderText = "ID";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Visible = false;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "ItemName";
-            this.Column2.FillWeight = 138.1693F;
-            this.Column2.HeaderText = "Item Name";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column2.Width = 200;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "ItemType";
-            this.Column3.FillWeight = 65.11635F;
-            this.Column3.HeaderText = "Type";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column3.Width = 94;
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "UomName";
-            this.Column7.FillWeight = 62.71698F;
-            this.Column7.HeaderText = "Uom Type";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column7.Width = 91;
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "Uom";
-            this.Column4.FillWeight = 68.39866F;
-            this.Column4.HeaderText = "Sub Uom Type";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column4.Width = 99;
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "Cost";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Column5.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Column5.FillWeight = 142.993F;
-            this.Column5.HeaderText = "Cost";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column12
-            // 
-            this.Column12.DataPropertyName = "IsActive";
-            this.Column12.FillWeight = 59.83959F;
-            this.Column12.HeaderText = "Active";
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            this.Column12.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column12.Width = 87;
-            // 
-            // Column8
-            // 
-            this.Column8.DataPropertyName = "Description";
-            this.Column8.FillWeight = 108.7606F;
-            this.Column8.HeaderText = "Description";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column8.Width = 350;
-            // 
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "EditSequense";
-            this.Column9.HeaderText = "EditSequense";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            this.Column9.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column9.Visible = false;
-            // 
-            // Column10
-            // 
-            this.Column10.DataPropertyName = "CreatedTime";
-            this.Column10.HeaderText = "Create Time";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            this.Column10.Visible = false;
-            // 
-            // Column11
-            // 
-            this.Column11.DataPropertyName = "ModifiedTime";
-            this.Column11.HeaderText = "Modified Time";
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            this.Column11.Visible = false;
-            // 
-            // Column13
-            // 
-            this.Column13.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Column13.DataPropertyName = "UOMID";
-            this.Column13.HeaderText = "Column13";
-            this.Column13.Name = "Column13";
-            this.Column13.ReadOnly = true;
-            this.Column13.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column13.Visible = false;
             // 
             // label1
             // 
@@ -543,6 +429,120 @@ namespace ESProMeter.Views.Items
             this.label4.Size = new System.Drawing.Size(32, 15);
             this.label4.TabIndex = 6;
             this.label4.Text = "Field";
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "ID";
+            this.Column1.HeaderText = "ID";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Visible = false;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "ItemName";
+            this.Column2.FillWeight = 138.1693F;
+            this.Column2.HeaderText = "Item Name";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column2.Width = 200;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "ItemType";
+            this.Column3.FillWeight = 65.11635F;
+            this.Column3.HeaderText = "Type";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column3.Width = 94;
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "UomName";
+            this.Column7.FillWeight = 62.71698F;
+            this.Column7.HeaderText = "Uom Type";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column7.Width = 91;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "Uom";
+            this.Column4.FillWeight = 68.39866F;
+            this.Column4.HeaderText = "Sub Uom Type";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column4.Width = 99;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "Cost";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Column5.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Column5.FillWeight = 142.993F;
+            this.Column5.HeaderText = "Cost";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column12
+            // 
+            this.Column12.DataPropertyName = "IsActive";
+            this.Column12.FillWeight = 59.83959F;
+            this.Column12.HeaderText = "Active";
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
+            this.Column12.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column12.Width = 87;
+            // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "Description";
+            this.Column8.FillWeight = 108.7606F;
+            this.Column8.HeaderText = "Description";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column8.Width = 350;
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "EditSequense";
+            this.Column9.HeaderText = "EditSequense";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            this.Column9.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column9.Visible = false;
+            // 
+            // Column10
+            // 
+            this.Column10.DataPropertyName = "CreatedTime";
+            this.Column10.HeaderText = "Create Time";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            this.Column10.Visible = false;
+            // 
+            // Column11
+            // 
+            this.Column11.DataPropertyName = "ModifiedTime";
+            this.Column11.HeaderText = "Modified Time";
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            this.Column11.Visible = false;
+            // 
+            // Column13
+            // 
+            this.Column13.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column13.DataPropertyName = "UOMID";
+            this.Column13.HeaderText = "Column13";
+            this.Column13.Name = "Column13";
+            this.Column13.ReadOnly = true;
+            this.Column13.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column13.Visible = false;
             // 
             // ItemListFrm
             // 

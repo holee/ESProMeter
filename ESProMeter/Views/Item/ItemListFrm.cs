@@ -8,7 +8,9 @@ namespace ESProMeter.Views.Items
 {
 	public partial class ItemListFrm : Form
 	{
-		public ItemListFrm()
+        internal static int actionType = 0;
+        internal static int _itemType = 0; 
+        public ItemListFrm()
 		{
 			InitializeComponent();
             dataItemList.ClearSelection();
@@ -31,7 +33,7 @@ namespace ESProMeter.Views.Items
         private void ItemListFrm_Load(object sender, EventArgs e)
         {
             this.ShowItemList(this.dataItemList);
-            //         dataItemList.ClearSelection();
+            dataItemList.ClearSelection();
         }
 
         private void cmdNumberRows_SelectedIndexChanged(object sender, EventArgs e)
@@ -47,21 +49,19 @@ namespace ESProMeter.Views.Items
             {
 				var index = dataItemList.CurrentRow.Index;
 				var itemType = dataItemList.AsValue<string>(index, "Column3");
-                if (itemType == "Bill Of Quantity")
+                var id = dataItemList.AsNumber<long>(index, "Column1");
+                if (itemType == "BillOfQuantity")
                 {
-                    var id = dataItemList.AsNumber<long>(index, "Column1");
-                    Form updateBoqForm = new UpdateBoqItemFrm(id);
-                    updateBoqForm.ShowDialog();
+                    AddItemFrm form = new AddItemFrm(id);
+                    actionType = 1;
+                    _itemType = 0;
+                    form.ShowDialog();
                 }
                 else
                 {
-                    var id = dataItemList.AsNumber<long>(index, "Column1");
-                    Form formAdd = new UpdateItemFrm(id);
-                    if (formAdd.ShowDialog() == DialogResult.OK)
-                    {
-                        this.ShowItemList();
-                        dataItemList.Rows[index].Selected = true;
-                    }
+                    AddItemFrm form = new AddItemFrm(id);
+                    _itemType = 1;
+                    form.ShowDialog();
                 }
 				
             }
@@ -71,7 +71,7 @@ namespace ESProMeter.Views.Items
         {
             var rows = this.AsControl<ComboBox>("cmdNumberRows").AsNumber<int>();
             var sortBy = string.IsNullOrEmpty(this.AsControl<ComboBox>("cmbSortBy").Text) ? "Name" : this.AsControl<ComboBox>("cmbSortBy").Text;
-            this.ShowItemList(rows, sortBy);
+            this.ShowItemList(dataItemList,rows,sortBy);
         }
 
         private void tlsdelete_Click(object sender, EventArgs e)
@@ -80,13 +80,13 @@ namespace ESProMeter.Views.Items
             {
                 var index = dataItemList.CurrentRow.Index;
                 var id = dataItemList.AsNumber<long>(index, "Column1");
-
                 if(MessageBox.Show("Do you want to delete this item?",
-                    "Confirn", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     if (this.DeleteItem(id)){
-                        var rows = this.AsControl<ComboBox>("cmdNumberRows").AsNumber<int>();
-                        this.ShowItemList(rows);
+                        //var rows = this.AsControl<ComboBox>("cmdNumberRows").AsNumber<int>();
+                        dataItemList.Rows.RemoveAt(index);
+                        //this.ShowItemList(dataItemList);
                     }
                 }  
             }
@@ -112,49 +112,49 @@ namespace ESProMeter.Views.Items
 
         private void btnSearchClick(object sender, EventArgs e)
         {
-            var textField = string.IsNullOrEmpty(cmbFieldName.Text.Trim()) ? "Name" : cmbFieldName.Text.Trim();
-            if (string.IsNullOrEmpty(textField))
-            {
-                var rows = this.AsControl<ComboBox>("cmdNumberRows").AsNumber<int>();
-                var sortBy = string.IsNullOrEmpty(this.AsControl<ComboBox>("cmbSortBy").Text) ? "Name" : this.AsControl<ComboBox>("cmbSortBy").Text;
-                this.ShowItemList(rows, sortBy);
-                return;
-            }
-            if(textField == "Cost" || textField=="Price" || textField=="IsActive")
-            {
-                var textValue = textSearch.GetVale<decimal>();
-                if (this.SearchByFieldName(textField, textValue, out DataTable table))
-                {
-                    table.AsDataGrid(this.dataItemList);
-                    return;
-                }
-                else
-                {
-                    ((DataTable)dataItemList.DataSource).Rows.Clear();
-                }
-            }
-            else
-            {
-                var textValue = textSearch.GetVale<string>();
-                if (this.SearchByFieldName(textField, textValue, out DataTable table))
-                {
-                    table.AsDataGrid(this.dataItemList);
-                    return;
-                }
-                else
-                {
-                    var rows = this.AsControl<ComboBox>("cmdNumberRows").AsNumber<int>();
-                    var sortBy = string.IsNullOrEmpty(this.AsControl<ComboBox>("cmbSortBy").Text) ? "Name" : this.AsControl<ComboBox>("cmbSortBy").Text;
-                    this.ShowItemList(rows, sortBy);
-                    return;
-                }
-            }
+            //var textField = string.IsNullOrEmpty(cmbFieldName.Text.Trim()) ? "Name" : cmbFieldName.Text.Trim();
+            //if (string.IsNullOrEmpty(textField))
+            //{
+            //    var rows = this.AsControl<ComboBox>("cmdNumberRows").AsNumber<int>();
+            //    var sortBy = string.IsNullOrEmpty(this.AsControl<ComboBox>("cmbSortBy").Text) ? "Name" : this.AsControl<ComboBox>("cmbSortBy").Text;
+            //    this.ShowItemList(dataItemList,rows, sortBy);
+            //    return;
+            //}
+            //if(textField == "Cost" || textField=="Price" || textField=="IsActive")
+            //{
+            //    var textValue = textSearch.GetVale<decimal>();
+            //    if (this.SearchByFieldName(textField, textValue, out DataTable table))
+            //    {
+            //        table.AsDataGrid(this.dataItemList);
+            //        return;
+            //    }
+            //    else
+            //    {
+            //        ((DataTable)dataItemList.DataSource).Rows.Clear();
+            //    }
+            //}
+            //else
+            //{
+            //    var textValue = textSearch.GetVale<string>();
+            //    if (this.SearchByFieldName(textField, textValue, out DataTable table))
+            //    {
+            //        table.AsDataGrid(this.dataItemList);
+            //        return;
+            //    }
+            //    else
+            //    {
+            //        var rows = this.AsControl<ComboBox>("cmdNumberRows").AsNumber<int>();
+            //        var sortBy = string.IsNullOrEmpty(this.AsControl<ComboBox>("cmbSortBy").Text) ? "Name" : this.AsControl<ComboBox>("cmbSortBy").Text;
+            //        this.ShowItemList(dataItemList,rows, sortBy);
+            //        return;
+            //    }
+            //}
         }
 
         private void textSearch_KeyUp(object sender, KeyEventArgs e)
         {
 
-            this.ShowItemList(this.dataItemList,((TextBox)sender).Text);
+            this.SearchItemList(this.dataItemList,((TextBox)sender).Text);
             //var textField = string.IsNullOrEmpty(cmbFieldName.Text.Trim()) ? "Name" : cmbFieldName.Text.Trim();
             //if (string.IsNullOrEmpty(textField))
             //{
@@ -249,7 +249,7 @@ namespace ESProMeter.Views.Items
                     {
                         var rows = this.AsControl<ComboBox>("cmdNumberRows").AsNumber<int>();
                         var sortBy = string.IsNullOrEmpty(this.AsControl<ComboBox>("cmbSortBy").Text) ? "Name" : this.AsControl<ComboBox>("cmbSortBy").Text;
-                        this.ShowItemList(rows, sortBy);
+                        this.ShowItemList(dataItemList,rows, sortBy);
                     }
                 }
                 else
@@ -258,7 +258,7 @@ namespace ESProMeter.Views.Items
                     Form formAdd = new CreateACopyItemFrm(id);
                     if (formAdd.ShowDialog() == DialogResult.OK)
                     {
-                        this.ShowItemList();
+                        this.ShowItemList(dataItemList);
                         dataItemList.Rows[index].Selected = true;
                     }
                 }

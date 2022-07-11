@@ -75,6 +75,10 @@ namespace ESProMeter.DataAccess
         {
             return _connection.Execute(_sql, param: parameters, transaction: _transaction, commandType: _commandType);
         }
+        public int InsertFromTable<T>(T parameter)
+        {
+            return _connection.Execute(_sql, param: parameter, transaction: _transaction, commandType: _commandType);
+        }
         public T InserGetId<T,U>(U parameters) 
         {
             return _connection.ExecuteScalar<T>(_sql, param: parameters, commandType: _commandType, transaction: _transaction);
@@ -104,11 +108,11 @@ namespace ESProMeter.DataAccess
         }
         public int Delete<T>(T parameter)
         {
-            return _connection.Execute(_sql, param: parameter, transaction: _transaction??null, commandType: _commandType);
+            return _connection.Execute(_sql, param: parameter, transaction: _transaction, commandType: _commandType);
         }
         public int UpSert<T>(List<T> parameters)
         {
-            return _connection.Execute(_sql, param: parameters, transaction: _transaction??null, commandType: _commandType);
+            return _connection.Execute(_sql, param: parameters, transaction: _transaction, commandType: _commandType);
         }
         public DataTable FindAsTable<T>(T parameters)
         {
@@ -117,7 +121,7 @@ namespace ESProMeter.DataAccess
             table.Load(result);
              return table;
         }
-        public DataRow FindAsDataRow<TCol,TValue>(string colName,TValue value)
+        public DataRow? FindAsDataRow<TCol,TValue>(string colName,TValue value)
         {
             DataTable table = new DataTable();
             var result = _connection.ExecuteReader(_sql, transaction: _transaction, commandType: _commandType);
@@ -128,7 +132,7 @@ namespace ESProMeter.DataAccess
             if (row != null)
                 return row;
             else
-                return null;
+                return default;
         }
         public bool FindMany<T>(T parameters,out DataTable table)
         {
@@ -168,7 +172,7 @@ namespace ESProMeter.DataAccess
         }
         public bool FindOne<T, U>(U paramaters, out T TResult) where T:class
         {
-            TResult = _connection.Query<T>(_sql,paramaters,transaction: _transaction, commandType: _commandType).FirstOrDefault();
+            TResult = _connection?.Query<T>(_sql,paramaters,transaction: _transaction, commandType: _commandType).FirstOrDefault();
             if(TResult !=null)
             {
                 return true;
@@ -203,5 +207,7 @@ namespace ESProMeter.DataAccess
             table.Load(result);
             return table.Rows.Count > 0;
         }
+
+       
     }
 }

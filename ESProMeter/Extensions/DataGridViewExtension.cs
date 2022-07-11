@@ -100,26 +100,47 @@ namespace ESProMeter.Extensions
             DataTable table = new DataTable();
             foreach (string column in columns)
             {
-                table.Columns.Add(column);
+                table.Columns.Add(column,typeof(long));
             }
             foreach (DataGridViewRow row in view.Rows)
             {
                 DataRow dRow = table.NewRow();
-                foreach (DataGridViewCell cell in row.Cells)
+                foreach (var item in columns)
                 {
-                    if (cell.Value != null)
+                    foreach (DataGridViewCell cell in row.Cells)
                     {
-                        dRow[cell.ColumnIndex] = cell?.Value;
+                        if (view.Columns[cell.ColumnIndex].Name == item)
+                        {
+                            dRow[item] = row.Cells[item].Value;
+                        }
+                        else
+                        {
+                            continue;
+                        }
                     }
-                    else
-                    {
-                        dRow[cell.ColumnIndex] = null;
-                    }
-                    table.Rows.Add(dRow);
+                   
                 }
+                table.Rows.Add(dRow);
+               
             }
 
             return table;
         }
+    
+    
     }
 }
+
+//foreach (DataGridViewCell cell in row.Cells)
+//{
+//    if (cell.Value != null)
+//    {
+//        dRow[cell.ColumnIndex] = cell?.Value;
+//    }
+//    else
+//    {
+//        dRow[cell.ColumnIndex] = null;
+//    }
+
+
+//}

@@ -154,5 +154,19 @@ namespace ESProMeter
             panel2.Controls.Add(form);
             form.Show();
         }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnCloseForm_Click(object sender, EventArgs e)
+        {
+            if (panel2.Controls.Count > 0)
+            {
+                panel2.Controls.Clear();
+                return;
+            }
+        }
     }
 }

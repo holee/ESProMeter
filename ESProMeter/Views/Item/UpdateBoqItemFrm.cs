@@ -22,25 +22,25 @@ namespace ESProMeter.Views.Items
             InitializeComponent();
             this.ShowBoqItems();
             this.ShowUom();
-            lblItemID.SetValue(id);
-            this.GetBoQInfo(id, textName, textDescription, label10);
-            this.DisplayDataOnDataGrid(dataLabor, id, "Labor");
-            this.DisplayDataOnDataGrid(dataMachinary, id, "Machinary");
-            this.DisplayDataOnDataGrid(dataMaterial, id, "Material");
-            var result = this.GetBoqCostAndPrice(id);
-            textCost.SetText(result.cost.ToString("N5"));
-            cmbUom.SelectedValue = result.uomRefId;
-            this.GetAdditionalCost(dataAdditional, id);
-            CalculateAdditionalCost();
-            //Magrin and Inflation
-            var result1 = this.GetBoqMargin(id);
-            textMargin.SetText(result1.rate.ToString("N2"));
-            //textTotalMargin.SetText(string.Format("{0:N2}",result1.totalMargin));
-            checkMargin.Checked = result1.bMarin;
-            var result2 = this.GetBoqInflation(id);
-            textInflation.SetText(result2.rate.ToString("N2"));
-            //textTotalInlfation.SetText(string.Format("{0:N1}",result2.totalInlfation));
-            checkInflation.Checked = result2.bInlfation;
+            //lblItemID.SetValue(id);
+            //this.GetBoQInfo(id, textName, textDescription, label10);
+            //this.DisplayDataOnDataGrid(dataLabor, id, "Labor");
+            //this.DisplayDataOnDataGrid(dataMachinary, id, "Machinary");
+            //this.DisplayDataOnDataGrid(dataMaterial, id, "Material");
+            //var result = this.GetBoqCostAndPrice(id);
+            //textCost.SetText(result.cost.ToString("N5"));
+            //cmbUom.SelectedValue = result.uomRefId;
+            //this.GetAdditionalCost(dataAdditional, id);
+            //CalculateAdditionalCost();
+            ////Magrin and Inflation
+            //var result1 = this.GetBoqMargin(id);
+            //textMargin.SetText(result1.rate.ToString("N2"));
+            ////textTotalMargin.SetText(string.Format("{0:N2}",result1.totalMargin));
+            //checkMargin.Checked = result1.bMarin;
+            //var result2 = this.GetBoqInflation(id);
+            //textInflation.SetText(result2.rate.ToString("N2"));
+            ////textTotalInlfation.SetText(string.Format("{0:N1}",result2.totalInlfation));
+            //checkInflation.Checked = result2.bInlfation;
             ///Register event
             textMargin.GotFocus += TextMargin_GotFocus;
             textMargin.LostFocus += TextMargin_LostFocus;
@@ -283,7 +283,7 @@ namespace ESProMeter.Views.Items
                     Cost = textCost.AsNumber<double>(),
                     Price =textPrice.AsNumber<double>(),
                 };
-                this.UpdateItemBoqLine(lblItemID.AsNumber<long>(), data);
+                //this.UpdateItemBoqLine(lblItemID.AsNumber<long>(), data);
                 this.ClearForm(textName, textDescription);
                 ((DataTable)dataAdditional.DataSource).Rows.Clear() ;
                 dataLabor.Rows.Clear();

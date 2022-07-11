@@ -44,6 +44,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel1 = new System.Windows.Forms.Panel();
             this.materialButton1 = new FontAwesome.Sharp.Material.MaterialButton();
+            this.btnCloseForm = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.menuStrip1.SuspendLayout();
@@ -173,6 +174,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.splitContainer1.Panel2.Controls.Add(this.btnCloseForm);
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Panel2.Controls.Add(this.iconButton1);
             this.splitContainer1.Size = new System.Drawing.Size(1040, 573);
@@ -208,16 +210,33 @@
             this.materialButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.materialButton1.UseVisualStyleBackColor = false;
             // 
+            // btnCloseForm
+            // 
+            this.btnCloseForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCloseForm.FlatAppearance.BorderSize = 0;
+            this.btnCloseForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCloseForm.IconChar = FontAwesome.Sharp.IconChar.X;
+            this.btnCloseForm.IconColor = System.Drawing.Color.Red;
+            this.btnCloseForm.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCloseForm.IconSize = 16;
+            this.btnCloseForm.Location = new System.Drawing.Point(830, 3);
+            this.btnCloseForm.Name = "btnCloseForm";
+            this.btnCloseForm.Size = new System.Drawing.Size(29, 23);
+            this.btnCloseForm.TabIndex = 2;
+            this.btnCloseForm.UseVisualStyleBackColor = true;
+            this.btnCloseForm.Click += new System.EventHandler(this.btnCloseForm_Click);
+            // 
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.Silver;
-            this.panel2.Location = new System.Drawing.Point(-1, 21);
+            this.panel2.Location = new System.Drawing.Point(-1, 28);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(872, 561);
+            this.panel2.Size = new System.Drawing.Size(866, 554);
             this.panel2.TabIndex = 1;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // iconButton1
             // 
@@ -227,7 +246,7 @@
             this.iconButton1.IconColor = System.Drawing.Color.Black;
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton1.IconSize = 20;
-            this.iconButton1.Location = new System.Drawing.Point(-1, -1);
+            this.iconButton1.Location = new System.Drawing.Point(-1, 2);
             this.iconButton1.Name = "iconButton1";
             this.iconButton1.Size = new System.Drawing.Size(29, 23);
             this.iconButton1.TabIndex = 0;
@@ -279,5 +298,6 @@
         private System.Windows.Forms.ToolStripMenuItem createBoqToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem boqListToolStripMenuItem;
         internal System.Windows.Forms.Panel panel2;
+        private FontAwesome.Sharp.IconButton btnCloseForm;
     }
 }

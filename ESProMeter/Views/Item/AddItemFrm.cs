@@ -12,7 +12,7 @@ namespace ESProMeter.Views.Items
     {
         public string ItemName { 
             get => textName.Text.Trim(); 
-            set => ItemName=value; 
+            set => textName.SetText(value); 
         }
         public string ItemType { 
             get => cmbType.Text; 
@@ -32,14 +32,26 @@ namespace ESProMeter.Views.Items
         }
         public bool IsActive { 
             get => !chkIsInActive.Checked; 
-            set => chkIsInActive.Checked=value; 
+            set => chkIsInActive.Checked = !value; 
+        }
+        public long Id { 
+            get => lblItemID.AsNumber<long>(); 
+            set => lblItemID.SetText(value); 
         }
 
         public AddItemFrm()
         {
             InitializeComponent();
+            this.ShowItemType(this.cmbType);
+            this.ShowUom(this.cmbUom);
         }
-
+        public AddItemFrm(long Id)
+        {
+            InitializeComponent();
+            this.ShowItemType(this.cmbType);
+            this.ShowUom(this.cmbUom);
+            this.ShowItemFormUpdate(Id, this);
+        }
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
             if (((TextBox)sender).Text.Length > 0)
@@ -55,10 +67,35 @@ namespace ESProMeter.Views.Items
             dgvItem.SendToBack();
         }
 
+        private void ShowItemOnlyForm()
+        {
+            this.groupBoq.Visible = false;
+            this.Controls.RemoveByKey(groupBoq.Name);
+            this.Height = 300;
+            this.textCost.Enabled = true;
+            this.materialButton1.Location = new Point(416, 220);
+            this.materialButton2.Location = new Point(548, 220);
+        }
+        private void ShowBoqItemOnlyForm() 
+        {
+            this.groupBoq.Visible = true;
+            this.Controls.Add(this.groupBoq);
+            this.Height = 594;
+            this.textCost.Enabled = false;
+            this.materialButton1.Location = new Point(416, 504);
+            this.materialButton2.Location = new Point(548, 504);
+        }
         private void AddItemFrm_Load(object sender, EventArgs e)
         {
-            this.ShowItemType(this.cmbType);
-            this.ShowUom(this.cmbUom);
+            
+            if (ItemListFrm.actionType == 1)
+            {
+                this.cmbType.Enabled = false;
+            }
+            if(ItemListFrm._itemType != 0)
+            {
+                ShowItemOnlyForm();
+            }
         }
 
         private void materialButton2_Click(object sender, EventArgs e)
@@ -70,27 +107,12 @@ namespace ESProMeter.Views.Items
         {
             if (cmbType.SelectedIndex == 0)
             {
-                this.groupBoq.Visible = true;
-                this.Controls.Add(this.groupBoq);
-                this.Height = 594;
-                this.textCost.Enabled = false;
-                this.materialButton1.Location = new Point(416, 504);
-                this.materialButton2.Location = new Point(548, 504);
+                ShowBoqItemOnlyForm();
             }
             else
             {
-                this.groupBoq.Visible = false;
-                this.Controls.RemoveByKey(groupBoq.Name);
-                this.Height = 300;
-                this.textCost.Enabled = true;
-                this.materialButton1.Location = new Point(416, 220);
-                this.materialButton2.Location = new Point(548, 220);
+                ShowItemOnlyForm();
             }
-        }
-
-        private void textBox1_MouseLeave(object sender, EventArgs e)
-        {
-            
         }
 
         int itemSequence = 1;
@@ -122,14 +144,11 @@ namespace ESProMeter.Views.Items
         {
 
         }
-
-
-
         private bool CheckItemExist(object value)
         {
             foreach (DataGridViewRow item in dgvBoq.Rows)
             {
-                if (item.Cells["ID"].Value.Equals(value))
+                if (item.Cells["BOQITEMLINEID"].Value.Equals(value))
                 {
                     return true;
                 }
@@ -149,7 +168,7 @@ namespace ESProMeter.Views.Items
             }
             else
             {
-
+                this.CreateNewBoqItem(this, this.dgvBoq);
             }
         }
 

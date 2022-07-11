@@ -8,11 +8,12 @@ namespace ESProMeter.IVews
 {
     public interface IItem
     {
-        string ItemName { get; set; }
-        string ItemType { get; set; }
-        long UomId { get; set; }
-        decimal Cost { get; set; }
-        string Description { get; set; }
-        bool IsActive { get; set; }
+        public long Id { get; set; }
+        public string ItemName { get; set; }
+        public string ItemType { get; set; }
+        public long UomId { get; set; }
+        public decimal Cost { get; set; }
+        public string Description { get; set; }
+        public bool IsActive { get; set; }
     }
 }

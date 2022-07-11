@@ -54,6 +54,7 @@ namespace ESProMeter.DataAccess
         DataRow FindAsDataRow<TCol,TValue>(string colName, TValue value);
         T InserGetId<T,U>(U parameters);
         int InsertOrUpdate<T>(T parameter);
+        int InsertFromTable<T>(T parameter);
         int Delete<T>(T parameter);
         T SelectOne<T, U>(U parameter);
         T Count<T,U>(U parameter);  
