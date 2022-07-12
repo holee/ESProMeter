@@ -9,9 +9,9 @@ using System.Drawing;
 
 namespace ESProMeter
 {
-    public partial class Form1 : Form
+    public partial class MainFrm : Form
     {
-        public Form1()
+        public MainFrm()
         {
             InitializeComponent();
         }
