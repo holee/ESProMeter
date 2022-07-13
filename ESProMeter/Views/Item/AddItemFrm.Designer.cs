@@ -50,7 +50,6 @@ namespace ESProMeter.Views.Items
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmbType = new System.Windows.Forms.ComboBox();
             this.lblName = new System.Windows.Forms.Label();
-            this.lblDescription = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -92,6 +91,14 @@ namespace ESProMeter.Views.Items
             this.mnrItemName = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.groupBoq = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.dgvBoq = new System.Windows.Forms.DataGridView();
+            this.BOQITEMLINEID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BOQITEMLINEUOMID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BOQITEMLINEQTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnDeleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dgvItem = new System.Windows.Forms.DataGridView();
             this.ItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewComboBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -100,21 +107,12 @@ namespace ESProMeter.Views.Items
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.dgvBoq = new System.Windows.Forms.DataGridView();
-            this.BOQITEMLINEID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BOQITEMLINEUOMID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BOQITEMLINEQTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BOQITEMLINESEQ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.lblItemID = new System.Windows.Forms.Label();
             this.GENERAL.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBoq.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBoq)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvItem)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -151,8 +149,9 @@ namespace ESProMeter.Views.Items
             // 
             this.textDescription.Location = new System.Drawing.Point(135, 58);
             this.textDescription.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textDescription.Multiline = true;
             this.textDescription.Name = "textDescription";
-            this.textDescription.Size = new System.Drawing.Size(488, 23);
+            this.textDescription.Size = new System.Drawing.Size(504, 34);
             this.textDescription.TabIndex = 1;
             this.textDescription.Tag = "Description";
             // 
@@ -307,14 +306,6 @@ namespace ESProMeter.Views.Items
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(410, 18);
             this.lblName.TabIndex = 9;
-            // 
-            // lblDescription
-            // 
-            this.lblDescription.Location = new System.Drawing.Point(138, 84);
-            this.lblDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(471, 22);
-            this.lblDescription.TabIndex = 9;
             // 
             // toolTip1
             // 
@@ -644,8 +635,8 @@ namespace ESProMeter.Views.Items
             // groupBoq
             // 
             this.groupBoq.Controls.Add(this.textBox1);
-            this.groupBoq.Controls.Add(this.dgvItem);
             this.groupBoq.Controls.Add(this.dgvBoq);
+            this.groupBoq.Controls.Add(this.dgvItem);
             this.groupBoq.Location = new System.Drawing.Point(18, 228);
             this.groupBoq.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBoq.Name = "groupBoq";
@@ -665,6 +656,103 @@ namespace ESProMeter.Views.Items
             this.textBox1.TabIndex = 30;
             this.textBox1.Tag = "Name";
             this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
+            // 
+            // dgvBoq
+            // 
+            this.dgvBoq.AllowUserToAddRows = false;
+            this.dgvBoq.AllowUserToDeleteRows = false;
+            this.dgvBoq.AllowUserToResizeColumns = false;
+            this.dgvBoq.AllowUserToResizeRows = false;
+            this.dgvBoq.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvBoq.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.BOQITEMLINEID,
+            this.dataGridViewComboBoxColumn1,
+            this.Column6,
+            this.dataGridViewTextBoxColumn25,
+            this.BOQITEMLINEUOMID,
+            this.BOQITEMLINEQTY,
+            this.btnDeleteColumn});
+            this.dgvBoq.Location = new System.Drawing.Point(8, 58);
+            this.dgvBoq.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dgvBoq.MultiSelect = false;
+            this.dgvBoq.Name = "dgvBoq";
+            this.dgvBoq.RowHeadersVisible = false;
+            this.dgvBoq.RowTemplate.Height = 25;
+            this.dgvBoq.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvBoq.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvBoq.Size = new System.Drawing.Size(648, 201);
+            this.dgvBoq.TabIndex = 30;
+            this.dgvBoq.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBoq_CellContentClick);
+            this.dgvBoq.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvBoq_DataError);
+            // 
+            // BOQITEMLINEID
+            // 
+            this.BOQITEMLINEID.HeaderText = "ItemID";
+            this.BOQITEMLINEID.MinimumWidth = 2;
+            this.BOQITEMLINEID.Name = "BOQITEMLINEID";
+            this.BOQITEMLINEID.ReadOnly = true;
+            this.BOQITEMLINEID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.BOQITEMLINEID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.BOQITEMLINEID.Width = 50;
+            // 
+            // dataGridViewComboBoxColumn1
+            // 
+            this.dataGridViewComboBoxColumn1.HeaderText = "Item Name";
+            this.dataGridViewComboBoxColumn1.Name = "dataGridViewComboBoxColumn1";
+            this.dataGridViewComboBoxColumn1.ReadOnly = true;
+            this.dataGridViewComboBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewComboBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewComboBoxColumn1.Width = 200;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "ItemType";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn25
+            // 
+            this.dataGridViewTextBoxColumn25.HeaderText = "UOM";
+            this.dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
+            this.dataGridViewTextBoxColumn25.ReadOnly = true;
+            this.dataGridViewTextBoxColumn25.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn25.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // BOQITEMLINEUOMID
+            // 
+            this.BOQITEMLINEUOMID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.BOQITEMLINEUOMID.HeaderText = "UomRefID";
+            this.BOQITEMLINEUOMID.MinimumWidth = 2;
+            this.BOQITEMLINEUOMID.Name = "BOQITEMLINEUOMID";
+            this.BOQITEMLINEUOMID.ReadOnly = true;
+            this.BOQITEMLINEUOMID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.BOQITEMLINEUOMID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.BOQITEMLINEUOMID.Width = 50;
+            // 
+            // BOQITEMLINEQTY
+            // 
+            this.BOQITEMLINEQTY.HeaderText = "Quantity";
+            this.BOQITEMLINEQTY.Name = "BOQITEMLINEQTY";
+            this.BOQITEMLINEQTY.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.BOQITEMLINEQTY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // btnDeleteColumn
+            // 
+            this.btnDeleteColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.IndianRed;
+            this.btnDeleteColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.btnDeleteColumn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteColumn.HeaderText = "Delete";
+            this.btnDeleteColumn.Name = "btnDeleteColumn";
+            this.btnDeleteColumn.ReadOnly = true;
+            this.btnDeleteColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.btnDeleteColumn.Text = "X";
+            this.btnDeleteColumn.UseColumnTextForButtonValue = true;
+            this.btnDeleteColumn.Width = 50;
             // 
             // dgvItem
             // 
@@ -750,10 +838,10 @@ namespace ESProMeter.Views.Items
             // Column1
             // 
             this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle4;
             this.Column1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Column1.HeaderText = "Action";
             this.Column1.Name = "Column1";
@@ -762,111 +850,6 @@ namespace ESProMeter.Views.Items
             this.Column1.Text = "Select";
             this.Column1.UseColumnTextForButtonValue = true;
             this.Column1.Width = 80;
-            // 
-            // dgvBoq
-            // 
-            this.dgvBoq.AllowUserToAddRows = false;
-            this.dgvBoq.AllowUserToDeleteRows = false;
-            this.dgvBoq.AllowUserToResizeColumns = false;
-            this.dgvBoq.AllowUserToResizeRows = false;
-            this.dgvBoq.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvBoq.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.BOQITEMLINEID,
-            this.dataGridViewComboBoxColumn1,
-            this.Column6,
-            this.dataGridViewTextBoxColumn25,
-            this.BOQITEMLINEUOMID,
-            this.BOQITEMLINEQTY,
-            this.BOQITEMLINESEQ,
-            this.dataGridViewButtonColumn1});
-            this.dgvBoq.Location = new System.Drawing.Point(8, 58);
-            this.dgvBoq.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.dgvBoq.MultiSelect = false;
-            this.dgvBoq.Name = "dgvBoq";
-            this.dgvBoq.RowHeadersVisible = false;
-            this.dgvBoq.RowTemplate.Height = 25;
-            this.dgvBoq.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvBoq.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvBoq.Size = new System.Drawing.Size(648, 201);
-            this.dgvBoq.TabIndex = 30;
-            this.dgvBoq.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvBoq_DataError);
-            // 
-            // BOQITEMLINEID
-            // 
-            this.BOQITEMLINEID.HeaderText = "ItemID";
-            this.BOQITEMLINEID.MinimumWidth = 2;
-            this.BOQITEMLINEID.Name = "BOQITEMLINEID";
-            this.BOQITEMLINEID.ReadOnly = true;
-            this.BOQITEMLINEID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.BOQITEMLINEID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.BOQITEMLINEID.Width = 2;
-            // 
-            // dataGridViewComboBoxColumn1
-            // 
-            this.dataGridViewComboBoxColumn1.HeaderText = "Item Name";
-            this.dataGridViewComboBoxColumn1.Name = "dataGridViewComboBoxColumn1";
-            this.dataGridViewComboBoxColumn1.ReadOnly = true;
-            this.dataGridViewComboBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewComboBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewComboBoxColumn1.Width = 200;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "ItemType";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // dataGridViewTextBoxColumn25
-            // 
-            this.dataGridViewTextBoxColumn25.HeaderText = "UOM";
-            this.dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
-            this.dataGridViewTextBoxColumn25.ReadOnly = true;
-            this.dataGridViewTextBoxColumn25.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn25.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // BOQITEMLINEUOMID
-            // 
-            this.BOQITEMLINEUOMID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.BOQITEMLINEUOMID.HeaderText = "UomRefID";
-            this.BOQITEMLINEUOMID.MinimumWidth = 2;
-            this.BOQITEMLINEUOMID.Name = "BOQITEMLINEUOMID";
-            this.BOQITEMLINEUOMID.ReadOnly = true;
-            this.BOQITEMLINEUOMID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.BOQITEMLINEUOMID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.BOQITEMLINEUOMID.Width = 2;
-            // 
-            // BOQITEMLINEQTY
-            // 
-            this.BOQITEMLINEQTY.HeaderText = "Quantity";
-            this.BOQITEMLINEQTY.Name = "BOQITEMLINEQTY";
-            this.BOQITEMLINEQTY.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.BOQITEMLINEQTY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // BOQITEMLINESEQ
-            // 
-            this.BOQITEMLINESEQ.HeaderText = "Sequent";
-            this.BOQITEMLINESEQ.Name = "BOQITEMLINESEQ";
-            this.BOQITEMLINESEQ.ReadOnly = true;
-            this.BOQITEMLINESEQ.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.BOQITEMLINESEQ.Width = 80;
-            // 
-            // dataGridViewButtonColumn1
-            // 
-            this.dataGridViewButtonColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.IndianRed;
-            this.dataGridViewButtonColumn1.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridViewButtonColumn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dataGridViewButtonColumn1.HeaderText = "Delete";
-            this.dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
-            this.dataGridViewButtonColumn1.ReadOnly = true;
-            this.dataGridViewButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewButtonColumn1.Text = "X";
-            this.dataGridViewButtonColumn1.UseColumnTextForButtonValue = true;
-            this.dataGridViewButtonColumn1.Width = 50;
             // 
             // lblItemID
             // 
@@ -886,7 +869,6 @@ namespace ESProMeter.Views.Items
             this.Controls.Add(this.lblItemID);
             this.Controls.Add(this.groupBoq);
             this.Controls.Add(this.GENERAL);
-            this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.materialButton2);
@@ -909,8 +891,8 @@ namespace ESProMeter.Views.Items
             this.groupBox2.PerformLayout();
             this.groupBoq.ResumeLayout(false);
             this.groupBoq.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBoq)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvItem)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -933,7 +915,6 @@ namespace ESProMeter.Views.Items
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.ComboBox cmbType;
         private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -984,15 +965,14 @@ namespace ESProMeter.Views.Items
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewButtonColumn Column1;
+        private System.Windows.Forms.Label lblItemID;
+        internal System.Windows.Forms.DataGridView dgvBoq;
         private System.Windows.Forms.DataGridViewTextBoxColumn BOQITEMLINEID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewComboBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
         private System.Windows.Forms.DataGridViewTextBoxColumn BOQITEMLINEUOMID;
         private System.Windows.Forms.DataGridViewTextBoxColumn BOQITEMLINEQTY;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BOQITEMLINESEQ;
-        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn1;
-        private System.Windows.Forms.Label lblItemID;
-        internal System.Windows.Forms.DataGridView dgvBoq;
+        private System.Windows.Forms.DataGridViewButtonColumn btnDeleteColumn;
     }
 }

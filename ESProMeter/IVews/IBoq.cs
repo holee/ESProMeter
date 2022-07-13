@@ -4,8 +4,6 @@ namespace ESProMeter.IViews
     public interface IBoq
     {
         long BOQID { get; set; }
-        DateTime CreatedTime { get; set; }
-        DateTime ModifiedTime { get; set; }
         int EditSequense { get; set; }
         double BOQNumber { get; set; }
         long CustRefID { get; set; }
@@ -17,5 +15,7 @@ namespace ESProMeter.IViews
         DateTime ValidDate { get; set; }
         string TermsCondition { get; set; }
         byte IsDelete { get; set; }
+        DateTime CreatedTime { get; set; }
+        DateTime ModifiedTime { get; set; }
     }
 }

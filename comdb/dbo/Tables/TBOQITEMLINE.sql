@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[TBOQITEMLINE] (
+    [BOQITEMID]        BIGINT          NULL,
+    [BOQITEMLINEID]    BIGINT          NULL,
+    [BOQITEMLINESEQ]   INT             NULL,
+    [BOQITEMLINEUOMID] BIGINT          NULL,
+    [BOQITEMLINEQTY]   NUMERIC (18, 5) NULL
+);
+

@@ -10,7 +10,7 @@ namespace ESProMeter.Services
 {
     public class ConnectionService
     {
-        private static IDbConnection _connection = null;
+        private static IDbConnection? _connection = null;
 
         public static IDbConnection Connection
         {
@@ -27,7 +27,7 @@ namespace ESProMeter.Services
                     }
                     else
                     {
-                        _connection = DBConnection.Config(opt =>
+                        _connection = DBConnection.ConfigServerDb(opt =>
                         {
                             opt.ServerName = Settings.Default.serverName;
                             opt.DatabaseName = Settings.Default.database;
@@ -49,7 +49,7 @@ namespace ESProMeter.Services
                     }
                     else
                     {
-                        _connection = DBConnection.Config(opt =>
+                        _connection = DBConnection.ConfigServerDb(opt =>
                         {
                             opt.ServerName = Settings.Default.serverName;
                             opt.DatabaseName = Settings.Default.database;

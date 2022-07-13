@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace ESProMeter.DataAccess 
 {
-    public class SqlAccess:IDisposable,IUseSqlAccess,ISqlAccess,IUseTabe
+    public class SqlAccess:IDisposable,IUseSqlAccess,ISqlAccess
     {
         private IDbConnection? _connection;
         private IDbTransaction? _transaction;
@@ -208,6 +208,5 @@ namespace ESProMeter.DataAccess
             return table.Rows.Count > 0;
         }
 
-       
     }
 }

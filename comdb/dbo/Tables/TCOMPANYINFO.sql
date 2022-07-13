@@ -1,0 +1,19 @@
+﻿CREATE TABLE [dbo].[TCOMPANYINFO] (
+    [ID]                  INT           NOT NULL,
+    [CDT]                 DATETIME      CONSTRAINT [DF_TCOMPANYINFO_CDT] DEFAULT (getdate()) NULL,
+    [MDT]                 DATETIME      CONSTRAINT [DF_TCOMPANYINFO_MDT] DEFAULT (getdate()) NULL,
+    [EDSEQ]               INT           CONSTRAINT [DF_TCOMPANYINFO_EDSEQ] DEFAULT ((0)) NULL,
+    [COMPANYNAME]         NVARCHAR (50) NOT NULL,
+    [LEGALCOMPANYNAME]    NVARCHAR (50) NULL,
+    [ALTLEGALCOMPANYNAME] NVARCHAR (50) NULL,
+    [CONTADDRESSID]       INT           NULL,
+    [LEGALADDRESSID]      INT           NULL,
+    [MAINPHONE]           VARCHAR (50)  NULL,
+    [ALTPHONE]            VARCHAR (50)  NULL,
+    [FAX]                 VARCHAR (50)  NULL,
+    [EMAIL]               VARCHAR (250) NULL,
+    [WEBSITE]             VARCHAR (250) NULL,
+    [LOGOFILEPATH]        VARCHAR (MAX) NULL,
+    CONSTRAINT [PK_TCOMPANYINFO] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+
