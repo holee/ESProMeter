@@ -167,12 +167,12 @@ namespace ESProMeter.Controllers
         /// <param name="itemId"></param>
         /// <param name="item"></param>
         /// <param name="columns"></param>
-        public static void ShowItemFormUpdate(this Form form,long itemId,IItem item, params string[] columns)
+        public static void ShowItemFormUpdate(this Form form, long itemId, IItem item,DataGridView grid, params string[] columns)
         {
             var sql = columns.Length == 0 ? "*" : string.Join(",", columns);
 
-            if(instance.UseSql($"SELECT {sql} FROM [dbo].[VItem] WHERE [ID]=@itemID;")
-               .FindOne(new { itemID = itemId },out DataRow row))
+            if (instance.UseSql($"SELECT {sql} FROM [dbo].[VItem] WHERE [ID]=@itemID;")
+                       .FindOne(new { itemID = itemId }, out DataRow row))
             {
                 item.Id = row.GetValue<long>("ID");
                 item.ItemName = row.GetValue<string>("ItemName");
@@ -181,6 +181,14 @@ namespace ESProMeter.Controllers
                 item.IsActive = row.GetValue<bool>("IsActive");
                 item.UomId = row.GetValue<long>("UomID");
                 item.ItemType = row.GetValue<string>("ItemType");
+
+                if (item.ItemType == "BillOfQuantity")
+                {
+                    var sql1 = "SELECT BoqItemLineId,BOQITEMITEMLINENAME,BOQITEMITEMLINETYPE,UOMNAME,BOQITEMLINEUOMID,BOQITEMLINEQTY FROM VBoqItemLine WHERE BoqItemId=@itemId;";
+                    instance.UseSql(sql1)
+                            .FindAsTable<dynamic>(new { itemId = itemId })
+                            .UsePlainDataToGridView(grid);
+                }
             }
         }
         public static void CreateNewItem(this Form form, IItem item)
@@ -249,6 +257,7 @@ namespace ESProMeter.Controllers
                 var id = instance.UseProcedure("ITEM_UPDATE_SP")
                         .InserGetId<long, dynamic>(new
                         {
+                            ID=item.Id,
                             ITEMNAME = item.ItemName,
                             DESCRIPTION = item.Description,
                             ITEMTYPE = item.ItemType,
@@ -482,15 +491,17 @@ namespace ESProMeter.Controllers
             table.Columns.Add("BOQITEMLINESEQ", typeof(int));
             table.Columns.Add("BOQITEMLINEUOMID", typeof(long));
             table.Columns.Add("BOQITEMLINEQTY", typeof(decimal));
+            int index = 1;
             foreach (DataGridViewRow row in view.Rows)
             {
                 DataRow dRow = table.NewRow();
                 dRow["BOQITEMID"] = itemID;
                 dRow["BOQITEMLINEID"] = row.Cells["BOQITEMLINEID"].Value;
-                dRow["BOQITEMLINESEQ"] = row.Cells["BOQITEMLINESEQ"].Value;
+                dRow["BOQITEMLINESEQ"] = index;
                 dRow["BOQITEMLINEUOMID"] = row.Cells["BOQITEMLINEUOMID"].Value;
                 dRow["BOQITEMLINEQTY"] = row.Cells["BOQITEMLINEQTY"].Value;
                 table.Rows.Add(dRow);
+                index++;
             }
             return table;
         }

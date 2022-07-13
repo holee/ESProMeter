@@ -38,9 +38,6 @@ namespace ESProMeter.Views.Items
             get => lblItemID.AsNumber<long>(); 
             set => lblItemID.SetText(value); 
         }
-
-  
-
         public AddItemFrm()
         {
             InitializeComponent();
@@ -53,7 +50,7 @@ namespace ESProMeter.Views.Items
             InitializeComponent();
             this.ShowItemType(this.cmbType);
             this.ShowUom(this.cmbUom);
-            this.ShowItemFormUpdate(Id, this);
+            this.ShowItemFormUpdate(Id, this,this.dgvBoq);
             materialButton1.Text = "Update";
         }
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
@@ -144,7 +141,6 @@ namespace ESProMeter.Views.Items
                 }
                 var data=this.SearchItemList(id, "ID", "ItemName", "ItemType", "Uom", "UomID");
                 data.Add(Utility.NumberString(1,"N2"));
-                data.Add(itemSequence);
                 dgvBoq.Rows.Add(data.ToArray());
                 dgvItem.Visible = false;
                 dgvItem.SendToBack();
@@ -184,9 +180,22 @@ namespace ESProMeter.Views.Items
             {
                 if (this.IsValid(textName, textDescription, textCost))
                 {
-                    this.CreateNewBoqItem(this, this.dgvBoq);
+                    //this.CreateNewBoqItem(this, this.dgvBoq);
+                    this.DialogResult = DialogResult.OK;
                 }
                 
+            }
+        }
+
+        private void dgvBoq_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvBoq.Rows.Count > 0)
+            {
+                if (dgvBoq.Columns[e.ColumnIndex].Name== "btnDeleteColumn"
+                    && dgvBoq.Columns[e.ColumnIndex] is DataGridViewColumn)
+                {
+                    dgvBoq.Rows.RemoveAt(e.RowIndex);
+                }
             }
         }
 

@@ -256,9 +256,7 @@ namespace ESProMeter.Views.Items
                     CreateACopyBoqItemFrm updateBoqForm = new CreateACopyBoqItemFrm(id);
                     if (updateBoqForm.ShowDialog() == DialogResult.OK)
                     {
-                        var rows = this.AsControl<ComboBox>("cmdNumberRows").AsNumber<int>();
-                        var sortBy = string.IsNullOrEmpty(this.AsControl<ComboBox>("cmbSortBy").Text) ? "Name" : this.AsControl<ComboBox>("cmbSortBy").Text;
-                        this.ShowItemList(dataItemList,rows, sortBy);
+                        this.ShowItemList(dataItemList);
                     }
                 }
                 else

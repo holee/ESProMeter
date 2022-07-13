@@ -18,29 +18,6 @@ namespace ESProMeter.Views.Items
             InitializeComponent();
             this.ShowBoqItems();
             this.ShowUom();
-            //this.GetBoQInfo(id,textName,textDescription);
-            //this.DisplayDataOnDataGrid(dataLabor,id);
-            //this.DisplayDataOnDataGrid(dataMachinary, id,"Machinary");
-            //this.DisplayDataOnDataGrid(dataMaterial, id,"Material");
-            //var result = this.GetBoqCostAndPrice(id);
-            //textCost.SetText(result.cost.ToString("N5"));
-            //cmbUom.SelectedValue = result.uomRefId;
-            //this.GetAdditionalCost(dataAdditional, id);
-            //CalculateAdditionalCost();
-            ////Magrin and Inflation
-            //var result1=this.GetBoqMargin(id);
-            //textMargin.SetText(result1.rate.ToString("N2"));
-            ////textTotalMargin.SetText(string.Format("{0:N2}",result1.totalMargin));
-            //checkMargin.Checked = result1.bMarin;
-            //var result2=this.GetBoqInflation(id);
-            //textInflation.SetText(result2.rate.ToString("N2"));
-            ////textTotalInlfation.SetText(string.Format("{0:N1}",result2.totalInlfation));
-            //checkInflation.Checked = result2.bInlfation;
-            //Register events
-            textMargin.GotFocus += TextMargin_GotFocus;
-            textMargin.LostFocus += TextMargin_LostFocus;
-            textInflation.GotFocus += TextInflation_GotFocus;
-            textInflation.LostFocus += TextInflation_LostFocus;
         }
 
         private void TextInflation_LostFocus(object sender, EventArgs e)
@@ -100,8 +77,7 @@ namespace ESProMeter.Views.Items
 
         private void AddItemFrm_Load(object sender, EventArgs e)
         {
-          
-            dataLabor.ClearSelection();
+           
         }
         private void btnUomCreate_Click(object sender, EventArgs e)
         {
@@ -835,135 +811,135 @@ namespace ESProMeter.Views.Items
         }
         private void checkInflation_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkInflation.Checked)
-            {
-                textInflation.Enabled = true;
-            }
-            else
-            {
-                textInflation.Enabled= false;
-                textInflation.SetText(0);
-                textTotalInlfation.SetText(0);
-            }
-            CalculateSalePrice();
+            //if (checkInflation.Checked)
+            //{
+            //    textInflation.Enabled = true;
+            //}
+            //else
+            //{
+            //    textInflation.Enabled= false;
+            //    textInflation.SetText(0);
+            //    textTotalInlfation.SetText(0);
+            //}
+            //CalculateSalePrice();
         }
         private void textMargin_KeyUp(object sender, KeyEventArgs e)
         {
-            var margin=((TextBox)sender).AsNumber<decimal>();
-            if(margin > 100)
-            {
-                ((TextBox)sender).SetText(0);
-                CalculateMargin();
-            }
-            else
-            {
-                CalculateMargin(margin);
+            //var margin=((TextBox)sender).AsNumber<decimal>();
+            //if(margin > 100)
+            //{
+            //    ((TextBox)sender).SetText(0);
+            //    CalculateMargin();
+            //}
+            //else
+            //{
+            //    CalculateMargin(margin);
                
-            }
-            CalculateSalePrice();
+            //}
+            //CalculateSalePrice();
         }
         private void textInflation_KeyUp(object sender, KeyEventArgs e)
         {
-            var inflation = ((TextBox)sender).AsNumber<decimal>();
-            if (inflation > 100)
-            {
-                ((TextBox)sender).SetText(0);
-                CalculateInflation();
-            }
-            else
-            {
-                CalculateInflation(inflation);
-            }
-            CalculateSalePrice();
+            //var inflation = ((TextBox)sender).AsNumber<decimal>();
+            //if (inflation > 100)
+            //{
+            //    ((TextBox)sender).SetText(0);
+            //    CalculateInflation();
+            //}
+            //else
+            //{
+            //    CalculateInflation(inflation);
+            //}
+            //CalculateSalePrice();
         }
         private void CalculateMarginAndInflation()
         {
-            //calculate margin and inflation
-            if (checkMargin.Checked)
-            {
-                var margin = textMargin.AsNumber<decimal>();
-                CalculateMargin(margin);
-            }
-            else
-            {
-                textTotalMargin.SetText(0);
-                CalculateMargin();
-            }
-            if (checkInflation.Checked)
-            {
-                var inflation = textInflation.AsNumber<decimal>();
-                CalculateInflation(inflation);
-            }
-            else
-            {
-                textTotalInlfation.SetText(0);
-                CalculateInflation();
-            }
+            ////calculate margin and inflation
+            //if (checkMargin.Checked)
+            //{
+            //    var margin = textMargin.AsNumber<decimal>();
+            //    CalculateMargin(margin);
+            //}
+            //else
+            //{
+            //    textTotalMargin.SetText(0);
+            //    CalculateMargin();
+            //}
+            //if (checkInflation.Checked)
+            //{
+            //    var inflation = textInflation.AsNumber<decimal>();
+            //    CalculateInflation(inflation);
+            //}
+            //else
+            //{
+            //    textTotalInlfation.SetText(0);
+            //    CalculateInflation();
+            //}
         }
         private void CalculateCost()
         {
-            decimal subtotal = 0;
-            foreach (DataGridViewRow item in dataLabor.Rows)
-            {
-                if (item.IsNewRow) break;
-                subtotal += item.GetValue<decimal>("laborAmount");
-            }
-            foreach (DataGridViewRow item in dataMachinary.Rows)
-            {
-                if (item.IsNewRow) break;
-                subtotal += item.GetValue<decimal>("mnrSubTotal");
-            }
-            foreach (DataGridViewRow item in dataMaterial.Rows)
-            {
-                if (item.IsNewRow) break;
-                subtotal += item.GetValue<decimal>("mtrSubTotal");
-            }
-            textCost.Text = subtotal.ToString("0.0000");
+            //decimal subtotal = 0;
+            //foreach (DataGridViewRow item in dataLabor.Rows)
+            //{
+            //    if (item.IsNewRow) break;
+            //    subtotal += item.GetValue<decimal>("laborAmount");
+            //}
+            //foreach (DataGridViewRow item in dataMachinary.Rows)
+            //{
+            //    if (item.IsNewRow) break;
+            //    subtotal += item.GetValue<decimal>("mnrSubTotal");
+            //}
+            //foreach (DataGridViewRow item in dataMaterial.Rows)
+            //{
+            //    if (item.IsNewRow) break;
+            //    subtotal += item.GetValue<decimal>("mtrSubTotal");
+            //}
+            //textCost.Text = subtotal.ToString("0.0000");
         }
         private void CalculateAdditionalCost()
         {
 
-            foreach (DataGridViewRow iRow in dataAdditional.Rows)
-            {
-                if (iRow.IsNewRow) break;
-                var amount = (textCost.AsNumber<decimal>() * (iRow.GetValue<decimal>("Rate") / 100));
-                iRow.SetValue("addAmount", string.Format("{0:0.00000}", amount));
-            }
-            CalculateTotalAdditionalCost();
+            //foreach (DataGridViewRow iRow in dataAdditional.Rows)
+            //{
+            //    if (iRow.IsNewRow) break;
+            //    var amount = (textCost.AsNumber<decimal>() * (iRow.GetValue<decimal>("Rate") / 100));
+            //    iRow.SetValue("addAmount", string.Format("{0:0.00000}", amount));
+            //}
+            //CalculateTotalAdditionalCost();
         }
         private void CalculateTotalAdditionalCost()
         {
-            var totalAdditionalCost = 0M;
-            foreach (DataGridViewRow iRow in dataAdditional.Rows)
-            {
-                if (iRow.IsNewRow) break;
-                totalAdditionalCost += iRow.GetValue<decimal>("addAmount");
-            }
-            textAdditionalCost.SetText(totalAdditionalCost.ToString("0.00000"));
+            //var totalAdditionalCost = 0M;
+            //foreach (DataGridViewRow iRow in dataAdditional.Rows)
+            //{
+            //    if (iRow.IsNewRow) break;
+            //    totalAdditionalCost += iRow.GetValue<decimal>("addAmount");
+            //}
+            //textAdditionalCost.SetText(totalAdditionalCost.ToString("0.00000"));
         }
         private void CalculateSalePrice() 
         {
            
-            //CalculateAdditionalCost();
-            CalculateTotalAdditionalCost();
-            //calculate margin and inflation
-            CalculateMarginAndInflation();
-            var cost = textCost.AsNumber<decimal>();
-            var margin = textTotalMargin.AsNumber<decimal>();
-            var inflation=textTotalInlfation.AsNumber<decimal>();
-            var totalAdditionalCost = textAdditionalCost.AsNumber<decimal>();
-            var salePrice =margin + inflation + totalAdditionalCost + cost;
-            textPrice.SetText(Utility.NumberString(salePrice,"N5"));
+            ////CalculateAdditionalCost();
+            //CalculateTotalAdditionalCost();
+            ////calculate margin and inflation
+            //CalculateMarginAndInflation();
+            //var cost = textCost.AsNumber<decimal>();
+            //var margin = textTotalMargin.AsNumber<decimal>();
+            //var inflation=textTotalInlfation.AsNumber<decimal>();
+            //var totalAdditionalCost = textAdditionalCost.AsNumber<decimal>();
+            //var salePrice =margin + inflation + totalAdditionalCost + cost;
+            //textPrice.SetText(Utility.NumberString(salePrice,"N5"));
         }
         private void CalculateInflation(decimal inflationRate=0)
         {
-            var inflationTotal = ((inflationRate / 100) * (textCost.AsNumber<decimal>() + textAdditionalCost.AsNumber<decimal>()));
-            textTotalInlfation.SetText(inflationTotal.ToString("N5"));
+            //var inflationTotal = ((inflationRate / 100) * (textCost.AsNumber<decimal>() + textAdditionalCost.AsNumber<decimal>()));
+            //textTotalInlfation.SetText(inflationTotal.ToString("N5"));
         }
         private void CalculateMargin(decimal marginRate=0)
         {
-            var marginTotal = ((marginRate / 100) * (textCost.AsNumber<decimal>() + textAdditionalCost.AsNumber<decimal>()));
-            textTotalMargin.SetText(marginTotal.ToString("N5"));
+            //var marginTotal = ((marginRate / 100) * (textCost.AsNumber<decimal>() + textAdditionalCost.AsNumber<decimal>()));
+            //textTotalMargin.SetText(marginTotal.ToString("N5"));
         }
 
         private void btnLabor_Click(object sender, EventArgs e)
@@ -979,148 +955,148 @@ namespace ESProMeter.Views.Items
         }
         internal void AddNewLaborToGrid(long itemID)
         {
-            int founRow = 0;
-            bool found = false;
-            for (int i = 0; i < dataLabor.Rows.Count; i++)
-            {
-                if (dataLabor.Rows[i].IsNewRow) continue;
-                if (dataLabor.Rows[i].Cells["laborBOQItemLineRefID"].Value.Equals(itemID))
-                {
-                    founRow = i;
-                    found = true;
-                    break;
-                }
-            }
+            //int founRow = 0;
+            //bool found = false;
+            //for (int i = 0; i < dataLabor.Rows.Count; i++)
+            //{
+            //    if (dataLabor.Rows[i].IsNewRow) continue;
+            //    if (dataLabor.Rows[i].Cells["laborBOQItemLineRefID"].Value.Equals(itemID))
+            //    {
+            //        founRow = i;
+            //        found = true;
+            //        break;
+            //    }
+            //}
 
-            if (found)
-            {
-                var qty = dataLabor.GetValue<decimal>(founRow, "laborBOQItemLineQty") + 1;
-                dataLabor.SetText(founRow, "laborBOQItemLineQty", qty.ToString("0.000"));
-                //var qty = dataLabor.AsNumber<decimal>(founRow, "Column3");
-                var cost = dataLabor.AsNumber<decimal>(founRow, "Column4");
-                dataLabor.SetText(founRow, "laborAmount", string.Format("{0:N5}", (qty * cost)));
-            }
-            else
-            {
-                //var data = DbAccess.UseSql("SELECT ItemID,Name,Price,UOMID,Abbreviation FROM vItemWithUom WHERE ItemID=@itemID")
-                //                .Where(new { itemID = itemID })
-                //                .First();
-                //if (data != null)
-                //{
-                //    dataLabor.Rows.Add(
-                //        data.GetValue<string>("Name"),
-                //        "1.000", data.GetValue<string>("Abbreviation"),
-                //        data.GetValue<double>("Price").ToString("0.00000"),
-                //        data.GetValue<double>("Price").ToString("0.00000"),
-                //        itemID, 
-                //        data.GetValue<long>("UOMID")
-                //        );
-                //}
-            }
-            //Calculate total cost
-            CalculateCost();
-            //Calculate Additinal cost
-            CalculateAdditionalCost();
-            //calculate sale price
-            CalculateSalePrice();
+            //if (found)
+            //{
+            //    var qty = dataLabor.GetValue<decimal>(founRow, "laborBOQItemLineQty") + 1;
+            //    dataLabor.SetText(founRow, "laborBOQItemLineQty", qty.ToString("0.000"));
+            //    //var qty = dataLabor.AsNumber<decimal>(founRow, "Column3");
+            //    var cost = dataLabor.AsNumber<decimal>(founRow, "Column4");
+            //    dataLabor.SetText(founRow, "laborAmount", string.Format("{0:N5}", (qty * cost)));
+            //}
+            //else
+            //{
+            //    //var data = DbAccess.UseSql("SELECT ItemID,Name,Price,UOMID,Abbreviation FROM vItemWithUom WHERE ItemID=@itemID")
+            //    //                .Where(new { itemID = itemID })
+            //    //                .First();
+            //    //if (data != null)
+            //    //{
+            //    //    dataLabor.Rows.Add(
+            //    //        data.GetValue<string>("Name"),
+            //    //        "1.000", data.GetValue<string>("Abbreviation"),
+            //    //        data.GetValue<double>("Price").ToString("0.00000"),
+            //    //        data.GetValue<double>("Price").ToString("0.00000"),
+            //    //        itemID, 
+            //    //        data.GetValue<long>("UOMID")
+            //    //        );
+            //    //}
+            //}
+            ////Calculate total cost
+            //CalculateCost();
+            ////Calculate Additinal cost
+            //CalculateAdditionalCost();
+            ////calculate sale price
+            //CalculateSalePrice();
         }
         private void AddNewMaterialToGrid(long itemID)
         {
             
-            int founRow = 0;
-            bool found = false;
+            //int founRow = 0;
+            //bool found = false;
    
-                for (int i = 0; i < dataMaterial.Rows.Count; i++)
-                {
-                    if (dataMaterial.Rows[i].IsNewRow) continue;
-                    if (dataMaterial.Rows[i].Cells["mtrItemRefID"].Value.Equals(itemID))
-                    {
-                        founRow = i;
-                        found = true;
-                        break;
-                    }
-                }
+            //    for (int i = 0; i < dataMaterial.Rows.Count; i++)
+            //    {
+            //        if (dataMaterial.Rows[i].IsNewRow) continue;
+            //        if (dataMaterial.Rows[i].Cells["mtrItemRefID"].Value.Equals(itemID))
+            //        {
+            //            founRow = i;
+            //            found = true;
+            //            break;
+            //        }
+            //    }
 
-                if (found)
-                {
-                    var quantity = dataMaterial.GetValue<decimal>(founRow, "mtrQuantity") + 1;
-                    dataMaterial.SetText(founRow, "mtrQuantity", quantity);
-                    var qty = dataMaterial.AsNumber<decimal>(founRow, "mtrQuantity");
-                    var cost = dataMaterial.AsNumber<decimal>(founRow, "mtrCost");
-                    dataMaterial.SetText(founRow, "mtrSubTotal",(qty * cost).ToString("0.00000"));
-                }
-                else
-                {
-                    //var data = DbAccess.UseSql("SELECT ItemID,Name,Price,UOMID,Abbreviation FROM vItemWithUom WHERE ItemID=@itemID")
-                    //                .Where(new { itemID = itemID })
-                    //                .First();
-                    //if (data != null)
-                    //{
-                    //    dataMaterial.Rows.Add(
-                    //        data.GetValue<string>("Name"),
-                    //        "1.000", 
-                    //        data.GetValue<string>("Abbreviation"),
-                    //        data.GetValue<double>("Price").ToString("0.00000"),
-                    //        data.GetValue<double>("Price").ToString("0.00000"),
-                    //        itemID,
-                    //        data.GetValue<long>("UOMID")
-                    //        );
-                    //}
-                }
-                //Calculate total cost
-                CalculateCost();
-                //Calculate Additinal cost
-                CalculateAdditionalCost();
-                //calculate sale price
-                CalculateSalePrice();
+            //    if (found)
+            //    {
+            //        var quantity = dataMaterial.GetValue<decimal>(founRow, "mtrQuantity") + 1;
+            //        dataMaterial.SetText(founRow, "mtrQuantity", quantity);
+            //        var qty = dataMaterial.AsNumber<decimal>(founRow, "mtrQuantity");
+            //        var cost = dataMaterial.AsNumber<decimal>(founRow, "mtrCost");
+            //        dataMaterial.SetText(founRow, "mtrSubTotal",(qty * cost).ToString("0.00000"));
+            //    }
+            //    else
+            //    {
+            //        //var data = DbAccess.UseSql("SELECT ItemID,Name,Price,UOMID,Abbreviation FROM vItemWithUom WHERE ItemID=@itemID")
+            //        //                .Where(new { itemID = itemID })
+            //        //                .First();
+            //        //if (data != null)
+            //        //{
+            //        //    dataMaterial.Rows.Add(
+            //        //        data.GetValue<string>("Name"),
+            //        //        "1.000", 
+            //        //        data.GetValue<string>("Abbreviation"),
+            //        //        data.GetValue<double>("Price").ToString("0.00000"),
+            //        //        data.GetValue<double>("Price").ToString("0.00000"),
+            //        //        itemID,
+            //        //        data.GetValue<long>("UOMID")
+            //        //        );
+            //        //}
+            //    }
+            //    //Calculate total cost
+            //    CalculateCost();
+            //    //Calculate Additinal cost
+            //    CalculateAdditionalCost();
+            //    //calculate sale price
+            //    CalculateSalePrice();
           
         }
-        private void AddNewMachinaryToGrid(long itemID)
-        {
-            int founRow = 0;
-            bool found = false;
-                for (int i = 0; i < dataMachinary.Rows.Count; i++)
-                {
-                    if (dataMachinary.Rows[i].IsNewRow) continue;
-                    if (dataMachinary.Rows[i].Cells["mnrItemID"].Value.Equals(itemID))
-                    {
-                        founRow = i;
-                        found = true;
-                        break;
-                    }
-                }
-                if (found)
-                {
-                    var quantity = dataMachinary.GetValue<decimal>(founRow, "mnrQuantity") + 1;
-                    dataMachinary.SetText(founRow, "mnrQuantity", quantity.ToString("0.00"));
-                    var qty = dataMachinary.AsNumber<decimal>(founRow, "mnrQuantity");
-                    var cost = dataMachinary.AsNumber<decimal>(founRow, "mnrCost");
-                    dataMachinary.SetText(founRow, "mnrSubTotal",(qty * cost).ToString("0.00000"));
-                }
-                else
-                {
-                    //var data = DbAccess.UseSql("SELECT ItemID,Name,Price,UOMID,Abbreviation FROM vItemWithUom WHERE ItemID=@itemID")
-                    //               .Where(new { itemID = itemID })
-                    //               .First();
-                    //if (data != null)
-                    //{
-                    //    dataMachinary.Rows.Add(
-                    //        data.GetValue<string>("Name"),
-                    //        "1.00", data.GetValue<string>("Abbreviation"),
-                    //        data.GetValue<double>("Price").ToString("0.00000"),
-                    //        data.GetValue<double>("Price").ToString("0.00000"),
-                    //        itemID,
-                    //        data.GetValue<long>("UOMID")
-                    //        );
-                    //}
-                }
-                //Calculate total cost
-                CalculateCost();
-                //Calculate Additinal cost
-                CalculateAdditionalCost();
-                //calculate sale price
-                CalculateSalePrice();
-        }
+        //private void AddNewMachinaryToGrid(long itemID)
+        //{
+        //    int founRow = 0;
+        //    bool found = false;
+        //        for (int i = 0; i < dataMachinary.Rows.Count; i++)
+        //        {
+        //            if (dataMachinary.Rows[i].IsNewRow) continue;
+        //            if (dataMachinary.Rows[i].Cells["mnrItemID"].Value.Equals(itemID))
+        //            {
+        //                founRow = i;
+        //                found = true;
+        //                break;
+        //            }
+        //        }
+        //        if (found)
+        //        {
+        //            var quantity = dataMachinary.GetValue<decimal>(founRow, "mnrQuantity") + 1;
+        //            dataMachinary.SetText(founRow, "mnrQuantity", quantity.ToString("0.00"));
+        //            var qty = dataMachinary.AsNumber<decimal>(founRow, "mnrQuantity");
+        //            var cost = dataMachinary.AsNumber<decimal>(founRow, "mnrCost");
+        //            dataMachinary.SetText(founRow, "mnrSubTotal",(qty * cost).ToString("0.00000"));
+        //        }
+        //        else
+        //        {
+        //            //var data = DbAccess.UseSql("SELECT ItemID,Name,Price,UOMID,Abbreviation FROM vItemWithUom WHERE ItemID=@itemID")
+        //            //               .Where(new { itemID = itemID })
+        //            //               .First();
+        //            //if (data != null)
+        //            //{
+        //            //    dataMachinary.Rows.Add(
+        //            //        data.GetValue<string>("Name"),
+        //            //        "1.00", data.GetValue<string>("Abbreviation"),
+        //            //        data.GetValue<double>("Price").ToString("0.00000"),
+        //            //        data.GetValue<double>("Price").ToString("0.00000"),
+        //            //        itemID,
+        //            //        data.GetValue<long>("UOMID")
+        //            //        );
+        //            //}
+        //        }
+        //        //Calculate total cost
+        //        CalculateCost();
+        //        //Calculate Additinal cost
+        //        CalculateAdditionalCost();
+        //        //calculate sale price
+        //        CalculateSalePrice();
+        //}
         private void btnMachinaryClick(object sender, EventArgs e)
         {
             AddItemDialog form = new AddItemDialog(type: "Machinary");
@@ -1145,247 +1121,247 @@ namespace ESProMeter.Views.Items
         }
 
         //Cell Edit Event
-        private void dataLabor_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex == -1) return;
-            if (dataLabor.Columns[e.ColumnIndex].Name == "laborBOQItemLineQty")
-            {
-                if (dataLabor.GetValue<object>(e.RowIndex, "laborBOQItemLineQty") == null)
-                {
-                    dataLabor.SetText(e.RowIndex, "laborBOQItemLineQty", "0.000");
-                }
-                else
-                {
-                    var qty = dataLabor.GetValue<decimal>(e.RowIndex, "laborBOQItemLineQty");
-                    dataLabor.SetText(e.RowIndex, "laborBOQItemLineQty", qty.ToString("N3"));
+        //private void dataLabor_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    if (e.RowIndex == -1) return;
+        //    if (dataLabor.Columns[e.ColumnIndex].Name == "laborBOQItemLineQty")
+        //    {
+        //        if (dataLabor.GetValue<object>(e.RowIndex, "laborBOQItemLineQty") == null)
+        //        {
+        //            dataLabor.SetText(e.RowIndex, "laborBOQItemLineQty", "0.000");
+        //        }
+        //        else
+        //        {
+        //            var qty = dataLabor.GetValue<decimal>(e.RowIndex, "laborBOQItemLineQty");
+        //            dataLabor.SetText(e.RowIndex, "laborBOQItemLineQty", qty.ToString("N3"));
 
-                }
-            }
-            if (dataLabor.Columns[e.ColumnIndex].Name == "Column4")
-            {
-                if (dataLabor.GetValue<object>(e.RowIndex, "Column4") == null)
-                {
-                    dataLabor.SetText(e.RowIndex, "Column4", "0.00000");
-                }
-                else
-                {
-                    var cost = dataLabor.GetValue<double>(e.RowIndex, "Column4");
-                    dataLabor.SetText(e.RowIndex, "Column4", cost.ToString("N5"));
+        //        }
+        //    }
+        //    if (dataLabor.Columns[e.ColumnIndex].Name == "Column4")
+        //    {
+        //        if (dataLabor.GetValue<object>(e.RowIndex, "Column4") == null)
+        //        {
+        //            dataLabor.SetText(e.RowIndex, "Column4", "0.00000");
+        //        }
+        //        else
+        //        {
+        //            var cost = dataLabor.GetValue<double>(e.RowIndex, "Column4");
+        //            dataLabor.SetText(e.RowIndex, "Column4", cost.ToString("N5"));
 
-                }
-            }
-            if (dataLabor.Columns[e.ColumnIndex].Name == "laborAmount")
-            {
-                if (dataLabor.GetValue<object>(e.RowIndex, "laborAmount") == null)
-                {
-                    dataLabor.SetText(e.RowIndex, "laborAmount", "0.00000");
-                }
-                else
-                {
-                    var price = dataLabor.GetValue<double>(e.RowIndex, "laborAmount");
-                    dataLabor.SetText(e.RowIndex, "laborAmount", price.ToString("N5"));
+        //        }
+        //    }
+        //    if (dataLabor.Columns[e.ColumnIndex].Name == "laborAmount")
+        //    {
+        //        if (dataLabor.GetValue<object>(e.RowIndex, "laborAmount") == null)
+        //        {
+        //            dataLabor.SetText(e.RowIndex, "laborAmount", "0.00000");
+        //        }
+        //        else
+        //        {
+        //            var price = dataLabor.GetValue<double>(e.RowIndex, "laborAmount");
+        //            dataLabor.SetText(e.RowIndex, "laborAmount", price.ToString("N5"));
 
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
 
-        private void dataMachinary_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex == -1) return;
-            if (dataMachinary.Columns[e.ColumnIndex].Name == "mnrQuantity")
-            {
-                if (dataMachinary.GetValue<object>(e.RowIndex, "mnrQuantity") == null)
-                {
-                    dataMachinary.SetText(e.RowIndex, "mnrQuantity", "0.000");
-                }
-                else
-                {
-                    var qty = dataMachinary.GetValue<decimal>(e.RowIndex, "mnrQuantity");
-                    dataMachinary.SetText(e.RowIndex, "mnrQuantity", qty.ToString("0.000"));
+        //private void dataMachinary_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    if (e.RowIndex == -1) return;
+        //    if (dataMachinary.Columns[e.ColumnIndex].Name == "mnrQuantity")
+        //    {
+        //        if (dataMachinary.GetValue<object>(e.RowIndex, "mnrQuantity") == null)
+        //        {
+        //            dataMachinary.SetText(e.RowIndex, "mnrQuantity", "0.000");
+        //        }
+        //        else
+        //        {
+        //            var qty = dataMachinary.GetValue<decimal>(e.RowIndex, "mnrQuantity");
+        //            dataMachinary.SetText(e.RowIndex, "mnrQuantity", qty.ToString("0.000"));
 
-                }
-            }
-            if (dataMachinary.Columns[e.ColumnIndex].Name == "mnrCost")
-            {
-                if (dataMachinary.GetValue<object>(e.RowIndex, "mnrCost") == null)
-                {
-                    dataMachinary.SetText(e.RowIndex, "mnrCost", "0.00000");
-                }
-                else
-                {
-                    var cost = dataMachinary.GetValue<decimal>(e.RowIndex, "mnrCost");
-                    dataMachinary.SetText(e.RowIndex, "mnrCost", cost.ToString("0.00000"));
+        //        }
+        //    }
+        //    if (dataMachinary.Columns[e.ColumnIndex].Name == "mnrCost")
+        //    {
+        //        if (dataMachinary.GetValue<object>(e.RowIndex, "mnrCost") == null)
+        //        {
+        //            dataMachinary.SetText(e.RowIndex, "mnrCost", "0.00000");
+        //        }
+        //        else
+        //        {
+        //            var cost = dataMachinary.GetValue<decimal>(e.RowIndex, "mnrCost");
+        //            dataMachinary.SetText(e.RowIndex, "mnrCost", cost.ToString("0.00000"));
 
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
 
-        private void dataMaterial_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex == -1) return;
-            if (dataMaterial.Columns[e.ColumnIndex].Name == "mtrQuantity")
-            {
-                if (dataMaterial.GetValue<object>(e.RowIndex, "mtrQuantity") == null)
-                {
-                    dataMaterial.SetText(e.RowIndex, "mtrQuantity", "0.000");
-                }
-                else
-                {
-                    var qty = dataMaterial.GetValue<decimal>(e.RowIndex, "mtrQuantity");
-                    dataMaterial.SetText(e.RowIndex, "mtrQuantity", qty.ToString("0.000"));
+        //private void dataMaterial_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    if (e.RowIndex == -1) return;
+        //    if (dataMaterial.Columns[e.ColumnIndex].Name == "mtrQuantity")
+        //    {
+        //        if (dataMaterial.GetValue<object>(e.RowIndex, "mtrQuantity") == null)
+        //        {
+        //            dataMaterial.SetText(e.RowIndex, "mtrQuantity", "0.000");
+        //        }
+        //        else
+        //        {
+        //            var qty = dataMaterial.GetValue<decimal>(e.RowIndex, "mtrQuantity");
+        //            dataMaterial.SetText(e.RowIndex, "mtrQuantity", qty.ToString("0.000"));
 
-                }
-            }
-            if (dataMaterial.Columns[e.ColumnIndex].Name == "mtrCost")
-            {
-                if (dataMaterial.GetValue<object>(e.RowIndex, "mtrCost") == null)
-                {
-                    dataMaterial.SetText(e.RowIndex, "mtrCost", "0.00000");
-                }
-                else
-                {
-                    var cost = dataMaterial.GetValue<decimal>(e.RowIndex, "mtrCost");
-                    dataMaterial.SetText(e.RowIndex, "mtrCost", cost.ToString("0.00000"));
+        //        }
+        //    }
+        //    if (dataMaterial.Columns[e.ColumnIndex].Name == "mtrCost")
+        //    {
+        //        if (dataMaterial.GetValue<object>(e.RowIndex, "mtrCost") == null)
+        //        {
+        //            dataMaterial.SetText(e.RowIndex, "mtrCost", "0.00000");
+        //        }
+        //        else
+        //        {
+        //            var cost = dataMaterial.GetValue<decimal>(e.RowIndex, "mtrCost");
+        //            dataMaterial.SetText(e.RowIndex, "mtrCost", cost.ToString("0.00000"));
 
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
 
-        private void dataLabor_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (dataLabor.Rows.Count > 0)
-            {
-                if (dataLabor.Columns[e.ColumnIndex].Name == "Column4")
-                {
-                    if(e.Value != null)
-                    {
-                        dataLabor.Columns["Column4"].DefaultCellStyle.Format = "N5";
-                        dataLabor.Columns["Column4"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    }
-                }
-                if (dataLabor.Columns[e.ColumnIndex].Name == "laborAmount")
-                {
-                    if (e.Value != null)
-                    {
-                        dataLabor.Columns["laborAmount"].DefaultCellStyle.Format = "N5";
-                        dataLabor.Columns["laborAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    }
+        //private void dataLabor_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        //{
+        //    if (dataLabor.Rows.Count > 0)
+        //    {
+        //        if (dataLabor.Columns[e.ColumnIndex].Name == "Column4")
+        //        {
+        //            if(e.Value != null)
+        //            {
+        //                dataLabor.Columns["Column4"].DefaultCellStyle.Format = "N5";
+        //                dataLabor.Columns["Column4"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+        //            }
+        //        }
+        //        if (dataLabor.Columns[e.ColumnIndex].Name == "laborAmount")
+        //        {
+        //            if (e.Value != null)
+        //            {
+        //                dataLabor.Columns["laborAmount"].DefaultCellStyle.Format = "N5";
+        //                dataLabor.Columns["laborAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+        //            }
 
-                }
-                if (dataLabor.Columns[e.ColumnIndex].Name == "laborBOQItemLineQty")
-                {
-                    if (e.Value != null)
-                    {
-                        dataLabor.Columns["laborBOQItemLineQty"].DefaultCellStyle.Format = "N3";
-                        dataLabor.Columns["laborBOQItemLineQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    }
-                }
-            }
-        }
+        //        }
+        //        if (dataLabor.Columns[e.ColumnIndex].Name == "laborBOQItemLineQty")
+        //        {
+        //            if (e.Value != null)
+        //            {
+        //                dataLabor.Columns["laborBOQItemLineQty"].DefaultCellStyle.Format = "N3";
+        //                dataLabor.Columns["laborBOQItemLineQty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+        //            }
+        //        }
+        //    }
+        //}
 
-        private void dataMachinary_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (dataMachinary.Rows.Count > 0)
-            {
-                if (dataMachinary.Columns[e.ColumnIndex].Name == "mnrQuantity")
-                {
-                    if(e.Value != null)
-                    {
-                        dataMachinary.Columns["mnrQuantity"].DefaultCellStyle.Format = "N3";
-                        dataMachinary.Columns["mnrQuantity"].DefaultCellStyle.Alignment= DataGridViewContentAlignment.MiddleRight;
-                    }
-                }
-                if (dataMachinary.Columns[e.ColumnIndex].Name == "mnrCost")
-                {
-                    if (e.Value != null)
-                    {
-                        dataMachinary.Columns["mnrCost"].DefaultCellStyle.Format = "N5";
-                        dataMachinary.Columns["mnrCost"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    }
-                }
-                if (dataMachinary.Columns[e.ColumnIndex].Name == "mnrSubTotal")
-                {
-                    if (e.Value != null)
-                    {
-                        dataMachinary.Columns["mnrSubTotal"].DefaultCellStyle.Format = "N5";
-                        dataMachinary.Columns["mnrSubTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    }
-                }
-            }
-        }
+        //private void dataMachinary_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        //{
+        //    if (dataMachinary.Rows.Count > 0)
+        //    {
+        //        if (dataMachinary.Columns[e.ColumnIndex].Name == "mnrQuantity")
+        //        {
+        //            if(e.Value != null)
+        //            {
+        //                dataMachinary.Columns["mnrQuantity"].DefaultCellStyle.Format = "N3";
+        //                dataMachinary.Columns["mnrQuantity"].DefaultCellStyle.Alignment= DataGridViewContentAlignment.MiddleRight;
+        //            }
+        //        }
+        //        if (dataMachinary.Columns[e.ColumnIndex].Name == "mnrCost")
+        //        {
+        //            if (e.Value != null)
+        //            {
+        //                dataMachinary.Columns["mnrCost"].DefaultCellStyle.Format = "N5";
+        //                dataMachinary.Columns["mnrCost"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+        //            }
+        //        }
+        //        if (dataMachinary.Columns[e.ColumnIndex].Name == "mnrSubTotal")
+        //        {
+        //            if (e.Value != null)
+        //            {
+        //                dataMachinary.Columns["mnrSubTotal"].DefaultCellStyle.Format = "N5";
+        //                dataMachinary.Columns["mnrSubTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+        //            }
+        //        }
+        //    }
+        //}
 
-        private void dataMaterial_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (dataMaterial.Rows.Count > 0)
-            {
-                if (dataMaterial.Columns[e.ColumnIndex].Name == "mtrQuantity")
-                {
-                    if (e.Value != null)
-                    {
-                        dataMaterial.Columns["mtrQuantity"].DefaultCellStyle.Format = "N3";
-                        dataMaterial.Columns["mtrQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    }
-                }
-                if (dataMaterial.Columns[e.ColumnIndex].Name == "mtrCost")
-                {
-                    if (e.Value != null)
-                    {
-                        dataMaterial.Columns["mtrCost"].DefaultCellStyle.Format = "N5";
-                        dataMaterial.Columns["mtrCost"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    }
-                }
-                if (dataMaterial.Columns[e.ColumnIndex].Name == "mtrSubTotal")
-                {
-                    if (e.Value != null)
-                    {
-                        dataMaterial.Columns["mtrSubTotal"].DefaultCellStyle.Format = "N5";
-                        dataMaterial.Columns["mtrSubTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    }
-                }
-            }
-        }
+        //private void dataMaterial_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        //{
+        //    if (dataMaterial.Rows.Count > 0)
+        //    {
+        //        if (dataMaterial.Columns[e.ColumnIndex].Name == "mtrQuantity")
+        //        {
+        //            if (e.Value != null)
+        //            {
+        //                dataMaterial.Columns["mtrQuantity"].DefaultCellStyle.Format = "N3";
+        //                dataMaterial.Columns["mtrQuantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+        //            }
+        //        }
+        //        if (dataMaterial.Columns[e.ColumnIndex].Name == "mtrCost")
+        //        {
+        //            if (e.Value != null)
+        //            {
+        //                dataMaterial.Columns["mtrCost"].DefaultCellStyle.Format = "N5";
+        //                dataMaterial.Columns["mtrCost"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+        //            }
+        //        }
+        //        if (dataMaterial.Columns[e.ColumnIndex].Name == "mtrSubTotal")
+        //        {
+        //            if (e.Value != null)
+        //            {
+        //                dataMaterial.Columns["mtrSubTotal"].DefaultCellStyle.Format = "N5";
+        //                dataMaterial.Columns["mtrSubTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+        //            }
+        //        }
+        //    }
+        //}
 
-        private void dataAdditional_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex == -1) return;
-            if (dataAdditional.Columns[e.ColumnIndex].Name == "Rate")
-            {
-                if (dataAdditional.GetValue<object>(e.RowIndex, "Rate") == null)
-                {
-                    dataAdditional.SetText(e.RowIndex, "Rate", "0.000");
-                }
-                else
-                {
-                    var rate = dataAdditional.GetValue<decimal>(e.RowIndex, "Rate");
-                    dataAdditional.SetText(e.RowIndex, "Rate", rate.ToString("N3"));
+        //private void dataAdditional_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    if (e.RowIndex == -1) return;
+        //    if (dataAdditional.Columns[e.ColumnIndex].Name == "Rate")
+        //    {
+        //        if (dataAdditional.GetValue<object>(e.RowIndex, "Rate") == null)
+        //        {
+        //            dataAdditional.SetText(e.RowIndex, "Rate", "0.000");
+        //        }
+        //        else
+        //        {
+        //            var rate = dataAdditional.GetValue<decimal>(e.RowIndex, "Rate");
+        //            dataAdditional.SetText(e.RowIndex, "Rate", rate.ToString("N3"));
 
-                }
-            }
+        //        }
+        //    }
            
         }
-        private void dataAdditional_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (dataMaterial.Rows.Count > 0)
-            {
-                if (dataMaterial.Columns[e.ColumnIndex].Name == "Rate")
-                {
-                    if (e.Value != null)
-                    {
-                        dataMaterial.Columns["Rate"].DefaultCellStyle.Format = "N3";
-                        dataMaterial.Columns["Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    }
-                }
-                if (dataMaterial.Columns[e.ColumnIndex].Name == "addAmount")
-                {
-                    if (e.Value != null)
-                    {
-                        dataMaterial.Columns["addAmount"].DefaultCellStyle.Format = "N5";
-                        dataMaterial.Columns["addAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    }
-                }
+        //private void dataAdditional_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        //{
+        //    if (dataMaterial.Rows.Count > 0)
+        //    {
+        //        if (dataMaterial.Columns[e.ColumnIndex].Name == "Rate")
+        //        {
+        //            if (e.Value != null)
+        //            {
+        //                dataMaterial.Columns["Rate"].DefaultCellStyle.Format = "N3";
+        //                dataMaterial.Columns["Rate"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+        //            }
+        //        }
+        //        if (dataMaterial.Columns[e.ColumnIndex].Name == "addAmount")
+        //        {
+        //            if (e.Value != null)
+        //            {
+        //                dataMaterial.Columns["addAmount"].DefaultCellStyle.Format = "N5";
+        //                dataMaterial.Columns["addAmount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+        //            }
+        //        }
                 
-            }
-        }
+        //    }
+        //}
 
         private void textInflation_MouseLeave(object sender, EventArgs e)
         {
