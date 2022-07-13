@@ -12,13 +12,13 @@ namespace DAL.Servers
         IConnectionStringSelection,
         IDatabaseInitializer
     {
-        private string _server;
-        private string _database;
-        private string _user;
-        private string _password;
-        private static ServerConfiguration _configuration=null;
-        private static LocalConfiguration _localConfiguration=null;
-        private SqlConnection _connection=null;
+        private string? _server;
+        private string? _database;
+        private string? _user;
+        private string? _password;
+        private static ServerConfiguration? _configuration=null;
+        private static LocalConfiguration? _localConfiguration=null;
+        private SqlConnection? _connection=null;
         private static bool isLocalDb = false;
         private DBConnection() { }
 
@@ -33,7 +33,7 @@ namespace DAL.Servers
             options?.Invoke(_localConfiguration);
             return new DBConnection();
         }
-        public static DBConnection Config(Action<IServerConfiguration> options)
+        public static DBConnection ConfigServerDb(Action<IServerConfiguration> options)
         {
             isLocalDb = false;
             _configuration =new ServerConfiguration();
@@ -72,12 +72,12 @@ namespace DAL.Servers
                 {
                     if (_connection == null)
                     {
-                        _connection = new SqlConnection(_localConfiguration.GetConnectionString);
+                        _connection = new SqlConnection(_localConfiguration?.GetConnectionString);
                     }
                     else
                     {
                         _connection = null;
-                        _connection = new SqlConnection(_localConfiguration.GetConnectionString);
+                        _connection = new SqlConnection(_localConfiguration?.GetConnectionString);
                     }
                 }
                 else
@@ -111,13 +111,13 @@ namespace DAL.Servers
             return this;
         }
 
-        public string GetConnectionString()
+        public string? GetConnectionString()
         {
             try
             {
                 if (isLocalDb)
                 {
-                    return _localConfiguration.GetConnectionString;
+                    return _localConfiguration?.GetConnectionString;
                 }
                 else
                 {

@@ -9,7 +9,7 @@ namespace ESProMeter.Services
 {
     public class DataUtility
     {
-        private static SqlAccess sqlAccess = null;
+        private static SqlAccess? sqlAccess = null;
 
         public static SqlAccess GetInstance
         {

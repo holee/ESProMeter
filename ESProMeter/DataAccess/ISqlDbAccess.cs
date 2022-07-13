@@ -4,31 +4,24 @@ using System.Data;
 
 namespace ESProMeter.DataAccess 
 {
-    public interface IDbFilter
-    {
-        IDbAccess Where(object where = null);
-        IDbAccess Add(object data);
-        IDbAccess Add<T>(T entity) where T:class;
-        IDbAccess AddMany(params object[] data);
-    }
-    public interface IDbAccess
-    {
-        DataTable SelectMany();
-        List<T> SelectManyMany<T,U>(U parameters) where T : class;
-        T SelectSingle<T,U>(U paramteres) where T : class;
-        T SelectSingle<T>(Func<T,bool> prediction) where T : class;
-        DataRow SelectSingle<T>(T parameters,params string[] columns);
-        DataRow SelectSingle();
-        IEnumerable<TResult> SelectTwoTable<T1,T2,TResult,U>(Func<T1,T2,TResult> map, U parameters,string split="Id") where TResult : class;
-        IEnumerable<TResult> SelectThreeTable<T1, T2,T3, TResult, U>(Func<T1, T2,T3, TResult> map,U parameters) where TResult : class;
-        IEnumerable<TResult> Select<T1, T2,T3,T4, TResult, U>(Func<T1, T2,T3,T4, TResult> map, U parameters) where TResult : class;
-        List<T> SelectAsList<T>(Func<T, bool> prediction) where T : class;
+    //public interface ISqlDbAccess
+    //{
+    //    DataTable SelectMany();
+    //    List<T> SelectManyMany<T,U>(U parameters) where T : class;
+    //    T SelectSingle<T,U>(U paramteres) where T : class;
+    //    T SelectSingle<T>(Func<T,bool> prediction) where T : class;
+    //    DataRow SelectSingle<T>(T parameters,params string[] columns);
+    //    DataRow SelectSingle();
+    //    IEnumerable<TResult> SelectTwoTable<T1,T2,TResult,U>(Func<T1,T2,TResult> map, U parameters,string split="Id") where TResult : class;
+    //    IEnumerable<TResult> SelectThreeTable<T1, T2,T3, TResult, U>(Func<T1, T2,T3, TResult> map,U parameters) where TResult : class;
+    //    IEnumerable<TResult> Select<T1, T2,T3,T4, TResult, U>(Func<T1, T2,T3,T4, TResult> map, U parameters) where TResult : class;
+    //    List<T> SelectAsList<T>(Func<T, bool> prediction) where T : class;
         
-        int Delete();
-        int SaveChanged();
-        int Count();
-        void SaveMany();
-    }
+    //    int Delete();
+    //    int SaveChanged();
+    //    int Count();
+    //    void SaveMany();
+    //}
 
 
     public interface IUseSqlAccess  
@@ -36,12 +29,13 @@ namespace ESProMeter.DataAccess
         ISqlAccess UseSql(string sql);
         ISqlAccess UseProcedure(string sql);
         ISqlAccess CreateConnection(string connectionstring);
+        void CloseConnection();
     }
     public interface IUseTabe 
     {
         ISqlAccess UseTable(string table);
     }
-    public interface ISqlAccess
+    public interface ISqlAccess 
     {
         void StartTransaction();
         DataTable FindAsTable<T>(T parameters);
