@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[TSETTING] (
+    [CODE]        NVARCHAR (50) NULL,
+    [DESCRIPTION] NVARCHAR (50) NULL,
+    [TYPE]        NVARCHAR (50) NULL,
+    [CATEGORY]    NVARCHAR (50) NULL,
+    [VALUE]       VARCHAR (50)  NULL,
+    [VALUEAS]     NVARCHAR (50) NULL,
+    [isACT]       TINYINT       NULL
+);
+

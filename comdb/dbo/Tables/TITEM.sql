@@ -1,0 +1,14 @@
+﻿CREATE TABLE [dbo].[TITEM] (
+    [ID]          BIGINT          IDENTITY (1, 1) NOT NULL,
+    [ITEMNAME]    NVARCHAR (50)   NULL,
+    [DESCRIPTION] NVARCHAR (250)  NULL,
+    [ITEMTYPE]    NVARCHAR (50)   NULL,
+    [UOMID]       BIGINT          NULL,
+    [COST]        NUMERIC (18, 5) NULL,
+    [ISACTIVE]    TINYINT         CONSTRAINT [DF_TITEM_ISACTIVE] DEFAULT ((1)) NULL,
+    [ISRATE]      TINYINT         NULL,
+    [EDSEQ]       INT             CONSTRAINT [DF_TITEM_EDSEQ] DEFAULT ((0)) NULL,
+    [CDT]         DATETIME        CONSTRAINT [DF_TITEM_CDT] DEFAULT (getdate()) NULL,
+    [MDT]         DATETIME        CONSTRAINT [DF_TITEM_MDT] DEFAULT (getdate()) NULL
+);
+

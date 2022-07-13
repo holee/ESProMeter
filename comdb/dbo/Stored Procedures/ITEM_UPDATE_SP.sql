@@ -1,0 +1,22 @@
+﻿CREATE PROCEDURE [dbo].[ITEM_UPDATE_SP]
+	@ID BIGINT,
+	@ITEMNAME NVARCHAR(100), 
+	@DESCRIPTION NVARCHAR(400), 
+	@ITEMTYPE NVARCHAR(100),
+	@UOMID bigint,
+	@COST decimal(18,5),
+	@ISRATE BIT
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+    -- Insert statements for procedure here
+	UPDATE TITEM SET ITEMNAME=@ITEMNAME, 
+	[DESCRIPTION]=@DESCRIPTION, 
+	ITEMTYPE=@ITEMTYPE,
+	UOMID=@UOMID,
+	COST=@COST,
+	ISRATE=@ISRATE
+	WHERE [ID]=@ID
+END

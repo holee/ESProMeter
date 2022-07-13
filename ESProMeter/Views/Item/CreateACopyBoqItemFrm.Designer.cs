@@ -100,7 +100,7 @@ namespace ESProMeter.Views.Items
             this.textName.Size = new System.Drawing.Size(348, 23);
             this.textName.TabIndex = 1;
             this.textName.Tag = "Name";
-            this.textName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textName_KeyUp);
+            
             // 
             // label2
             // 
@@ -176,7 +176,7 @@ namespace ESProMeter.Views.Items
             this.btnUomCreate.TabIndex = 7;
             this.btnUomCreate.Text = "Add UoM";
             this.btnUomCreate.UseVisualStyleBackColor = true;
-            this.btnUomCreate.Click += new System.EventHandler(this.btnUomCreate_Click);
+            
             // 
             // textCost
             // 
@@ -189,7 +189,7 @@ namespace ESProMeter.Views.Items
             this.textCost.Tag = "Cost";
             this.textCost.Text = "0";
             this.textCost.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.textCost.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxKeyPress);
+          
             // 
             // label5
             // 
@@ -218,7 +218,7 @@ namespace ESProMeter.Views.Items
             this.materialButton2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.materialButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.materialButton2.UseVisualStyleBackColor = false;
-            this.materialButton2.Click += new System.EventHandler(this.materialButton2_Click);
+         
             // 
             // materialButton1
             // 
@@ -238,7 +238,7 @@ namespace ESProMeter.Views.Items
             this.materialButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.materialButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.materialButton1.UseVisualStyleBackColor = false;
-            this.materialButton1.Click += new System.EventHandler(this.materialButton1_Click);
+         
             // 
             // groupBox2
             // 
@@ -630,7 +630,7 @@ namespace ESProMeter.Views.Items
             this.Name = "CreateACopyBoqItemFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Create A Copy Bill Of Quantity";
-            this.Load += new System.EventHandler(this.AddItemFrm_Load);
+         
             this.GENERAL.ResumeLayout(false);
             this.GENERAL.PerformLayout();
             this.groupBox2.ResumeLayout(false);
