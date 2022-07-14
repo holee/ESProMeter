@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ESProMeter.Properties;
+using ESProMeter.Sessions;
+
 namespace ESProMeter.Services
 {
     public class ConnectionService
@@ -87,5 +89,17 @@ namespace ESProMeter.Services
                 }
             }
         }
+
+        public static string ConnectionString() 
+        {
+               return DBConnection.Config()
+                                  .AddServer(UserSession.ServerName??"")
+                                  .AddDatabase(UserSession.DatabaseName ?? "")
+                                  .AddUser(UserSession.UserName ?? "")
+                                  .SetPassword(UserSession.Password ?? "")
+                                  .GetConnectionString();
+        }
+
+
     }
 }
