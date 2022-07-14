@@ -1,24 +1,8 @@
-﻿using DAL.Servers;
-using ESProMeter.DataAccess;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using ESProMeter.DataAccess;
 namespace ESProMeter.Services
 {
     public class SysDbUtility
     {
-        private static string GetConnectionString()
-        {
-                return DBConnection.Config()
-                                   .AddServer("")
-                                   .AddDatabase("")
-                                   .AddUser("")
-                                   .SetPassword("")
-                                   .GetConnectionString();
-        }
         private static SysDbAccess? _sysDbAccess;
         public static SysDbAccess? GetInstance
         {
@@ -26,11 +10,13 @@ namespace ESProMeter.Services
             {
                 if (_sysDbAccess == null)
                 {
-                    _sysDbAccess = new SysDbAccess(GetConnectionString());
+                    _sysDbAccess = new SysDbAccess();
                 }
                 return _sysDbAccess;
             }
         }
+
+
 
     }
 }

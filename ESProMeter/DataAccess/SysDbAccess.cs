@@ -1,53 +1,47 @@
-﻿using Dapper;
-using System;
-using System.Collections.Generic;
+﻿using ESProMeter.Services;
+using Microsoft.Data.Sqlite;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace ESProMeter.DataAccess
 {
     public class SysDbAccess
     {
-        private string? _connectionString;
+        private static SysDBConnection? _db;
 
-        public SysDbAccess(string connectionString)
+        private static SysDBConnection GetDBConnection
         {
-            _connectionString = connectionString;
+            get
+            {
+                if(_db== null)
+                {
+                    _db = new SysDBConnection();
+                }
+                return _db;
+            }
         }
-
         public bool GetCompanies(out DataTable table,params string[] columns) 
         {
             table = new DataTable();
-            using (IDbConnection connection = new SqlConnection(_connectionString))
-            {
-                var sql = columns.Length == 0 ? "*" : string.Join(",", columns);
-                connection.Open();
-                var result=connection.ExecuteReader($"SELECT {sql} FROM TCOMP WHERE IsActive=1;"
-                    ,param:null,commandType:CommandType.StoredProcedure);
-                table.Load(result);
-                return table.Rows.Count > 0;
-            };
-            
+            var sql = columns.Length == 0 ? "*" : string.Join(",", columns);
+            using SqliteCommand command = _db.GetConnection().CreateCommand();
+            command.CommandText = $"SELECT {sql} FROM TCOMP WHERE IsActive=1;";
+            var result = command.ExecuteReader();
+            table.Load(result);
+            return table.Rows.Count > 0;
         }
-        public bool GetCompanies(long id,out DataTable table, params string[] columns)
+        public bool InsertCompanyDbInfo(params string[] data)  
         {
-            table = new DataTable();
-            using (IDbConnection connection = new SqlConnection(_connectionString))
-            {
-                var sql = columns.Length == 0 ? "*" : string.Join(",", columns);
-                connection.Open();
-                var result = connection.ExecuteReader($"SELECT {sql} FROM TCOMP WHERE IsActive=1 WHERE id=@id;",new { id=id });
-                table.Load(result);
-                return table.Rows.Count > 0;
-            };
-
+            using SqliteCommand command = _db.GetConnection().CreateCommand();
+            var sql = "INSERT INTO TCOMP(CompanyName,ServerName,DBName,UName,Password,isActive) VALUES(@0,@1,@2,@3,@4,@5)";
+            command.CommandText = sql;
+            command.Parameters.AddWithValue("@0", data[0]);
+            command.Parameters.AddWithValue("@1", data[1]);
+            command.Parameters.AddWithValue("@2", data[2]);
+            command.Parameters.AddWithValue("@3", data[3]);
+            command.Parameters.AddWithValue("@4", data[4]);
+            command.Parameters.AddWithValue("@5", data[4]);
+            var result = command.ExecuteNonQuery();
+            return result > 0;
         }
-
-
-
-
+        
     }
 }

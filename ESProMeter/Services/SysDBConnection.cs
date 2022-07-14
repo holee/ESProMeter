@@ -7,10 +7,5 @@ namespace ESProMeter.Services
         {
             return new SqliteConnection("Data Source=sysDB.db");
         }
-
-
-
-
-
     }
 }
