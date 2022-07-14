@@ -1,9 +1,0 @@
-﻿CREATE TABLE [dbo].[TULOG] (
-    [ID]        BIGINT   IDENTITY (1, 1) NOT NULL,
-    [UID]       BIGINT   NULL,
-    [StartTime] DATETIME CONSTRAINT [DF_TULOG_StartTime] DEFAULT (getdate()) NULL,
-    [LastTime]  DATETIME CONSTRAINT [DF_TULOG_LastTime] DEFAULT (getdate()) NULL,
-    [logout]    TINYINT  CONSTRAINT [DF_TULOG_logout] DEFAULT ((0)) NULL,
-    CONSTRAINT [PK_TULOG] PRIMARY KEY CLUSTERED ([ID] ASC)
-);
-
