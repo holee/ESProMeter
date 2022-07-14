@@ -5,7 +5,8 @@ namespace ESProMeter.Services
     {
         public SqliteConnection GetConnection()
         {
-            return new SqliteConnection("Data Source=sysDB.db");
+            var _connection = new SqliteConnection("Data Source=sysDB.db");
+            return _connection;
         }
     }
 }
