@@ -2,6 +2,8 @@
 using System;
 using System.Windows.Forms;
 using ESProMeter.Controllers;
+using ESProMeter.Services;
+using ESProMeter.Sessions;
 
 
 namespace ESProMeter.Views.FileAndLogin
@@ -26,25 +28,25 @@ namespace ESProMeter.Views.FileAndLogin
 				if (MainFrm.ULNF == null || MainFrm.ULNF.Visible == false) MainFrm.ULNF = new Views.FileAndLogin.UserLoginFrm();
 				MainFrm.ULNF.StartPosition = FormStartPosition.CenterScreen;
 
-				
+				this.setServerConnectionInformation();
 
-				//if (Connections.getDBServerConnection().State == ConnectionState.Open)
-				//{
-					this.Hide();
-				MainFrm.ULNF.lblSelectedCompany.Text = "Test";// ServerConfiguration.CompanyName;
-				if (MainFrm.ULNF.ShowDialog() == DialogResult.OK)
+				if (this.openCompanyFileConnection())
 				{
-					MainFrm.MainF.splitContainer1.Visible = true;
+					this.Hide();
+				
+					if (MainFrm.ULNF.ShowDialog() == DialogResult.OK)
+					{
+						MainFrm.MainF.splitContainer1.Visible = true;
+					}
+					else
+					{
+						this.Show();
+					}
 				}
 				else
 				{
-					this.Show();
+					MessageBox.Show("The selected company file is not available, please recheck and try again.");
 				}
-				//}
-				//else
-				//{
-				//	MessageBox.Show("The selected company file is not available, please recheck and try again.");
-				//}
 				this.Cursor = Cursors.Default;
 			}
 			catch (Exception ex)

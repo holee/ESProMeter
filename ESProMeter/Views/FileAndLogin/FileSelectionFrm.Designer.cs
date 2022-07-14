@@ -39,7 +39,6 @@ namespace ESProMeter.Views.FileAndLogin
 			this.UName = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.isActive = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Action = new System.Windows.Forms.DataGridViewButtonColumn();
 			this.mbtConnectToExistingCompanyFile = new FontAwesome.Sharp.Material.MaterialButton();
 			this.mbtRestoreCompanyFile = new FontAwesome.Sharp.Material.MaterialButton();
 			this.mbtCreateNewCompanyFile = new FontAwesome.Sharp.Material.MaterialButton();
@@ -73,8 +72,7 @@ namespace ESProMeter.Views.FileAndLogin
             this.DBName,
             this.UName,
             this.Password,
-            this.isActive,
-            this.Action});
+            this.isActive});
 			this.dtgCompanyList.Location = new System.Drawing.Point(12, 27);
 			this.dtgCompanyList.Name = "dtgCompanyList";
 			this.dtgCompanyList.ReadOnly = true;
@@ -147,18 +145,10 @@ namespace ESProMeter.Views.FileAndLogin
 			this.isActive.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
 			this.isActive.Visible = false;
 			// 
-			// Action
-			// 
-			this.Action.FillWeight = 15F;
-			this.Action.HeaderText = "ACTION";
-			this.Action.Name = "Action";
-			this.Action.ReadOnly = true;
-			this.Action.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.Action.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-			// 
 			// mbtConnectToExistingCompanyFile
 			// 
 			this.mbtConnectToExistingCompanyFile.BackColor = System.Drawing.Color.Transparent;
+			this.mbtConnectToExistingCompanyFile.Enabled = false;
 			this.mbtConnectToExistingCompanyFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.mbtConnectToExistingCompanyFile.ForeColor = System.Drawing.Color.Black;
 			this.mbtConnectToExistingCompanyFile.IconChar = FontAwesome.Sharp.MaterialIcons.None;
@@ -175,6 +165,7 @@ namespace ESProMeter.Views.FileAndLogin
 			// mbtRestoreCompanyFile
 			// 
 			this.mbtRestoreCompanyFile.BackColor = System.Drawing.Color.Transparent;
+			this.mbtRestoreCompanyFile.Enabled = false;
 			this.mbtRestoreCompanyFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.mbtRestoreCompanyFile.ForeColor = System.Drawing.Color.Black;
 			this.mbtRestoreCompanyFile.IconChar = FontAwesome.Sharp.MaterialIcons.None;
@@ -191,6 +182,7 @@ namespace ESProMeter.Views.FileAndLogin
 			// mbtCreateNewCompanyFile
 			// 
 			this.mbtCreateNewCompanyFile.BackColor = System.Drawing.Color.Transparent;
+			this.mbtCreateNewCompanyFile.Enabled = false;
 			this.mbtCreateNewCompanyFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.mbtCreateNewCompanyFile.ForeColor = System.Drawing.Color.Black;
 			this.mbtCreateNewCompanyFile.IconChar = FontAwesome.Sharp.MaterialIcons.None;
@@ -301,6 +293,5 @@ namespace ESProMeter.Views.FileAndLogin
 		private System.Windows.Forms.DataGridViewTextBoxColumn UName;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Password;
 		private System.Windows.Forms.DataGridViewTextBoxColumn isActive;
-		private System.Windows.Forms.DataGridViewButtonColumn Action;
 	}
 }
