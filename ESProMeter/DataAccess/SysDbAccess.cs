@@ -34,7 +34,7 @@ namespace ESProMeter.DataAccess
            
            
         }
-        public bool InsertCompanyDbInfo(params string[] data)  
+        public bool InsertCompanyDbInfo(params object[] data)  
         {
             using (SqliteConnection con = GetInstance.GetConnection())
             {
