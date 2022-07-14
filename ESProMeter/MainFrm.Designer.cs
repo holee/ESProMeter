@@ -76,7 +76,7 @@
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-			this.menuStrip1.Size = new System.Drawing.Size(1040, 36);
+			this.menuStrip1.Size = new System.Drawing.Size(1061, 36);
 			this.menuStrip1.TabIndex = 0;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -178,10 +178,11 @@
 			this.splitContainer1.Panel2.Controls.Add(this.btnCloseForm);
 			this.splitContainer1.Panel2.Controls.Add(this.panel2);
 			this.splitContainer1.Panel2.Controls.Add(this.iconButton1);
-			this.splitContainer1.Size = new System.Drawing.Size(1040, 573);
-			this.splitContainer1.SplitterDistance = 180;
+			this.splitContainer1.Size = new System.Drawing.Size(1061, 573);
+			this.splitContainer1.SplitterDistance = 183;
 			this.splitContainer1.SplitterWidth = 1;
 			this.splitContainer1.TabIndex = 1;
+			this.splitContainer1.Visible = false;
 			// 
 			// panel1
 			// 
@@ -220,7 +221,7 @@
 			this.btnCloseForm.IconColor = System.Drawing.Color.Red;
 			this.btnCloseForm.IconFont = FontAwesome.Sharp.IconFont.Auto;
 			this.btnCloseForm.IconSize = 16;
-			this.btnCloseForm.Location = new System.Drawing.Point(833, 3);
+			this.btnCloseForm.Location = new System.Drawing.Point(846, 3);
 			this.btnCloseForm.Name = "btnCloseForm";
 			this.btnCloseForm.Size = new System.Drawing.Size(29, 23);
 			this.btnCloseForm.TabIndex = 2;
@@ -235,7 +236,7 @@
 			this.panel2.BackColor = System.Drawing.Color.Silver;
 			this.panel2.Location = new System.Drawing.Point(-1, 28);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(869, 554);
+			this.panel2.Size = new System.Drawing.Size(902, 554);
 			this.panel2.TabIndex = 1;
 			this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
 			// 
@@ -258,10 +259,11 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1040, 609);
+			this.ClientSize = new System.Drawing.Size(1061, 609);
 			this.Controls.Add(this.splitContainer1);
 			this.Controls.Add(this.menuStrip1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.IsMdiContainer = true;
 			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "MainFrm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -290,7 +292,6 @@
         private System.Windows.Forms.ToolStripMenuItem siteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uomItemList;
         private System.Windows.Forms.ToolStripMenuItem divisionToolStripMenuItem;
-        private System.Windows.Forms.SplitContainer splitContainer1;
         private FontAwesome.Sharp.IconButton iconButton1;
         private System.Windows.Forms.Panel panel1;
         private FontAwesome.Sharp.Material.MaterialButton materialButton1;
@@ -301,5 +302,6 @@
         private System.Windows.Forms.ToolStripMenuItem boqListToolStripMenuItem;
         internal System.Windows.Forms.Panel panel2;
         private FontAwesome.Sharp.IconButton btnCloseForm;
-    }
+		public System.Windows.Forms.SplitContainer splitContainer1;
+	}
 }

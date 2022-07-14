@@ -40,7 +40,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.txtUserName = new System.Windows.Forms.TextBox();
 			this.txtPassword = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
-			this.checkBox1 = new System.Windows.Forms.CheckBox();
+			this.chkRememberPassword = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -56,7 +56,8 @@ namespace ESProMeter.Views.FileAndLogin
 			// 
 			// mbtCancel
 			// 
-			this.mbtCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.mbtCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.mbtCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.mbtCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
 			this.mbtCancel.ForeColor = System.Drawing.Color.White;
 			this.mbtCancel.IconChar = FontAwesome.Sharp.MaterialIcons.CloseCircle;
@@ -75,7 +76,8 @@ namespace ESProMeter.Views.FileAndLogin
 			// 
 			// mbtOK
 			// 
-			this.mbtOK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(70)))), ((int)(((byte)(118)))));
+			this.mbtOK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
+			this.mbtOK.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.mbtOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
 			this.mbtOK.ForeColor = System.Drawing.Color.White;
 			this.mbtOK.IconChar = FontAwesome.Sharp.MaterialIcons.Login;
@@ -111,14 +113,15 @@ namespace ESProMeter.Views.FileAndLogin
 			// 
 			// lblSelectedCompany
 			// 
-			this.lblSelectedCompany.AutoSize = true;
+			this.lblSelectedCompany.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.lblSelectedCompany.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
 			this.lblSelectedCompany.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-			this.lblSelectedCompany.Location = new System.Drawing.Point(160, 40);
+			this.lblSelectedCompany.Location = new System.Drawing.Point(4, 40);
 			this.lblSelectedCompany.Name = "lblSelectedCompany";
-			this.lblSelectedCompany.Size = new System.Drawing.Size(155, 21);
+			this.lblSelectedCompany.Size = new System.Drawing.Size(542, 21);
 			this.lblSelectedCompany.TabIndex = 24;
 			this.lblSelectedCompany.Text = "<Company Name>";
+			this.lblSelectedCompany.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// label2
 			// 
@@ -134,7 +137,7 @@ namespace ESProMeter.Views.FileAndLogin
 			// 
 			this.label3.AutoSize = true;
 			this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.label3.Location = new System.Drawing.Point(12, 115);
+			this.label3.Location = new System.Drawing.Point(12, 113);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(71, 15);
 			this.label3.TabIndex = 25;
@@ -142,17 +145,19 @@ namespace ESProMeter.Views.FileAndLogin
 			// 
 			// txtUserName
 			// 
+			this.txtUserName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.txtUserName.Location = new System.Drawing.Point(92, 75);
 			this.txtUserName.Name = "txtUserName";
-			this.txtUserName.Size = new System.Drawing.Size(311, 23);
+			this.txtUserName.Size = new System.Drawing.Size(311, 25);
 			this.txtUserName.TabIndex = 26;
 			// 
 			// txtPassword
 			// 
-			this.txtPassword.Location = new System.Drawing.Point(92, 112);
+			this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.txtPassword.Location = new System.Drawing.Point(92, 110);
 			this.txtPassword.Name = "txtPassword";
 			this.txtPassword.PasswordChar = '*';
-			this.txtPassword.Size = new System.Drawing.Size(311, 23);
+			this.txtPassword.Size = new System.Drawing.Size(311, 25);
 			this.txtPassword.TabIndex = 26;
 			// 
 			// label4
@@ -165,24 +170,25 @@ namespace ESProMeter.Views.FileAndLogin
 			this.label4.TabIndex = 0;
 			this.label4.Text = "Password are case sensitive.";
 			// 
-			// checkBox1
+			// chkRememberPassword
 			// 
-			this.checkBox1.AutoSize = true;
-			this.checkBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-			this.checkBox1.Location = new System.Drawing.Point(409, 116);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(137, 19);
-			this.checkBox1.TabIndex = 27;
-			this.checkBox1.Text = "Remember password";
-			this.checkBox1.UseVisualStyleBackColor = true;
+			this.chkRememberPassword.AutoSize = true;
+			this.chkRememberPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.chkRememberPassword.Location = new System.Drawing.Point(409, 116);
+			this.chkRememberPassword.Name = "chkRememberPassword";
+			this.chkRememberPassword.Size = new System.Drawing.Size(137, 19);
+			this.chkRememberPassword.TabIndex = 27;
+			this.chkRememberPassword.Text = "Remember password";
+			this.chkRememberPassword.UseVisualStyleBackColor = true;
 			// 
 			// UserLoginFrm
 			// 
+			this.AcceptButton = this.mbtOK;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(550, 211);
 			this.ControlBox = false;
-			this.Controls.Add(this.checkBox1);
+			this.Controls.Add(this.chkRememberPassword);
 			this.Controls.Add(this.txtPassword);
 			this.Controls.Add(this.txtUserName);
 			this.Controls.Add(this.label3);
@@ -209,12 +215,12 @@ namespace ESProMeter.Views.FileAndLogin
 		private FontAwesome.Sharp.Material.MaterialButton mbtCancel;
 		private FontAwesome.Sharp.Material.MaterialButton mbtOK;
 		private FontAwesome.Sharp.Material.MaterialButton mbtHelp;
-		private System.Windows.Forms.Label lblSelectedCompany;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.TextBox txtUserName;
 		private System.Windows.Forms.TextBox txtPassword;
 		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.CheckBox checkBox1;
+		private System.Windows.Forms.CheckBox chkRememberPassword;
+		public System.Windows.Forms.Label lblSelectedCompany;
 	}
 }

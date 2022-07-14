@@ -11,59 +11,28 @@ namespace ESProMeter
 {
     public partial class MainFrm : Form
     {
+        public static MainFrm MainF; //Mainform
+        public static Views.FileAndLogin.FileSelectionFrm FSNF; // File Selection Form
+        public static Views.FileAndLogin.UserLoginFrm ULNF; //User Login Form
+
         public MainFrm()
         {
             InitializeComponent();
+            MainF = this;
         }
 
         private void Form1_Load(object sender, System.EventArgs e)
         {
-            //reportViewer1.LocalReport.ReportEmbeddedResource = "ESProMeter.Reports.Report1.rdlc";
-            //reportViewer1.ProcessingMode = ProcessingMode.Local;
-            //ReportDataSource reportData = new ReportDataSource("Book","");
-            //reportViewer1.LocalReport.DataSources.Add(reportData);
-            //reportViewer1.LocalReport.Refresh();
-            //reportViewer1.RefreshReport();
-            //reportViewer1.Dock = DockStyle.Fill;
-            //this.Controls.Add(reportViewer1);
-
             try
             {
-                if (Settings.Default.isLDB)
-                {
-
-                    if (!ChekedServerRegistrationInfo())
-                    {
-                        this.WindowState = FormWindowState.Maximized;
-                        this.Hide();
-                        Form form1 = new Views.Servers.FormRegister();
-                        if (form1.ShowDialog(this) == DialogResult.OK)
-                        {
-                            this.StartPosition = FormStartPosition.CenterScreen;
-                            this.Show();
-                        }
-                    }
-                }
-                else
-                {
-                    if (!ChekedServerRegistrationInfo(false))
-                    {
-                        this.WindowState = FormWindowState.Maximized;
-                        this.Hide();
-                        Form form1 = new Views.Servers.FormRegister();
-                        if (form1.ShowDialog(this) == DialogResult.OK)
-                        {
-                            this.StartPosition = FormStartPosition.CenterScreen;
-                            this.Show();
-                        }
-                    }
-                }
-
-
+                this.WindowState = FormWindowState.Maximized;
+                if (FSNF == null || FSNF.Visible == false) FSNF = new Views.FileAndLogin.FileSelectionFrm();
+                FSNF.MdiParent = this;
+                FSNF.StartPosition = FormStartPosition.CenterScreen;
+                FSNF.Show();
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -180,5 +149,5 @@ namespace ESProMeter
             form.StartPosition = FormStartPosition.CenterParent;
             form.Show();
         }
-    }
+	}
 }
