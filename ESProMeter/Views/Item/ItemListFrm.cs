@@ -59,7 +59,7 @@ namespace ESProMeter.Views.Items
                     _itemType = 0;
                     if (form.ShowDialog() == DialogResult.OK)
                     {
-                        this.UpdateExistingBoqItem(form, form.dgvBoq);
+                        this.UpdateExistingBoqItemLine(form, form.dgvBoq);
                     }
                 }
                 else
@@ -253,7 +253,7 @@ namespace ESProMeter.Views.Items
                 if (itemType == "Bill Of Quantity")
                 {
                     var id = dataItemList.AsNumber<long>(index, "Column1");
-                    CreateACopyBoqItemFrm updateBoqForm = new CreateACopyBoqItemFrm(id);
+                    AddItemFrm updateBoqForm = new AddItemFrm(id);
                     if (updateBoqForm.ShowDialog() == DialogResult.OK)
                     {
                         this.ShowItemList(dataItemList);
@@ -262,7 +262,7 @@ namespace ESProMeter.Views.Items
                 else
                 {
                     var id = dataItemList.AsNumber<long>(index, "Column1");
-                    Form formAdd = new CreateACopyItemFrm(id);
+                    AddItemFrm formAdd = new AddItemFrm(id);
                     if (formAdd.ShowDialog() == DialogResult.OK)
                     {
                         this.ShowItemList(dataItemList);

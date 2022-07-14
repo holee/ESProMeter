@@ -94,10 +94,6 @@ namespace ESProMeter.Views.Items
                
                 this.cmbType.Enabled = false;
             }
-            else
-            {
-               
-            }
             if(ItemListFrm._itemType != 0)
             {
                 ShowItemOnlyForm();
