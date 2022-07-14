@@ -1,7 +1,0 @@
-﻿CREATE TABLE [dbo].[TUSERACCESSPERMISSION] (
-    [ID]          INT NULL,
-    [USERREFID]   INT NULL,
-    [RPREFID]     INT NULL,
-    [ACCESSLEVEL] INT NULL
-);
-
