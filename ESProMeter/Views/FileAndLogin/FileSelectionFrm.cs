@@ -52,5 +52,10 @@ namespace ESProMeter.Views.FileAndLogin
 				throw ex;
 			}
 		}
+
+		private void FileSelectionFrm_Load(object sender, EventArgs e)
+		{
+			this.loadActivedCompanyList();
+		}
 	}
 }
