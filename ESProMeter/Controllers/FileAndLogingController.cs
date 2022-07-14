@@ -37,6 +37,12 @@ namespace ESProMeter.Controllers
 			try
 			{
 				int selindex = form.AsDataGrid("dtgCompanyList").SelectedRows[0].Index;
+
+				//var row = form.AsDataGrid("dtgCompanyList").SelectedRows[0];
+
+				//UserSession.CompanyName = row.GetValue<string>("companyName");
+
+
 				UserSession.CompanyName = form.AsDataGrid("dtgCompanyList").Rows[selindex].Cells["companyName"].Value.ToString();
 				UserSession.ServerName = form.AsDataGrid("dtgCompanyList").Rows[selindex].Cells["serverName"].Value.ToString();
 				UserSession.DatabaseName = form.AsDataGrid("dtgCompanyList").Rows[selindex].Cells["DBName"].Value.ToString();

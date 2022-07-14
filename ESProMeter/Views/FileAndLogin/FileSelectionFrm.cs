@@ -51,8 +51,8 @@ namespace ESProMeter.Views.FileAndLogin
 			}
 			catch (Exception ex)
 			{
-				throw ex;
-			}
+                throw;
+            }
 		}
 
 		private void FileSelectionFrm_Load(object sender, EventArgs e)
