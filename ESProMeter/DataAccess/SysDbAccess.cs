@@ -34,7 +34,7 @@ namespace ESProMeter.DataAccess
            
            
         }
-        public bool InsertCompanyDbInfo(params string[] data)  
+        public bool InsertCompanyDbInfo(params object[] data)  
         {
             using (SqliteConnection con = GetInstance.GetConnection())
             {
@@ -47,7 +47,7 @@ namespace ESProMeter.DataAccess
                 command.Parameters.AddWithValue("@2", data[2]);
                 command.Parameters.AddWithValue("@3", data[3]);
                 command.Parameters.AddWithValue("@4", data[4]);
-                command.Parameters.AddWithValue("@5", data[4]);
+                command.Parameters.AddWithValue("@5", data[5]);
                 var result = command.ExecuteNonQuery();
                 return result > 0;
             }

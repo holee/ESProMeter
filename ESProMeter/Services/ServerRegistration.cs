@@ -6,7 +6,7 @@ namespace ESProMeter.Services
 {
     public class ServerRegistration
     {
-        private static SqlConnection connection = null;
+        private static SqlConnection? connection = null;
 
         //It is use to open SQL connection for testing and the server information is not
         //register in the system.
@@ -151,9 +151,15 @@ namespace ESProMeter.Services
                     connection = new SqlConnection($"server={srv};database={db};User Id={userid};password={pwd};");
                     connection.Open();
                 }
+                else
+                {
+                    connection = null;
+                    connection = new SqlConnection($"server={srv};database={db};User Id={userid};password={pwd};");
+                    connection.Open();
+                }
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
                 return false;
             }
@@ -180,7 +186,7 @@ namespace ESProMeter.Services
 
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
                 return false;
             }
