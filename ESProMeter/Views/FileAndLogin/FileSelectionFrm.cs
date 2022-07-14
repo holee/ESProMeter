@@ -1,6 +1,7 @@
 ﻿using ESProMeter.DataAccess;
 using System;
 using System.Windows.Forms;
+using ESProMeter.Controllers;
 
 
 namespace ESProMeter.Views.FileAndLogin
@@ -50,13 +51,6 @@ namespace ESProMeter.Views.FileAndLogin
 			{
 				throw ex;
 			}
-		}
-
-		private void FileSelectionFrm_Load(object sender, EventArgs e)
-		{
-			//Load company list from sysDB
-			//using SysDbAccess db = new SysDbAccess();
-			//dtgCompanyList.DataSource = SysDbAccess.
 		}
 	}
 }

@@ -2,7 +2,7 @@
 namespace ESProMeter.Views.Items
 {
 	partial class AddItemFrm
-	{
+    {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
