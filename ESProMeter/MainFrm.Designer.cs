@@ -48,6 +48,12 @@
 			this.btnCloseForm = new FontAwesome.Sharp.IconButton();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.iconButton1 = new FontAwesome.Sharp.IconButton();
+			this.companyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.myCompanyInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.userRoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.changeMyPasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.userManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.roleManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
@@ -72,6 +78,7 @@
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.listToolStripMenuItem,
+            this.companyToolStripMenuItem,
             this.customerToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
@@ -100,27 +107,27 @@
 			// itemListToolStripMenuItem
 			// 
 			this.itemListToolStripMenuItem.Name = "itemListToolStripMenuItem";
-			this.itemListToolStripMenuItem.Size = new System.Drawing.Size(131, 24);
+			this.itemListToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
 			this.itemListToolStripMenuItem.Text = "Item List";
 			this.itemListToolStripMenuItem.Click += new System.EventHandler(this.itemListToolStripMenuItem_Click);
 			// 
 			// siteToolStripMenuItem
 			// 
 			this.siteToolStripMenuItem.Name = "siteToolStripMenuItem";
-			this.siteToolStripMenuItem.Size = new System.Drawing.Size(131, 24);
+			this.siteToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
 			this.siteToolStripMenuItem.Text = "Site";
 			// 
 			// uomItemList
 			// 
 			this.uomItemList.Name = "uomItemList";
-			this.uomItemList.Size = new System.Drawing.Size(131, 24);
+			this.uomItemList.Size = new System.Drawing.Size(180, 24);
 			this.uomItemList.Text = "Uom";
 			this.uomItemList.Click += new System.EventHandler(this.uomItemList_Click);
 			// 
 			// divisionToolStripMenuItem
 			// 
 			this.divisionToolStripMenuItem.Name = "divisionToolStripMenuItem";
-			this.divisionToolStripMenuItem.Size = new System.Drawing.Size(131, 24);
+			this.divisionToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
 			this.divisionToolStripMenuItem.Text = "Division";
 			// 
 			// customerToolStripMenuItem
@@ -135,7 +142,7 @@
 			// customerListToolStripMenuItem
 			// 
 			this.customerListToolStripMenuItem.Name = "customerListToolStripMenuItem";
-			this.customerListToolStripMenuItem.Size = new System.Drawing.Size(163, 24);
+			this.customerListToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
 			this.customerListToolStripMenuItem.Text = "Customer List";
 			// 
 			// boqToolStripMenuItem
@@ -144,7 +151,7 @@
             this.createBoqToolStripMenuItem,
             this.boqListToolStripMenuItem});
 			this.boqToolStripMenuItem.Name = "boqToolStripMenuItem";
-			this.boqToolStripMenuItem.Size = new System.Drawing.Size(163, 24);
+			this.boqToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
 			this.boqToolStripMenuItem.Text = "Boq";
 			// 
 			// createBoqToolStripMenuItem
@@ -221,7 +228,7 @@
 			this.btnCloseForm.IconColor = System.Drawing.Color.Red;
 			this.btnCloseForm.IconFont = FontAwesome.Sharp.IconFont.Auto;
 			this.btnCloseForm.IconSize = 16;
-			this.btnCloseForm.Location = new System.Drawing.Point(846, 3);
+			this.btnCloseForm.Location = new System.Drawing.Point(849, 3);
 			this.btnCloseForm.Name = "btnCloseForm";
 			this.btnCloseForm.Size = new System.Drawing.Size(29, 23);
 			this.btnCloseForm.TabIndex = 2;
@@ -236,7 +243,7 @@
 			this.panel2.BackColor = System.Drawing.Color.Silver;
 			this.panel2.Location = new System.Drawing.Point(-1, 28);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(902, 554);
+			this.panel2.Size = new System.Drawing.Size(905, 554);
 			this.panel2.TabIndex = 1;
 			this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
 			// 
@@ -254,6 +261,49 @@
 			this.iconButton1.TabIndex = 0;
 			this.iconButton1.UseVisualStyleBackColor = true;
 			this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+			// 
+			// companyToolStripMenuItem
+			// 
+			this.companyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.myCompanyInformationToolStripMenuItem,
+            this.userRoleToolStripMenuItem});
+			this.companyToolStripMenuItem.Name = "companyToolStripMenuItem";
+			this.companyToolStripMenuItem.Size = new System.Drawing.Size(80, 32);
+			this.companyToolStripMenuItem.Text = "Company";
+			// 
+			// myCompanyInformationToolStripMenuItem
+			// 
+			this.myCompanyInformationToolStripMenuItem.Name = "myCompanyInformationToolStripMenuItem";
+			this.myCompanyInformationToolStripMenuItem.Size = new System.Drawing.Size(237, 24);
+			this.myCompanyInformationToolStripMenuItem.Text = "My Company Information";
+			// 
+			// userRoleToolStripMenuItem
+			// 
+			this.userRoleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changeMyPasswordToolStripMenuItem,
+            this.userManagementToolStripMenuItem,
+            this.roleManagementToolStripMenuItem});
+			this.userRoleToolStripMenuItem.Name = "userRoleToolStripMenuItem";
+			this.userRoleToolStripMenuItem.Size = new System.Drawing.Size(237, 24);
+			this.userRoleToolStripMenuItem.Text = "User && Role";
+			// 
+			// changeMyPasswordToolStripMenuItem
+			// 
+			this.changeMyPasswordToolStripMenuItem.Name = "changeMyPasswordToolStripMenuItem";
+			this.changeMyPasswordToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
+			this.changeMyPasswordToolStripMenuItem.Text = "Change My Password";
+			// 
+			// userManagementToolStripMenuItem
+			// 
+			this.userManagementToolStripMenuItem.Name = "userManagementToolStripMenuItem";
+			this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
+			this.userManagementToolStripMenuItem.Text = "User Management";
+			// 
+			// roleManagementToolStripMenuItem
+			// 
+			this.roleManagementToolStripMenuItem.Name = "roleManagementToolStripMenuItem";
+			this.roleManagementToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
+			this.roleManagementToolStripMenuItem.Text = "Role Management";
 			// 
 			// MainFrm
 			// 
@@ -303,5 +353,11 @@
         internal System.Windows.Forms.Panel panel2;
         private FontAwesome.Sharp.IconButton btnCloseForm;
 		public System.Windows.Forms.SplitContainer splitContainer1;
+		private System.Windows.Forms.ToolStripMenuItem companyToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem myCompanyInformationToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem userRoleToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem changeMyPasswordToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem userManagementToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem roleManagementToolStripMenuItem;
 	}
 }

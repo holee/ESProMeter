@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ESProMeter.Controllers;
 
 namespace ESProMeter.Views.FileAndLogin
 {
@@ -25,7 +26,20 @@ namespace ESProMeter.Views.FileAndLogin
 
 		private void UserLoginFrm_Load(object sender, EventArgs e)
 		{
+			this.getUserCredential();
+		}
 
+		private void mbtOK_Click(object sender, EventArgs e)
+		{
+			if (this.GrantUserAccess())
+			{
+				this.memorizeUserCredential();
+			}
+			else
+			{
+				MessageBox.Show("Failed to login to the company file, please verify your user name and password, then try again.", "Login Failed");
+				DialogResult = DialogResult.None;
+			}
 		}
 
         private void mbtOK_Click(object sender, EventArgs e)
