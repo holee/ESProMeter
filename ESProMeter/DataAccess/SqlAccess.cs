@@ -162,13 +162,8 @@ namespace ESProMeter.DataAccess
             DataTable table = new DataTable();
             var result = _connection.ExecuteReader(_sql,param:paramaters, transaction: _transaction, commandType: _commandType);
             table.Load(result);
-            row = (from r in table.AsEnumerable()
-                  select r).FirstOrDefault();
-            if (row != null)
-                return true;
-            else
-                return false;
-
+            row = table?.AsEnumerable().FirstOrDefault();
+            return row != null;
         }
         public bool FindOne<T, U>(U paramaters, out T TResult) where T:class
         {

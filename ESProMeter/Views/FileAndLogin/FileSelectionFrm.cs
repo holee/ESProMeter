@@ -38,11 +38,11 @@ namespace ESProMeter.Views.FileAndLogin
 					{
 						MainFrm.MainF.splitContainer1.Visible = true;
 					}
-					else
-					{
-						this.Show();
-					}
-				}
+                    else
+                    {
+                        this.Show();
+                    }
+                }
 				else
 				{
 					MessageBox.Show("The selected company file is not available, please recheck and try again.");

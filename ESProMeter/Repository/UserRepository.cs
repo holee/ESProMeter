@@ -1,4 +1,5 @@
-﻿using ESProMeter.IVews;
+﻿using ESProMeter.Extensions;
+using ESProMeter.IVews;
 using ESProMeter.Services;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,10 @@ namespace ESProMeter.Repository
         public bool Authenticated(string username, string password)
         {
             if (DataUtility.GetInstance
-                       .UseProcedure("USER_sp_SELECT")
-                       .FindOne(new { UID = username, PWD = password }, out DataRow row))
+                       .UseProcedure("USER_sp_LOGIN")
+                       .FindOne(new { UID = username}, out DataRow row))
             {
-                return true;
+                return SecurityService.Verify(password, row.GetValue<string>("PASSWORD"));
             }
             return false;
         }
@@ -30,7 +31,7 @@ namespace ESProMeter.Repository
                             .InsertOrUpdate<dynamic>(new
                             {
                                 username = user.UserId,
-                                password = user.Password,
+                                password =SecurityService.TextEncrypt(user.Password),
                                 isActive = user.IsActive,
                                 isSysAdmin = user.IsSysAdmin,
                             }) > 0;
