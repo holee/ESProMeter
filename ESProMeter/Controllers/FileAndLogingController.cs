@@ -36,19 +36,15 @@ namespace ESProMeter.Controllers
 		{
 			try
 			{
-				int selindex = form.AsDataGrid("dtgCompanyList").SelectedRows[0].Index;
+				var row = form.AsDataGrid("dtgCompanyList").SelectedRows[0];
 
-				//var row = form.AsDataGrid("dtgCompanyList").SelectedRows[0];
+				UserSession.CompanyName = row.GetValue<string>("companyName");
+				UserSession.ServerName = row.GetValue<string>("serverName");
+				UserSession.DatabaseName = row.GetValue<string>("DBName");
+				UserSession.UserName = row.GetValue<string>("UName");
+				UserSession.Password = row.GetValue<string>("Password");
 
-				//UserSession.CompanyName = row.GetValue<string>("companyName");
-
-
-				UserSession.CompanyName = form.AsDataGrid("dtgCompanyList").Rows[selindex].Cells["companyName"].Value.ToString();
-				UserSession.ServerName = form.AsDataGrid("dtgCompanyList").Rows[selindex].Cells["serverName"].Value.ToString();
-				UserSession.DatabaseName = form.AsDataGrid("dtgCompanyList").Rows[selindex].Cells["DBName"].Value.ToString();
-				UserSession.UserName = form.AsDataGrid("dtgCompanyList").Rows[selindex].Cells["UName"].Value.ToString();
-				UserSession.Password = form.AsDataGrid("dtgCompanyList").Rows[selindex].Cells["Password"].Value.ToString();
-				
+				MainFrm.ULNF.lblSelectedCompany.Text = UserSession.CompanyName;
 				return true;
 			}
 			catch (Exception ex)
@@ -68,6 +64,46 @@ namespace ESProMeter.Controllers
 			{
 				throw ex;
 			}
+		}
+
+		public static bool GrantUserAccess(this Form form)
+		{
+			try
+			{
+				return UserService.GetUserInstance.Authenticated(form.AsTextBox("txtUserName").Text,
+					form.AsTextBox("txtPassword").Text);
+				//TextEncrypt(form.AsTextBox("txtPassword").Text));
+			} catch (Exception ex) { return false; }
+		}
+
+		public static bool memorizeUserCredential(this Form form)
+		{
+			try
+			{
+				Properties.Settings.Default.ULOGID = form.AsTextBox("txtUserName").Text;
+				Properties.Settings.Default.ULOGPWD = form.AsTextBox("txtPassword").Text;
+				Properties.Settings.Default.isPWDREM = form.AsCheckedBox("chkRememberPassword").Checked;
+				
+				return true;
+			}
+			catch (Exception ex) { return false; }
+
+
+		}
+
+		public static bool getUserCredential(this Form form)
+		{
+			try
+			{
+				form.AsTextBox("txtUserName").Text = Properties.Settings.Default.ULOGID;
+				if (Properties.Settings.Default.isPWDREM)
+				{
+					form.AsCheckedBox("chkRememberPassword").Checked = true;
+					form.AsTextBox("txtPassword").Text = Properties.Settings.Default.ULOGPWD;
+				}
+				return true;
+			}
+			catch (Exception ex) { return false; }
 		}
 	}
 }

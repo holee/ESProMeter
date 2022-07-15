@@ -67,7 +67,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.mbtCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.mbtCancel.Name = "mbtCancel";
 			this.mbtCancel.Size = new System.Drawing.Size(126, 33);
-			this.mbtCancel.TabIndex = 22;
+			this.mbtCancel.TabIndex = 4;
 			this.mbtCancel.Text = "CANCEL";
 			this.mbtCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.mbtCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -87,11 +87,12 @@ namespace ESProMeter.Views.FileAndLogin
 			this.mbtOK.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.mbtOK.Name = "mbtOK";
 			this.mbtOK.Size = new System.Drawing.Size(126, 33);
-			this.mbtOK.TabIndex = 23;
+			this.mbtOK.TabIndex = 3;
 			this.mbtOK.Text = "OK";
 			this.mbtOK.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.mbtOK.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.mbtOK.UseVisualStyleBackColor = false;
+			this.mbtOK.Click += new System.EventHandler(this.mbtOK_Click);
 			// 
 			// mbtHelp
 			// 
@@ -105,7 +106,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.mbtHelp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.mbtHelp.Name = "mbtHelp";
 			this.mbtHelp.Size = new System.Drawing.Size(126, 33);
-			this.mbtHelp.TabIndex = 22;
+			this.mbtHelp.TabIndex = 5;
 			this.mbtHelp.Text = "HELP";
 			this.mbtHelp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.mbtHelp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -149,7 +150,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.txtUserName.Location = new System.Drawing.Point(92, 75);
 			this.txtUserName.Name = "txtUserName";
 			this.txtUserName.Size = new System.Drawing.Size(311, 25);
-			this.txtUserName.TabIndex = 26;
+			this.txtUserName.TabIndex = 0;
 			// 
 			// txtPassword
 			// 
@@ -158,7 +159,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.txtPassword.Name = "txtPassword";
 			this.txtPassword.PasswordChar = '*';
 			this.txtPassword.Size = new System.Drawing.Size(311, 25);
-			this.txtPassword.TabIndex = 26;
+			this.txtPassword.TabIndex = 1;
 			// 
 			// label4
 			// 
@@ -177,7 +178,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.chkRememberPassword.Location = new System.Drawing.Point(409, 116);
 			this.chkRememberPassword.Name = "chkRememberPassword";
 			this.chkRememberPassword.Size = new System.Drawing.Size(137, 19);
-			this.chkRememberPassword.TabIndex = 27;
+			this.chkRememberPassword.TabIndex = 2;
 			this.chkRememberPassword.Text = "Remember password";
 			this.chkRememberPassword.UseVisualStyleBackColor = true;
 			// 
