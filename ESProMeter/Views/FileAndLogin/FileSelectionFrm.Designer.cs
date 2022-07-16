@@ -284,7 +284,6 @@ namespace ESProMeter.Views.FileAndLogin
 		private FontAwesome.Sharp.Material.MaterialButton mbtCreateNewCompanyFile;
 		private FontAwesome.Sharp.Material.MaterialButton mbtHelp;
 		private FontAwesome.Sharp.Material.MaterialButton mbtClose;
-		private FontAwesome.Sharp.Material.MaterialButton mbtOpen;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Id;
 		private System.Windows.Forms.DataGridViewTextBoxColumn CDT;
 		private System.Windows.Forms.DataGridViewTextBoxColumn CompanyName;
@@ -293,5 +292,6 @@ namespace ESProMeter.Views.FileAndLogin
 		private System.Windows.Forms.DataGridViewTextBoxColumn UName;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Password;
 		private System.Windows.Forms.DataGridViewTextBoxColumn isActive;
+		private FontAwesome.Sharp.Material.MaterialButton mbtOpen;
 	}
 }

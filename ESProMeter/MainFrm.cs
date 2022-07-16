@@ -114,16 +114,7 @@ namespace ESProMeter
             MessageBox.Show(p.Name);
         }
 
-        private void createBoqToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Views.Boq.BoQFrm form = new Views.Boq.BoQFrm();
-            //form.TopLevel = false;
-            //form.TopMost = true;
-            //form.FormBorderStyle= FormBorderStyle.None;
-            //panel2.Controls.Add(form);
-            //form.Show();
-            DisplayFormInPanel(form, panel2);
-        }
+        
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
@@ -148,6 +139,52 @@ namespace ESProMeter
             container?.Controls.Add(form);
             form.StartPosition = FormStartPosition.CenterParent;
             form.Show();
+        }
+
+		private void changeMyPasswordToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+            Form form = new Views.UserManagement.ChangePasswordFrm();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                //Change the password
+            }
+		}
+
+		private void userManagementToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+            Form form = new Views.UserManagement.UserManagementFrm();
+            form.TopLevel = false;
+            form.TopMost = true;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.WindowState = FormWindowState.Maximized;
+            panel2.Controls.Clear();
+            panel2.Controls.Add(form);
+            form.Show();
+            form.Dock = DockStyle.Fill;
+        }
+
+		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+            Application.Exit();
+		}
+
+		private void openCompanyFileToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+            FSNF.mbtOpen_Click(sender ,e);
+
+        }
+
+		private void bToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+            Form form = new Views.Boq.BOQListFrm();
+            form.TopLevel = false;
+            form.TopMost = true;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.WindowState = FormWindowState.Maximized;
+            panel2.Controls.Clear();
+            panel2.Controls.Add(form);
+            form.Show();
+            form.Dock = DockStyle.Fill;
         }
 	}
 }

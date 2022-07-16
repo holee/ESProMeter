@@ -32,28 +32,46 @@
 			this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.openCompanyFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.connectToExistingCompanyFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.closeCompanyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+			this.backupCompanyFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.listToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.itemListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.siteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.uomItemList = new System.Windows.Forms.ToolStripMenuItem();
-			this.divisionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.customerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.customerListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.boqToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.createBoqToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.boqListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.materialButton1 = new FontAwesome.Sharp.Material.MaterialButton();
-			this.btnCloseForm = new FontAwesome.Sharp.IconButton();
-			this.panel2 = new System.Windows.Forms.Panel();
-			this.iconButton1 = new FontAwesome.Sharp.IconButton();
 			this.companyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.myCompanyInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.userRoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.changeMyPasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.userManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.roleManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.customerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.customerListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.boqToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.billOfQuantityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.billOfQuantityListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+			this.bToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.boQItemListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.siteListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
+			this.quoteListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.billOfQuanityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.materialButton1 = new FontAwesome.Sharp.Material.MaterialButton();
+			this.btnCloseForm = new FontAwesome.Sharp.IconButton();
+			this.panel2 = new System.Windows.Forms.Panel();
+			this.iconButton1 = new FontAwesome.Sharp.IconButton();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
@@ -79,7 +97,10 @@
             this.fileToolStripMenuItem,
             this.listToolStripMenuItem,
             this.companyToolStripMenuItem,
-            this.customerToolStripMenuItem});
+            this.customerToolStripMenuItem,
+            this.billOfQuantityToolStripMenuItem,
+            this.reportToolStripMenuItem,
+            this.helpToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
@@ -89,17 +110,70 @@
 			// 
 			// fileToolStripMenuItem
 			// 
+			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openCompanyFileToolStripMenuItem,
+            this.connectToExistingCompanyFileToolStripMenuItem,
+            this.closeCompanyToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.backupCompanyFileToolStripMenuItem,
+            this.toolStripMenuItem2,
+            this.exitToolStripMenuItem});
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
 			this.fileToolStripMenuItem.Size = new System.Drawing.Size(41, 32);
 			this.fileToolStripMenuItem.Text = "File";
+			// 
+			// openCompanyFileToolStripMenuItem
+			// 
+			this.openCompanyFileToolStripMenuItem.Name = "openCompanyFileToolStripMenuItem";
+			this.openCompanyFileToolStripMenuItem.Size = new System.Drawing.Size(283, 24);
+			this.openCompanyFileToolStripMenuItem.Text = "Open Company File";
+			this.openCompanyFileToolStripMenuItem.Click += new System.EventHandler(this.openCompanyFileToolStripMenuItem_Click);
+			// 
+			// connectToExistingCompanyFileToolStripMenuItem
+			// 
+			this.connectToExistingCompanyFileToolStripMenuItem.Enabled = false;
+			this.connectToExistingCompanyFileToolStripMenuItem.Name = "connectToExistingCompanyFileToolStripMenuItem";
+			this.connectToExistingCompanyFileToolStripMenuItem.Size = new System.Drawing.Size(283, 24);
+			this.connectToExistingCompanyFileToolStripMenuItem.Text = "Connect to Existing Company File";
+			// 
+			// closeCompanyToolStripMenuItem
+			// 
+			this.closeCompanyToolStripMenuItem.Enabled = false;
+			this.closeCompanyToolStripMenuItem.Name = "closeCompanyToolStripMenuItem";
+			this.closeCompanyToolStripMenuItem.Size = new System.Drawing.Size(283, 24);
+			this.closeCompanyToolStripMenuItem.Text = "Close Company File";
+			// 
+			// toolStripMenuItem1
+			// 
+			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+			this.toolStripMenuItem1.Size = new System.Drawing.Size(280, 6);
+			// 
+			// backupCompanyFileToolStripMenuItem
+			// 
+			this.backupCompanyFileToolStripMenuItem.Enabled = false;
+			this.backupCompanyFileToolStripMenuItem.Name = "backupCompanyFileToolStripMenuItem";
+			this.backupCompanyFileToolStripMenuItem.Size = new System.Drawing.Size(283, 24);
+			this.backupCompanyFileToolStripMenuItem.Text = "Backup Company File";
+			// 
+			// toolStripMenuItem2
+			// 
+			this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+			this.toolStripMenuItem2.Size = new System.Drawing.Size(280, 6);
+			// 
+			// exitToolStripMenuItem
+			// 
+			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(283, 24);
+			this.exitToolStripMenuItem.Text = "Exit";
+			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
 			// listToolStripMenuItem
 			// 
 			this.listToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.itemListToolStripMenuItem,
             this.siteToolStripMenuItem,
-            this.uomItemList,
-            this.divisionToolStripMenuItem});
+            this.uomItemList});
+			this.listToolStripMenuItem.Enabled = false;
 			this.listToolStripMenuItem.Name = "listToolStripMenuItem";
 			this.listToolStripMenuItem.Size = new System.Drawing.Size(42, 32);
 			this.listToolStripMenuItem.Text = "List";
@@ -107,34 +181,77 @@
 			// itemListToolStripMenuItem
 			// 
 			this.itemListToolStripMenuItem.Name = "itemListToolStripMenuItem";
-			this.itemListToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+			this.itemListToolStripMenuItem.Size = new System.Drawing.Size(137, 24);
 			this.itemListToolStripMenuItem.Text = "Item List";
 			this.itemListToolStripMenuItem.Click += new System.EventHandler(this.itemListToolStripMenuItem_Click);
 			// 
 			// siteToolStripMenuItem
 			// 
 			this.siteToolStripMenuItem.Name = "siteToolStripMenuItem";
-			this.siteToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-			this.siteToolStripMenuItem.Text = "Site";
+			this.siteToolStripMenuItem.Size = new System.Drawing.Size(137, 24);
+			this.siteToolStripMenuItem.Text = "Site List";
 			// 
 			// uomItemList
 			// 
 			this.uomItemList.Name = "uomItemList";
-			this.uomItemList.Size = new System.Drawing.Size(180, 24);
-			this.uomItemList.Text = "Uom";
+			this.uomItemList.Size = new System.Drawing.Size(137, 24);
+			this.uomItemList.Text = "UOM List";
 			this.uomItemList.Click += new System.EventHandler(this.uomItemList_Click);
 			// 
-			// divisionToolStripMenuItem
+			// companyToolStripMenuItem
 			// 
-			this.divisionToolStripMenuItem.Name = "divisionToolStripMenuItem";
-			this.divisionToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-			this.divisionToolStripMenuItem.Text = "Division";
+			this.companyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.myCompanyInformationToolStripMenuItem,
+            this.userRoleToolStripMenuItem});
+			this.companyToolStripMenuItem.Enabled = false;
+			this.companyToolStripMenuItem.Name = "companyToolStripMenuItem";
+			this.companyToolStripMenuItem.Size = new System.Drawing.Size(80, 32);
+			this.companyToolStripMenuItem.Text = "Company";
+			// 
+			// myCompanyInformationToolStripMenuItem
+			// 
+			this.myCompanyInformationToolStripMenuItem.Name = "myCompanyInformationToolStripMenuItem";
+			this.myCompanyInformationToolStripMenuItem.Size = new System.Drawing.Size(237, 24);
+			this.myCompanyInformationToolStripMenuItem.Text = "My Company Information";
+			// 
+			// userRoleToolStripMenuItem
+			// 
+			this.userRoleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changeMyPasswordToolStripMenuItem,
+            this.userManagementToolStripMenuItem,
+            this.roleManagementToolStripMenuItem});
+			this.userRoleToolStripMenuItem.Name = "userRoleToolStripMenuItem";
+			this.userRoleToolStripMenuItem.Size = new System.Drawing.Size(237, 24);
+			this.userRoleToolStripMenuItem.Text = "User && Role";
+			// 
+			// changeMyPasswordToolStripMenuItem
+			// 
+			this.changeMyPasswordToolStripMenuItem.Name = "changeMyPasswordToolStripMenuItem";
+			this.changeMyPasswordToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
+			this.changeMyPasswordToolStripMenuItem.Text = "Change My Password";
+			this.changeMyPasswordToolStripMenuItem.Click += new System.EventHandler(this.changeMyPasswordToolStripMenuItem_Click);
+			// 
+			// userManagementToolStripMenuItem
+			// 
+			this.userManagementToolStripMenuItem.Name = "userManagementToolStripMenuItem";
+			this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
+			this.userManagementToolStripMenuItem.Text = "User Management";
+			this.userManagementToolStripMenuItem.Click += new System.EventHandler(this.userManagementToolStripMenuItem_Click);
+			// 
+			// roleManagementToolStripMenuItem
+			// 
+			this.roleManagementToolStripMenuItem.Enabled = false;
+			this.roleManagementToolStripMenuItem.Name = "roleManagementToolStripMenuItem";
+			this.roleManagementToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
+			this.roleManagementToolStripMenuItem.Text = "Role Management";
 			// 
 			// customerToolStripMenuItem
 			// 
 			this.customerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.customerListToolStripMenuItem,
+            this.toolStripSeparator1,
             this.boqToolStripMenuItem});
+			this.customerToolStripMenuItem.Enabled = false;
 			this.customerToolStripMenuItem.Name = "customerToolStripMenuItem";
 			this.customerToolStripMenuItem.Size = new System.Drawing.Size(81, 32);
 			this.customerToolStripMenuItem.Text = "Customer";
@@ -145,27 +262,107 @@
 			this.customerListToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
 			this.customerListToolStripMenuItem.Text = "Customer List";
 			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+			// 
 			// boqToolStripMenuItem
 			// 
-			this.boqToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createBoqToolStripMenuItem,
-            this.boqListToolStripMenuItem});
 			this.boqToolStripMenuItem.Name = "boqToolStripMenuItem";
 			this.boqToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-			this.boqToolStripMenuItem.Text = "Boq";
+			this.boqToolStripMenuItem.Text = "Create New BoQ";
 			// 
-			// createBoqToolStripMenuItem
+			// billOfQuantityToolStripMenuItem
 			// 
-			this.createBoqToolStripMenuItem.Name = "createBoqToolStripMenuItem";
-			this.createBoqToolStripMenuItem.Size = new System.Drawing.Size(146, 24);
-			this.createBoqToolStripMenuItem.Text = "Create Boq";
-			this.createBoqToolStripMenuItem.Click += new System.EventHandler(this.createBoqToolStripMenuItem_Click);
+			this.billOfQuantityToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.billOfQuantityListToolStripMenuItem,
+            this.toolStripMenuItem4,
+            this.toolStripMenuItem5,
+            this.toolStripMenuItem3,
+            this.bToolStripMenuItem,
+            this.boQItemListToolStripMenuItem,
+            this.siteListToolStripMenuItem,
+            this.toolStripMenuItem6,
+            this.quoteListToolStripMenuItem});
+			this.billOfQuantityToolStripMenuItem.Enabled = false;
+			this.billOfQuantityToolStripMenuItem.Name = "billOfQuantityToolStripMenuItem";
+			this.billOfQuantityToolStripMenuItem.Size = new System.Drawing.Size(112, 32);
+			this.billOfQuantityToolStripMenuItem.Text = "Bill of Quantity";
 			// 
-			// boqListToolStripMenuItem
+			// billOfQuantityListToolStripMenuItem
 			// 
-			this.boqListToolStripMenuItem.Name = "boqListToolStripMenuItem";
-			this.boqListToolStripMenuItem.Size = new System.Drawing.Size(146, 24);
-			this.boqListToolStripMenuItem.Text = "Boq List";
+			this.billOfQuantityListToolStripMenuItem.Name = "billOfQuantityListToolStripMenuItem";
+			this.billOfQuantityListToolStripMenuItem.Size = new System.Drawing.Size(200, 24);
+			this.billOfQuantityListToolStripMenuItem.Text = "New Bill of Quantity";
+			// 
+			// toolStripMenuItem4
+			// 
+			this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+			this.toolStripMenuItem4.Size = new System.Drawing.Size(200, 24);
+			this.toolStripMenuItem4.Text = "New BoQ Item";
+			// 
+			// toolStripMenuItem5
+			// 
+			this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+			this.toolStripMenuItem5.Size = new System.Drawing.Size(200, 24);
+			this.toolStripMenuItem5.Text = "New Site";
+			// 
+			// toolStripMenuItem3
+			// 
+			this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+			this.toolStripMenuItem3.Size = new System.Drawing.Size(197, 6);
+			// 
+			// bToolStripMenuItem
+			// 
+			this.bToolStripMenuItem.Name = "bToolStripMenuItem";
+			this.bToolStripMenuItem.Size = new System.Drawing.Size(200, 24);
+			this.bToolStripMenuItem.Text = "Bill of Quantity List";
+			this.bToolStripMenuItem.Click += new System.EventHandler(this.bToolStripMenuItem_Click);
+			// 
+			// boQItemListToolStripMenuItem
+			// 
+			this.boQItemListToolStripMenuItem.Name = "boQItemListToolStripMenuItem";
+			this.boQItemListToolStripMenuItem.Size = new System.Drawing.Size(200, 24);
+			this.boQItemListToolStripMenuItem.Text = "BoQ Item List";
+			// 
+			// siteListToolStripMenuItem
+			// 
+			this.siteListToolStripMenuItem.Name = "siteListToolStripMenuItem";
+			this.siteListToolStripMenuItem.Size = new System.Drawing.Size(200, 24);
+			this.siteListToolStripMenuItem.Text = "Site List";
+			// 
+			// toolStripMenuItem6
+			// 
+			this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+			this.toolStripMenuItem6.Size = new System.Drawing.Size(197, 6);
+			// 
+			// quoteListToolStripMenuItem
+			// 
+			this.quoteListToolStripMenuItem.Name = "quoteListToolStripMenuItem";
+			this.quoteListToolStripMenuItem.Size = new System.Drawing.Size(200, 24);
+			this.quoteListToolStripMenuItem.Text = "Quote List";
+			// 
+			// reportToolStripMenuItem
+			// 
+			this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.billOfQuanityToolStripMenuItem});
+			this.reportToolStripMenuItem.Enabled = false;
+			this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
+			this.reportToolStripMenuItem.Size = new System.Drawing.Size(62, 32);
+			this.reportToolStripMenuItem.Text = "Report";
+			// 
+			// billOfQuanityToolStripMenuItem
+			// 
+			this.billOfQuanityToolStripMenuItem.Name = "billOfQuanityToolStripMenuItem";
+			this.billOfQuanityToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+			this.billOfQuanityToolStripMenuItem.Text = "Bill of Quanity";
+			// 
+			// helpToolStripMenuItem
+			// 
+			this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+			this.helpToolStripMenuItem.Size = new System.Drawing.Size(49, 32);
+			this.helpToolStripMenuItem.Text = "Help";
 			// 
 			// splitContainer1
 			// 
@@ -228,7 +425,7 @@
 			this.btnCloseForm.IconColor = System.Drawing.Color.Red;
 			this.btnCloseForm.IconFont = FontAwesome.Sharp.IconFont.Auto;
 			this.btnCloseForm.IconSize = 16;
-			this.btnCloseForm.Location = new System.Drawing.Point(849, 3);
+			this.btnCloseForm.Location = new System.Drawing.Point(870, 3);
 			this.btnCloseForm.Name = "btnCloseForm";
 			this.btnCloseForm.Size = new System.Drawing.Size(29, 23);
 			this.btnCloseForm.TabIndex = 2;
@@ -243,7 +440,7 @@
 			this.panel2.BackColor = System.Drawing.Color.Silver;
 			this.panel2.Location = new System.Drawing.Point(-1, 28);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(905, 554);
+			this.panel2.Size = new System.Drawing.Size(926, 554);
 			this.panel2.TabIndex = 1;
 			this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
 			// 
@@ -261,49 +458,6 @@
 			this.iconButton1.TabIndex = 0;
 			this.iconButton1.UseVisualStyleBackColor = true;
 			this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
-			// 
-			// companyToolStripMenuItem
-			// 
-			this.companyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.myCompanyInformationToolStripMenuItem,
-            this.userRoleToolStripMenuItem});
-			this.companyToolStripMenuItem.Name = "companyToolStripMenuItem";
-			this.companyToolStripMenuItem.Size = new System.Drawing.Size(80, 32);
-			this.companyToolStripMenuItem.Text = "Company";
-			// 
-			// myCompanyInformationToolStripMenuItem
-			// 
-			this.myCompanyInformationToolStripMenuItem.Name = "myCompanyInformationToolStripMenuItem";
-			this.myCompanyInformationToolStripMenuItem.Size = new System.Drawing.Size(237, 24);
-			this.myCompanyInformationToolStripMenuItem.Text = "My Company Information";
-			// 
-			// userRoleToolStripMenuItem
-			// 
-			this.userRoleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.changeMyPasswordToolStripMenuItem,
-            this.userManagementToolStripMenuItem,
-            this.roleManagementToolStripMenuItem});
-			this.userRoleToolStripMenuItem.Name = "userRoleToolStripMenuItem";
-			this.userRoleToolStripMenuItem.Size = new System.Drawing.Size(237, 24);
-			this.userRoleToolStripMenuItem.Text = "User && Role";
-			// 
-			// changeMyPasswordToolStripMenuItem
-			// 
-			this.changeMyPasswordToolStripMenuItem.Name = "changeMyPasswordToolStripMenuItem";
-			this.changeMyPasswordToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
-			this.changeMyPasswordToolStripMenuItem.Text = "Change My Password";
-			// 
-			// userManagementToolStripMenuItem
-			// 
-			this.userManagementToolStripMenuItem.Name = "userManagementToolStripMenuItem";
-			this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
-			this.userManagementToolStripMenuItem.Text = "User Management";
-			// 
-			// roleManagementToolStripMenuItem
-			// 
-			this.roleManagementToolStripMenuItem.Name = "roleManagementToolStripMenuItem";
-			this.roleManagementToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
-			this.roleManagementToolStripMenuItem.Text = "Role Management";
 			// 
 			// MainFrm
 			// 
@@ -341,15 +495,11 @@
         private System.Windows.Forms.ToolStripMenuItem itemListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem siteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uomItemList;
-        private System.Windows.Forms.ToolStripMenuItem divisionToolStripMenuItem;
         private FontAwesome.Sharp.IconButton iconButton1;
         private System.Windows.Forms.Panel panel1;
         private FontAwesome.Sharp.Material.MaterialButton materialButton1;
         private System.Windows.Forms.ToolStripMenuItem customerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem customerListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem boqToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem createBoqToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem boqListToolStripMenuItem;
         internal System.Windows.Forms.Panel panel2;
         private FontAwesome.Sharp.IconButton btnCloseForm;
 		public System.Windows.Forms.SplitContainer splitContainer1;
@@ -359,5 +509,27 @@
 		private System.Windows.Forms.ToolStripMenuItem changeMyPasswordToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem userManagementToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem roleManagementToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem openCompanyFileToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem connectToExistingCompanyFileToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem closeCompanyToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+		private System.Windows.Forms.ToolStripMenuItem backupCompanyFileToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem billOfQuanityToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem billOfQuantityToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem billOfQuantityListToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem customerListToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
+		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+		private System.Windows.Forms.ToolStripMenuItem bToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem boQItemListToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem siteListToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
+		private System.Windows.Forms.ToolStripMenuItem quoteListToolStripMenuItem;
 	}
 }
