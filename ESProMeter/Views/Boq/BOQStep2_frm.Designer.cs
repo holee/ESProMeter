@@ -1,6 +1,6 @@
 ﻿namespace ESProMeter.Views.Boq
 {
-    partial class BoqItemFrm
+    partial class BOQStep2_frm
     {
         /// <summary>
         /// Required designer variable.

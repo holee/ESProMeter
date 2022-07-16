@@ -9,11 +9,30 @@ using System.Windows.Forms;
 using ESProMeter.Extensions;
 using ESProMeter.Services;
 using ESProMeter.Sessions;
+using System.Security.Cryptography;
 
 namespace ESProMeter.Controllers
 {
 	public static class FileAndLogingController
 	{
+		public static string TextEncrypt(string input)
+		{
+			// step 1, calculate MD5 hash from input
+			
+
+			MD5 md5 = MD5.Create();
+			byte[] inputBytes = Encoding.ASCII.GetBytes(input);
+			byte[] hash = md5.ComputeHash(inputBytes);
+
+			// step 2, convert byte array to hex string
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < hash.Length; i++)
+			{
+				sb.Append(hash[i].ToString());
+			}
+			return sb.ToString();
+		}
+
 		public static bool loadActivedCompanyList(this Form form)
 		{
 			if (SysDbUtility.GetInstance.GetCompanies(out DataTable dtCompList))
@@ -37,7 +56,7 @@ namespace ESProMeter.Controllers
 			try
 			{
 				var row = form.AsDataGrid("dtgCompanyList").SelectedRows[0];
-
+				//UserSession.UID = row.GetValue<Int32>("ID");
 				UserSession.CompanyName = row.GetValue<string>("companyName");
 				UserSession.ServerName = row.GetValue<string>("serverName");
 				UserSession.DatabaseName = row.GetValue<string>("DBName");
@@ -71,8 +90,7 @@ namespace ESProMeter.Controllers
 			try
 			{
 				return UserService.GetUserInstance.Authenticated(form.AsTextBox("txtUserName").Text,
-					form.AsTextBox("txtPassword").Text);
-				//TextEncrypt(form.AsTextBox("txtPassword").Text));
+				TextEncrypt(form.AsTextBox("txtPassword").Text));
 			} catch (Exception ex) { return false; }
 		}
 
@@ -83,6 +101,7 @@ namespace ESProMeter.Controllers
 				Properties.Settings.Default.ULOGID = form.AsTextBox("txtUserName").Text;
 				Properties.Settings.Default.ULOGPWD = form.AsTextBox("txtPassword").Text;
 				Properties.Settings.Default.isPWDREM = form.AsCheckedBox("chkRememberPassword").Checked;
+				Properties.Settings.Default.Save();
 				
 				return true;
 			}

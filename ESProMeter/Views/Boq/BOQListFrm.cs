@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace ESProMeter.Views.Boq
 {
-    public partial class BoqItemFrm : Form
-    {
-        public BoqItemFrm()
-        {
-            InitializeComponent();
-        }
-    }
+	public partial class BOQListFrm : Form
+	{
+		public BOQListFrm()
+		{
+			InitializeComponent();
+		}
+	}
 }

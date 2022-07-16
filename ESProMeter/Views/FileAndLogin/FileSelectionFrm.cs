@@ -20,7 +20,7 @@ namespace ESProMeter.Views.FileAndLogin
 			Application.Exit();
 		}
 
-		private void mbtOpen_Click(object sender, EventArgs e)
+		public void mbtOpen_Click(object sender, EventArgs e)
 		{
 			try
 			{

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ESProMeter.Views.Boq
 {
-	public partial class BoQFrm : Form,IBoq
+	public partial class BOQStep1_Frm : Form,IBoq
 	{
         private List<long> itemsList;
         private DateTime _createdAt = DateTime.Now;
@@ -18,7 +18,7 @@ namespace ESProMeter.Views.Boq
         bool _toggle = false;
         private byte _isDelete = 0;
         private double _boqNumber = 0;
-		public BoQFrm()
+		public BOQStep1_Frm()
 		{
 			InitializeComponent();
 			
@@ -97,7 +97,7 @@ namespace ESProMeter.Views.Boq
 
         private void materialButton1_Click(object sender, EventArgs e)
         {
-            Views.Boq.BoqItemFrm form = new BoqItemFrm();
+            Views.Boq.BOQStep2_frm form = new BOQStep2_frm();
             form.TopLevel = false;
             form.TopMost = true;
            
