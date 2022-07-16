@@ -42,19 +42,19 @@ namespace ESProMeter.Views.FileAndLogin
 			}
 		}
 
-        private void mbtOK_Click(object sender, EventArgs e)
-        {
-			//if (UserService.GetUserInstance.Authenticated(txtUserName.Text, txtPassword.Text))
-			//{
-			//	MessageBox.Show("Login");
-			//	this.DialogResult = DialogResult.OK;
-			//}
-			//else
-			//{
-			//	this.DialogResult = DialogResult.Cancel;
-			//	MessageBox.Show("failed");
-			//	return;
-			//}
-        }
+   //     private void mbtOK_Click(object sender, EventArgs e)
+   //     {
+			////if (UserService.GetUserInstance.Authenticated(txtUserName.Text, txtPassword.Text))
+			////{
+			////	MessageBox.Show("Login");
+			////	this.DialogResult = DialogResult.OK;
+			////}
+			////else
+			////{
+			////	this.DialogResult = DialogResult.Cancel;
+			////	MessageBox.Show("failed");
+			////	return;
+			////}
+   //     }
     }
 }

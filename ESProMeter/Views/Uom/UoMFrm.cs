@@ -24,7 +24,7 @@ namespace ESProMeter.Views.UnitOfMeasures
 
         private void GridViewCellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-			var id=this.AsLong("dataUom", e.RowIndex, "Column3");
+			var id=dataUom.AsNumber<long>(e.RowIndex, "Column3");
 			AddUoMFrm form = new AddUoMFrm(id);
 			if (form.ShowDialog() == DialogResult.OK)
 			{
@@ -37,8 +37,8 @@ namespace ESProMeter.Views.UnitOfMeasures
 			if (dataUom.Rows.Count > 0)
 			{
 				var index = dataUom.CurrentCell.RowIndex;
-				var id = this.AsLong("dataUom", index, "Column3");
-				if(MessageBox.Show("Do you want to delete?", "Confirm", MessageBoxButtons.OKCancel,MessageBoxIcon.Question) == DialogResult.OK)
+				var id = dataUom.AsNumber<long>(index, "Column3");
+				if (MessageBox.Show("Do you want to delete?", "Confirm", MessageBoxButtons.OKCancel,MessageBoxIcon.Question) == DialogResult.OK)
                 {
 					if (this.DeleteDataDataGrid(id))
 					{
@@ -54,7 +54,7 @@ namespace ESProMeter.Views.UnitOfMeasures
 			if (dataUom.Rows.Count > 0)
 			{
                 var index = dataUom.CurrentCell.RowIndex;
-                var id = this.AsLong("dataUom", index, "Column3");
+				var id = dataUom.AsNumber<long>(index, "Column3");
 				AddUoMFrm form = new AddUoMFrm(id);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -69,8 +69,8 @@ namespace ESProMeter.Views.UnitOfMeasures
 			if (dataUom.Rows.Count > 0)
 			{
 				var index = dataUom.CurrentCell.RowIndex;
-				var id = this.AsLong("dataUom", index, "Column3");
-				var IsActive = this.AsInt("dataUom", index, "IsActive")==0?1:0;
+				var id = dataUom.AsNumber<long>(index, "Column3");
+				var IsActive = dataUom.AsNumber<int>(index, "IsActive")==0?1:0;
                 if (this.MakeInactive(id,IsActive))
                 {
 					this.dataUom.SetText("IsActive", IsActive);
@@ -109,7 +109,7 @@ namespace ESProMeter.Views.UnitOfMeasures
 			if (dataUom.Rows.Count > 0)
 			{
 				var index = dataUom.CurrentCell.RowIndex;
-				var id = this.AsLong("dataUom", index, "Column3");
+				var id = dataUom.AsNumber<long>(index, "Column3");
 				AddUoMFrm form = new AddUoMFrm(id);
 				if (form.ShowDialog() == DialogResult.OK)
 				{
@@ -123,7 +123,7 @@ namespace ESProMeter.Views.UnitOfMeasures
 			if (dataUom.Rows.Count > 0)
 			{
 				var index = dataUom.CurrentCell.RowIndex;
-				var id = this.AsLong("dataUom", index, "Column3");
+				var id = dataUom.AsNumber<long>(index, "Column3");
 				if (MessageBox.Show("Do you want to delete?", "Confirm", MessageBoxButtons.OKCancel) == DialogResult.OK)
 				{
 					if (this.DeleteDataDataGrid(id))
@@ -140,7 +140,7 @@ namespace ESProMeter.Views.UnitOfMeasures
 			if (dataUom.Rows.Count > 0)
 			{
 				var index = dataUom.CurrentCell.RowIndex;
-				var id = this.AsLong("dataUom", index, "Column3");
+				var id = dataUom.AsNumber<long>(index, "Column3");
 				if (this.MakeInactive(id))
 				{
 					this.ShowDataDataGrid();

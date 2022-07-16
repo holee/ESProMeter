@@ -28,7 +28,7 @@ namespace ESProMeter.Services
 
         public static bool Verify(string input,string hash)
         {
-            return TextEncrypt(input).ToLower()==hash.ToLower();
+            return TextEncrypt(input).Equals(hash);
         }
 
     }

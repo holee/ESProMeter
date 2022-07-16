@@ -82,7 +82,7 @@ namespace ESProMeter.Controllers
 			{
 				Properties.Settings.Default.ULOGID = form.AsTextBox("txtUserName").Text;
 				Properties.Settings.Default.ULOGPWD = form.AsTextBox("txtPassword").Text;
-				Properties.Settings.Default.isPWDREM = form.AsCheckedBox("chkRememberPassword").Checked;
+				Properties.Settings.Default.isPWDREM = form.AsControl<CheckBox>("chkRememberPassword").Checked;
 				
 				return true;
 			}
@@ -98,7 +98,7 @@ namespace ESProMeter.Controllers
 				form.AsTextBox("txtUserName").Text = Properties.Settings.Default.ULOGID;
 				if (Properties.Settings.Default.isPWDREM)
 				{
-					form.AsCheckedBox("chkRememberPassword").Checked = true;
+					form.AsControl<CheckBox>("chkRememberPassword").Checked = true;
 					form.AsTextBox("txtPassword").Text = Properties.Settings.Default.ULOGPWD;
 				}
 				return true;

@@ -126,42 +126,9 @@ namespace ESProMeter.Extensions
         {
             return form.Controls.Find(key, true).OfType<ComboBox>().FirstOrDefault();
         }
-
-        public static ListBox AsListBox(this Form form, string key)
-        {
-            return form.Controls.Find(key, true).OfType<ListBox>().FirstOrDefault();
-        }
-        public static DateTimePicker AsDateTimePicker(this Form form, string key)
-        {
-            return form.Controls.Find(key, true).OfType<DateTimePicker>().FirstOrDefault();
-        }
-        public static MaskedTextBox AsMaskEditBox(this Form form, string key)
-        {
-            return form.Controls.Find(key, true).OfType<MaskedTextBox>().FirstOrDefault();
-        }
-        public static Label AsLabel(this Form form, string key)
-        {
-            return form.Controls.Find(key, true).OfType<Label>().FirstOrDefault();
-        }
-        public static RichTextBox AsTextArea(this Form form, string key)
-        {
-            return form.Controls.Find(key, true).OfType<RichTextBox>().FirstOrDefault();
-        }
-        public static CheckBox AsCheckedBox(this Form form, string key)
-        {
-            return form.Controls.Find(key, true).OfType<CheckBox>().FirstOrDefault();
-        }
         public static CheckBox[] AsCheckedBoxes(this Form form, string key)
         {
             return form.Controls.Find(key, true).OfType<CheckBox>().ToArray();
-        }
-        public static RadioButton AsRadioButton(this Form form, string key)
-        {
-            return form.Controls.Find(key, true).OfType<RadioButton>().FirstOrDefault();
-        }
-        public static RadioButton[] AsRadioButtons(this Form form, string key)
-        {
-            return form.Controls.Find(key, true).OfType<RadioButton>().ToArray();
         }
         public static void Reset(this Form form,params Control[] controls)
         {
@@ -182,46 +149,6 @@ namespace ESProMeter.Extensions
             var grid= form.Controls.Find(key, true).OfType<DataGridView>().FirstOrDefault();
             var result=grid[col, row].Value.ToString();
             if(long.TryParse(result,out long id))
-            {
-                return id;
-            }
-            return default;
-        }
-        public static long AsLong(this Form form, string key, int row, string colName)
-        {
-            var grid = form.Controls.Find(key, true).OfType<DataGridView>().FirstOrDefault();
-            var result = grid.Rows[row].Cells[colName].Value.ToString();
-            if (long.TryParse(result, out long id))
-            {
-                return id;
-            }
-            return default;
-        }
-        public static int AsInt(this Form form, string key, int row, string colName)
-        {
-            var grid = form.Controls.Find(key, true).OfType<DataGridView>().FirstOrDefault();
-            var result = grid.Rows[row].Cells[colName].Value.ToString();
-            if (int.TryParse(result, out int id))
-            {
-                return id;
-            }
-            return default;
-        }
-        public static byte AsByte(this Form form, string key, int row, string colName)
-        {
-            var grid = form.Controls.Find(key, true).OfType<DataGridView>().FirstOrDefault();
-            var result = grid.Rows[row].Cells[colName].Value.ToString();
-            if (byte.TryParse(result, out byte id))
-            {
-                return id;
-            }
-            return default;
-        }
-        public static long AsInt(this Form form, string key, int row, int col)
-        {
-            var grid = form.Controls.Find(key, true).OfType<DataGridView>().FirstOrDefault();
-            var result = grid.Rows[row].Cells[col].Value.ToString();
-            if (long.TryParse(result, out long id))
             {
                 return id;
             }

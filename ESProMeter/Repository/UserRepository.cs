@@ -36,5 +36,11 @@ namespace ESProMeter.Repository
                                 isSysAdmin = user.IsSysAdmin,
                             }) > 0;
         }
+
+
+
+
+
+
     }
 }
