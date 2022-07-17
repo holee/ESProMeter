@@ -6,7 +6,7 @@ namespace ESProMeter.Extensions
 {
     public static class ControlExtension
     {
-        public static T GetVale<T>(this TextBox txt) where T : IConvertible
+        public static T? GetVale<T>(this TextBox txt) where T : IConvertible
         {
 
             try
@@ -16,13 +16,13 @@ namespace ESProMeter.Extensions
             }
             catch
             {
-                return default(T);
+                return default(T?);
             }
 
         }
-        public static T AsNumber<T>(this TextBox txt) where T : IConvertible
+        public static T? AsNumber<T>(this TextBox txt) where T : IConvertible
         {
-            
+
             try
             {
                 var result = string.IsNullOrEmpty(txt.Text.Trim()) ? "0" : txt.Text;
@@ -32,9 +32,9 @@ namespace ESProMeter.Extensions
             {
                 return default(T);
             }
-           
+
         }
-        public static T AsNumber<T>(this Label txt) where T : IConvertible
+        public static T? AsNumber<T>(this Label txt) where T : IConvertible
         {
             try
             {
@@ -46,7 +46,7 @@ namespace ESProMeter.Extensions
                 return default(T);
             }
         }
-        public static T AsNumber<T>(this DataGridView grid, int colIndex) where T : IConvertible
+        public static T? AsNumber<T>(this DataGridView grid, int colIndex) where T : IConvertible
         {
             try
             {
@@ -57,11 +57,12 @@ namespace ESProMeter.Extensions
             {
                 return default(T);
             }
-          
+
         }
         public static bool AsBealean(this DataGridView grid, int colIndex)
         {
-            try { 
+            try
+            {
                 var result = grid.Rows[grid.CurrentCell.RowIndex].Cells[colIndex].Value ?? 0;
                 return (bool)Convert.ChangeType(result, typeof(bool));
             }
@@ -72,7 +73,7 @@ namespace ESProMeter.Extensions
         }
         public static bool AsBealean(this DataGridView grid, string colName)
         {
-            
+
             try
             {
                 var result = grid.Rows[grid.CurrentCell.RowIndex].Cells[colName].Value ?? 0;
@@ -83,7 +84,7 @@ namespace ESProMeter.Extensions
                 return default(bool);
             }
         }
-        public static bool AsBealean(this DataGridView grid,int rowIndex, string colName)
+        public static bool AsBealean(this DataGridView grid, int rowIndex, string colName)
         {
 
             try
@@ -96,7 +97,7 @@ namespace ESProMeter.Extensions
                 return default(bool);
             }
         }
-        public static T AsNumber<T>(this DataGridView grid, string colName) where T : IConvertible
+        public static T? AsNumber<T>(this DataGridView grid, string colName) where T : IConvertible
         {
             try
             {
@@ -108,7 +109,7 @@ namespace ESProMeter.Extensions
                 return default(T);
             }
         }
-        public static T AsNumber<T>(this DataGridView grid,int rowIndex, string colName) where T : IConvertible
+        public static T? AsNumber<T>(this DataGridView grid, int rowIndex, string colName) where T : IConvertible
         {
             try
             {
@@ -120,7 +121,7 @@ namespace ESProMeter.Extensions
                 return default(T);
             }
         }
-        public static T AsValue<T>(this DataGridView grid,int rowIndex, string colName) where T : IConvertible
+        public static T? AsValue<T>(this DataGridView grid, int rowIndex, string colName) where T : IConvertible
         {
             try
             {
@@ -132,18 +133,7 @@ namespace ESProMeter.Extensions
                 return default(T);
             }
         }
-        public static object GetValue(this DataGridView grid, int rowIndex, string colName)
-        {
-            try
-            {
-                return grid.Rows[rowIndex].Cells[colName].Value;
-            }
-            catch
-            {
-                return default(object);
-            }
-        }
-        public static T GetValue<T>(this DataGridView grid, int rowIndex, string colName)
+        public static T? GetValue<T>(this DataGridView grid, int rowIndex, string colName)
         {
             try
             {
@@ -154,37 +144,36 @@ namespace ESProMeter.Extensions
                 return default(T);
             }
         }
-        public static T AsNumber<T>(this ComboBox txt,bool selected=false) where T : IConvertible
+
+        public static T? GetValue<T>(this ComboBox grid)
         {
-            if (selected)
+            try
             {
-                if(txt.SelectedValue==null)
-                {
-                    return default(T);
-                }
-                else
-                {
-                    return (T)Convert.ChangeType(txt.SelectedValue, typeof(T));
-                }
-                
+                return (T)Convert.ChangeType(grid.SelectedValue, typeof(T));
+            }
+            catch
+            {
+                return default(T);
+            }
+        }
+        public static string GetText(this ComboBox grid)
+        {
+            return grid.SelectedItem.ToString() ?? "";
+        }
+        public static T? AsNumber<T>(this ComboBox combo) where T : IConvertible
+        {
+            if (combo.SelectedValue == null || combo.Text.Length==0)
+            {
+                return default(T);
             }
             else
             {
-                if (string.IsNullOrEmpty(txt.Text))
-                {
-                    return default(T);
-                }
-                else
-                {
-                    return (T)Convert.ChangeType(txt.Text, typeof(T));
-                }
-                
+                return (T)Convert.ChangeType(combo.SelectedValue??combo.Text.Trim(), typeof(T));
             }
-           
+
         }
-        
-        
+
 
     }
-    
+
 }

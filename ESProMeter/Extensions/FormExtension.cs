@@ -144,16 +144,6 @@ namespace ESProMeter.Extensions
         {
             return form.Controls.Find(key, true).OfType<DataGridView>().FirstOrDefault();
         }
-        public static long AsLong(this Form form,string key,int row,int col)
-        {
-            var grid= form.Controls.Find(key, true).OfType<DataGridView>().FirstOrDefault();
-            var result=grid[col, row].Value.ToString();
-            if(long.TryParse(result,out long id))
-            {
-                return id;
-            }
-            return default;
-        }
         public static void AsCombobox(this DataTable table,ComboBox ctrl, string displayMember, string valueMember)
         {
             ctrl.DataSource = null;
@@ -344,67 +334,6 @@ namespace ESProMeter.Extensions
             }
             return (T)Convert.ChangeType(gRow.Cells[colName].Value, typeof(T));
         }
-        public static void SetChecked(this CheckBox txt, DataRow row, string colName)
-        {
-            if (!row.IsNull(colName))
-                if(bool.TryParse(row[colName].ToString(), out bool result))
-                {
-                    txt.Checked = result;
-                }
-                else
-                {
-                    txt.Checked = false;
-                }
-            
-            else
-                txt.Checked = false;
-        }
-        public static void SetChecked(this DataRow row, string colName,CheckBox txt)
-        {
-            if (!row.IsNull(colName))
-            {
-                if (row[colName].ToString()=="0")
-                {
-                    txt.Checked = false;
-                }
-                else
-                {
-                    txt.Checked = true;
-                }
-            }
-            else
-                txt.Checked = false;
-        }
-        public static void SetChecked(this DataRow row, string colName, RadioButton txt)
-        {
-            if (!row.IsNull(colName))
-            {
-                if (row[colName].ToString() == "0")
-                {
-                    txt.Checked = false;
-                }
-                else
-                {
-                    txt.Checked = true;
-                }
-            }
-            else
-                txt.Checked = false;
-        }
-        public static void SetChecked(this RadioButton txt, DataRow row, string colName)
-        {
-            if (!row.IsNull(colName))
-                if (bool.TryParse(row[colName].ToString(), out bool result))
-                {
-                    txt.Checked = result;
-                }
-                else
-                {
-                    txt.Checked = false;
-                }
-            else
-                txt.Checked = false;
-        }
         public static void UseDataTableAsGridView<T>(this List<T> source,DataGridView dataGrid) where T:class
         {
             if (source.Count > 0)
@@ -458,6 +387,11 @@ namespace ESProMeter.Extensions
                 label.Text = String.Empty;
                 label.Visible=false;
             }
+        }
+        
+        public static string AsString(this DateTimePicker picker,string formater="MM/dd/yyyy")
+        {
+            return picker.Value.ToString(formater);
         }
     
     }

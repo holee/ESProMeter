@@ -100,7 +100,7 @@ namespace ESProMeter.Controllers
 			{
 				Properties.Settings.Default.ULOGID = form.AsTextBox("txtUserName").Text;
 				Properties.Settings.Default.ULOGPWD = form.AsTextBox("txtPassword").Text;
-				Properties.Settings.Default.isPWDREM = form.AsCheckedBox("chkRememberPassword").Checked;
+				Properties.Settings.Default.isPWDREM = form.AsControl<CheckBox>("chkRememberPassword").Checked;
 				Properties.Settings.Default.Save();
 				
 				return true;
