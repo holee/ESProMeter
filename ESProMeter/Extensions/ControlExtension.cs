@@ -156,11 +156,23 @@ namespace ESProMeter.Extensions
                 return default(T);
             }
         }
+        public static T? AsNumber<T>(this ComboBox grid) where T : IConvertible
+        {
+            try
+            {
+                var value=grid.SelectedValue??grid.Text;
+                return (T)Convert.ChangeType(value, typeof(T));
+            }
+            catch
+            {
+                return default(T);
+            }
+        }
         public static string GetText(this ComboBox grid)
         {
             return grid.SelectedItem.ToString() ?? "";
         }
-        public static T? AsNumber<T>(this ComboBox combo) where T : IConvertible
+        public static T? AsNumber<T>(this ComboBox combo,bool selected) where T : IConvertible
         {
             if (combo.SelectedValue == null || combo.Text.Length==0)
             {
@@ -168,7 +180,11 @@ namespace ESProMeter.Extensions
             }
             else
             {
-                return (T)Convert.ChangeType(combo.SelectedValue??combo.Text.Trim(), typeof(T));
+                if (selected)
+                {
+                    return (T)Convert.ChangeType(combo.SelectedValue, typeof(T));
+                }
+                return (T)Convert.ChangeType(combo.Text.Trim(), typeof(T));
             }
 
         }

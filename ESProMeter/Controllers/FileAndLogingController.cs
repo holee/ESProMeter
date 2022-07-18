@@ -10,6 +10,7 @@ using ESProMeter.Extensions;
 using ESProMeter.Services;
 using ESProMeter.Sessions;
 using System.Security.Cryptography;
+using ESProMeter.IVews;
 
 namespace ESProMeter.Controllers
 {
@@ -92,6 +93,14 @@ namespace ESProMeter.Controllers
 				return UserService.GetUserInstance.Authenticated(form.AsTextBox("txtUserName").Text,
 				TextEncrypt(form.AsTextBox("txtPassword").Text));
 			} catch (Exception ex) { return false; }
+		}
+		public static bool GrantUserAccess(this Form form,ILogin login)
+		{
+			try
+			{
+				return UserService.GetUserInstance.Authenticated(login?.UserName,login?.Password);
+			}
+			catch (Exception ex) { return false; }
 		}
 
 		public static bool memorizeUserCredential(this Form form)
