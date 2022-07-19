@@ -1,12 +1,17 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Windows.Forms;
 
 namespace ESProMeter.Extensions
 {
     public static class DataTableExtension
     {
-        public static void AddValues(this DataTable table, int insertRow, params object[] values)
+        public static void AddValues(this DataTable table, int rowIndex, params object[] values)
         {
+            if(rowIndex < 0 || rowIndex >= table.Rows.Count)
+            {
+                throw new Exception();
+            }
             DataRow drow = table.NewRow();
             if (values != null && values.Length > 0)
             {
@@ -15,9 +20,38 @@ namespace ESProMeter.Extensions
                     drow[i] = values[i];
                 }
             }
-            table.Rows.InsertAt(drow, insertRow);
+            table.Rows.InsertAt(drow, rowIndex);
         }
+        public static void AddValue<T>(this DataTable table, int numRows,int colIndex, T value)
+        {
+            if ((numRows < 0 || numRows >= table.Rows.Count)
+            && colIndex < 0 || colIndex >= table.Columns.Count)
+            {
+                throw new Exception();
+            }
 
+            for (int i = 0; i < numRows; i++)
+            {
+                DataRow drow = table.NewRow();
+                drow[colIndex] = value;
+                table.Rows.Add(drow);
+            }
+
+        }
+        public static void AddValue<T>(this DataTable table, int numRows, string colName, T value)
+        {
+            if (numRows < 0 || numRows >= table.Rows.Count)
+            {
+                throw new Exception();
+            }
+            for (int i = 0; i < numRows; i++)
+            {
+                DataRow drow = table.NewRow();
+                drow[colName] = value;
+                table.Rows.Add(drow);
+            }
+
+        }
         public static DataTable? ToTable(this DataGridView grid, params string[] columns)
         {
             try

@@ -1,5 +1,6 @@
 ﻿using ESProMeter.Controllers;
 using ESProMeter.Extensions;
+using ESProMeter.IVews;
 using ESProMeter.IViews;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Windows.Forms;
 
 namespace ESProMeter.Views.Boq
 {
-	public partial class BOQStep1_Frm : Form,IBoq
+	public partial class BOQStep1_Frm : Form,ITBoq
 	{
         private List<long> itemsList;
         private DateTime _createdAt = DateTime.Now;
@@ -23,63 +24,71 @@ namespace ESProMeter.Views.Boq
 			InitializeComponent();
 			
         }
-
-        public long BOQID { 
-            get => throw new NotImplementedException(); 
+        public long ID { 
+            get => 1; 
             set => throw new NotImplementedException(); 
         }
-        public DateTime CreatedTime { 
+        public DateTime CDT { 
             get => _createdAt; 
-            set => _createdAt=value; 
+            set => _createdAt=DateTime.UtcNow; 
         }
-        public DateTime ModifiedTime { 
+        public DateTime MDT { 
             get => _updatedAt; 
-            set => _updatedAt=value; 
+            set => _updatedAt=DateTime.UtcNow; 
         }
-        public int EditSequense { 
+        public int EDSEQ { 
             get => lblEditSequense.AsNumber<int>(); 
             set => lblEditSequense.SetText(value); 
         }
-        public double BOQNumber { 
-            get => _boqNumber; 
-            set => _boqNumber=value; 
+        public string REFNUMBER { 
+            get => textBoqNumber.Text.Trim(); 
+            set =>textBoqNumber.SetText(value); 
         }
-        public long CustRefID { 
-            get => cmbCustomerID.AsNumber<long>(true); 
+        public string BOQTITLE { 
+            get => textBoqTitle.Text.Trim(); 
+            set => textBoqTitle.SetText(value); 
+        }
+        public string BOQDESC { 
+            get => textDescription.Text.Trim(); 
+            set => textDescription.SetText(value); 
+        }
+        public long CUSTOMERID { 
+            get => cmbCustomerID.AsNumber<long>(true);
             set => cmbCustomerID.SelectedValue=value; 
         }
-        public DateTime Date { 
+        public DateTime BOQDATE { 
             get => dtpBoqDate.Value; 
             set => dtpBoqDate.Value=value; 
         }
-        public string RefNumber { 
-            get => textBoqNumber.Text.Trim(); 
-            set => textBoqNumber.SetText(value); 
+        public DateTime VALIDDATE { 
+            get => dtpValidDate.Value;
+            set => dtpValidDate.Value = value;
         }
-        public bool IsActive { 
-            get => !chkIsInActive.Checked;
-            set => chkIsInActive.Checked = value; 
+        public bool ISACTIVE {
+            get => !chkIsInActive.Checked; 
+            set => chkIsInActive.Checked =!value; 
         }
-        public long SiteRefListID { 
-            get => cmbSite.AsNumber<long>(true); 
-            set => cmbSite.SelectedValue=value; 
+        public long SITEID { 
+            get => cmbSite.AsNumber<long>(isValueFromSelectItem:true);
+            set => cmbSite.SelectedValue = value; 
         }
-        public long DivRefListID { 
+        public long DIVID { 
             get => cmbDivision.AsNumber<long>(true); 
             set => cmbDivision.SelectedValue=value; 
         }
-        public DateTime ValidDate {
-            get => dtpValidDate.Value; 
-            set => dtpValidDate.Value=value; 
-        }
-        public string TermsCondition { 
+        public string TERMSCONDITION { 
             get => textTerm.Text.Trim(); 
             set => textTerm.SetText(value); 
         }
-        public byte IsDelete { 
-            get => _isDelete; 
-            set => _isDelete=value; 
+        public int STATUS { 
+            get => 1; 
+            set => throw new NotImplementedException(); 
         }
+        public long UID { 
+            get => 1; 
+            set => throw new NotImplementedException(); 
+        }
+
         private void TextBoxKeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))

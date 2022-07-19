@@ -79,6 +79,16 @@ namespace ESProMeter.DataAccess
         {
             return _connection.Execute(_sql, param: parameter, transaction: _transaction, commandType: _commandType);
         }
+        public int InsertFromTable(string ParamName,DataTable table,string typeName)
+        {
+            Dictionary<string, object> dictionary = new Dictionary<string, object>();
+
+            dictionary.Add(ParamName, table.AsTableValuedParameter(typeName));
+
+            var parameters = new DynamicParameters(dictionary);
+
+            return _connection.Execute(_sql, parameters, transaction: _transaction, commandType: _commandType);
+        }
         public T InserGetId<T,U>(U parameters) 
         {
             return _connection.ExecuteScalar<T>(_sql, param: parameters, commandType: _commandType, transaction: _transaction);

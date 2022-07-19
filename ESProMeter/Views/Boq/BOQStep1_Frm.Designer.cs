@@ -98,6 +98,7 @@ namespace ESProMeter.Views.Boq
             this.textTerm = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblItemRefId = new System.Windows.Forms.Label();
+            this.textBoqTitle = new System.Windows.Forms.TextBox();
             this.textBoqNumber = new System.Windows.Forms.TextBox();
             this.dtpValidDate = new System.Windows.Forms.DateTimePicker();
             this.dtpBoqDate = new System.Windows.Forms.DateTimePicker();
@@ -111,9 +112,12 @@ namespace ESProMeter.Views.Boq
             this.label4 = new System.Windows.Forms.Label();
             this.cmbCustomerID = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.materialButton2 = new FontAwesome.Sharp.Material.MaterialButton();
             this.materialButton1 = new FontAwesome.Sharp.Material.MaterialButton();
+            this.textDescription = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -131,14 +135,12 @@ namespace ESProMeter.Views.Boq
             this.createNewBOQToolStripMenuItem.Name = "createNewBOQToolStripMenuItem";
             this.createNewBOQToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.createNewBOQToolStripMenuItem.Text = "Select From Item List";
-            
             // 
             // createFromExistingToolStripMenuItem
             // 
             this.createFromExistingToolStripMenuItem.Name = "createFromExistingToolStripMenuItem";
             this.createFromExistingToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.createFromExistingToolStripMenuItem.Text = "Select From Existing BOQ";
-          
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -599,7 +601,7 @@ namespace ESProMeter.Views.Boq
             // lbltemp
             // 
             this.lbltemp.AutoSize = true;
-            this.lbltemp.Location = new System.Drawing.Point(29, 157);
+            this.lbltemp.Location = new System.Drawing.Point(27, 273);
             this.lbltemp.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbltemp.Name = "lbltemp";
             this.lbltemp.Size = new System.Drawing.Size(13, 15);
@@ -609,7 +611,7 @@ namespace ESProMeter.Views.Boq
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(13, 172);
+            this.label24.Location = new System.Drawing.Point(11, 288);
             this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(117, 15);
@@ -618,7 +620,7 @@ namespace ESProMeter.Views.Boq
             // 
             // textTerm
             // 
-            this.textTerm.Location = new System.Drawing.Point(15, 190);
+            this.textTerm.Location = new System.Drawing.Point(13, 306);
             this.textTerm.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textTerm.Multiline = true;
             this.textTerm.Name = "textTerm";
@@ -628,9 +630,11 @@ namespace ESProMeter.Views.Boq
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lblItemRefId);
+            this.groupBox1.Controls.Add(this.textBoqTitle);
             this.groupBox1.Controls.Add(this.textBoqNumber);
             this.groupBox1.Controls.Add(this.dtpValidDate);
             this.groupBox1.Controls.Add(this.dtpBoqDate);
+            this.groupBox1.Controls.Add(this.textDescription);
             this.groupBox1.Controls.Add(this.chkIsInActive);
             this.groupBox1.Controls.Add(this.cmbSite);
             this.groupBox1.Controls.Add(this.cmbDivision);
@@ -641,12 +645,14 @@ namespace ESProMeter.Views.Boq
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.cmbCustomerID);
             this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(13, 12);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox1.Size = new System.Drawing.Size(649, 143);
+            this.groupBox1.Size = new System.Drawing.Size(649, 258);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "BOQ INFORMATION";
@@ -660,6 +666,14 @@ namespace ESProMeter.Views.Boq
             this.lblItemRefId.Size = new System.Drawing.Size(13, 15);
             this.lblItemRefId.TabIndex = 9;
             this.lblItemRefId.Text = "0";
+            // 
+            // textBoqTitle
+            // 
+            this.textBoqTitle.Location = new System.Drawing.Point(124, 141);
+            this.textBoqTitle.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textBoqTitle.Name = "textBoqTitle";
+            this.textBoqTitle.Size = new System.Drawing.Size(236, 23);
+            this.textBoqTitle.TabIndex = 3;
             // 
             // textBoqNumber
             // 
@@ -787,6 +801,16 @@ namespace ESProMeter.Views.Boq
             this.label3.TabIndex = 0;
             this.label3.Text = "DATE";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(43, 142);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(62, 15);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "BOQ TITLE";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -805,7 +829,7 @@ namespace ESProMeter.Views.Boq
             this.materialButton2.IconColor = System.Drawing.Color.White;
             this.materialButton2.IconSize = 32;
             this.materialButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.materialButton2.Location = new System.Drawing.Point(553, 245);
+            this.materialButton2.Location = new System.Drawing.Point(533, 361);
             this.materialButton2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.materialButton2.Name = "materialButton2";
             this.materialButton2.Size = new System.Drawing.Size(126, 42);
@@ -824,7 +848,7 @@ namespace ESProMeter.Views.Boq
             this.materialButton1.IconColor = System.Drawing.Color.White;
             this.materialButton1.IconSize = 27;
             this.materialButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.materialButton1.Location = new System.Drawing.Point(421, 245);
+            this.materialButton1.Location = new System.Drawing.Point(401, 361);
             this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.materialButton1.Name = "materialButton1";
             this.materialButton1.Size = new System.Drawing.Size(126, 42);
@@ -835,11 +859,30 @@ namespace ESProMeter.Views.Boq
             this.materialButton1.UseVisualStyleBackColor = false;
             this.materialButton1.Click += new System.EventHandler(this.materialButton1_Click);
             // 
-            // BoQFrm
+            // textDescription
+            // 
+            this.textDescription.Location = new System.Drawing.Point(122, 170);
+            this.textDescription.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textDescription.Multiline = true;
+            this.textDescription.Name = "textDescription";
+            this.textDescription.Size = new System.Drawing.Size(514, 49);
+            this.textDescription.TabIndex = 18;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(37, 173);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(79, 15);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "DESCRIPTION";
+            // 
+            // BOQStep1_Frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(692, 297);
+            this.ClientSize = new System.Drawing.Size(692, 415);
             this.Controls.Add(this.materialButton2);
             this.Controls.Add(this.materialButton1);
             this.Controls.Add(this.lbltemp);
@@ -847,7 +890,7 @@ namespace ESProMeter.Views.Boq
             this.Controls.Add(this.textTerm);
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.Name = "BoQFrm";
+            this.Name = "BOQStep1_Frm";
             this.Text = "BoQFrm";
             this.contextMenuStrip1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -920,5 +963,9 @@ namespace ESProMeter.Views.Boq
         private System.Windows.Forms.Label label1;
         private FontAwesome.Sharp.Material.MaterialButton materialButton2;
         private FontAwesome.Sharp.Material.MaterialButton materialButton1;
+        private System.Windows.Forms.TextBox textBoqTitle;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textDescription;
+        private System.Windows.Forms.Label label8;
     }
 }

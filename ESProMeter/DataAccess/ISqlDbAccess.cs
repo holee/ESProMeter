@@ -49,6 +49,7 @@ namespace ESProMeter.DataAccess
         T InserGetId<T,U>(U parameters);
         int InsertOrUpdate<T>(T parameter);
         int InsertFromTable<T>(T parameter);
+        int InsertFromTable(string ParamName,DataTable data,string typeName);
         int Delete<T>(T parameter);
         T SelectOne<T, U>(U parameter);
         T Count<T,U>(U parameter);  

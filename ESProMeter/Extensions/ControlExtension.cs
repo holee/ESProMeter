@@ -172,7 +172,7 @@ namespace ESProMeter.Extensions
         {
             return grid.SelectedItem.ToString() ?? "";
         }
-        public static T? AsNumber<T>(this ComboBox combo,bool selected) where T : IConvertible
+        public static T? AsNumber<T>(this ComboBox combo,bool isValueFromSelectItem) where T : IConvertible
         {
             if (combo.SelectedValue == null || combo.Text.Length==0)
             {
@@ -180,7 +180,7 @@ namespace ESProMeter.Extensions
             }
             else
             {
-                if (selected)
+                if (isValueFromSelectItem)
                 {
                     return (T)Convert.ChangeType(combo.SelectedValue, typeof(T));
                 }
