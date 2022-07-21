@@ -133,7 +133,7 @@ namespace ESProMeter.Repository
         }
 
 
-        public void GetBoqListByBoqId(long boqId,
+        public void GetBoqListInfoByBoqId(long boqId,
             out DataTable tblBoq, out DataTable tblQuote, out DataTable tblActivity)
         {
             tblBoq = new();
@@ -141,7 +141,7 @@ namespace ESProMeter.Repository
             tblActivity = new();
             DataUtility.GetInstance
                 .UseProcedure("BOQLine_Sp_SELECT")
-                .FindAsTable(new
+                .FindAsTable(new 
                 {
                     BOQID = boqId
                 }, out tblBoq);
@@ -159,6 +159,26 @@ namespace ESProMeter.Repository
                 }, out tblActivity);
 
         }
+        public bool GetBoqList(int isActive,int status,out DataTable tblBoq)
+        {
+            return DataUtility.GetInstance
+                .UseProcedure("BOQ_sp_SELECT_ALL")
+                .FindAsTable<dynamic?>(new { isAct = isActive, status= status }, out tblBoq);
+        }
+        public bool GetBoqList(byte isActive, int status,string[] columns, out DataTable tblBoq)
+        {
+            var sql = columns.Length==0? "*" : string.Join(",", columns);
+            return DataUtility.GetInstance
+                .UseProcedure("BOQ1_sp_SELECT_ALL")
+                .FindAsTable<dynamic?>(new { 
+                    isAct = isActive, 
+                    status = status,
+                    columns= sql
+                }, out tblBoq);
+        }
+
+
+
         public void GetBoqListByBoqId(long boqId,
            out DataTable tblBoq)
         {
@@ -189,11 +209,8 @@ namespace ESProMeter.Repository
             table = new();
             if (DataUtility.GetInstance
                 .UseProcedure("")
-                .FindAsTable(new { boqId = boqId }, out table))
-            {
-                return true;
-            }
-            return false;
+                .FindAsTable(new { boqId = boqId }, out table)) ;
+           
         }
 
         public void GetBoqQuote(long boqId,out DataTable table)
@@ -201,11 +218,11 @@ namespace ESProMeter.Repository
             table = new();
             if (DataUtility.GetInstance
                 .UseProcedure("")
-                .FindAsTable(new { boqId = boqId }, out table))
-            {
-                return true;
-            }
-            return false;
+                .FindAsTable(new { boqId = boqId }, out table)) ;
+          
         }
+
+
+
     }
 }

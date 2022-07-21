@@ -179,7 +179,7 @@ namespace ESProMeter
             Form form = new Views.Boq.BOQListFrm();
             form.TopLevel = false;
             form.TopMost = true;
-            form.FormBorderStyle = FormBorderStyle.None;
+            form.FormBorderStyle = FormBorderStyle.Fixed3D;
             form.WindowState = FormWindowState.Maximized;
             panel2.Controls.Clear();
             panel2.Controls.Add(form);
