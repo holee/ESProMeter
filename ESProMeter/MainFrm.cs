@@ -186,5 +186,25 @@ namespace ESProMeter
             form.Show();
             form.Dock = DockStyle.Fill;
         }
+
+		private void billOfQuantityListToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+            Form form = new Views.Boq.CreateBoQ_Step1_Frm();
+            form.ShowDialog();
+		}
+
+		private void toolStripMenuItem4_Click(object sender, EventArgs e)
+		{
+            //Add new BOQ Item
+            //Set item type as 'Bill of Quanity' then show form
+            Form form = new Views.Items.AddItemFrm();
+            //form.cmbType.text = 'Bill of Quantity';
+            form.ShowDialog();
+		}
+
+		private void toolStripMenuItem5_Click(object sender, EventArgs e)
+		{
+            
+		}
 	}
 }
