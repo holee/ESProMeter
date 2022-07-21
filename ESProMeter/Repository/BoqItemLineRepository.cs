@@ -133,8 +133,79 @@ namespace ESProMeter.Repository
         }
 
 
+        public void GetBoqListByBoqId(long boqId,
+            out DataTable tblBoq, out DataTable tblQuote, out DataTable tblActivity)
+        {
+            tblBoq = new();
+            tblQuote = new();
+            tblActivity = new();
+            DataUtility.GetInstance
+                .UseProcedure("BOQLine_Sp_SELECT")
+                .FindAsTable(new
+                {
+                    BOQID = boqId
+                }, out tblBoq);
+            DataUtility.GetInstance
+                .UseProcedure("QUOTE_sp_SELECT")
+                .FindAsTable(new
+                {
+                    BOQID = boqId
+                }, out tblQuote);
+            DataUtility.GetInstance
+                .UseProcedure("ACTIVITY_sp_SELECT")
+                .FindAsTable(new
+                {
+                    BOQID = boqId
+                }, out tblActivity);
 
+        }
+        public void GetBoqListByBoqId(long boqId,
+           out DataTable tblBoq)
+        {
+            tblBoq = new();
+            DataUtility.GetInstance
+                .UseProcedure("BOQLine_Sp_SELECT")
+                .FindAsTable(new
+                {
+                    BOQID = boqId
+                }, out tblBoq);
+        }
+        public bool GetBoqLine(long boqId,bool isBoqClosed,out DataTable table)
+        {
+            if (DataUtility.GetInstance
+                .UseProcedure("BOQLine_Sp_SELECT")
+                .FindAsTable(new { 
+                    isBoqClosed=isBoqClosed,
+                    BOQID= boqId
+                },out table))
+            {
+                return true;
+            }
+            return false;
+        }
 
+        public void GetBoqItemLine(long boqId,out DataTable table)
+        {
+            table = new();
+            if (DataUtility.GetInstance
+                .UseProcedure("")
+                .FindAsTable(new { boqId = boqId }, out table))
+            {
+                return true;
+            }
+            return false;
+        }
 
+        public void GetBoqQuote(long boqId,out DataTable table)
+        {
+            table = new();
+            if (DataUtility.GetInstance
+                .UseProcedure("")
+                .FindAsTable(new { boqId = boqId }, out table))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

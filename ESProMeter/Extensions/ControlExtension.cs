@@ -184,7 +184,7 @@ namespace ESProMeter.Extensions
                 {
                     return (T)Convert.ChangeType(combo.SelectedValue, typeof(T));
                 }
-                return (T)Convert.ChangeType(combo.Text.Trim(), typeof(T));
+                return (T)Convert.ChangeType(combo.SelectedItem, typeof(T));
             }
 
         }
