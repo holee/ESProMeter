@@ -16,5 +16,11 @@ namespace ESProMeter.Views.Boq
 		{
 			InitializeComponent();
 		}
+
+		private void newBoQToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Form form = new Views.Boq.CreateBoQ_Step1_Frm();
+			form.ShowDialog();
+		}
 	}
 }
