@@ -32,11 +32,13 @@
 			this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
 			this.openCompanyFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.connectToExistingCompanyFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.closeCompanyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
 			this.backupCompanyFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.listToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,8 +80,6 @@
 			this.btnCloseForm = new FontAwesome.Sharp.IconButton();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.iconButton1 = new FontAwesome.Sharp.IconButton();
-			this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
@@ -132,6 +132,12 @@
 			this.fileToolStripMenuItem.Size = new System.Drawing.Size(41, 32);
 			this.fileToolStripMenuItem.Text = "File";
 			// 
+			// toolStripMenuItem7
+			// 
+			this.toolStripMenuItem7.Name = "toolStripMenuItem7";
+			this.toolStripMenuItem7.Size = new System.Drawing.Size(283, 24);
+			this.toolStripMenuItem7.Text = "Create New Company File";
+			// 
 			// openCompanyFileToolStripMenuItem
 			// 
 			this.openCompanyFileToolStripMenuItem.Name = "openCompanyFileToolStripMenuItem";
@@ -141,7 +147,6 @@
 			// 
 			// connectToExistingCompanyFileToolStripMenuItem
 			// 
-			this.connectToExistingCompanyFileToolStripMenuItem.Enabled = false;
 			this.connectToExistingCompanyFileToolStripMenuItem.Name = "connectToExistingCompanyFileToolStripMenuItem";
 			this.connectToExistingCompanyFileToolStripMenuItem.Size = new System.Drawing.Size(283, 24);
 			this.connectToExistingCompanyFileToolStripMenuItem.Text = "Connect to Existing Company File";
@@ -166,6 +171,12 @@
 			this.backupCompanyFileToolStripMenuItem.Size = new System.Drawing.Size(283, 24);
 			this.backupCompanyFileToolStripMenuItem.Text = "Backup Company File";
 			// 
+			// toolStripMenuItem8
+			// 
+			this.toolStripMenuItem8.Name = "toolStripMenuItem8";
+			this.toolStripMenuItem8.Size = new System.Drawing.Size(283, 24);
+			this.toolStripMenuItem8.Text = "Restore Company File";
+			// 
 			// toolStripMenuItem2
 			// 
 			this.toolStripMenuItem2.Name = "toolStripMenuItem2";
@@ -184,6 +195,7 @@
             this.itemListToolStripMenuItem,
             this.siteToolStripMenuItem,
             this.uomItemList});
+			this.listToolStripMenuItem.Enabled = false;
 			this.listToolStripMenuItem.Name = "listToolStripMenuItem";
 			this.listToolStripMenuItem.Size = new System.Drawing.Size(42, 32);
 			this.listToolStripMenuItem.Text = "List";
@@ -191,20 +203,20 @@
 			// itemListToolStripMenuItem
 			// 
 			this.itemListToolStripMenuItem.Name = "itemListToolStripMenuItem";
-			this.itemListToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+			this.itemListToolStripMenuItem.Size = new System.Drawing.Size(137, 24);
 			this.itemListToolStripMenuItem.Text = "Item List";
 			this.itemListToolStripMenuItem.Click += new System.EventHandler(this.itemListToolStripMenuItem_Click);
 			// 
 			// siteToolStripMenuItem
 			// 
 			this.siteToolStripMenuItem.Name = "siteToolStripMenuItem";
-			this.siteToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+			this.siteToolStripMenuItem.Size = new System.Drawing.Size(137, 24);
 			this.siteToolStripMenuItem.Text = "Site List";
 			// 
 			// uomItemList
 			// 
 			this.uomItemList.Name = "uomItemList";
-			this.uomItemList.Size = new System.Drawing.Size(180, 24);
+			this.uomItemList.Size = new System.Drawing.Size(137, 24);
 			this.uomItemList.Text = "UOM List";
 			this.uomItemList.Click += new System.EventHandler(this.uomItemList_Click);
 			// 
@@ -213,6 +225,7 @@
 			this.companyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.myCompanyInformationToolStripMenuItem,
             this.userRoleToolStripMenuItem});
+			this.companyToolStripMenuItem.Enabled = false;
 			this.companyToolStripMenuItem.Name = "companyToolStripMenuItem";
 			this.companyToolStripMenuItem.Size = new System.Drawing.Size(80, 32);
 			this.companyToolStripMenuItem.Text = "Company";
@@ -260,6 +273,7 @@
             this.customerListToolStripMenuItem,
             this.toolStripSeparator1,
             this.boqToolStripMenuItem});
+			this.customerToolStripMenuItem.Enabled = false;
 			this.customerToolStripMenuItem.Name = "customerToolStripMenuItem";
 			this.customerToolStripMenuItem.Size = new System.Drawing.Size(81, 32);
 			this.customerToolStripMenuItem.Text = "Customer";
@@ -294,6 +308,7 @@
             this.siteListToolStripMenuItem,
             this.toolStripMenuItem6,
             this.quoteListToolStripMenuItem});
+			this.billOfQuantityToolStripMenuItem.Enabled = false;
 			this.billOfQuantityToolStripMenuItem.Name = "billOfQuantityToolStripMenuItem";
 			this.billOfQuantityToolStripMenuItem.Size = new System.Drawing.Size(112, 32);
 			this.billOfQuantityToolStripMenuItem.Text = "Bill of Quantity";
@@ -358,6 +373,7 @@
 			// 
 			this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.billOfQuanityToolStripMenuItem});
+			this.reportToolStripMenuItem.Enabled = false;
 			this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
 			this.reportToolStripMenuItem.Size = new System.Drawing.Size(62, 32);
 			this.reportToolStripMenuItem.Text = "Report";
@@ -365,7 +381,7 @@
 			// billOfQuanityToolStripMenuItem
 			// 
 			this.billOfQuanityToolStripMenuItem.Name = "billOfQuanityToolStripMenuItem";
-			this.billOfQuanityToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+			this.billOfQuanityToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
 			this.billOfQuanityToolStripMenuItem.Text = "Bill of Quanity";
 			// 
 			// helpToolStripMenuItem
@@ -549,7 +565,7 @@
 			this.btnCloseForm.IconColor = System.Drawing.Color.Red;
 			this.btnCloseForm.IconFont = FontAwesome.Sharp.IconFont.Auto;
 			this.btnCloseForm.IconSize = 16;
-			this.btnCloseForm.Location = new System.Drawing.Point(888, 3);
+			this.btnCloseForm.Location = new System.Drawing.Point(894, 3);
 			this.btnCloseForm.Name = "btnCloseForm";
 			this.btnCloseForm.Size = new System.Drawing.Size(29, 23);
 			this.btnCloseForm.TabIndex = 2;
@@ -564,7 +580,7 @@
 			this.panel2.BackColor = System.Drawing.Color.Silver;
 			this.panel2.Location = new System.Drawing.Point(-1, 28);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(893, 554);
+			this.panel2.Size = new System.Drawing.Size(899, 554);
 			this.panel2.TabIndex = 1;
 			this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
 			// 
@@ -582,20 +598,6 @@
 			this.iconButton1.TabIndex = 0;
 			this.iconButton1.UseVisualStyleBackColor = true;
 			this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
-			// 
-			// toolStripMenuItem7
-			// 
-			this.toolStripMenuItem7.Enabled = false;
-			this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-			this.toolStripMenuItem7.Size = new System.Drawing.Size(283, 24);
-			this.toolStripMenuItem7.Text = "Create New Company File";
-			// 
-			// toolStripMenuItem8
-			// 
-			this.toolStripMenuItem8.Enabled = false;
-			this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-			this.toolStripMenuItem8.Size = new System.Drawing.Size(283, 24);
-			this.toolStripMenuItem8.Text = "Restore Company File";
 			// 
 			// MainFrm
 			// 
@@ -629,35 +631,26 @@
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem listToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem itemListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem siteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uomItemList;
         private FontAwesome.Sharp.IconButton iconButton1;
         private System.Windows.Forms.Panel panel1;
         private FontAwesome.Sharp.Material.MaterialButton materialButton1;
-        private System.Windows.Forms.ToolStripMenuItem customerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem boqToolStripMenuItem;
         internal System.Windows.Forms.Panel panel2;
         private FontAwesome.Sharp.IconButton btnCloseForm;
 		public System.Windows.Forms.SplitContainer splitContainer1;
-		private System.Windows.Forms.ToolStripMenuItem companyToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem myCompanyInformationToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem userRoleToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem changeMyPasswordToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem userManagementToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem roleManagementToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem openCompanyFileToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem connectToExistingCompanyFileToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem closeCompanyToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-		private System.Windows.Forms.ToolStripMenuItem backupCompanyFileToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem billOfQuanityToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem billOfQuantityToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem billOfQuantityListToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem customerListToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
@@ -675,7 +668,16 @@
         private FontAwesome.Sharp.Material.MaterialButton materialButton4;
         private FontAwesome.Sharp.Material.MaterialButton materialButton3;
         private FontAwesome.Sharp.Material.MaterialButton materialButton2;
-		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
-		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
+		public System.Windows.Forms.ToolStripMenuItem listToolStripMenuItem;
+		public System.Windows.Forms.ToolStripMenuItem customerToolStripMenuItem;
+		public System.Windows.Forms.ToolStripMenuItem companyToolStripMenuItem;
+		public System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
+		public System.Windows.Forms.ToolStripMenuItem billOfQuantityToolStripMenuItem;
+		public System.Windows.Forms.ToolStripMenuItem openCompanyFileToolStripMenuItem;
+		public System.Windows.Forms.ToolStripMenuItem connectToExistingCompanyFileToolStripMenuItem;
+		public System.Windows.Forms.ToolStripMenuItem closeCompanyToolStripMenuItem;
+		public System.Windows.Forms.ToolStripMenuItem backupCompanyFileToolStripMenuItem;
+		public System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
+		public System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
 	}
 }

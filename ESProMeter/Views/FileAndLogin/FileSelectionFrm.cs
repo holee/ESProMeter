@@ -37,8 +37,8 @@ namespace ESProMeter.Views.FileAndLogin
 				
 					if (MainFrm.ULNF.ShowDialog() == DialogResult.OK)
 					{
-						
-						MainFrm.MainF.splitContainer1.Visible = true;
+						MainController.AccessableRole(true);
+
 					}
                     else
                     {
