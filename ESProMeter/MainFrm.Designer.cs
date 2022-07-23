@@ -78,6 +78,8 @@
 			this.btnCloseForm = new FontAwesome.Sharp.IconButton();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.iconButton1 = new FontAwesome.Sharp.IconButton();
+			this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
@@ -117,11 +119,13 @@
 			// fileToolStripMenuItem
 			// 
 			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem7,
             this.openCompanyFileToolStripMenuItem,
             this.connectToExistingCompanyFileToolStripMenuItem,
             this.closeCompanyToolStripMenuItem,
             this.toolStripMenuItem1,
             this.backupCompanyFileToolStripMenuItem,
+            this.toolStripMenuItem8,
             this.toolStripMenuItem2,
             this.exitToolStripMenuItem});
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -148,6 +152,7 @@
 			this.closeCompanyToolStripMenuItem.Name = "closeCompanyToolStripMenuItem";
 			this.closeCompanyToolStripMenuItem.Size = new System.Drawing.Size(283, 24);
 			this.closeCompanyToolStripMenuItem.Text = "Close Company File";
+			this.closeCompanyToolStripMenuItem.Click += new System.EventHandler(this.closeCompanyToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem1
 			// 
@@ -186,20 +191,20 @@
 			// itemListToolStripMenuItem
 			// 
 			this.itemListToolStripMenuItem.Name = "itemListToolStripMenuItem";
-			this.itemListToolStripMenuItem.Size = new System.Drawing.Size(137, 24);
+			this.itemListToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
 			this.itemListToolStripMenuItem.Text = "Item List";
 			this.itemListToolStripMenuItem.Click += new System.EventHandler(this.itemListToolStripMenuItem_Click);
 			// 
 			// siteToolStripMenuItem
 			// 
 			this.siteToolStripMenuItem.Name = "siteToolStripMenuItem";
-			this.siteToolStripMenuItem.Size = new System.Drawing.Size(137, 24);
+			this.siteToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
 			this.siteToolStripMenuItem.Text = "Site List";
 			// 
 			// uomItemList
 			// 
 			this.uomItemList.Name = "uomItemList";
-			this.uomItemList.Size = new System.Drawing.Size(137, 24);
+			this.uomItemList.Size = new System.Drawing.Size(180, 24);
 			this.uomItemList.Text = "UOM List";
 			this.uomItemList.Click += new System.EventHandler(this.uomItemList_Click);
 			// 
@@ -262,19 +267,20 @@
 			// customerListToolStripMenuItem
 			// 
 			this.customerListToolStripMenuItem.Name = "customerListToolStripMenuItem";
-			this.customerListToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+			this.customerListToolStripMenuItem.Size = new System.Drawing.Size(200, 24);
 			this.customerListToolStripMenuItem.Text = "Customer List";
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(197, 6);
 			// 
 			// boqToolStripMenuItem
 			// 
 			this.boqToolStripMenuItem.Name = "boqToolStripMenuItem";
-			this.boqToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-			this.boqToolStripMenuItem.Text = "Create New BoQ";
+			this.boqToolStripMenuItem.Size = new System.Drawing.Size(200, 24);
+			this.boqToolStripMenuItem.Text = "New Bill of Quantity";
+			this.boqToolStripMenuItem.Click += new System.EventHandler(this.boqToolStripMenuItem_Click);
 			// 
 			// billOfQuantityToolStripMenuItem
 			// 
@@ -359,7 +365,7 @@
 			// billOfQuanityToolStripMenuItem
 			// 
 			this.billOfQuanityToolStripMenuItem.Name = "billOfQuanityToolStripMenuItem";
-			this.billOfQuanityToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
+			this.billOfQuanityToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
 			this.billOfQuanityToolStripMenuItem.Text = "Bill of Quanity";
 			// 
 			// helpToolStripMenuItem
@@ -543,7 +549,7 @@
 			this.btnCloseForm.IconColor = System.Drawing.Color.Red;
 			this.btnCloseForm.IconFont = FontAwesome.Sharp.IconFont.Auto;
 			this.btnCloseForm.IconSize = 16;
-			this.btnCloseForm.Location = new System.Drawing.Point(882, 3);
+			this.btnCloseForm.Location = new System.Drawing.Point(888, 3);
 			this.btnCloseForm.Name = "btnCloseForm";
 			this.btnCloseForm.Size = new System.Drawing.Size(29, 23);
 			this.btnCloseForm.TabIndex = 2;
@@ -558,7 +564,7 @@
 			this.panel2.BackColor = System.Drawing.Color.Silver;
 			this.panel2.Location = new System.Drawing.Point(-1, 28);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(887, 554);
+			this.panel2.Size = new System.Drawing.Size(893, 554);
 			this.panel2.TabIndex = 1;
 			this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
 			// 
@@ -576,6 +582,20 @@
 			this.iconButton1.TabIndex = 0;
 			this.iconButton1.UseVisualStyleBackColor = true;
 			this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+			// 
+			// toolStripMenuItem7
+			// 
+			this.toolStripMenuItem7.Enabled = false;
+			this.toolStripMenuItem7.Name = "toolStripMenuItem7";
+			this.toolStripMenuItem7.Size = new System.Drawing.Size(283, 24);
+			this.toolStripMenuItem7.Text = "Create New Company File";
+			// 
+			// toolStripMenuItem8
+			// 
+			this.toolStripMenuItem8.Enabled = false;
+			this.toolStripMenuItem8.Name = "toolStripMenuItem8";
+			this.toolStripMenuItem8.Size = new System.Drawing.Size(283, 24);
+			this.toolStripMenuItem8.Text = "Restore Company File";
 			// 
 			// MainFrm
 			// 
@@ -655,5 +675,7 @@
         private FontAwesome.Sharp.Material.MaterialButton materialButton4;
         private FontAwesome.Sharp.Material.MaterialButton materialButton3;
         private FontAwesome.Sharp.Material.MaterialButton materialButton2;
-    }
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
+	}
 }
