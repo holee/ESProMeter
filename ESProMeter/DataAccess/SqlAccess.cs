@@ -9,8 +9,8 @@ namespace ESProMeter.DataAccess
 {
     public class SqlAccess:IDisposable,IUseSqlAccess,ISqlAccess
     {
-        private IDbConnection? _connection;
-        private IDbTransaction? _transaction;
+        private IDbConnection _connection=null;
+        private IDbTransaction _transaction=null;
         private CommandType? _commandType;
         private string _connectionString=string.Empty;
         private string _sql=string.Empty;
@@ -73,7 +73,8 @@ namespace ESProMeter.DataAccess
         }
         public int InsertOrUpdate<T>(T parameters)
         {
-            return _connection.Execute(_sql, param: parameters, transaction: _transaction, commandType: _commandType);
+            var affectedRow=_connection.Execute(_sql, param: parameters, transaction: _transaction, commandType: _commandType);
+            return affectedRow;
         }
         public int InsertFromTable<T>(T parameter)
         {
@@ -211,6 +212,11 @@ namespace ESProMeter.DataAccess
             table = new DataTable();
             table.Load(result);
             return table.Rows.Count > 0;
+        }
+
+        public bool Exist(object paramaters)
+        {
+            return _connection.ExecuteScalar<int>(_sql, paramaters, transaction: _transaction, commandType: _commandType) > 0;
         }
 
     }

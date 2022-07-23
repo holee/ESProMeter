@@ -170,7 +170,7 @@ namespace ESProMeter.Extensions
         }
         public static string GetText(this ComboBox grid)
         {
-            return grid.SelectedItem.ToString() ?? "";
+            return grid.Text.Trim()??"";
         }
         public static T? AsNumber<T>(this ComboBox combo,bool isValueFromSelectItem) where T : IConvertible
         {

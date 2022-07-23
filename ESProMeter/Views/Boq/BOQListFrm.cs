@@ -17,11 +17,18 @@ namespace ESProMeter.Views.Boq
 		public BOQListFrm()
 		{
 			InitializeComponent();
-			dtgBOQList.AutoGenerateColumns = true;
+			menuStrip5.Cursor = Cursors.Default;
+			tab.Cursor = Cursors.Default;
+			dtgBOQLine.Cursor = Cursors.Default;
+			dtgBOQList.Cursor = Cursors.Default;
             if (BoqItemLineService.GetInstance.GetBoqList(1, 1,out var table))
 			{
 				dtgBOQList.DataSource = table;
             }
+			if (dtgBOQList.Rows.Count > 0)
+			{
+                dtgBOQList.Rows[0].Selected = true;
+			}
 		}
 
 		private void newBoQToolStripMenuItem_Click(object sender, EventArgs e)
@@ -29,11 +36,11 @@ namespace ESProMeter.Views.Boq
 			Form form = new Views.Boq.CreateBoQ_Step1_Frm();
 			form.ShowDialog();
 		}
-
-        private void dtgBOQList_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dtgBOQList_SelectionChanged(object sender, EventArgs e)
         {
-            if (dtgBOQList.Rows.Count > 0)
-            {
+
+			if (dtgBOQList.SelectedRows.Count >0)
+			{
 				var selectedRow = dtgBOQList.SelectedRows[0];
 				if (selectedRow != null)
 				{
@@ -48,9 +55,9 @@ namespace ESProMeter.Views.Boq
 
 					dtgActivities.DataSource = tblactivy;
 					dtgBOQLine.DataSource = tblBoqLine;
-					dtgQuotes.DataSource= tblquote;
+					dtgQuotes.DataSource = tblquote;
 				}
 			}
-        }
+		}
     }
 }
