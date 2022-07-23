@@ -30,6 +30,7 @@ namespace ESProMeter.Views.FileAndLogin
 
 				this.setServerConnectionInformation();
 
+
 				if (this.openCompanyFileConnection())
 				{
 					this.Hide();

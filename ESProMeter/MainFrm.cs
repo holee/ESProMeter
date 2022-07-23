@@ -206,5 +206,16 @@ namespace ESProMeter
 		{
             
 		}
+
+		private void boqToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+            Form form = new Views.Boq.CreateBoQ_Step1_Frm();
+            form.ShowDialog();
+		}
+
+		private void closeCompanyToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 }
