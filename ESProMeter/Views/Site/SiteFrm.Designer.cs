@@ -39,14 +39,16 @@ namespace ESProMeter.Views.Sites
             this.stbMakInactive = new System.Windows.Forms.ToolStripButton();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.excelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.tlsRows = new System.Windows.Forms.ToolStripComboBox();
             this.siteDataGrid = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.IsActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,16 +59,20 @@ namespace ESProMeter.Views.Sites
             // 
             // toolStrip1
             // 
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbNewSite,
             this.toolStripButton2,
             this.tlsDelete,
             this.toolStripButton4,
             this.stbMakInactive,
-            this.toolStripDropDownButton1});
+            this.toolStripDropDownButton1,
+            this.toolStripLabel1,
+            this.tlsRows});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1150, 25);
+            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.toolStrip1.Size = new System.Drawing.Size(1342, 25);
             this.toolStrip1.TabIndex = 11;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -113,7 +119,7 @@ namespace ESProMeter.Views.Sites
             this.stbMakInactive.Name = "stbMakInactive";
             this.stbMakInactive.Size = new System.Drawing.Size(100, 22);
             this.stbMakInactive.Text = "Make Inactive";
-            this.stbMakInactive.Click += new System.EventHandler(this.toolStripButton5_Click);
+            this.stbMakInactive.Click += new System.EventHandler(this.stbMakInactive_Click);
             // 
             // toolStripDropDownButton1
             // 
@@ -131,6 +137,25 @@ namespace ESProMeter.Views.Sites
             this.excelToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
             this.excelToolStripMenuItem.Text = "Excel";
             // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(35, 22);
+            this.toolStripLabel1.Text = "Rows";
+            // 
+            // tlsRows
+            // 
+            this.tlsRows.AutoSize = false;
+            this.tlsRows.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.tlsRows.Items.AddRange(new object[] {
+            "50",
+            "100",
+            "1000",
+            "10000"});
+            this.tlsRows.Name = "tlsRows";
+            this.tlsRows.Size = new System.Drawing.Size(100, 23);
+            this.tlsRows.SelectedIndexChanged += new System.EventHandler(this.tlsRows_SelectedIndexChanged);
+            // 
             // siteDataGrid
             // 
             this.siteDataGrid.AllowUserToAddRows = false;
@@ -142,7 +167,7 @@ namespace ESProMeter.Views.Sites
             this.siteDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -150,79 +175,80 @@ namespace ESProMeter.Views.Sites
             this.siteDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.siteDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.siteDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
+            this.ID,
             this.Column2,
             this.Column3,
             this.Column4,
             this.Column5,
             this.Column6,
-            this.Column7,
+            this.IsActive,
             this.Column8,
             this.Column9,
             this.Column10});
-            this.siteDataGrid.Location = new System.Drawing.Point(0, 28);
+            this.siteDataGrid.Location = new System.Drawing.Point(0, 32);
+            this.siteDataGrid.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.siteDataGrid.Name = "siteDataGrid";
             this.siteDataGrid.ReadOnly = true;
             this.siteDataGrid.RowHeadersVisible = false;
             this.siteDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.siteDataGrid.Size = new System.Drawing.Size(1150, 593);
+            this.siteDataGrid.Size = new System.Drawing.Size(1342, 684);
             this.siteDataGrid.TabIndex = 12;
-            this.siteDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.siteDataGrid_CellContentClick);
+          
             this.siteDataGrid.SelectionChanged += new System.EventHandler(this.SiteGridSelectionChanged);
             // 
-            // Column1
+            // ID
             // 
-            this.Column1.DataPropertyName = "siteID";
-            this.Column1.HeaderText = "Column1";
-            this.Column1.MinimumWidth = 2;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column1.Visible = false;
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "Column1";
+            this.ID.MinimumWidth = 2;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ID.Visible = false;
             // 
             // Column2
             // 
-            this.Column2.DataPropertyName = "Name";
+            this.Column2.DataPropertyName = "SITENAME";
             this.Column2.HeaderText = "Site Name";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             // 
             // Column3
             // 
-            this.Column3.DataPropertyName = "CustName";
+            this.Column3.DataPropertyName = "CUSTOMERNAME";
             this.Column3.HeaderText = "Customer";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
             // 
             // Column4
             // 
-            this.Column4.DataPropertyName = "Address";
+            this.Column4.DataPropertyName = "ADDRESS";
             this.Column4.HeaderText = "Address";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             // 
             // Column5
             // 
-            this.Column5.DataPropertyName = "City";
+            this.Column5.DataPropertyName = "PROVINCE";
             this.Column5.HeaderText = "Province/City";
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
             // 
             // Column6
             // 
-            this.Column6.DataPropertyName = "Country";
+            this.Column6.DataPropertyName = "COUNTRY";
             this.Column6.HeaderText = "Country";
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
             // 
-            // Column7
+            // IsActive
             // 
-            this.Column7.DataPropertyName = "IsActive";
-            this.Column7.HeaderText = "Active";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.IsActive.DataPropertyName = "IsActive";
+            this.IsActive.HeaderText = "Active";
+            this.IsActive.Name = "IsActive";
+            this.IsActive.ReadOnly = true;
+            this.IsActive.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.IsActive.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // Column8
             // 
@@ -251,9 +277,10 @@ namespace ESProMeter.Views.Sites
             // chkInlcudeInActive
             // 
             this.chkInlcudeInActive.AutoSize = true;
-            this.chkInlcudeInActive.Location = new System.Drawing.Point(535, 5);
+            this.chkInlcudeInActive.Location = new System.Drawing.Point(624, 6);
+            this.chkInlcudeInActive.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.chkInlcudeInActive.Name = "chkInlcudeInActive";
-            this.chkInlcudeInActive.Size = new System.Drawing.Size(102, 17);
+            this.chkInlcudeInActive.Size = new System.Drawing.Size(109, 19);
             this.chkInlcudeInActive.TabIndex = 13;
             this.chkInlcudeInActive.Text = "Include Inactive";
             this.chkInlcudeInActive.UseVisualStyleBackColor = true;
@@ -261,12 +288,13 @@ namespace ESProMeter.Views.Sites
             // 
             // SiteFrm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1150, 620);
+            this.ClientSize = new System.Drawing.Size(1342, 715);
             this.Controls.Add(this.chkInlcudeInActive);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.siteDataGrid);
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "SiteFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "SiteFrm";
@@ -290,16 +318,18 @@ namespace ESProMeter.Views.Sites
 		private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
 		private System.Windows.Forms.ToolStripMenuItem excelToolStripMenuItem;
 		private System.Windows.Forms.DataGridView siteDataGrid;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-		private System.Windows.Forms.DataGridViewCheckBoxColumn Column7;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
 		private System.Windows.Forms.CheckBox chkInlcudeInActive;
-	}
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripComboBox tlsRows;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn IsActive;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+    }
 }

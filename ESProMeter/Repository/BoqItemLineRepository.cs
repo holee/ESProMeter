@@ -16,7 +16,7 @@ namespace ESProMeter.Repository
         {
             return DataUtility.GetInstance
                        .UseProcedure("")
-                       .InserGetId<long, dynamic>(new
+                       .InsertGetId<long, dynamic>(new
                        {
                            tBoq.EDSEQ,
                            tBoq.REFNUMBER,
@@ -38,7 +38,7 @@ namespace ESProMeter.Repository
         {
             return DataUtility.GetInstance
                        .UseProcedure("")
-                       .InserGetId<long, dynamic>(new
+                       .InsertGetId<long, dynamic>(new
                        {
                            tBoq.ID,
                            tBoq.EDSEQ,

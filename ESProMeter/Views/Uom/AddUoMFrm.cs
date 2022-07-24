@@ -70,48 +70,7 @@ namespace ESProMeter.Views.UnitOfMeasures
                 mbtSave.Text = "Update";
             }
         }
-		private void mbtSave_Click(object sender, EventArgs e)
-		{
-            if (!this.IsValid(txtUoM, txtDescription))
-            {
-                MessageBox.Show("Please enter rquired (*) fields.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (lblUomID.AsNumber<long>() == 0)
-            {
-                if (!this.CheckUomExist(txtUoM.Text.Trim()))
-                {
-                    this.DialogResult = DialogResult.OK;
-                }
-                else
-                {
-                    MessageBox.Show("Unit Of Measure already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.DialogResult = DialogResult.None;
-                }
-            }
-            else
-            {
-                if (!this.CheckUomExistWithSame(txtUoM.Text.Trim(),lblUomID.AsNumber<long>()))
-                {
-                    if (this.UpdateUom())
-                    {
-                        this.DialogResult = DialogResult.OK;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Unit Of Measure already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-            }
-        }
-
-        private void AddUoMFrm_Load(object sender, EventArgs e)
-		{
-			//this.ShowUomForm();
-		}
-
+		
         private void btnSaveAndCLose_Click(object sender, EventArgs e)
         {
 			this.DialogResult = DialogResult.OK;

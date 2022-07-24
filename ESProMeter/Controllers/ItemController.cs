@@ -223,7 +223,7 @@ namespace ESProMeter.Controllers
                 instance.StartTransaction();
                 //create new item
                 var id = instance.UseProcedure("ITEM_INSERT")
-                        .InserGetId<long, dynamic>(new
+                        .InsertGetId<long, dynamic>(new
                         {
                             ITEMNAME = item.ItemName,
                             DESCRIPTION = item.Description,
@@ -253,7 +253,7 @@ namespace ESProMeter.Controllers
                 instance.StartTransaction();
                 //update existing boq item
                 var id = instance.UseProcedure("ITEM_UPDATE_SP")
-                        .InserGetId<long, dynamic>(new
+                        .InsertGetId<long, dynamic>(new
                         {
                             ID=item.Id,
                             ITEMNAME = item.ItemName,

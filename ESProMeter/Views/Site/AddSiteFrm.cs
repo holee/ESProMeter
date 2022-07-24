@@ -1,21 +1,26 @@
 ﻿using ESProMeter.Controllers;
 using ESProMeter.Extensions;
 using ESProMeter.IVews;
-using ESProMeter.IViews;
 using System;
 using System.Windows.Forms;
 
 namespace ESProMeter.Views.Sites
 {
-	public partial class AddSiteFrm : Form,ITSite
+	public partial class AddSiteFrm : Form,ITSite,ITAddressInfo
 	{
         //fields
-        //properties
         private DateTime _createdAt = DateTime.Now;
-        private DateTime _updatedAt=DateTime.Now;   
-        public long ID { 
-            get => longSiteID.AsNumber<int>(); 
+        private DateTime _updatedAt=DateTime.Now;
+        //properties
+        public long ID
+        { 
+            get => longSiteID.AsNumber<long>(); 
             set => longSiteID.SetText(value); 
+        }
+        long ITAddressInfo.ID
+        {
+            get => longAddrRefId.AsNumber<long>();
+            set => longAddrRefId.SetText(value);
         }
         public string DESCRIPTION
         { 
@@ -39,7 +44,8 @@ namespace ESProMeter.Views.Sites
         }
        
 
-        public string Address { 
+        public string ADDRESS
+        { 
             get => textAddress.Text.Trim(); 
             set => textAddress.SetText(value); 
         }
@@ -48,21 +54,15 @@ namespace ESProMeter.Views.Sites
             get => intEditSequense.AsNumber<int>(); 
             set => intEditSequense.SetText(value); 
         }
-        public string City { 
-            get => textCity.Text.Trim(); 
-            set => textCity.SetText(value); 
-        }
-        public string Province { 
+        public string PROVINCE
+        { 
             get => textCity.Text.Trim(); 
             set => textCity.SetText(value);
         }
-        public string Country { 
+        public string COUNTRY
+        { 
             get => textCountry.Text.Trim(); 
             set => textCountry.SetText(value); 
-        }
-        public string SiteName { 
-            get => textName.Text.Trim(); 
-            set => textName.SetText(value); 
         }
         public DateTime CDT { 
             get => _createdAt;
@@ -81,49 +81,46 @@ namespace ESProMeter.Views.Sites
         public AddSiteFrm()
 		{
 			InitializeComponent();
-            this.ShowCustomerForUpdate();
+            btnSave.Text = "Save";
+            // this.ShowCustomerForUpdate();
+            this.FillCustomerCmb();
         }
         public AddSiteFrm(long siteId)
         {
             InitializeComponent();
+            btnSave.Text = "Update";
             //this.ShowFormSiteUpdate(this,siteId);
+            this.FillCustomerCmb();
+            this.ShowFormSiteUpdate(this, this, siteId);
         }
 
         //events
-        private void AddSiteFrm_Load(object sender, EventArgs e)
-        {
-			if(longAddrRefId.AsNumber<long>()== 0 && longSiteID.AsNumber<long>() == 0)
-            {
-                btnSave.Text = "Save";
-            }
-            else
-            {
-                btnSave.Text = "Update";
-            }
-        }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (this.IsValid(textName, textDescription))
             {
-                if (btnSave.Text == "Save")
-                {
-                    if (this.IsSiteExist(textName.Text.Trim()))
-                    {
-                        MessageBox.Show("Site Name Already Exist.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-                }
-                if (btnSave.Text == "Update")
-                {
-                    if (this.IsSiteExistsame(textName.Text.Trim(),longSiteID.AsNumber<long>()))
-                    {
-                        MessageBox.Show("Site Name Already Exist.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-                }
+                //if (btnSave.Text == "Save")
+                //{
+                //    if (this.IsSiteExist(textName.Text.Trim()))
+                //    {
+                //        MessageBox.Show("Site Name Already Exist.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //        return;
+                //    }
+                //}
+                //if (btnSave.Text == "Update")
+                //{
+                //    if (this.IsSiteExistsame(textName.Text.Trim(),longSiteID.AsNumber<long>()))
+                //    {
+                //        MessageBox.Show("Site Name Already Exist.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //        return;
+                //    }
+                //}
                 //this.SiteCreateNewOrUdate();
                 this.DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                this.DialogResult = DialogResult.None;
             }
         }
 

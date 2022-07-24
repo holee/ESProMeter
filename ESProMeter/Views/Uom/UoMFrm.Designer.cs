@@ -278,7 +278,6 @@ namespace ESProMeter.Views.UnitOfMeasures
             this.makeInActiveToolStripMenuItem.Name = "makeInActiveToolStripMenuItem";
             this.makeInActiveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.makeInActiveToolStripMenuItem.Text = "Make In Active";
-            this.makeInActiveToolStripMenuItem.Click += new System.EventHandler(this.makeInActiveToolStripMenuItem_Click);
             // 
             // reloadToolStripMenuItem
             // 

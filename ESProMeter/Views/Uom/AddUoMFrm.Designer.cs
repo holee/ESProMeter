@@ -122,7 +122,7 @@ namespace ESProMeter.Views.UnitOfMeasures
             this.mbtSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.mbtSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.mbtSave.UseVisualStyleBackColor = false;
-            this.mbtSave.Click += new System.EventHandler(this.mbtSave_Click);
+            
             // 
             // cmbType
             // 
@@ -235,7 +235,6 @@ namespace ESProMeter.Views.UnitOfMeasures
             this.Name = "AddUoMFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Unit of Measure";
-            this.Load += new System.EventHandler(this.AddUoMFrm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

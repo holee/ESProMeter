@@ -28,7 +28,7 @@ namespace ESProMeter.DataAccess
         bool FindMany<T, U>(U paramaters, out List<T> TResult);
         DataRow FindAsDataRow<TCol,TValue>(string colName, TValue value);
         bool Exist(object paramaters);
-        T InserGetId<T,U>(U parameters);
+        T InsertGetId<T,U>(U parameters);
         int InsertOrUpdate<T>(T parameter);
         int InsertFromTable<T>(T parameter);
         int InsertFromTable(string ParamName,DataTable data,string typeName);

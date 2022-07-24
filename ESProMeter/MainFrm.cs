@@ -217,5 +217,17 @@ namespace ESProMeter
 		{
 
 		}
-	}
+
+        private void siteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form form = new Views.Sites.SiteFrm();
+            form.TopLevel = false;
+            form.TopMost = true;
+            form.FormBorderStyle = FormBorderStyle.Fixed3D;
+            form.WindowState = FormWindowState.Normal;
+            panel2.Controls.Add(form);
+            form.Show();
+            form.Dock = DockStyle.Fill;
+        }
+    }
 }

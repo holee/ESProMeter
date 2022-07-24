@@ -43,7 +43,7 @@ namespace ESProMeter.Controllers
             {
                 instance.StartTransaction();
                 var createdAddress = instance.UseProcedure("AddressCreate")
-                                        .InserGetId<long,dynamic>(
+                                        .InsertGetId<long,dynamic>(
                                         new { 
                                             c.Address,
                                             c.City,
@@ -135,16 +135,24 @@ namespace ESProMeter.Controllers
             }
         }
 
-        public static bool GetAllCustomers(out DataTable table,params string[] columns)
+        public static void GetAllCustomers(this Form form,string gridName)
         {
-            string sql = columns.Length == 0 ? "*" : string.Join(",", columns);
-            var sql1 = $"SELECT {sql} FROM [dbo].[Customer];";
-            table = instance.UseSql(sql1).FindAsTable<dynamic>(null);
-            if (table.Rows.Count == 0)
+           if(AppService.CustomerInstance.ShowCustomerCenter("Customer",1,out var table))
             {
-                return false;
+                var constainer = form.AsControl<DataGridView>(gridName);
+                constainer.DataSource = table;
+                
             }
-            return true;
+        }
+        public static void FillCustomerCmb(this Form form)
+        {
+            if (AppService.CustomerInstance.ShowCustomerCenter("Customer", 1, out var table))
+            {
+                var constainer = form.AsControl<ComboBox>("textCustomerID");
+                constainer.DataSource = table;
+                constainer.DisplayMember = "Name";
+                constainer.ValueMember = "ID";
+            }
         }
         public static bool DeleteCustomer(this Form form,long id)
         {
@@ -205,36 +213,3 @@ namespace ESProMeter.Controllers
     }
 }
 
-
-//try
-//{
-//    if (CustomerService.GetInstance
-//                       .UseProcedure("CustomerSelectForUpdate")
-//                       .Find<dynamic>(new { CustID = id }, out DataRow row))
-//    {
-//        form.AsTextBox("textName").Text = row.Field<string>("Name");
-//        form.AsTextBox("textLastName").Text = row.Field<string>("LastName");
-//        form.AsTextBox("textSalutation").Text = row.Field<string>("Salutation");
-//        form.AsTextBox("textAddress").Text = row.Field<string>("Address");
-//        form.AsTextBox("textCountry").Text = row.Field<string>("Country");
-//        form.AsTextBox("textProvince").Text = row.Field<string>("Province");
-//        form.AsTextBox("textMainPhone").Text = row.Field<string>("MainPhone");
-//        form.AsTextBox("textAltPhone").Text = row.Field<string>("AltPhone");
-//        form.AsTextBox("textFax").Text = row.Field<string>("Fax");
-//        form.AsTextBox("textEmail").Text = row.Field<string>("Email");
-//        form.AsTextBox("textWebsite").Text = row.Field<string>("Website");
-//        form.AsTextBox("textFirstName").Text = row.Field<string>("FirstName");
-//        form.AsTextBox("textMiddleName").Text = row.Field<string>("MiddleName");
-//        form.AsTextBox("textJobTitle").Text = row.Field<string>("JobTitle");
-//        form.AsTextBox("textCreditLimit").Text = row.Field<decimal>("CreditLimit").ToString();
-//        form.AsLabel("CustEditSequense").Text = row.Field<int>("EditSequense").ToString();
-//        form.AsLabel("lblAddrID").Text = row.Field<long>("AddrrefId").ToString();
-//        form.AsLabel("lblCustID").Text = row.Field<long>("CustID").ToString();
-//        form.AsLabel("AddrEditSequense").Text = row.Field<int>("AddrEditSequense").ToString();
-//    }
-
-//}
-//catch (Exception ex)
-//{
-//    MessageBox.Show(ex.Message);
-//}

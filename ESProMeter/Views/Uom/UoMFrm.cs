@@ -1,4 +1,5 @@
 ﻿using ESProMeter.Controllers;
+using ESProMeter.Enums;
 using ESProMeter.Extensions;
 using System;
 using System.Drawing;
@@ -147,19 +148,6 @@ namespace ESProMeter.Views.UnitOfMeasures
 					}
 				}
 
-			}
-		}
-
-        private void makeInActiveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-			if (dataUom.Rows.Count > 0)
-			{
-				var index = dataUom.CurrentCell.RowIndex;
-				var id = dataUom.AsNumber<long>(index, "Column3");
-				if (this.MakeInactive(id))
-				{
-					this.ShowDataDataGrid();
-				}
 			}
 		}
         private void tltRefresh_Click(object sender, EventArgs e)

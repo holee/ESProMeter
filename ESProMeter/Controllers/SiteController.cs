@@ -9,184 +9,58 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 using ESProMeter.DataAccess;
+using ESProMeter.Enums;
+using ESProMeter.IVews;
 
 namespace ESProMeter.Controllers
 {
     public static class SiteController
     {
-        private static readonly SqlAccess instance = DataUtility.GetInstance;
-        public static bool GetAllSite(out DataTable table,params string[] columns)
+        public static void GetAllSites(this Form form,byte isActive,int perPage=50) 
         {
-            string sql = columns.Length == 0 ? "*" : string.Join(",", columns);
-            var sql1 = $"SELECT {sql} FROM [dbo].[Site];";
-            if(instance.UseSql(sql1).FindAsTable<dynamic?>(null,out table))
+            if(AppService.SiteGetInstance.GetAllSites(isActive,perPage,out var table))
             {
-                return true;
+                var container = form.AsControl<DataGridView>("siteDataGrid");
+                container.DataSource = table;
             }
-            return true;
 
         }
 
 
-        public static void SiteCreateNewOrUpdate(this Form form,ISite site)
+        public static void SiteCreateNewOrUpdate(this Form form,ITSite site,ITAddressInfo tAddress, ActionType actionType=ActionType.CREATE)
         {
-            if (site.SiteID == 0 && site.AddressRefId == 0)
+            switch (actionType)
             {
-                SiteUpdate(site);
+                case ActionType.CREATE:
+                    AppService.SiteGetInstance.SiteCreate(site,tAddress);
+                    break;
+                case ActionType.EDIT:
+                    AppService.SiteGetInstance.SiteUpdate(site,tAddress);
+                    break;
+                default:break;
             }
-            else
-            {
-                CreateNewSite(site);
-            }
         }
-
-
-
-        private static void CreateNewSite(ISite site) 
-        {
-            instance.StartTransaction();
-            instance.UseProcedure("")
-              .InsertOrUpdate(new AddressUpdateDto
-              {
-                  AddrID = site.AddressRefId,
-                  Address = site.Address,
-                  City = site.City,
-                  Country = site.Country,
-                  Province = site.Province,
-                  EditSequense = site.EditSequense
-              });
-            instance.UseProcedure("")
-                   .InsertOrUpdate(new SiteUpdateDto
-                   {
-                       SiteId = site.SiteID,
-                       Name = site.SiteName,
-                       Description = site.Description,
-                       AddrRefID = site.AddressRefId,
-                       CustRefID = site.CustomerRefId,
-                       IsActive = site.IsActive
-                   });
-            instance.ComitTransaction();
-        }
-        private static void SiteUpdate(ISite site)
-        {
-            instance.StartTransaction();
-            int addrId = instance.UseProcedure("")
-              .InserGetId<int,dynamic>(new { site.Address, site.City, site.Country, site.Province });
-            instance.UseProcedure("")
-                   .InsertOrUpdate(new SiteUpdateDto
-                   {
-                       SiteId = site.SiteID,
-                       Name = site.SiteName,
-                       Description = site.Description,
-                       AddrRefID = addrId,
-                       CustRefID = site.CustomerRefId,
-                       IsActive = site.IsActive
-                   });
-
-            instance.ComitTransaction();
-
-        }
-        public static void ShowCustomerForUpdate(this Form form) 
+        public static void ShowFormSiteUpdate(this Form form,ITSite site,ITAddressInfo tAddress, long siteId)
         {
             try
             {
-                instance.UseSql("SELECT custID, Name FROM customer;")
-                          .FindAsTable<dynamic?>(null)
-                          .AsCombobox(form.AsCombobox("textCustomerID"), "Name", "CustID");
-                form.AsCombobox("textCustomerID").Text = String.Empty;
-
+               AppService.SiteGetInstance.ShowSiteForUpdate(site,tAddress,siteId);
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception(ex.Message);
             }
         }
-
-
-        public static void ShowFormSiteUpdate(this Form form,ISite site, long siteId)
+       
+        public static bool DeleteSite(this Form form,long siteId)
         {
             try
             {
-                //instance.UseSql("SELECT custID, Name FROM customer;")
-                //           .Where(null)
-                //           .Gets()
-                //           .AsCombobox(form.AsCombobox("textCustomerID"), "Name", "CustID");
-                //var data = instance.UseSql(AppConstants.SiteSelect)
-                //       .Where(new { siteId = siteId })
-                //       .Select<Site>();
-                using (IDbConnection con = new SqlConnection(ConnectionService.GetConnectionString))
-                {
-                    var sql = @"SELECT s.SiteId,s.Name As SiteName,s.IsActive,s.Description,c.CustID AS CustomerID,c.Name,a.AddrID,a.Country,a.City,a.Address,a.EditSequense FROM Site s
-                                                INNER JOIN [Customer] c ON s.CustRefID=c.CustID
-                                                INNER JOIN AddressInfo a ON a.AddrID=s.AddrRefID
-                                                WHERE siteId=@siteId";
-
-                    var result = con.Query<Site, Customer, AddressInfo, Site>(sql, (s, c, a) =>
-                      {
-                          s.Customer = c;
-                          s.AddressInfo = a;
-                          return s;
-                      }, new { siteId = siteId },
-                     splitOn: "CustomerID,AddrID").FirstOrDefault();
-                    site.SiteName = result.SiteName;
-                    site.CustomerRefId = result.Customer.CustID;
-                    site.IsActive = !result.IsActive;
-                    site.Description = result.Description;
-                    site.Address = result.AddressInfo.Address;
-                    site.Country = result.AddressInfo.Country;
-                    site.City = result.AddressInfo.City;
-                    site.AddressRefId = result.AddressInfo.AddrID;
-                    site.SiteID = result.SiteID;
-                    site.EditSequense = result.AddressInfo.AddressEditSequense;
-                }
-
+                return AppService.SiteGetInstance.SiteDelete(siteId)>0;
             }
             catch (Exception ex)
             {
-                throw ex;
-            }
-        }
-        public static void ShowSiteOnDataGridView(this Form form,bool IncludeInActive)
-        {
-            try
-            {
-                //if (IncludeInActive)
-                //{
-                //    instance.UseSql(AppConstants.SiteSelectAll)
-                //                    .Where(null)
-                //                    .Gets()
-                //                    .AsDataGrid(form.AsDataGrid("siteDataGrid"));
-                //}
-                //else
-                //{
-                //    instance.UseSql(AppConstants.SiteSelects)
-                //                    .Where(new { IsActive = true })
-                //                    .Gets()
-                //                    .AsDataGrid(form.AsDataGrid("siteDataGrid"));
-                //}
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public static void DeleteSite(this Form form,long siteId)
-        {
-            try
-            {
-
-                //if (instance.UseSql("DELETE FROM [SITE] WHERE siteId=@siteId;")
-                //    .Where(new { siteId = siteId })
-                //    .Delete() > 0)
-                //{
-                //    var index = form.AsDataGrid("siteDataGrid").CurrentCell.RowIndex;
-                //    form.AsDataGrid("siteDataGrid").Rows.RemoveAt(index); 
-                //}
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                throw new Exception(ex.Message);
             }
         }
         public static bool IsSiteExist(this Form form, string name)
@@ -194,18 +68,12 @@ namespace ESProMeter.Controllers
             try
             {
 
-                //if (instance.UseSql("SELECT COUNT(*) FROM [SITE] WHERE Name=@name;")
-                //    .Where(new { name = @name})
-                //    .Count() > 0)
-                //{
-                //    return true;
-                //}
-                return false;
-
+                return AppService.SiteGetInstance
+                                    .IsSiteExist(name);
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception(ex.Message);
             }
         }
 
@@ -214,39 +82,25 @@ namespace ESProMeter.Controllers
             try
             {
 
-                //if (instance.UseSql("SELECT COUNT(*) FROM [SITE] WHERE Name=@name AND SiteID <> @siteId;")
-                //    .Where(new { name = @name,SiteId=siteId })
-                //    .Count() > 0)
-                //{
-                //    return true;
-                //}
-                return false;
+                return AppService.SiteGetInstance
+                                    .IsSiteExistsame(name, siteId);
 
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception(ex.Message);
             }
         }
-        public static void MakeSiteActiveOrInactive(this Form form, long siteId)
+        public static bool MakeSiteActiveOrInactive(this Form form, long siteId,byte isActive)
         {
             try
             {
-                //var index = form.AsDataGrid("siteDataGrid").CurrentCell.RowIndex;
-                //var boolActive=form.AsDataGrid("siteDataGrid").AsNumber<int>("Column7") ==0?1:0;
-                //if (instance.UseSql("UPDATE [SITE] SET IsAcTive=@isActive WHERE siteId=@siteId;")
-                //    .Update(new {
-                //        IsActive=boolActive,
-                //        siteId=siteId
-                //     }) > 0)
-                //{
-                //    form.AsDataGrid("siteDataGrid").SetText("Column7", boolActive);
-                //}
-
+               return AppService.SiteGetInstance
+                                    .MakeSiteActiveOrInactive(siteId,isActive);
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception(ex.Message);
             }
         }
     }

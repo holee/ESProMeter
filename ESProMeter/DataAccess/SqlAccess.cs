@@ -90,7 +90,7 @@ namespace ESProMeter.DataAccess
 
             return _connection.Execute(_sql, parameters, transaction: _transaction, commandType: _commandType);
         }
-        public T InserGetId<T,U>(U parameters) 
+        public T InsertGetId<T,U>(U parameters) 
         {
             return _connection.ExecuteScalar<T>(_sql, param: parameters, commandType: _commandType, transaction: _transaction);
         }

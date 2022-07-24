@@ -10,6 +10,9 @@ namespace ESProMeter.Views.Sites
 		public SiteFrm()
 		{
 			InitializeComponent();
+			siteDataGrid.AutoGenerateColumns = false;
+			tlsRows.SelectedIndex = 0;
+			ShowAllSites();
 		}
 
 		private void tsbNewSite_Click(object sender, EventArgs e)
@@ -17,22 +20,33 @@ namespace ESProMeter.Views.Sites
 			AddSiteFrm form = new AddSiteFrm();
 			if (form.ShowDialog() == DialogResult.OK)
 			{
-				this.SiteCreateNewOrUpdate(form);
-				this.ShowSiteOnDataGridView(chkInlcudeInActive.Checked);
+				this.SiteCreateNewOrUpdate(form, form);
+				ShowAllSites();
 			}
 		}
-
-        private void SiteFrm_Load(object sender, EventArgs e)
+		private void ShowAllSites()
         {
             if (chkInlcudeInActive.Checked)
             {
-				this.ShowSiteOnDataGridView(true);
-			}
+				if(int.TryParse(tlsRows.Text,out var row))
+                {
+					this.GetAllSites(0,row);
+                }
+            }
             else
             {
-				this.ShowSiteOnDataGridView(false);
+				if (int.TryParse(tlsRows.Text, out var row))
+				{
+					this.GetAllSites(1, row);
+				}
 			}
-			
+			siteDataGrid.ClearSelection();
+		}
+		
+
+
+        private void SiteFrm_Load(object sender, EventArgs e)
+        {
 			siteDataGrid.ClearSelection();
 
 		}
@@ -40,49 +54,47 @@ namespace ESProMeter.Views.Sites
         private void tlsDelete_Click(object sender, EventArgs e)
         {
 			if (this.siteDataGrid.Rows.Count <= 0) return;
-			if(MessageBox.Show("Do you want to delete this data?", "Confirm?", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-				var id=this.siteDataGrid.AsNumber<long>("Column1");
-				this.DeleteSite(id);
-            }
+            if (siteDataGrid.SelectedRows.Count > 0) {
+				var selectedRow = siteDataGrid.SelectedRows[0];
+				var id = selectedRow.GetValue<long>("ID");
+				if (MessageBox.Show("Do you want to delete this data?", "Confirm?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+				{
+                    if (this.DeleteSite(id))
+                    {
+						siteDataGrid.Rows.Remove(selectedRow);
+					}
+				}
+			}
+			
         }
 
         private void tslSiteEditClick(object sender, EventArgs e)
         {
 			if (this.siteDataGrid.Rows.Count == 0) return;
-			var id = this.siteDataGrid.AsNumber<long>("Column1");
-			AddSiteFrm addSiteFrm = new AddSiteFrm(id);
-			if(addSiteFrm.ShowDialog() == DialogResult.OK)
-            {
-				this.SiteCreateNewOrUpdate(addSiteFrm);
-				this.ShowSiteOnDataGridView(chkInlcudeInActive.Checked);
+			if (siteDataGrid.SelectedRows.Count > 0)
+			{
+				var selectedRow = siteDataGrid.SelectedRows[0];
+				var id=selectedRow.GetValue<long>("ID");	
+				AddSiteFrm form = new AddSiteFrm(id);
+				if (form.ShowDialog() == DialogResult.OK)
+				{
+					this.SiteCreateNewOrUpdate(form, form,Enums.ActionType.EDIT);
+					ShowAllSites();
+				}
 			}
 		}
 
         private void tlsRefreshClick(object sender, EventArgs e)
         {
-			this.ShowSiteOnDataGridView(chkInlcudeInActive.Checked);
-		}
-
-        private void toolStripButton5_Click(object sender, EventArgs e)
-        {
-			if (siteDataGrid.Rows.Count > 0)
-			{
-				var index = siteDataGrid.CurrentCell.RowIndex;
-				var id = this.AsLong("siteDataGrid", index, "Column1");
-				var IsActive = this.siteDataGrid.AsNumber<int>("Column7");
-				this.MakeSiteActiveOrInactive(id);
-				stbMakInactive.Text = IsActive == 0 ? "Make Active" : "Make in Active";
-
-			}
+			ShowAllSites();
 		}
 		private void SiteGridSelectionChanged(object sender, EventArgs e)  
 		{
-			foreach (DataGridViewRow row in ((DataGridView)sender).Rows)
-			{
-				if (row.Selected)
+			if (siteDataGrid.SelectedRows.Count > 0) { 
+				var selectedRow = siteDataGrid.SelectedRows[0];
+				if (selectedRow.Selected)
 				{
-					if (row.Cells["Column7"].Value.ToString() == "0")
+					if (selectedRow.GetValue<int>("IsActive")== 0)
 					{
 						stbMakInactive.Text = "Make Active";
 					}
@@ -94,20 +106,32 @@ namespace ESProMeter.Views.Sites
 				}
 			}
 		}
-
-        private void siteDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void chkInlcudeInActive_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkInlcudeInActive.Checked)
+			ShowAllSites();
+		}
+
+        private void tlsRows_SelectedIndexChanged(object sender, EventArgs e)
+        {
+			ShowAllSites();
+
+		}
+
+        private void stbMakInactive_Click(object sender, EventArgs e)
+        {
+            if (siteDataGrid.SelectedRows.Count > 0)
             {
-				this.ShowSiteOnDataGridView(true);
-				return;
-            }
-			this.ShowSiteOnDataGridView(false);
+				var selectedRow = siteDataGrid.SelectedRows[0];
+				if (selectedRow.Selected)
+				{
+					var id = selectedRow.GetValue<long>("ID");
+					var active = selectedRow.GetValue<byte>("IsActive")==0?1:0;
+                    if (this.MakeSiteActiveOrInactive(id, (byte)active))
+                    {
+						selectedRow.Cells["IsActive"].Value = active;
+                    }
+				}
+			}
         }
     }
 }
