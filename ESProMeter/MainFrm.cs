@@ -5,6 +5,7 @@ using System;
 using System.Windows.Forms;
 using ESProMeter.Views.UnitOfMeasures;
 using ESProMeter.Views.Items;
+using ESProMeter.Controllers;
 using System.Drawing;
 
 namespace ESProMeter
@@ -215,7 +216,8 @@ namespace ESProMeter
 
 		private void closeCompanyToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-
+            //Close the company connection and start company file selection again.
+            MainController.closeCompanyFile();
 		}
 
         private void siteToolStripMenuItem_Click(object sender, EventArgs e)
