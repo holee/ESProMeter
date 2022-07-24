@@ -11,38 +11,62 @@ namespace ESProMeter.Views.UnitOfMeasures
 		public UoMFrm()
 		{
 			InitializeComponent();
-			this.GetAllUom(this.dataUom);
+			tlsSelectedRow.SelectedIndex = 0;
+			ShowUom();
 		}
+
+		private void ShowUom()
+        {
+			if (chkInactive.Checked)
+			{
+				if (int.TryParse(tlsSelectedRow.Text, out var page))
+				{
+					this.ShowAllUomWithDataGrid(0, page);
+				}
+            }
+            else
+            {
+				if (int.TryParse(tlsSelectedRow.Text, out var page))
+				{
+					this.ShowAllUomWithDataGrid(1, page);
+				}
+			}
+		}
+
+
+
+
+
 		private void tsbNewUoM_Click(object sender, EventArgs e)
 		{
-			Form form = new AddUoMFrm();
+			AddUoMFrm form = new AddUoMFrm();
             if (form.ShowDialog() == DialogResult.OK)
             {
-				this.ShowDataDataGrid();
+                try
+                {
+					this.AddOrUpdate(ActionType.CREATE, form);
+					ShowUom();
+				}
+				catch(Exception ex)
+                {
+					MessageBox.Show(ex.Message, "Error");
+					return;
+                }
+				
 			}
 		}
-
-        private void GridViewCellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-			var id=dataUom.AsNumber<long>(e.RowIndex, "Column3");
-			AddUoMFrm form = new AddUoMFrm(id);
-			if (form.ShowDialog() == DialogResult.OK)
-			{
-				this.ShowDataDataGrid();
-			}
-		}
-
         private void stbDeleteUoM_Click(object sender, EventArgs e)
         {
 			if (dataUom.Rows.Count > 0)
 			{
-				var index = dataUom.CurrentCell.RowIndex;
-				var id = dataUom.AsNumber<long>(index, "Column3");
+				var row = dataUom.SelectedRows[0];
+				var id = row.GetValue<long>("ID");
 				if (MessageBox.Show("Do you want to delete?", "Confirm", MessageBoxButtons.OKCancel,MessageBoxIcon.Question) == DialogResult.OK)
                 {
-					if (this.DeleteDataDataGrid(id))
+					if (this.DeleteUomById(id))
 					{
-						this.dataUom.Rows.RemoveAt(index);
+						this.dataUom.Rows.Remove(row);
+						//row.Visible = false;
 					}
 				}
 				
@@ -53,14 +77,23 @@ namespace ESProMeter.Views.UnitOfMeasures
         {
 			if (dataUom.Rows.Count > 0)
 			{
-                var index = dataUom.CurrentCell.RowIndex;
-				var id = dataUom.AsNumber<long>(index, "Column3");
+				var row = dataUom.SelectedRows[0];
+				var id = row.GetValue<long>("ID");
 				AddUoMFrm form = new AddUoMFrm(id);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    this.ShowDataDataGrid();
-					dataUom.Rows[index].Selected = true;
-                }
+                    try
+                    {
+						this.AddOrUpdate(ActionType.EDIT, form);
+						ShowUom();
+					}
+                    catch (Exception ex)
+                    {
+
+						MessageBox.Show(ex.Message, "ESPRO-METER",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    }
+					
+				}
             }
 		}
 
@@ -68,55 +101,37 @@ namespace ESProMeter.Views.UnitOfMeasures
         {
 			if (dataUom.Rows.Count > 0)
 			{
-				var index = dataUom.CurrentCell.RowIndex;
-				var id = dataUom.AsNumber<long>(index, "Column3");
-				var IsActive = dataUom.AsNumber<int>(index, "IsActive")==0?1:0;
-                if (this.MakeInactive(id,IsActive))
-                {
-					this.dataUom.SetText("IsActive", IsActive);
-					stbMakInactive.Text = IsActive==0?"Make Active":"Make in Active";
-				}
-			}
-		}
+				if (dataUom.SelectedRows.Count < 1 ) return;
 
-        private void dataGridView1_MouseUp(object sender, MouseEventArgs e)
-        {
-			// Load context menu on right mouse click
-			DataGridView.HitTestInfo hitTestInfo;
-			if (e.Button == MouseButtons.Right)
-			{
-				hitTestInfo = dataUom.HitTest(e.X, e.Y);
-				// If column is first column
-				if (hitTestInfo.Type == DataGridViewHitTestType.Cell && hitTestInfo.ColumnIndex > 1)
-					contextMenuStrip1.Show(dataUom, new Point(e.X, e.Y));
-				// If column is second column
-				if (hitTestInfo.Type == DataGridViewHitTestType.Cell && hitTestInfo.ColumnIndex == 1)
-					contextMenuStrip1.Show(dataUom, new Point(e.X, e.Y));
-			}
-		}
+				var row = dataUom.SelectedRows[0];
+				var id = row.GetValue<long>("ID");
+				byte IsActive =row.GetValue<byte>("IsActive") ==0?(byte)1:(byte)0;
 
-        private void addNewToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-			Form form = new AddUoMFrm();
-			if (form.ShowDialog() == DialogResult.OK)
-			{
-				this.ShowDataDataGrid();
-			}
-		}
-
-        private void editToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-			if (dataUom.Rows.Count > 0)
-			{
-				var index = dataUom.CurrentCell.RowIndex;
-				var id = dataUom.AsNumber<long>(index, "Column3");
-				AddUoMFrm form = new AddUoMFrm(id);
-				if (form.ShowDialog() == DialogResult.OK)
+				if (this.MakeInactive(id, IsActive))
 				{
-					this.ShowDataDataGrid();
+					this.dataUom.SetText("IsActive", IsActive);
+					stbMakInactive.Text = IsActive == 0 ? "Make Active" : "Make in Active";
 				}
+				
 			}
 		}
+
+  //      private void dataGridView1_MouseUp(object sender, MouseEventArgs e)
+  //      {
+		//	// Load context menu on right mouse click
+		//	DataGridView.HitTestInfo hitTestInfo;
+		//	if (e.Button == MouseButtons.Right)
+		//	{
+		//		hitTestInfo = dataUom.HitTest(e.X, e.Y);
+		//		// If column is first column
+		//		if (hitTestInfo.Type == DataGridViewHitTestType.Cell && hitTestInfo.ColumnIndex > 1)
+		//			contextMenuStrip1.Show(dataUom, new Point(e.X, e.Y));
+		//		// If column is second column
+		//		if (hitTestInfo.Type == DataGridViewHitTestType.Cell && hitTestInfo.ColumnIndex == 1)
+		//			contextMenuStrip1.Show(dataUom, new Point(e.X, e.Y));
+		//	}
+		//}
+
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -126,7 +141,7 @@ namespace ESProMeter.Views.UnitOfMeasures
 				var id = dataUom.AsNumber<long>(index, "Column3");
 				if (MessageBox.Show("Do you want to delete?", "Confirm", MessageBoxButtons.OKCancel) == DialogResult.OK)
 				{
-					if (this.DeleteDataDataGrid(id))
+					if (this.DeleteUomById(id))
 					{
 						this.dataUom.Rows.RemoveAt(index);
 					}
@@ -147,19 +162,14 @@ namespace ESProMeter.Views.UnitOfMeasures
 				}
 			}
 		}
-
-        private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-			this.ShowDataDataGrid();
-		}
-
         private void tltRefresh_Click(object sender, EventArgs e)
         {
-			this.ShowDataDataGrid();
+			ShowUom();
 		}
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
+			
             foreach (DataGridViewRow row in ((DataGridView)sender).Rows)
             {
                 if (row.Selected)
@@ -175,9 +185,33 @@ namespace ESProMeter.Views.UnitOfMeasures
 					}
                 }
             }
-			//var index = dataGridView1.CurrentCell.RowIndex;
-			//dataGridView1.Rows[index].Selected = true;
         }
 
-	}
+        private void tlsSelectedRow_SelectedIndexChanged(object sender, EventArgs e)
+        {
+			if(int.TryParse(tlsSelectedRow.Text, out var page))
+            {
+				this.ShowAllUomWithDataGrid(0,page);
+			}	
+			
+        }
+
+        private void chkInactive_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkInactive.Checked)
+            {
+				if (int.TryParse(tlsSelectedRow.Text, out var page))
+				{
+					this.ShowAllUomWithDataGrid(0, page);
+				}
+            }
+            else
+            {
+				if (int.TryParse(tlsSelectedRow.Text, out var page))
+				{
+					this.ShowAllUomWithDataGrid(1, page);
+				}
+			}
+        }
+    }
 }

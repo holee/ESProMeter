@@ -5,10 +5,19 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using ESProMeter.DataAccess;
+using ESProMeter.IVews;
 
 namespace ESProMeter.Controllers
 {
-    internal static class UomController
+
+    public enum ActionType
+    {
+        CREATE,
+        EDIT,
+        DELETE,
+    }
+
+    public static class UomController
     {
 
         private static readonly SqlAccess instance = DataUtility.GetInstance;
@@ -26,30 +35,72 @@ namespace ESProMeter.Controllers
                 storage.DataSource=table;
             }
         }
-        public static void GetAllUom(this Form form, DataGridView storage,params string[] columns)
+        public static void ShowAllUomWithDataGrid(this Form form,byte active=0,int page=10)
         {
-            string sql = columns.Length == 0 ? "*" : string.Join(",", columns);
-            //((DataTable)storage.DataSource).Rows.Clear();
-            if (instance.UseSql($"SELECT {sql} FROM TUOM;").FindAsTable<dynamic?>(null, out DataTable table))
+            if(UomService.GetInstance.GetAllUoms(active,page,out var table))
             {
-                storage.DataSource = table;
+                form.AsControl<DataGridView>("dataUom").DataSource = table;
             }
         }
-        public static void AddNewUom(this Form form)
+        public static void ShowAllUomWithDataGrid(this Form form,long uomId, byte active=0,int page=10)
         {
-            //var txtName = form.AsTextBox("txtUoM").Text.Trim();
-            //var txtDescription=form.AsTextArea("txtDescription").Text.Trim();
-            //var txtType = form.AsCombobox("cmbType").Text;
-            //var isActive = form.AsCheckedBox("chkInactive").Checked ? 0 : 1;
-            //try
-            //{
-            //    connection = (SqlConnection)ConnectionService.Connection;
-            //    GetService.AddNewUom(connection, txtName, txtType, txtDescription, null);
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new Exception(ex.Message);
-            //}
+            if (UomService.GetInstance.GetAllUoms(active,page, out var table))
+            {
+                var container = form.AsControl<DataGridView>("dataUom");
+                container.DataSource = table;
+                if (container.Rows.Count > 0)
+                {
+                    foreach (DataGridViewRow row in container.Rows)
+                    {
+                        if (row.Cells["ID"].Value.Equals(uomId))
+                        {
+                            row.Selected = true;
+                            break;
+                        }
+                        else continue;
+                    }
+                }
+            }
+        }
+        public static void AddNewUom(this Form form,ITUom uom)
+        {
+            UomService.GetInstance.UomCreate(uom);
+        }
+        public static void AddOrUpdate(this Form form,ActionType action, ITUom uom)
+        {
+            switch (action)
+            {
+                case ActionType.CREATE:
+                    UomService.GetInstance.UomCreate(uom);
+                    break;
+                case ActionType.EDIT:
+                    UomService.GetInstance.UomUpdate(uom);
+                    break;
+                case ActionType.DELETE:
+                    break;
+                default:
+                    break;
+            }
+            
+        }
+        public static bool UpdateUom(this Form form, ITUom uom)
+        {
+            try
+            {
+                //var txtName = form.AsTextBox("txtUoM").Text.Trim();
+                //var txtDescription = form.AsTextBox("txtDescription").Text.Trim();
+                //var txtType = form.AsCombobox("cmbType").Text;
+                //var lblUom = form.AsLabel("lblUomID").AsNumber<long>();
+                //var lblEditSequence = form.AsLabel("lblEditSequense").AsNumber<int>();
+                //var isActive = form.AsCheckedBox("chkInactive").Checked ? 0 :1 ;
+                //connection = (SqlConnection)ConnectionService.Connection;
+                //GetService.UpdateUom(connection,lblUom, txtName, txtType, txtDescription, lblEditSequence, isActive, null);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
 
         }
         public static bool CheckUomExist(this Form form,string name)
@@ -146,32 +197,22 @@ namespace ESProMeter.Controllers
                 throw new Exception(ex.Message);
             }
         }
-        public static bool DeleteDataDataGrid(this Form form,long id)
+        public static bool DeleteUomById(this Form form,long id)
         {
             try
             {
-                //connection = (SqlConnection)ConnectionService.Connection;
-                //if (GetService.DeleteUom(connection, id))
-                //{
-                //    return true;
-                //}
-                return false;
+                return UomService.GetInstance.Delete(id);
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
         }
-        public static bool MakeInactive(this Form form, long id,int isActive=0)
+        public static bool MakeInactive(this Form form, long id,byte isActive=0)
         {
             try
             {
-                //connection = (SqlConnection)ConnectionService.Connection;
-                //if (GetService.MakeUomInActive(connection, id, isActive))
-                //{
-                //    return true;
-                //}
-                return false;
+                return UomService.GetInstance.MakeInactive(id, isActive);
             }
             catch (Exception ex)
             {

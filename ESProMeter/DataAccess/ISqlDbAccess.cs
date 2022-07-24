@@ -4,25 +4,6 @@ using System.Data;
 
 namespace ESProMeter.DataAccess 
 {
-    //public interface ISqlDbAccess
-    //{
-    //    DataTable SelectMany();
-    //    List<T> SelectManyMany<T,U>(U parameters) where T : class;
-    //    T SelectSingle<T,U>(U paramteres) where T : class;
-    //    T SelectSingle<T>(Func<T,bool> prediction) where T : class;
-    //    DataRow SelectSingle<T>(T parameters,params string[] columns);
-    //    DataRow SelectSingle();
-    //    IEnumerable<TResult> SelectTwoTable<T1,T2,TResult,U>(Func<T1,T2,TResult> map, U parameters,string split="Id") where TResult : class;
-    //    IEnumerable<TResult> SelectThreeTable<T1, T2,T3, TResult, U>(Func<T1, T2,T3, TResult> map,U parameters) where TResult : class;
-    //    IEnumerable<TResult> Select<T1, T2,T3,T4, TResult, U>(Func<T1, T2,T3,T4, TResult> map, U parameters) where TResult : class;
-    //    List<T> SelectAsList<T>(Func<T, bool> prediction) where T : class;
-        
-    //    int Delete();
-    //    int SaveChanged();
-    //    int Count();
-    //    void SaveMany();
-    //}
-
 
     public interface IUseSqlAccess  
     {
@@ -46,6 +27,7 @@ namespace ESProMeter.DataAccess
         bool FindOne<T,U>(U paramaters, out T TResult) where T:class;
         bool FindMany<T, U>(U paramaters, out List<T> TResult);
         DataRow FindAsDataRow<TCol,TValue>(string colName, TValue value);
+        bool Exist(object paramaters);
         T InserGetId<T,U>(U parameters);
         int InsertOrUpdate<T>(T parameter);
         int InsertFromTable<T>(T parameter);

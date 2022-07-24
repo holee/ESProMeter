@@ -165,7 +165,6 @@ namespace ESProMeter.Views.Boq
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Cursor = System.Windows.Forms.Cursors.VSplit;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 24);
             this.splitContainer1.Name = "splitContainer1";
@@ -214,11 +213,11 @@ namespace ESProMeter.Views.Boq
             this.dtgBOQList.RowHeadersVisible = false;
             this.dtgBOQList.RowTemplate.Height = 25;
             this.dtgBOQList.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgBOQList.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.dtgBOQList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dtgBOQList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgBOQList.Size = new System.Drawing.Size(368, 353);
             this.dtgBOQList.TabIndex = 0;
-            this.dtgBOQList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgBOQList_CellClick);
+            this.dtgBOQList.SelectionChanged += new System.EventHandler(this.dtgBOQList_SelectionChanged);
             // 
             // Column1
             // 
@@ -539,6 +538,7 @@ namespace ESProMeter.Views.Boq
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tab.Controls.Add(this.tabPage1);
             this.tab.Controls.Add(this.tabPage2);
+            this.tab.Cursor = System.Windows.Forms.Cursors.Default;
             this.tab.Location = new System.Drawing.Point(0, 0);
             this.tab.Name = "tab";
             this.tab.SelectedIndex = 0;

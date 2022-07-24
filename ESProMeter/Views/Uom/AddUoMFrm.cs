@@ -2,40 +2,74 @@
 using System.Windows.Forms;
 using ESProMeter.Controllers;
 using ESProMeter.Extensions;
+using ESProMeter.IVews;
+using ESProMeter.Services;
 
 namespace ESProMeter.Views.UnitOfMeasures
 {
-	public partial class AddUoMFrm : Form
-	{
-		public AddUoMFrm()
+	public partial class AddUoMFrm : Form, ITUom
+    {
+        private DateTime _createdAt = DateTime.UtcNow;
+        private DateTime _updatedAt = DateTime.UtcNow;
+        public long ID { 
+            get => lblUomID.AsNumber<long>(); 
+            set => lblUomID.SetText(value); 
+        }
+        public DateTime CDT { 
+            get => _createdAt; 
+            set => _createdAt=value; 
+        }
+        public DateTime MDT { 
+            get => _updatedAt; 
+            set => _updatedAt=value; 
+        }
+        public int EDSEQ {
+            get => lblEditSequense.AsNumber<int>();
+            set => lblEditSequense.SetText(value);
+        }
+        public string UOMNAME {
+            get => txtUoM.Text.Trim();
+            set => txtUoM.SetText(value);
+        }
+        public string ABBREVIATION {
+            get => txtDescription.Text.Trim();
+            set => txtDescription.SetText(value);
+        }
+        public byte ISACTIVE { 
+            get => chkInactive.Checked==true?(byte)0:(byte)1;
+            set => chkInactive.Checked=value==1?false:true;  
+        }
+        public string TYPE {
+            get => cmbType.GetText();
+            set => cmbType.SetText(value);
+        }
+
+        public AddUoMFrm()
 		{
 			InitializeComponent();
-            if (lblUomID.AsNumber<long>() == 0)
+            if (UomService.GetInstance.GetAllUOMTypes(out var table))
             {
-				mbtSave.Text = "Save";
+                cmbType.DataSource = table;
+                cmbType.ValueMember = "ID";
+                cmbType.DisplayMember = "TYPENAME";
             }
-            else
-            {
-				mbtSave.Text = "Update";
-            }
-			this.ShowUomForm();
 		}
 
 		public AddUoMFrm(long id)
 		{
 			InitializeComponent();
-			if (lblUomID.AsNumber<long>() == 0)
-			{
-				mbtSave.Text = "Save";
-			}
-			else
-			{
-				mbtSave.Text = "Update";
-			}
-			this.ShowUomForm();
-			this.ShowUomForm(id);
-
-		}
+            if (UomService.GetInstance.GetAllUOMTypes(out var table))
+            {
+                cmbType.DataSource = table;
+                cmbType.ValueMember = "ID";
+                cmbType.DisplayMember = "TYPENAME";
+            }
+            UomService.GetInstance.ShowUomFormForUpdate(this, id);
+            if (lblUomID.AsNumber<long>() > 0)
+            {
+                mbtSave.Text = "Update";
+            }
+        }
 		private void mbtSave_Click(object sender, EventArgs e)
 		{
             if (!this.IsValid(txtUoM, txtDescription))
@@ -48,13 +82,12 @@ namespace ESProMeter.Views.UnitOfMeasures
             {
                 if (!this.CheckUomExist(txtUoM.Text.Trim()))
                 {
-                    this.AddNewUom();
                     this.DialogResult = DialogResult.OK;
                 }
                 else
                 {
                     MessageBox.Show("Unit Of Measure already exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
+                    this.DialogResult = DialogResult.None;
                 }
             }
             else
@@ -81,7 +114,6 @@ namespace ESProMeter.Views.UnitOfMeasures
 
         private void btnSaveAndCLose_Click(object sender, EventArgs e)
         {
-			this.AddNewUom();
 			this.DialogResult = DialogResult.OK;
 		}
 
