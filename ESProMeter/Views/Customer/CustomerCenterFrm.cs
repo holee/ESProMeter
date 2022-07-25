@@ -10,7 +10,7 @@ namespace ESProMeter.Views.Customers
         public CustomerCenterFrm()
         {
             InitializeComponent();
-            this.gridCustomer.AutoGenerateColumns = false;
+ 
         }
 
         private void tlsNew_Click(object sender, EventArgs e)
@@ -18,6 +18,15 @@ namespace ESProMeter.Views.Customers
             CustomerCreateFrm frm = new CustomerCreateFrm();
             if(frm.ShowDialog() == DialogResult.OK)
             {
+                if (this.CustomerCreateOrUpdate(frm, Enums.ActionType.CREATE))
+                {
+                    MessageBox.Show("success");
+                    this.ShowCustomerCenter();
+                }
+                else
+                {
+                    MessageBox.Show("failed");
+                }
                 //this.CreateOrUpdateCustomer(frm);
             }
             //this.ShowCustomerCenter();
@@ -53,16 +62,23 @@ namespace ESProMeter.Views.Customers
 
         private void tlsCustomerEdit_Click(object sender, EventArgs e)
         {
-            if (gridCustomer.Rows.Count > 0)
+            if (gridCustomer.SelectedRows.Count>0)
             {
-                var custID = gridCustomer.AsNumber<long>("custID");
+                var selectedRow = gridCustomer.SelectedRows[0];
+                var custID = selectedRow.GetValue<long>("ID");
                 CustomerCreateFrm frm = new CustomerCreateFrm(custID);
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    //this.CreateOrUpdateCustomer(frm);
-                    
+                    if (this.CustomerCreateOrUpdate(frm, Enums.ActionType.EDIT))
+                    {
+                        MessageBox.Show("success");
+                        this.ShowCustomerCenter();
+                    }
+                    else
+                    {
+                        MessageBox.Show("failed");
+                    }
                 }
-                //this.ShowCustomerCenter();
             }
         }
 
@@ -75,13 +91,18 @@ namespace ESProMeter.Views.Customers
         {
             if (gridCustomer.Rows.Count > 0)
             {
-                var custID = gridCustomer.AsNumber<long>("custID");
-                var index = gridCustomer.CurrentCell.RowIndex;
+                var selectedRow = gridCustomer.SelectedRows[0];
+                var custID = selectedRow.GetValue<long>("ID");
+                var addressID = selectedRow.GetValue<long>("ADDRESSID");
                 if (MessageBox.Show("Do you want to delete customer?", "Confirm", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
 
-                    if (this.DeleteCustomer(custID)){
-                        gridCustomer.Rows.RemoveAt(index); 
+                    if (this.DeleteCustomer(custID, addressID)){
+                        gridCustomer.Rows.Remove(selectedRow);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Unable to delete customer.");
                     }
 
                 }

@@ -48,9 +48,10 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.CustID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CUSTOMERNAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CREDITLIMIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ADDRESSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -73,7 +74,7 @@
             this.toolStripDropDownButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1134, 34);
+            this.toolStrip1.Size = new System.Drawing.Size(1323, 39);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -83,7 +84,7 @@
             this.tlsNew.Image = ((System.Drawing.Image)(resources.GetObject("tlsNew.Image")));
             this.tlsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlsNew.Name = "tlsNew";
-            this.tlsNew.Size = new System.Drawing.Size(106, 31);
+            this.tlsNew.Size = new System.Drawing.Size(106, 36);
             this.tlsNew.Text = "New Customer";
             this.tlsNew.Click += new System.EventHandler(this.tlsNew_Click);
             // 
@@ -92,7 +93,7 @@
             this.tlsCustomerEdit.Image = ((System.Drawing.Image)(resources.GetObject("tlsCustomerEdit.Image")));
             this.tlsCustomerEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlsCustomerEdit.Name = "tlsCustomerEdit";
-            this.tlsCustomerEdit.Size = new System.Drawing.Size(102, 31);
+            this.tlsCustomerEdit.Size = new System.Drawing.Size(102, 36);
             this.tlsCustomerEdit.Text = "Edit Customer";
             this.tlsCustomerEdit.Click += new System.EventHandler(this.tlsCustomerEdit_Click);
             // 
@@ -101,7 +102,7 @@
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(115, 31);
+            this.toolStripButton3.Size = new System.Drawing.Size(115, 36);
             this.toolStripButton3.Text = "Delete Customer";
             this.toolStripButton3.Click += new System.EventHandler(this.tlsDeleteClick);
             // 
@@ -110,7 +111,7 @@
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(66, 31);
+            this.toolStripButton4.Size = new System.Drawing.Size(66, 36);
             this.toolStripButton4.Text = "Refresh";
             this.toolStripButton4.Click += new System.EventHandler(this.tlsRefreshClick);
             // 
@@ -124,7 +125,7 @@
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(93, 31);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(93, 36);
             this.toolStripDropDownButton1.Text = "Customers";
             // 
             // newCustomerToolStripMenuItem
@@ -158,7 +159,8 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 34);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 39);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -172,19 +174,21 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
-            this.splitContainer1.Size = new System.Drawing.Size(1134, 547);
-            this.splitContainer1.SplitterDistance = 327;
+            this.splitContainer1.Size = new System.Drawing.Size(1323, 631);
+            this.splitContainer1.SplitterDistance = 381;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 1;
             // 
             // iconButton1
             // 
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.SearchPlus;
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlassPlus;
             this.iconButton1.IconColor = System.Drawing.Color.Black;
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton1.IconSize = 16;
-            this.iconButton1.Location = new System.Drawing.Point(195, 37);
+            this.iconButton1.Location = new System.Drawing.Point(227, 43);
+            this.iconButton1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(35, 21);
+            this.iconButton1.Size = new System.Drawing.Size(41, 24);
             this.iconButton1.TabIndex = 0;
             this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton1.UseVisualStyleBackColor = true;
@@ -192,16 +196,18 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(3, 11);
+            this.comboBox1.Location = new System.Drawing.Point(4, 13);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(321, 21);
+            this.comboBox1.Size = new System.Drawing.Size(374, 23);
             this.comboBox1.TabIndex = 2;
             // 
             // textSearch
             // 
-            this.textSearch.Location = new System.Drawing.Point(3, 38);
+            this.textSearch.Location = new System.Drawing.Point(4, 44);
+            this.textSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textSearch.Name = "textSearch";
-            this.textSearch.Size = new System.Drawing.Size(188, 20);
+            this.textSearch.Size = new System.Drawing.Size(219, 23);
             this.textSearch.TabIndex = 1;
             this.textSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textSearch_KeyUp);
             // 
@@ -217,7 +223,7 @@
             this.gridCustomer.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Transparent;
@@ -225,17 +231,20 @@
             this.gridCustomer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridCustomer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CustID,
-            this.Column2,
-            this.Column3});
+            this.CUSTOMERNAME,
+            this.CREDITLIMIT,
+            this.ID,
+            this.ADDRESSID});
             this.gridCustomer.GridColor = System.Drawing.Color.Red;
-            this.gridCustomer.Location = new System.Drawing.Point(3, 64);
+            this.gridCustomer.Location = new System.Drawing.Point(4, 74);
+            this.gridCustomer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gridCustomer.Name = "gridCustomer";
             this.gridCustomer.ReadOnly = true;
             this.gridCustomer.RowHeadersVisible = false;
             this.gridCustomer.RowHeadersWidth = 4;
+            this.gridCustomer.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.gridCustomer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridCustomer.Size = new System.Drawing.Size(321, 471);
+            this.gridCustomer.Size = new System.Drawing.Size(373, 543);
             this.gridCustomer.TabIndex = 0;
             // 
             // panel2
@@ -244,9 +253,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel2.Location = new System.Drawing.Point(0, 274);
+            this.panel2.Location = new System.Drawing.Point(0, 316);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(803, 273);
+            this.panel2.Size = new System.Drawing.Size(931, 315);
             this.panel2.TabIndex = 1;
             // 
             // panel1
@@ -256,52 +266,67 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(3, 0);
+            this.panel1.Location = new System.Drawing.Point(4, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(797, 342);
+            this.panel1.Size = new System.Drawing.Size(924, 395);
             this.panel1.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(13, 11);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(15, 13);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(295, 31);
             this.label1.TabIndex = 0;
             this.label1.Text = "Customer Information";
             // 
-            // CustID
+            // CUSTOMERNAME
             // 
-            this.CustID.DataPropertyName = "CustID";
-            this.CustID.HeaderText = "ID";
-            this.CustID.MinimumWidth = 2;
-            this.CustID.Name = "CustID";
-            this.CustID.ReadOnly = true;
-            this.CustID.Visible = false;
+            this.CUSTOMERNAME.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.CUSTOMERNAME.DataPropertyName = "NAME";
+            this.CUSTOMERNAME.HeaderText = "Name";
+            this.CUSTOMERNAME.Name = "CUSTOMERNAME";
+            this.CUSTOMERNAME.ReadOnly = true;
+            this.CUSTOMERNAME.Width = 185;
             // 
-            // Column2
+            // CREDITLIMIT
             // 
-            this.Column2.DataPropertyName = "Name";
-            this.Column2.HeaderText = "Name";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
+            this.CREDITLIMIT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.CREDITLIMIT.DataPropertyName = "CREDITLIMIT";
+            this.CREDITLIMIT.HeaderText = "CREDITLIMIT";
+            this.CREDITLIMIT.Name = "CREDITLIMIT";
+            this.CREDITLIMIT.ReadOnly = true;
+            this.CREDITLIMIT.Width = 185;
             // 
-            // Column3
+            // ID
             // 
-            this.Column3.DataPropertyName = "CreditLimit";
-            this.Column3.HeaderText = "Total Balance";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.MinimumWidth = 2;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            // 
+            // ADDRESSID
+            // 
+            this.ADDRESSID.DataPropertyName = "ADDRESSID";
+            this.ADDRESSID.HeaderText = "ADDRESSID";
+            this.ADDRESSID.Name = "ADDRESSID";
+            this.ADDRESSID.ReadOnly = true;
+            this.ADDRESSID.Visible = false;
             // 
             // CustomerCenterFrm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.ClientSize = new System.Drawing.Size(1134, 581);
+            this.ClientSize = new System.Drawing.Size(1323, 670);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "CustomerCenterFrm";
             this.Text = "CustomerCenter";
             this.Load += new System.EventHandler(this.CustomerCenterFrm_Load);
@@ -339,8 +364,9 @@
         private System.Windows.Forms.Panel panel2;
         private FontAwesome.Sharp.IconButton iconButton1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CustID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CUSTOMERNAME;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CREDITLIMIT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ADDRESSID;
     }
 }

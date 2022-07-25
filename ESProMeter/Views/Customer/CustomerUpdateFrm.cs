@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static ESProMeter.Controllers.CustomerController;
+using static ESProMeter.Controllers.NameController;
 namespace ESProMeter.Views.Customers
 {
     public partial class CustomerUpdateFrm : Form 

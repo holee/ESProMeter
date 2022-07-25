@@ -2,14 +2,14 @@
 using ESProMeter.IVews;
 using System;
 using System.Windows.Forms;
-using static ESProMeter.Controllers.CustomerController;
+using static ESProMeter.Controllers.NameController;
 namespace ESProMeter.Views.Customers
 {
     public partial class CustomerCreateFrm : Form,ITName,ITAddressInfo
     {
         private DateTime _createdAt = DateTime.UtcNow;
         private DateTime _updatedAt = DateTime.UtcNow;
-
+        private string _customer = "Customer";
         //properties
         public string ADDRESS 
         {
@@ -51,8 +51,8 @@ namespace ESProMeter.Views.Customers
         }
         public string NAMETYPE
         { 
-            get => "Customer"; 
-            set => throw new NotImplementedException(); 
+            get => _customer; 
+            set => _customer=value; 
         }
         public long ADDRESSID
         { 
@@ -130,6 +130,7 @@ namespace ESProMeter.Views.Customers
         public CustomerCreateFrm(long id)
         {
             InitializeComponent();
+             this.ShowCustomerById(this, id);
              materialButton1.Text = "Update";
         }
         private void btnNewCustomerClick(object sender, EventArgs e)

@@ -12,7 +12,6 @@ namespace ESProMeter.Repository
                                 .UseProcedure("NAME_sp_SELECT")
                                 .FindAsTable<dynamic>(new { @ISACTIVE= isActive },out table);
         }
-
         public bool CustomersCenter(string nameType, byte isActive, out DataTable table) 
         {
             try
@@ -48,7 +47,7 @@ namespace ESProMeter.Repository
                 throw;
             }
         }
-        public void GetAllCustomerById(ITName model,ITAddressInfo model1, long nameId,byte isActive=1)
+        public void GetAllCustomerById(ITName model,long nameId,byte isActive=1)
         {
             if (AppService.SqlGetInstance
                                 .UseProcedure("NAME_sp_SELECT_BY_ID")
@@ -68,20 +67,19 @@ namespace ESProMeter.Repository
                 model.WEBSITE = row.GetValue<string>("WEBSITE");
                 model.CREDITLIMIT = row.GetValue<decimal>("CREDITLIMIT");
                 model.EDSEQ = row.GetValue<int>("EDSEQ");
-                model.ISACTIVE = row.GetValue<byte>("");
+                model.ISACTIVE = row.GetValue<byte>("ISACTIVE");
                 model.ID = row.GetValue<long>("ID");
                 model.PROVINCE = row.GetValue<string>("PROVINCE");
                 model.COUNTRY = row.GetValue<string>("COUNTRY");
                 model.ADDRESS = row.GetValue<string>("ADDRESS");
             }
         }
-
-        public int CustomerCreate(ITName model,ITAddressInfo tAddress)
+        public int CustomerCreate(ITName model)
         {
             AppService.SqlGetInstance.StartTransaction();
             try
             {
-                var addressId = AppService.AddressGetInstance.AddressCreate(tAddress);
+                var addressId = AppService.AddressGetInstance.AddressCreate(model);
                 model.ADDRESSID = addressId;
                 var affectedRows=AppService.SqlGetInstance
                                     .UseProcedure("[NAME_sp_INSERT]")
@@ -111,13 +109,18 @@ namespace ESProMeter.Repository
             }
             
         }
-
-        public int CustomerUpdate(ITName model, ITAddressInfo tAddress)
+        public int CustomerUpdate(ITName model)
         {
             AppService.SqlGetInstance.StartTransaction();
             try
             {
-                AppService.AddressGetInstance.AddressUpdate(tAddress);
+                AppService.AddressGetInstance.AddressUpdate(new Models.TAddressInfo
+                {
+                    ID=model.ADDRESSID,
+                    ADDRESS=model.ADDRESS,
+                    PROVINCE=model.PROVINCE,
+                    COUNTRY=model.COUNTRY
+                });
                 var affectedRows = AppService.SqlGetInstance 
                                     .UseProcedure("NAME_sp_UPDATE")
                                     .InsertOrUpdate<dynamic>(new {
@@ -147,14 +150,13 @@ namespace ESProMeter.Repository
             }
 
         }
-
-        public int CustomerDelete(long nameId)
+        public int CustomerDelete(long nameId,long addressID)
         {
             try
             {
                 var affectedRows = AppService.SqlGetInstance
-                                    .UseProcedure("NAME_sp_DELETE")
-                                    .InsertOrUpdate<dynamic>(new { ID=nameId });
+                                    .UseProcedure("[NAME_sp_DELETE]")
+                                    .Delete<dynamic>(new { ID=nameId,ADDRESSID=addressID });
                 return affectedRows;
             }
             catch
@@ -163,7 +165,6 @@ namespace ESProMeter.Repository
             }
 
         }
-
         public int CustomerInActiveOrActive(long nameId,byte isInactive) 
         {
             try
@@ -179,8 +180,6 @@ namespace ESProMeter.Repository
             }
 
         }
-
-
 
     }
 }

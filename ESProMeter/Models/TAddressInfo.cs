@@ -1,6 +1,8 @@
-﻿namespace ESProMeter.IVews
+﻿using ESProMeter.IVews;
+
+namespace ESProMeter.Models
 {
-    public interface ITAddressInfo  
+    public class TAddressInfo:ITAddressInfo
     {
         public long ID { get; set; }
         public string ADDRESS { get; set; }

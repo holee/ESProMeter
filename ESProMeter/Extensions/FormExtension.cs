@@ -324,15 +324,31 @@ namespace ESProMeter.Extensions
         }
         public static object GetValue(this DataGridViewRow gRow, string colName)
         {
-            return gRow.Cells[colName].Value??null;
+            return gRow.Cells[colName].Value??default(object);
         }
-        public static T? GetValue<T>(this DataGridViewRow gRow, string colName) where T:IConvertible
+        public static T GetValue<T>(this DataGridViewRow gRow, string colName) where T:IConvertible
         {
-            if (gRow.Cells[colName].Value == null)
+            if (gRow.Cells[colName]?.Value == null)
             {
                 return default(T);
             }
-            return (T)Convert.ChangeType(gRow.Cells[colName].Value, typeof(T));
+            return (T)Convert.ChangeType(gRow.Cells[colName]?.Value, typeof(T));
+        }
+        public static string GetString(this DataGridViewRow gRow, string colName)
+        {
+            if (gRow.Cells[colName].Value == null)
+            {
+                return String.Empty;
+            }
+            return gRow.Cells[colName].Value.ToString();
+        }
+        public static bool GetBoolean(this DataGridViewRow gRow, string colName)
+        {
+            if (gRow.Cells[colName].Value == null)
+            {
+                return false;
+            }
+            return (bool)gRow.Cells[colName].Value;
         }
         public static void UseDataTableAsGridView<T>(this List<T> source,DataGridView dataGrid) where T:class
         {

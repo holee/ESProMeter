@@ -1,5 +1,6 @@
 ﻿using ESProMeter.Controllers;
 using ESProMeter.Extensions;
+using ESProMeter.IVews;
 using System;
 using System.Windows.Forms;
 
@@ -78,8 +79,15 @@ namespace ESProMeter.Views.Sites
 				AddSiteFrm form = new AddSiteFrm(id);
 				if (form.ShowDialog() == DialogResult.OK)
 				{
-					this.SiteCreateNewOrUpdate(form, form,Enums.ActionType.EDIT);
-					ShowAllSites();
+					if (!this.IsSiteExistsame(form.SITENAME, id))
+					{
+						this.SiteCreateNewOrUpdate(form, form, Enums.ActionType.EDIT);
+						ShowAllSites();
+                    }
+                    else
+                    {
+						MessageBox.Show("Site Name Already exist.");
+                    }
 				}
 			}
 		}

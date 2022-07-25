@@ -1,5 +1,6 @@
 ﻿using ESProMeter.DataAccess;
 using ESProMeter.IVews;
+using ESProMeter.Models;
 using ESProMeter.Services;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace ESProMeter.Repository
                         });
         }
 
-        public long AddressUpdate(ITAddressInfo model)
+        public long AddressUpdate(TAddressInfo model)
         {
             return DataUtility.GetInstance.UseProcedure("[ADDRESS_sp_UPDATE]")
                         .InsertOrUpdate<dynamic>(new
