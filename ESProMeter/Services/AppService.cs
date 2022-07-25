@@ -111,7 +111,9 @@ namespace ESProMeter.Services
             }
         }
 
-        //
+        /// <summary>
+        /// Name
+        /// </summary>
         private static CustomerRepository customerRepository = null;
         public static CustomerRepository CustomerInstance
         {
@@ -124,6 +126,20 @@ namespace ESProMeter.Services
                 return customerRepository;
             }
         }
-
+        /// <summary>
+        /// Name
+        /// </summary>
+        private static NameRepository nameRepository = null;
+        public static NameRepository GetNameInstance 
+        {
+            get
+            {
+                if (nameRepository == null)
+                {
+                    nameRepository = new NameRepository();
+                }
+                return nameRepository;
+            }
+        }
     }
 }
