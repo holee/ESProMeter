@@ -18,7 +18,7 @@ namespace ESProMeter.Views.Customers
             CustomerCreateFrm frm = new CustomerCreateFrm();
             if(frm.ShowDialog() == DialogResult.OK)
             {
-                this.CreateOrUpdateCustomer(frm);
+                //this.CreateOrUpdateCustomer(frm);
             }
             //this.ShowCustomerCenter();
 
@@ -36,9 +36,7 @@ namespace ESProMeter.Views.Customers
         {
             if (!HasChildFormOpen(form))
             {
-            //    form.MdiParent =Main.ActiveForm;
-            //    form.StartPosition = FormStartPosition.CenterParent;
-            //    form.Show();
+               form.Show();
             }
             else
             {
@@ -49,8 +47,8 @@ namespace ESProMeter.Views.Customers
 
         private void CustomerCenterFrm_Load(object sender, EventArgs e)
         {
-            
-            this.ShowCustomerCenter(null);
+
+            this.ShowCustomerCenter();
         }
 
         private void tlsCustomerEdit_Click(object sender, EventArgs e)
@@ -61,7 +59,7 @@ namespace ESProMeter.Views.Customers
                 CustomerCreateFrm frm = new CustomerCreateFrm(custID);
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    this.CreateOrUpdateCustomer(frm);
+                    //this.CreateOrUpdateCustomer(frm);
                     
                 }
                 //this.ShowCustomerCenter();
@@ -70,7 +68,7 @@ namespace ESProMeter.Views.Customers
 
         private void tlsRefreshClick(object sender, EventArgs e)
         {
-            //this.ShowCustomerCenter();
+            this.ShowCustomerCenter();
         }
 
         private void tlsDeleteClick(object sender, EventArgs e)
@@ -93,7 +91,7 @@ namespace ESProMeter.Views.Customers
 
         private void textSearch_KeyUp(object sender, KeyEventArgs e)
         {
-            this.ShowCustomerCenter(textSearch.Text.Trim());
+            //this.ShowCustomerCenter(textSearch.Text.Trim());
         }
     }
 }

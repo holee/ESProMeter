@@ -1,44 +1,42 @@
 ﻿using ESProMeter.Extensions;
-using ESProMeter.IViews;
+using ESProMeter.IVews;
 using System;
 using System.Windows.Forms;
 using static ESProMeter.Controllers.CustomerController;
 namespace ESProMeter.Views.Customers
 {
-    public partial class CustomerCreateFrm : Form,ICustomer
+    public partial class CustomerCreateFrm : Form,ITName,ITAddressInfo
     {
+        private DateTime _createdAt = DateTime.UtcNow;
+        private DateTime _updatedAt = DateTime.UtcNow;
 
         //properties
-        public string Address
+        public string ADDRESS 
         {
             get => textAddress.Text.Trim();
             set => textAddress.SetText(value);
         }
-        public int AddressEditSequense
-        {
-            get => AddrEditSequense.AsNumber<int>();
-            set => AddrEditSequense.SetText(value);
-        }
-        public string City
+        public string PROVINCE
         {
             get => textProvince.Text.Trim();
             set => textProvince.SetText(value);
         }
-        public string Province
-        {
-            get => textProvince.Text.Trim();
-            set => textProvince.SetText(value);
-        }
-        public string Country
+        public string COUNTRY
         {
             get => textCountry.Text.Trim();
             set => textCountry.SetText(value);
         }
-        public long CustID { 
+        public long ID { 
             get => lblCustID.AsNumber<long>(); 
             set => lblCustID.SetText(value); 
         }
-        public string FirstName { 
+        long ITAddressInfo.ID
+        {
+            get => lblCustID.AsNumber<long>();
+            set => lblCustID.SetText(value);
+        }
+        public string FIRSTNAME
+        { 
             get => textFirstName.Text.Trim(); 
             set => textFirstName.SetText(value); 
         }
@@ -46,56 +44,69 @@ namespace ESProMeter.Views.Customers
             get => textMiddleName.Text.Trim(); 
             set => textMiddleName.SetText(value); 
         }
-        public string LastName { 
+        public string LASTNAME
+        { 
             get => textLastName.Text.Trim();
             set => textLastName.SetText(value); 
         }
-        public string TypeRefId { 
+        public string NAMETYPE
+        { 
             get => "Customer"; 
             set => throw new NotImplementedException(); 
         }
-        public int AddressRefId { 
+        public long ADDRESSID
+        { 
             get => lblAddrID.AsNumber<int>(); 
             set => lblAddrID.SetText(value); 
         }
-        public string Salutation { 
+        public string SALUTATION
+        { 
             get => textSalutation.Text.Trim(); 
             set => textSalutation.SetText(value); 
         }
-        public string JobTitle { 
+        public string JOBTITLE
+        { 
             get => textJobTitle.Text.Trim(); 
             set => textJobTitle.SetText(value); 
         }
-        public string Email { 
+        public string EMAIL
+        { 
             get => textEmail.Text.Trim(); 
             set => textEmail.SetText(value); 
         }
-        public string MainPhone { 
+        public string MAINPHONE
+        { 
             get => textMainPhone.Text.Trim(); 
             set => textMainPhone.SetText(value); 
         }
-        public string AltPhone { 
+        public string ALTPHONE
+        { 
             get => textAltPhone.Text.Trim(); 
             set => textAltPhone.SetText(value); 
         }
-        public string Fax { 
+        public string FAX
+        { 
             get => textFax.Text.Trim(); 
             set => textFax.SetText(value); 
         }
-        public string WebSite { 
+        public string WEBSITE
+        { 
             get => textWebsite.Text.Trim(); 
             set => textWebsite.SetText(value);
         }
-        public int EditSequense { 
+        public int EDSEQ
+        { 
             get => lblEditSequense.AsNumber<int>(); 
             set => lblEditSequense.SetText(value); 
         }
-        public decimal CreditLimit { 
+        public decimal CREDITLIMIT
+        { 
             get => textCreditLimit.AsNumber<decimal>(); 
             set => textCreditLimit.SetText(value); }
-        public bool IsActive { 
-            get => !checkInActive.Checked; 
-            set => checkInActive.Checked=value; 
+        public byte ISACTIVE
+        { 
+            get => checkInActive.Checked?(byte)0:(byte)1; 
+            set => checkInActive.Checked=value==0?true:false; 
         }
         public long AddrID { 
             get => lblAddrID.AsNumber<long>(); 
@@ -105,29 +116,21 @@ namespace ESProMeter.Views.Customers
             get => textName.Text.Trim(); 
             set => textName.SetText(value); 
         }
+        public DateTime CDT { get => _createdAt; set => _createdAt=DateTime.UtcNow; }
+        public DateTime MDT { get => _updatedAt; set => _updatedAt=DateTime.UtcNow; }
+        public string NAME { get => textName.Text.Trim(); set => textName.SetText(value); }
      
+
         //methods
         public CustomerCreateFrm()
         {
             InitializeComponent();
-            if (CustID == 0)
-            {
-                materialButton1.Text = "Save";
-            }
+            materialButton1.Text = "Save";
         }
         public CustomerCreateFrm(long id)
         {
             InitializeComponent();
-            this.ShowCustomer(this, id);
-            if (CustID == 0)
-            {
-                materialButton1.Text = "Save";
-            }
-            else
-            {
-                materialButton1.Text = "Update";
-            }
-            
+             materialButton1.Text = "Update";
         }
         private void btnNewCustomerClick(object sender, EventArgs e)
         {

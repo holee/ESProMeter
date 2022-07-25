@@ -203,21 +203,21 @@
             // itemListToolStripMenuItem
             // 
             this.itemListToolStripMenuItem.Name = "itemListToolStripMenuItem";
-            this.itemListToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.itemListToolStripMenuItem.Size = new System.Drawing.Size(137, 24);
             this.itemListToolStripMenuItem.Text = "Item List";
             this.itemListToolStripMenuItem.Click += new System.EventHandler(this.itemListToolStripMenuItem_Click);
             // 
             // siteToolStripMenuItem
             // 
             this.siteToolStripMenuItem.Name = "siteToolStripMenuItem";
-            this.siteToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.siteToolStripMenuItem.Size = new System.Drawing.Size(137, 24);
             this.siteToolStripMenuItem.Text = "Site List";
             this.siteToolStripMenuItem.Click += new System.EventHandler(this.siteToolStripMenuItem_Click);
             // 
             // uomItemList
             // 
             this.uomItemList.Name = "uomItemList";
-            this.uomItemList.Size = new System.Drawing.Size(180, 24);
+            this.uomItemList.Size = new System.Drawing.Size(137, 24);
             this.uomItemList.Text = "UOM List";
             this.uomItemList.Click += new System.EventHandler(this.uomItemList_Click);
             // 
@@ -284,6 +284,7 @@
             this.customerListToolStripMenuItem.Name = "customerListToolStripMenuItem";
             this.customerListToolStripMenuItem.Size = new System.Drawing.Size(200, 24);
             this.customerListToolStripMenuItem.Text = "Customer List";
+            this.customerListToolStripMenuItem.Click += new System.EventHandler(this.customerListToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -566,7 +567,7 @@
             this.btnCloseForm.IconColor = System.Drawing.Color.Red;
             this.btnCloseForm.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCloseForm.IconSize = 16;
-            this.btnCloseForm.Location = new System.Drawing.Point(897, 3);
+            this.btnCloseForm.Location = new System.Drawing.Point(900, 3);
             this.btnCloseForm.Name = "btnCloseForm";
             this.btnCloseForm.Size = new System.Drawing.Size(29, 23);
             this.btnCloseForm.TabIndex = 2;
@@ -581,7 +582,7 @@
             this.panel2.BackColor = System.Drawing.Color.Silver;
             this.panel2.Location = new System.Drawing.Point(-1, 28);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(902, 554);
+            this.panel2.Size = new System.Drawing.Size(905, 554);
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 

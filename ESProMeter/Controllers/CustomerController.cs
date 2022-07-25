@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using ESProMeter.DataAccess;
 using ESProMeter.Models;
+using ESProMeter.Enums;
 
 namespace ESProMeter.Controllers
 {
@@ -16,19 +17,23 @@ namespace ESProMeter.Controllers
     public static class CustomerController
     {
         private static readonly SqlAccess instance = DataUtility.GetInstance;
-        public static bool CreateOrUpdateCustomer(this Form form,ICustomer customer)
+        public static bool CustomerCreateOrUpdate(this Form form,ICustomer customer,ActionType actionType)
         {
             try
             {
-                if (customer.CustID == 0 && customer.AddressRefId==0)
+                switch (actionType)
                 {
-                    return CreateNewCustomer(customer);
+                    case ActionType.CREATE:
+                        CreateNewCustomer(customer);
+                        break;
+                    case ActionType.EDIT:
+                        UpdateCustomer(customer);
+                        break;
+                    case ActionType.DELETE:
+                        break;
+                    default:
+                        break;
                 }
-                else
-                {
-                    return UpdateCustomer(customer);
-                }
-
             }
             catch (Exception ex)
             {
@@ -121,13 +126,15 @@ namespace ESProMeter.Controllers
             }
 
         }
-        public static void ShowCustomerCenter(this Form form,string name)
+        public static void ShowCustomerCenter(this Form form,byte isActive=1)
         {
             try
             {
-                var query= instance.UseProcedure("CustomerSelectAll")
-                                   .FindAsTable<dynamic>(new { Name=name });
-                form.AsDataGrid("gridCustomer").DataSource = query;
+               if(AppService.GetNameInstance.CustomersCenter("Customer", isActive, out var table))
+                {
+                    form.AsDataGrid("gridCustomer").DataSource = table;
+                }
+                
             }
             catch
             {
