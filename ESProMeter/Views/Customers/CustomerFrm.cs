@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ESProMeter.Views.Customer
+namespace ESProMeter.Views.Customers
 {
 	public partial class CustomerFrm : Form
 	{

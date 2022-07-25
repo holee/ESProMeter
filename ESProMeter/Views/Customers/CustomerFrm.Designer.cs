@@ -1,5 +1,5 @@
 ﻿
-namespace ESProMeter.Views.Customer
+namespace ESProMeter.Views.Customers
 {
 	partial class CustomerFrm
 	{
