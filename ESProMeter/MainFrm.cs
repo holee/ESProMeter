@@ -246,7 +246,7 @@ namespace ESProMeter
             
         }
 
-		private void customerListToolStripMenuItem_Click(object sender, EventArgs e)
+		private void customerListToolStripMenuItem1_Click(object sender, EventArgs e)
 		{
             Form form = new Views.Customers.CustomerCenterFrm();
             form.TopLevel = false;
