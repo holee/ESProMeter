@@ -1,6 +1,3 @@
-using ESProMeter.Properties;
-using Microsoft.Reporting.WinForms;
-using static ESProMeter.Services.ServerRegistration;
 using System;
 using System.Windows.Forms;
 using ESProMeter.Views.UnitOfMeasures;
