@@ -141,5 +141,19 @@ namespace ESProMeter.Services
                 return nameRepository;
             }
         }
+        //
+
+        private static ItemRepository itemRepository = null;
+        public static ItemRepository GetItemInstance 
+        {
+            get
+            {
+                if (itemRepository == null)
+                {
+                    itemRepository = new ItemRepository();
+                }
+                return itemRepository;
+            }
+        }
     }
 }

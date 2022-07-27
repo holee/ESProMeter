@@ -243,7 +243,6 @@ namespace ESProMeter.Views.Items
             this.dataItemList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataItemList.Size = new System.Drawing.Size(921, 419);
             this.dataItemList.TabIndex = 3;
-            this.dataItemList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataItemList_CellClick);
             // 
             // label1
             // 
@@ -291,7 +290,6 @@ namespace ESProMeter.Views.Items
             this.cmdNumberRows.Name = "cmdNumberRows";
             this.cmdNumberRows.Size = new System.Drawing.Size(51, 23);
             this.cmdNumberRows.TabIndex = 2;
-            this.cmdNumberRows.SelectedIndexChanged += new System.EventHandler(this.cmdNumberRows_SelectedIndexChanged);
             // 
             // label3
             // 

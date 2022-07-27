@@ -1,4 +1,5 @@
 ﻿using ESProMeter.Controllers;
+using ESProMeter.Enums;
 using ESProMeter.Extensions;
 using System;
 using System.Data;
@@ -25,26 +26,58 @@ namespace ESProMeter.Views.Items
             AddItemFrm form =new AddItemFrm();
             actionType = 0;
             _itemType = 0;
+           
 			if(form.ShowDialog() == DialogResult.OK)
             {
-                this.CreateNewItem(form);
+                if (form.ItemTypes == ItemType.Item)
+                {
+                    this.ItemCreate(form,ItemType.Item);
+                }else
+                {
+                    this.ItemCreate(form, ItemType.Boq);
+                }
                 this.ShowItemList(this.dataItemList);
             }
 		}
-
         private void ItemListFrm_Load(object sender, EventArgs e)
         {
             this.ShowItemList(this.dataItemList);
             dataItemList.ClearSelection();
         }
-
-        private void cmdNumberRows_SelectedIndexChanged(object sender, EventArgs e)
+        private void tlCreateACopy_Click(object sender, EventArgs e)
         {
-			//var rows = this.AsControl<ComboBox>("cmdNumberRows").AsNumber<int>();
-   //         var sortBy =string.IsNullOrEmpty(this.AsControl<ComboBox>("cmbSortBy").Text)?"Name": this.AsControl<ComboBox>("cmbSortBy").Text;
-   //         this.ShowItemList(rows,sortBy);
-		}
+            if (dataItemList.Rows.Count > 0)
+            {
+                var index = dataItemList.CurrentRow.Index;
+                var itemType = dataItemList.AsValue<string>(index, "Column3");
+                if (itemType == "BillOfQuantity")
+                {
+                    var id = dataItemList.AsNumber<long>(index, "Column1");
+                    AddItemFrm updateBoqForm = new AddItemFrm(id, Enums.ActionType.CreateACopy);
+                    actionType = 0;
+                    updateBoqForm.ItemTypes = ItemType.Boq;
+                    if (updateBoqForm.ShowDialog() == DialogResult.OK)
+                    {
+                        //this.CreateNewItem(updateBoqForm);
+                        this.ShowItemList(this.dataItemList);
+                    }
+                }
+                else
+                {
+                    var id = dataItemList.AsNumber<long>(index, "Column1");
+                    AddItemFrm formAdd = new AddItemFrm(id, Enums.ActionType.CreateACopy);
+                    actionType = 1;
+                    formAdd.ItemTypes = ItemType.Item;
+                    if (formAdd.ShowDialog() == DialogResult.OK)
+                    {
 
+                        this.ShowItemList(dataItemList);
+                        dataItemList.Rows[index].Selected = true;
+                    }
+                }
+
+            }
+        }
         private void tlsEdit_Click(object sender, EventArgs e)
         {
             if (dataItemList.Rows.Count > 0)
@@ -54,35 +87,35 @@ namespace ESProMeter.Views.Items
                 var id = dataItemList.AsNumber<long>(index, "Column1");
                 if (itemType == "BillOfQuantity")
                 {
-                    AddItemFrm form = new AddItemFrm(id);
+                    AddItemFrm form = new AddItemFrm(id,Enums.ActionType.EDIT);
                     actionType = 1;
                     _itemType = 0;
+                    form.ItemTypes = ItemType.Boq;
                     if (form.ShowDialog() == DialogResult.OK)
                     {
-                        this.UpdateExistingBoqItemLine(form, form.dgvBoq);
+                        //this.UpdateExistingBoqItemLine(form, form.dgvBoq);
                     }
                 }
                 else
                 {
-                    AddItemFrm form = new AddItemFrm(id);
+                    AddItemFrm form = new AddItemFrm(id,Enums.ActionType.EDIT);
                     _itemType = 1;
+                    form.ItemTypes = ItemType.Item;
                     if (form.ShowDialog() == DialogResult.OK)
                     {
-                        this.UpdateExistingItem(form);
+                        //this.UpdateExistingItem(form);
                         this.ShowItemList(this.dataItemList);
                     }
 
                 }
             }
         }
-
         private void tlsRefresh_Click(object sender, EventArgs e)
         {
             var rows = this.AsControl<ComboBox>("cmdNumberRows").AsNumber<int>();
             var sortBy = string.IsNullOrEmpty(this.AsControl<ComboBox>("cmbSortBy").Text) ? "Name" : this.AsControl<ComboBox>("cmbSortBy").Text;
             this.ShowItemList(dataItemList,rows,sortBy);
         }
-
         private void tlsdelete_Click(object sender, EventArgs e)
         {
             if (dataItemList.Rows.Count > 0)
@@ -100,7 +133,6 @@ namespace ESProMeter.Views.Items
                 }  
             }
         }
-
         private void tlMakeInActiveClick(object sender, EventArgs e)
         {
             if (dataItemList.AsBealean("Column12"))
@@ -118,7 +150,6 @@ namespace ESProMeter.Views.Items
                 }
             }
         }
-
         private void btnSearchClick(object sender, EventArgs e)
         {
             //var textField = string.IsNullOrEmpty(cmbFieldName.Text.Trim()) ? "Name" : cmbFieldName.Text.Trim();
@@ -241,48 +272,6 @@ namespace ESProMeter.Views.Items
             //        this.ShowItemList(rows, sortBy);
             //        return;
             //    }
-            //}
-        }
-
-        private void tlCreateACopy_Click(object sender, EventArgs e)
-        {
-            if (dataItemList.Rows.Count > 0)
-            {
-                var index = dataItemList.CurrentRow.Index;
-                var itemType = dataItemList.AsValue<string>(index, "Column3");
-                if (itemType == "Bill Of Quantity")
-                {
-                    var id = dataItemList.AsNumber<long>(index, "Column1");
-                    AddItemFrm updateBoqForm = new AddItemFrm(id);
-                    if (updateBoqForm.ShowDialog() == DialogResult.OK)
-                    {
-                        this.ShowItemList(dataItemList);
-                    }
-                }
-                else
-                {
-                    var id = dataItemList.AsNumber<long>(index, "Column1");
-                    AddItemFrm formAdd = new AddItemFrm(id);
-                    if (formAdd.ShowDialog() == DialogResult.OK)
-                    {
-                        this.ShowItemList(dataItemList);
-                        dataItemList.Rows[index].Selected = true;
-                    }
-                }
-
-            }
-        }
-
-        private void dataItemList_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //if (dataItemList.Rows.Count == 0) return;
-            //if (dataItemList.AsBealean("Column12"))
-            //{
-            //    toolStripButton5.Text = "Make InActive";
-            //}
-            //else
-            //{
-            //    toolStripButton5.Text = "Make Active";
             //}
         }
     }

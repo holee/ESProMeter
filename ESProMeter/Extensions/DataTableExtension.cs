@@ -52,7 +52,18 @@ namespace ESProMeter.Extensions
             }
 
         }
-        public static DataTable? ToTable(this DataGridView grid, params string[] columns)
+
+        public static DataTable SelectColumn(this DataTable table,params string[] columns)
+        {
+            if (table.Rows.Count > 0 && table.Columns.Count > 0)
+            {
+                DataView view = new DataView(table);
+                var selectedTable = view.ToTable(null, false, columns);
+                return selectedTable;
+            }
+            return default(DataTable);
+        }
+        public static DataTable ToTable(this DataGridView grid, params string[] columns)
         {
             try
             {
@@ -71,7 +82,7 @@ namespace ESProMeter.Extensions
             }
 
         }
-        private static DataTable? CreateATableFromGrid(this DataGridView grid)
+        private static DataTable CreateATableFromGrid(this DataGridView grid)
         {
             DataTable table = CreateTableFromGrid(grid);
             foreach (DataGridViewRow rows in grid.Rows)
@@ -87,7 +98,7 @@ namespace ESProMeter.Extensions
             return table;
         }
 
-        private static DataTable? CreateATableFromColumns(DataGridView grid, params string[] columns)
+        private static DataTable CreateATableFromColumns(DataGridView grid, params string[] columns)
         {
             DataTable table = CreateTableFromColumns(columns);
             foreach (DataGridViewRow row in grid.Rows)
@@ -113,6 +124,16 @@ namespace ESProMeter.Extensions
 
 
         }
+
+
+
+
+
+        /// <summary>
+        /// Private methods
+        /// </summary>
+        /// <param name="grid"></param>
+        /// <returns></returns>
         private static DataTable CreateTableFromGrid(DataGridView grid)
         {
             DataTable table = new DataTable();

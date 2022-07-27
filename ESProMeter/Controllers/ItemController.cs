@@ -6,6 +6,8 @@ using ESProMeter.DataAccess;
 using ESProMeter.Services;
 using ESProMeter.IVews;
 using Dapper;
+using ESProMeter.Views.Items;
+using ESProMeter.Enums;
 
 namespace ESProMeter.Controllers
 {
@@ -52,7 +54,7 @@ namespace ESProMeter.Controllers
         {
             var sql = columns.Length == 0 ? "*" : string.Join(",", columns);
 
-            instance.UseSql($"SELECT TOP(10) {sql} FROM [dbo].[VItem] WHERE [Type]=@type AND [Name] LIKE @itemName+'%';")
+            instance.UseSql($"SELECT TOP(10) {sql} FROM [dbo].[VItem] WHERE [ITEMTYPE]=@type AND [Name] LIKE @itemName+'%';")
                .FindAsTable(new { type = type, itemName = itemName })
                .UseDataTableAsGridView(grid);
         }
@@ -61,13 +63,23 @@ namespace ESProMeter.Controllers
         {
             var sql = columns.Length == 0 ? "*" : string.Join(",", columns); 
 
-            if(instance.UseSql($"SELECT {sql} FROM [dbo].[VItem] WHERE [ItemName] LIKE @itemName+'%';")
+            if(instance.UseSql($"SELECT {sql} FROM [dbo].[VItem] WHERE [ITEMTYPE] NOT IN ('BillOfQuantity') AND [ItemName] LIKE @itemName+'%';")
                .FindAsTable(new { itemName = itemName },out DataTable table))
             {
                 table.UseDataTableAsGridView(grid);
             }
         }
 
+        public static void SearchItemList(this Form form, DataGridView grid, int rows, params string[] columns)
+        {
+            var sql = columns.Length == 0 ? "*" : string.Join(",", columns);
+
+            if (instance.UseSql($"SELECT TOP({rows}) {sql} FROM [dbo].[VItem] WHERE [ITEMTYPE] NOT IN ('BillOfQuantity')")
+               .FindAsTable<dynamic>(null, out DataTable table))
+            {
+                table.UseDataTableAsGridView(grid);
+            }
+        }
         public static List<object> SearchItemList(this Form form,long itemId, params string[] columns)
         {
             List<object?> list = new List<object?>();
@@ -165,122 +177,15 @@ namespace ESProMeter.Controllers
         /// <param name="itemId"></param>
         /// <param name="item"></param>
         /// <param name="columns"></param>
-        public static void ShowItemFormUpdate(this Form form, long itemId, IItem item,DataGridView grid, params string[] columns)
+        public static void GetItemForUpdate(this Form form, long itemId,AddItemFrm item)
         {
-            var sql = columns.Length == 0 ? "*" : string.Join(",", columns);
-
-            if (instance.UseSql($"SELECT {sql} FROM [dbo].[VItem] WHERE [ID]=@itemID;")
-                       .FindOne(new { itemID = itemId }, out DataRow row))
+            if(AppService.GetItemInstance.GetItemWithItemLineById(itemId, item, out var table)) 
             {
-                item.Id = row.GetValue<long>("ID");
-                item.ItemName = row.GetValue<string>("ItemName");
-                item.Description = row.GetValue<string>("Description");
-                item.Cost = row.GetValue<decimal>("Cost");
-                item.IsActive = row.GetValue<bool>("IsActive");
-                item.UomId = row.GetValue<long>("UomID");
-                item.ItemType = row.GetValue<string>("ItemType");
-
-                if (item.ItemType == "BillOfQuantity")
-                {
-                    var sql1 = "SELECT BoqItemLineId,BOQITEMITEMLINENAME,BOQITEMITEMLINETYPE,UOMNAME,BOQITEMLINEUOMID,BOQITEMLINEQTY FROM VBoqItemLine WHERE BoqItemId=@itemId;";
-                    instance.UseSql(sql1)
-                            .FindAsTable<dynamic>(new { itemId = itemId })
-                            .UsePlainDataToGridView(grid);
-                }
+                var newTable = table.SelectColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE","UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ");
+                item.AsControl<DataGridView>("dgvBoq").DataSource = newTable;
             }
         }
-        public static void CreateNewItem(this Form form, IItem item)
-        {
-            instance.UseProcedure("ITEM_INSERT")
-                    .InsertOrUpdate(new
-                    {
-                        ITEMNAME = item.ItemName,
-                        DESCRIPTION = item.Description,
-                        ITEMTYPE = item.ItemType,
-                        UOMID = item.UomId,
-                        COST = item.Cost,
-                        ISRATE = 0
-                    });
-        }
-        public static void UpdateExistingItem(this Form form, IItem item) 
-        {
-            instance.UseProcedure("ITEM_UPDATE_SP")
-                    .InsertOrUpdate(new
-                    {
-                        ID=item.Id,
-                        ITEMNAME = item.ItemName,
-                        DESCRIPTION = item.Description,
-                        ITEMTYPE = item.ItemType,
-                        UOMID = item.UomId,
-                        COST = item.Cost,
-                        ISRATE = 0
-                    });
-        }
-        public static void CreateNewBoqItemLine(this Form form, IItem item, DataGridView grid)
-        {
-            try
-            {
-                instance.StartTransaction();
-                //create new item
-                var id = instance.UseProcedure("ITEM_INSERT")
-                        .InsertGetId<long, dynamic>(new
-                        {
-                            ITEMNAME = item.ItemName,
-                            DESCRIPTION = item.Description,
-                            ITEMTYPE = item.ItemType,
-                            UOMID = item.UomId,
-                            COST = item.Cost,
-                            ISRATE = 0
-                        });
-                //create boq item line
-                var table = ToTable(grid, id);
-                instance.UseProcedure("SP_BoqItemLineInert")
-                        .InsertFromTable(new { BoqItemLine = table.AsTableValuedParameter("udt_BoqItemLine_Insert") });
-
-                instance.ComitTransaction();
-            }
-            catch
-            {
-                instance.RollbackTransaction();
-                throw;
-            }
-
-        }
-        public static void UpdateExistingBoqItemLine(this Form form, IItem item, DataGridView grid) 
-        {
-            try
-            {
-                instance.StartTransaction();
-                //update existing boq item
-                var id = instance.UseProcedure("ITEM_UPDATE_SP")
-                        .InsertGetId<long, dynamic>(new
-                        {
-                            ID=item.Id,
-                            ITEMNAME = item.ItemName,
-                            DESCRIPTION = item.Description,
-                            ITEMTYPE = item.ItemType,
-                            UOMID = item.UomId,
-                            COST = item.Cost,
-                            ISRATE = 0
-                        });
-                //remove existing item
-                instance.UseSql("DELETE FROM TBOQITEMLINE WHERE ID=@id;")
-                        .Delete<dynamic>(new { id = id });
-
-                //update existing boq_item_line
-                var table = ToTable(grid, id);
-                instance.UseProcedure("SP_BoqItemLineInert")
-                        .InsertFromTable(new { BoqItemLine = table.AsTableValuedParameter("udt_BoqItemLine_Insert") });
-
-                instance.ComitTransaction();
-            }
-            catch
-            {
-                instance.RollbackTransaction();
-                throw;
-            }
-
-        }
+       
         public static void ShowItemType(this Form form)
         {
             instance.UseSql("SELECT * FROM [dbo].[TTYPE];")
@@ -347,7 +252,7 @@ namespace ESProMeter.Controllers
             }
             return false;
         }
-        public static (DataRow? row,bool found) GetItemTypeById(this Form form, long id,params string[] columns)
+        public static (DataRow row,bool found) GetItemTypeById(this Form form, long id,params string[] columns)
         {
             string sql = columns.Length == 0 ? "*" : string.Join(",", columns);
             if(instance.UseSql($"SELECT {sql} FROM [dbo].[vItemWithUom] WHERE [ItemId]=@id;")
@@ -359,69 +264,38 @@ namespace ESProMeter.Controllers
             }
             return (null, false);
         }
-      
-        public static void CreateNewItem(this Form form, object data)
+        public static void ItemCreate(this Form form,AddItemFrm itemFrm,ItemType itemType)
         {
-            instance.UseProcedure("ITEM_INSERT")
-                    .InsertOrUpdate(data);
-        }
-        public static void UpdateItem(this Form form,IItem item)
-        {
-            instance.UseProcedure("ItemUpdate")
-                    .InsertOrUpdate(new {
-                        ITEMNAME=item.ItemName,
-                        DESCRIPTION=item.Description,
-                        ITEMTYPE=item.ItemType,
-                        UOMID=item.UomId,
-                        COST=item.Cost,
-                        ISRATE=0
-                    });
-        }
-        public static void UpdateItem(this Form form, object data)
-        {
-            instance.UseProcedure("ItemUpdate")
-                    .InsertOrUpdate(data);
-        }
-        public static bool ItemExist(string itemName)
-        {
-            var count = instance.UseSql("SELECT COUNT(*) FROM [dbo].[Item] WHERE Name=@itemName")
-                    .Count<int,dynamic>(new { itemName = itemName });
-           return count > 0;
-        }
-        public static bool ItemExistSame(long itemID,string itemName)
-        {
-            var count = instance.UseSql("SELECT COUNT(*) FROM [dbo].[Item] WHERE Name=@itemName AND itemID <> @itemID")
-                    .Count<int, dynamic>(new { itemID = itemID, itemName = itemName });
-            return count > 0;
-        }
-        public static bool ItemExist(long itemRefId,long boqItemLineRefID)
-        {
-            var count = instance.UseSql("SELECT COUNT(*) FROM [dbo].[ITEMBOQLINE] WHERE ItemRefID=@itemRefId AND BOQItemLineRefID=@boqItemLineRefID")
-                    .Count<int,dynamic>(new { boqItemLineRefID = boqItemLineRefID, itemRefId = itemRefId }); 
-            return count > 0;
-        }
-        private static DataTable ToTable(DataGridView view,long itemID)
-        {
-            DataTable table = new DataTable();
-            table.Columns.Add("BOQITEMID", typeof(long));
-            table.Columns.Add("BOQITEMLINEID", typeof(long));
-            table.Columns.Add("BOQITEMLINESEQ", typeof(int));
-            table.Columns.Add("BOQITEMLINEUOMID", typeof(long));
-            table.Columns.Add("BOQITEMLINEQTY", typeof(decimal));
-            int index = 1;
-            foreach (DataGridViewRow row in view.Rows)
+            switch (itemType)
             {
-                DataRow dRow = table.NewRow();
-                dRow["BOQITEMID"] = itemID;
-                dRow["BOQITEMLINEID"] = row.Cells["BOQITEMLINEID"].Value;
-                dRow["BOQITEMLINESEQ"] = index;
-                dRow["BOQITEMLINEUOMID"] = row.Cells["BOQITEMLINEUOMID"].Value;
-                dRow["BOQITEMLINEQTY"] = row.Cells["BOQITEMLINEQTY"].Value;
-                table.Rows.Add(dRow);
-                index++;
-            }
-            return table;
+                case ItemType.Item:
+                    AppService.GetItemInstance.ItemCreate(itemFrm);
+                    break;
+                case ItemType.Boq:
+                    var constainer = itemFrm.AsControl<DataGridView>("dgvBoq");
+                    AppService.GetItemInstance.BoqCreateItemLine(itemFrm, constainer);
+                    break;
+                default:
+                    break;
+            }    
         }
+        public static void ItemUpdate(this Form form,AddItemFrm item,ItemType itemType) 
+        {
+            switch(itemType)
+            {
+                case ItemType.Item:
+                    AppService.GetItemInstance.ItemUpdate(item);
+                break;
+                case ItemType.Boq:
+                    var constainer = item.AsControl<DataGridView>("dgvBoq");
+                    AppService.GetItemInstance.BoqUpdateItemLine(item, constainer);
+                break;
+                default:
+                    break;
+            }
+        }
+       
+       
 
     }
 }

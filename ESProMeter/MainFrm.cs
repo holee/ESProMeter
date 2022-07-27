@@ -243,16 +243,5 @@ namespace ESProMeter
 
         }
 
-		//private void customerListToolStripMenuItem1_Click(object sender, EventArgs e)
-		//{
-  //          Form form = new Views.Customers.CustomerCenterFrm();
-  //          form.TopLevel = false;
-  //          form.TopMost = true;
-  //          form.FormBorderStyle = FormBorderStyle.Fixed3D;
-  //          form.WindowState = FormWindowState.Normal;
-  //          panel2.Controls.Add(form);
-  //          form.Show();
-  //          form.Dock = DockStyle.Fill;
-  //      }
 	}
 }

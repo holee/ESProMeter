@@ -80,5 +80,17 @@ namespace ESProMeter.Views.UnitOfMeasures
         {
 			this.Close();
         }
+
+        private void mbtSave_Click(object sender, EventArgs e)
+        {
+            if (this.IsValid(txtDescription, txtUoM))
+            {
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                this.DialogResult = DialogResult.None;
+            }
+        }
     }
 }

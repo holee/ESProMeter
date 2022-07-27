@@ -50,7 +50,7 @@ namespace ESProMeter.Views.Items
             InitializeComponent();
             this.ShowItemType(this.cmbType);
             this.ShowUom(this.cmbUom);
-            this.ShowItemFormUpdate(Id, this,this.dgvBoq);
+            //this.ShowItemFormUpdate(Id, this);
             materialButton1.Text = "Update";
         }
         private void textBox1_KeyUp(object sender, KeyEventArgs e)

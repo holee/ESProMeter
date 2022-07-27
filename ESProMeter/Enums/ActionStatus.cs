@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace ESProMeter.Enums
 {
-    public enum ActionType
+    public enum ActionStatus
     {
-        CREATE,
-        EDIT,
-        DELETE,
-        CreateACopy
+
     }
 }

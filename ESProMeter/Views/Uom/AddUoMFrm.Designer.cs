@@ -122,7 +122,7 @@ namespace ESProMeter.Views.UnitOfMeasures
             this.mbtSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.mbtSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.mbtSave.UseVisualStyleBackColor = false;
-            
+            this.mbtSave.Click += new System.EventHandler(this.mbtSave_Click);
             // 
             // cmbType
             // 
@@ -214,7 +214,7 @@ namespace ESProMeter.Views.UnitOfMeasures
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(503, 172);
+            this.ClientSize = new System.Drawing.Size(503, 160);
             this.Controls.Add(this.lblEditSequense);
             this.Controls.Add(this.lblUomID);
             this.Controls.Add(this.label5);
