@@ -65,6 +65,16 @@
 			this.newBOQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+			this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.bOQListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.quoteListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+			this.dToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.cToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.bToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.aToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.deailsBOQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.dtgContactList = new System.Windows.Forms.DataGridView();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -90,16 +100,6 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
-			this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.quoteListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.bOQListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.deailsBOQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.aToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.bToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.cToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.dToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-			this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
@@ -343,7 +343,7 @@
 			this.panel2.Location = new System.Drawing.Point(0, 336);
 			this.panel2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(932, 295);
+			this.panel2.Size = new System.Drawing.Size(930, 295);
 			this.panel2.TabIndex = 1;
 			// 
 			// tabControl1
@@ -457,31 +457,100 @@
 			// newBOQToolStripMenuItem1
 			// 
 			this.newBOQToolStripMenuItem1.Name = "newBOQToolStripMenuItem1";
-			this.newBOQToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+			this.newBOQToolStripMenuItem1.Size = new System.Drawing.Size(144, 22);
 			this.newBOQToolStripMenuItem1.Text = "New BOQ";
 			// 
 			// newQuoteToolStripMenuItem
 			// 
 			this.newQuoteToolStripMenuItem.Name = "newQuoteToolStripMenuItem";
-			this.newQuoteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.newQuoteToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
 			this.newQuoteToolStripMenuItem.Text = "Edit";
 			// 
 			// newBOQToolStripMenuItem
 			// 
 			this.newBOQToolStripMenuItem.Name = "newBOQToolStripMenuItem";
-			this.newBOQToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.newBOQToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
 			this.newBOQToolStripMenuItem.Text = "Delete";
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(141, 6);
 			// 
 			// toolStripMenuItem2
 			// 
 			this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-			this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+			this.toolStripMenuItem2.Size = new System.Drawing.Size(144, 22);
 			this.toolStripMenuItem2.Text = "Create Quote";
+			// 
+			// reportsToolStripMenuItem
+			// 
+			this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bOQListToolStripMenuItem,
+            this.quoteListToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.dToolStripMenuItem,
+            this.cToolStripMenuItem,
+            this.bToolStripMenuItem,
+            this.aToolStripMenuItem,
+            this.deailsBOQToolStripMenuItem,
+            this.toolStripMenuItem3});
+			this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
+			this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+			this.reportsToolStripMenuItem.Text = "Reports";
+			// 
+			// bOQListToolStripMenuItem
+			// 
+			this.bOQListToolStripMenuItem.Name = "bOQListToolStripMenuItem";
+			this.bOQListToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.bOQListToolStripMenuItem.Text = "BOQ";
+			// 
+			// quoteListToolStripMenuItem
+			// 
+			this.quoteListToolStripMenuItem.Name = "quoteListToolStripMenuItem";
+			this.quoteListToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.quoteListToolStripMenuItem.Text = "Quote";
+			// 
+			// toolStripMenuItem1
+			// 
+			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+			this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+			// 
+			// dToolStripMenuItem
+			// 
+			this.dToolStripMenuItem.Name = "dToolStripMenuItem";
+			this.dToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.dToolStripMenuItem.Text = "Details BOQ";
+			// 
+			// cToolStripMenuItem
+			// 
+			this.cToolStripMenuItem.Name = "cToolStripMenuItem";
+			this.cToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.cToolStripMenuItem.Text = "Eco Material";
+			// 
+			// bToolStripMenuItem
+			// 
+			this.bToolStripMenuItem.Name = "bToolStripMenuItem";
+			this.bToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.bToolStripMenuItem.Text = "Eco Labour";
+			// 
+			// aToolStripMenuItem
+			// 
+			this.aToolStripMenuItem.Name = "aToolStripMenuItem";
+			this.aToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.aToolStripMenuItem.Text = "Eco Machinery";
+			// 
+			// deailsBOQToolStripMenuItem
+			// 
+			this.deailsBOQToolStripMenuItem.Name = "deailsBOQToolStripMenuItem";
+			this.deailsBOQToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.deailsBOQToolStripMenuItem.Text = "Project Cost";
+			// 
+			// toolStripMenuItem3
+			// 
+			this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+			this.toolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
+			this.toolStripMenuItem3.Text = "Economic";
 			// 
 			// tabPage2
 			// 
@@ -570,14 +639,14 @@
 			this.panel1.Location = new System.Drawing.Point(4, 0);
 			this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(925, 330);
+			this.panel1.Size = new System.Drawing.Size(923, 330);
 			this.panel1.TabIndex = 0;
 			// 
 			// txtName
 			// 
 			this.txtName.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.txtName.Location = new System.Drawing.Point(147, 69);
+			this.txtName.Location = new System.Drawing.Point(145, 68);
 			this.txtName.Name = "txtName";
 			this.txtName.ReadOnly = true;
 			this.txtName.Size = new System.Drawing.Size(333, 16);
@@ -587,7 +656,7 @@
 			// 
 			this.txtContactFullName.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.txtContactFullName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.txtContactFullName.Location = new System.Drawing.Point(147, 99);
+			this.txtContactFullName.Location = new System.Drawing.Point(145, 98);
 			this.txtContactFullName.Name = "txtContactFullName";
 			this.txtContactFullName.ReadOnly = true;
 			this.txtContactFullName.Size = new System.Drawing.Size(399, 16);
@@ -597,7 +666,7 @@
 			// 
 			this.txtJobTitle.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.txtJobTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.txtJobTitle.Location = new System.Drawing.Point(147, 130);
+			this.txtJobTitle.Location = new System.Drawing.Point(145, 128);
 			this.txtJobTitle.Name = "txtJobTitle";
 			this.txtJobTitle.ReadOnly = true;
 			this.txtJobTitle.Size = new System.Drawing.Size(424, 16);
@@ -607,7 +676,7 @@
 			// 
 			this.txtAltPhone.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.txtAltPhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.txtAltPhone.Location = new System.Drawing.Point(487, 159);
+			this.txtAltPhone.Location = new System.Drawing.Point(485, 157);
 			this.txtAltPhone.Name = "txtAltPhone";
 			this.txtAltPhone.ReadOnly = true;
 			this.txtAltPhone.Size = new System.Drawing.Size(230, 16);
@@ -617,7 +686,7 @@
 			// 
 			this.txtMainPhone.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.txtMainPhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.txtMainPhone.Location = new System.Drawing.Point(147, 159);
+			this.txtMainPhone.Location = new System.Drawing.Point(145, 157);
 			this.txtMainPhone.Name = "txtMainPhone";
 			this.txtMainPhone.ReadOnly = true;
 			this.txtMainPhone.Size = new System.Drawing.Size(230, 16);
@@ -627,7 +696,7 @@
 			// 
 			this.txtWebSite.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.txtWebSite.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.txtWebSite.Location = new System.Drawing.Point(147, 219);
+			this.txtWebSite.Location = new System.Drawing.Point(145, 217);
 			this.txtWebSite.Name = "txtWebSite";
 			this.txtWebSite.ReadOnly = true;
 			this.txtWebSite.Size = new System.Drawing.Size(556, 16);
@@ -637,7 +706,7 @@
 			// 
 			this.txtEmail.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.txtEmail.Location = new System.Drawing.Point(147, 190);
+			this.txtEmail.Location = new System.Drawing.Point(145, 188);
 			this.txtEmail.Name = "txtEmail";
 			this.txtEmail.ReadOnly = true;
 			this.txtEmail.Size = new System.Drawing.Size(556, 16);
@@ -647,7 +716,7 @@
 			// 
 			this.txtAddress.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.txtAddress.Location = new System.Drawing.Point(147, 251);
+			this.txtAddress.Location = new System.Drawing.Point(145, 247);
 			this.txtAddress.Multiline = true;
 			this.txtAddress.Name = "txtAddress";
 			this.txtAddress.ReadOnly = true;
@@ -658,7 +727,7 @@
 			// 
 			this.label8.AutoSize = true;
 			this.label8.ForeColor = System.Drawing.Color.Gray;
-			this.label8.Location = new System.Drawing.Point(83, 222);
+			this.label8.Location = new System.Drawing.Point(81, 220);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(52, 15);
 			this.label8.TabIndex = 1;
@@ -668,7 +737,7 @@
 			// 
 			this.label7.AutoSize = true;
 			this.label7.ForeColor = System.Drawing.Color.Gray;
-			this.label7.Location = new System.Drawing.Point(83, 254);
+			this.label7.Location = new System.Drawing.Point(81, 250);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(56, 15);
 			this.label7.TabIndex = 1;
@@ -678,7 +747,7 @@
 			// 
 			this.label11.AutoSize = true;
 			this.label11.ForeColor = System.Drawing.Color.Gray;
-			this.label11.Location = new System.Drawing.Point(400, 162);
+			this.label11.Location = new System.Drawing.Point(398, 160);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(72, 15);
 			this.label11.TabIndex = 1;
@@ -688,7 +757,7 @@
 			// 
 			this.label6.AutoSize = true;
 			this.label6.ForeColor = System.Drawing.Color.Gray;
-			this.label6.Location = new System.Drawing.Point(98, 193);
+			this.label6.Location = new System.Drawing.Point(96, 191);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(41, 15);
 			this.label6.TabIndex = 1;
@@ -698,7 +767,7 @@
 			// 
 			this.label5.AutoSize = true;
 			this.label5.ForeColor = System.Drawing.Color.Gray;
-			this.label5.Location = new System.Drawing.Point(60, 162);
+			this.label5.Location = new System.Drawing.Point(58, 160);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(81, 15);
 			this.label5.TabIndex = 1;
@@ -708,7 +777,7 @@
 			// 
 			this.label4.AutoSize = true;
 			this.label4.ForeColor = System.Drawing.Color.Gray;
-			this.label4.Location = new System.Drawing.Point(84, 133);
+			this.label4.Location = new System.Drawing.Point(82, 131);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(57, 15);
 			this.label4.TabIndex = 1;
@@ -718,7 +787,7 @@
 			// 
 			this.label3.AutoSize = true;
 			this.label3.ForeColor = System.Drawing.Color.Gray;
-			this.label3.Location = new System.Drawing.Point(15, 102);
+			this.label3.Location = new System.Drawing.Point(13, 101);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(126, 15);
 			this.label3.TabIndex = 1;
@@ -728,7 +797,7 @@
 			// 
 			this.label2.AutoSize = true;
 			this.label2.ForeColor = System.Drawing.Color.Gray;
-			this.label2.Location = new System.Drawing.Point(98, 74);
+			this.label2.Location = new System.Drawing.Point(96, 70);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(41, 15);
 			this.label2.TabIndex = 1;
@@ -744,75 +813,6 @@
 			this.label1.Size = new System.Drawing.Size(295, 31);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Customer Information";
-			// 
-			// reportsToolStripMenuItem
-			// 
-			this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bOQListToolStripMenuItem,
-            this.quoteListToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.dToolStripMenuItem,
-            this.cToolStripMenuItem,
-            this.bToolStripMenuItem,
-            this.aToolStripMenuItem,
-            this.deailsBOQToolStripMenuItem,
-            this.toolStripMenuItem3});
-			this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
-			this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-			this.reportsToolStripMenuItem.Text = "Reports";
-			// 
-			// quoteListToolStripMenuItem
-			// 
-			this.quoteListToolStripMenuItem.Name = "quoteListToolStripMenuItem";
-			this.quoteListToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.quoteListToolStripMenuItem.Text = "Quote";
-			// 
-			// bOQListToolStripMenuItem
-			// 
-			this.bOQListToolStripMenuItem.Name = "bOQListToolStripMenuItem";
-			this.bOQListToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.bOQListToolStripMenuItem.Text = "BOQ";
-			// 
-			// deailsBOQToolStripMenuItem
-			// 
-			this.deailsBOQToolStripMenuItem.Name = "deailsBOQToolStripMenuItem";
-			this.deailsBOQToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.deailsBOQToolStripMenuItem.Text = "Project Cost";
-			// 
-			// aToolStripMenuItem
-			// 
-			this.aToolStripMenuItem.Name = "aToolStripMenuItem";
-			this.aToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.aToolStripMenuItem.Text = "Eco Machinery";
-			// 
-			// bToolStripMenuItem
-			// 
-			this.bToolStripMenuItem.Name = "bToolStripMenuItem";
-			this.bToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.bToolStripMenuItem.Text = "Eco Labour";
-			// 
-			// cToolStripMenuItem
-			// 
-			this.cToolStripMenuItem.Name = "cToolStripMenuItem";
-			this.cToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.cToolStripMenuItem.Text = "Eco Material";
-			// 
-			// dToolStripMenuItem
-			// 
-			this.dToolStripMenuItem.Name = "dToolStripMenuItem";
-			this.dToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.dToolStripMenuItem.Text = "Details BOQ";
-			// 
-			// toolStripMenuItem1
-			// 
-			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-			this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
-			// 
-			// toolStripMenuItem3
-			// 
-			this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-			this.toolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
-			this.toolStripMenuItem3.Text = "Economic";
 			// 
 			// CustomerCenterFrm
 			// 

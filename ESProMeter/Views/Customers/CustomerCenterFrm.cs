@@ -114,5 +114,13 @@ namespace ESProMeter.Views.Customers
         {
             //this.ShowCustomerCenter(textSearch.Text.Trim());
         }
-    }
+
+		private void gridCustomer_SelectionChanged(object sender, EventArgs e)
+		{
+            if (gridCustomer.SelectedRows.Count > 0)
+            {
+                
+            }
+		}
+	}
 }
