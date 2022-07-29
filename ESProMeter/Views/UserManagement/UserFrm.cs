@@ -10,19 +10,16 @@ using System.Windows.Forms;
 
 namespace ESProMeter.Views.UserManagement
 {
-	public partial class ChangePasswordFrm : Form
+	public partial class UserFrm : Form
 	{
-		public ChangePasswordFrm()
+		public UserFrm()
 		{
 			InitializeComponent();
 		}
 
-		private void mbtSave_Click(object sender, EventArgs e)
+		private void mbtClose_Click(object sender, EventArgs e)
 		{
-			//If the password change verification succeed, return dialog result = OK
-
-
-			DialogResult = DialogResult.OK;
+			this.Close();
 		}
 	}
 }
