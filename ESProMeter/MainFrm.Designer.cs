@@ -80,6 +80,11 @@
 			this.btnCloseForm = new FontAwesome.Sharp.IconButton();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.iconButton1 = new FontAwesome.Sharp.IconButton();
+			this.openBillOfQuantityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.quotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.openQuotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.closedQuotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.openBOQDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
@@ -203,21 +208,21 @@
 			// itemListToolStripMenuItem
 			// 
 			this.itemListToolStripMenuItem.Name = "itemListToolStripMenuItem";
-			this.itemListToolStripMenuItem.Size = new System.Drawing.Size(137, 24);
+			this.itemListToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
 			this.itemListToolStripMenuItem.Text = "Item List";
 			this.itemListToolStripMenuItem.Click += new System.EventHandler(this.itemListToolStripMenuItem_Click);
 			// 
 			// siteToolStripMenuItem
 			// 
 			this.siteToolStripMenuItem.Name = "siteToolStripMenuItem";
-			this.siteToolStripMenuItem.Size = new System.Drawing.Size(137, 24);
+			this.siteToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
 			this.siteToolStripMenuItem.Text = "Site List";
 			this.siteToolStripMenuItem.Click += new System.EventHandler(this.siteToolStripMenuItem_Click);
 			// 
 			// uomItemList
 			// 
 			this.uomItemList.Name = "uomItemList";
-			this.uomItemList.Size = new System.Drawing.Size(137, 24);
+			this.uomItemList.Size = new System.Drawing.Size(180, 24);
 			this.uomItemList.Text = "UOM List";
 			this.uomItemList.Click += new System.EventHandler(this.uomItemList_Click);
 			// 
@@ -374,7 +379,8 @@
 			// reportToolStripMenuItem
 			// 
 			this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.billOfQuanityToolStripMenuItem});
+            this.billOfQuanityToolStripMenuItem,
+            this.quotesToolStripMenuItem});
 			this.reportToolStripMenuItem.Enabled = false;
 			this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
 			this.reportToolStripMenuItem.Size = new System.Drawing.Size(62, 32);
@@ -382,8 +388,11 @@
 			// 
 			// billOfQuanityToolStripMenuItem
 			// 
+			this.billOfQuanityToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openBillOfQuantityToolStripMenuItem,
+            this.openBOQDetailsToolStripMenuItem});
 			this.billOfQuanityToolStripMenuItem.Name = "billOfQuanityToolStripMenuItem";
-			this.billOfQuanityToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
+			this.billOfQuanityToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
 			this.billOfQuanityToolStripMenuItem.Text = "Bill of Quanity";
 			// 
 			// helpToolStripMenuItem
@@ -567,7 +576,7 @@
 			this.btnCloseForm.IconColor = System.Drawing.Color.Red;
 			this.btnCloseForm.IconFont = FontAwesome.Sharp.IconFont.Auto;
 			this.btnCloseForm.IconSize = 16;
-			this.btnCloseForm.Location = new System.Drawing.Point(906, 3);
+			this.btnCloseForm.Location = new System.Drawing.Point(909, 3);
 			this.btnCloseForm.Name = "btnCloseForm";
 			this.btnCloseForm.Size = new System.Drawing.Size(29, 23);
 			this.btnCloseForm.TabIndex = 2;
@@ -582,7 +591,7 @@
 			this.panel2.BackColor = System.Drawing.Color.Silver;
 			this.panel2.Location = new System.Drawing.Point(-1, 28);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(911, 554);
+			this.panel2.Size = new System.Drawing.Size(914, 554);
 			this.panel2.TabIndex = 1;
 			this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
 			// 
@@ -600,6 +609,41 @@
 			this.iconButton1.TabIndex = 0;
 			this.iconButton1.UseVisualStyleBackColor = true;
 			this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+			// 
+			// openBillOfQuantityToolStripMenuItem
+			// 
+			this.openBillOfQuantityToolStripMenuItem.Name = "openBillOfQuantityToolStripMenuItem";
+			this.openBillOfQuantityToolStripMenuItem.Size = new System.Drawing.Size(208, 24);
+			this.openBillOfQuantityToolStripMenuItem.Text = "Open BOQ Summary";
+			this.openBillOfQuantityToolStripMenuItem.Click += new System.EventHandler(this.openBillOfQuantityToolStripMenuItem_Click);
+			// 
+			// quotesToolStripMenuItem
+			// 
+			this.quotesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openQuotesToolStripMenuItem,
+            this.closedQuotesToolStripMenuItem});
+			this.quotesToolStripMenuItem.Name = "quotesToolStripMenuItem";
+			this.quotesToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+			this.quotesToolStripMenuItem.Text = "Quotes";
+			// 
+			// openQuotesToolStripMenuItem
+			// 
+			this.openQuotesToolStripMenuItem.Name = "openQuotesToolStripMenuItem";
+			this.openQuotesToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+			this.openQuotesToolStripMenuItem.Text = "Open Quotes";
+			// 
+			// closedQuotesToolStripMenuItem
+			// 
+			this.closedQuotesToolStripMenuItem.Name = "closedQuotesToolStripMenuItem";
+			this.closedQuotesToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+			this.closedQuotesToolStripMenuItem.Text = "Closed Quotes";
+			// 
+			// openBOQDetailsToolStripMenuItem
+			// 
+			this.openBOQDetailsToolStripMenuItem.Name = "openBOQDetailsToolStripMenuItem";
+			this.openBOQDetailsToolStripMenuItem.Size = new System.Drawing.Size(208, 24);
+			this.openBOQDetailsToolStripMenuItem.Text = "Open BOQ Details";
+			this.openBOQDetailsToolStripMenuItem.Click += new System.EventHandler(this.openBOQDetailsToolStripMenuItem_Click);
 			// 
 			// MainFrm
 			// 
@@ -681,5 +725,10 @@
 		public System.Windows.Forms.ToolStripMenuItem backupCompanyFileToolStripMenuItem;
 		public System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
 		public System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
+		private System.Windows.Forms.ToolStripMenuItem openBillOfQuantityToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem quotesToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem openQuotesToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem closedQuotesToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem openBOQDetailsToolStripMenuItem;
 	}
 }

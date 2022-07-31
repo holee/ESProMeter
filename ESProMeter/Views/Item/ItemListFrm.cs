@@ -274,5 +274,10 @@ namespace ESProMeter.Views.Items
             //    }
             //}
         }
-    }
+
+		private void textSearch_Enter(object sender, EventArgs e)
+		{
+            //Select text in text box
+		}
+	}
 }
