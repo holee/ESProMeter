@@ -10,7 +10,7 @@ namespace ESProMeter.Views.Customers
         public CustomerCenterFrm()
         {
             InitializeComponent();
- 
+            gridCustomer.ClearSelection();
         }
 
         private void tlsNew_Click(object sender, EventArgs e)
@@ -115,6 +115,22 @@ namespace ESProMeter.Views.Customers
             //this.ShowCustomerCenter(textSearch.Text.Trim());
         }
 
-		
-	}
+        private void gridCustomer_SelectionChanged(object sender, EventArgs e)
+        {
+            if (gridCustomer.SelectedRows.Count > 0)
+            {
+                var row = gridCustomer.SelectedRows[0];
+                var id = row.GetValue<long>("ID");
+                CustomerDetailFrm form = new CustomerDetailFrm();
+                form.TopLevel = false;
+                form.TopMost = true;
+                form.FormBorderStyle = FormBorderStyle.None;
+                this.GetCustomerDetails(form, id);
+                this.pnlDetails.Controls?.Clear();
+                this.pnlDetails.Controls.Add(form);
+                form.Show();
+
+            }
+        }
+    }
 }

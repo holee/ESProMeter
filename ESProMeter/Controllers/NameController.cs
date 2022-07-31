@@ -101,6 +101,19 @@ namespace ESProMeter.Controllers
             }
 
         }
+        public static void GetCustomerDetails(this Form form, CustomerDetailFrm customer, long id)
+        {
+            try
+            {
+                AppService.GetNameInstance.GetAllCustomerById(customer, id, 1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
     }
 }
 
