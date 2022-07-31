@@ -221,7 +221,7 @@ namespace ESProMeter
         {
             Form form = new Views.Sites.SiteFrm();
             form.TopLevel = false;
-            form.TopMost = true;
+            //form.TopMost = true;
             form.FormBorderStyle = FormBorderStyle.Fixed3D;
             form.WindowState = FormWindowState.Normal;
             form.Dock = DockStyle.Fill;
@@ -248,7 +248,7 @@ namespace ESProMeter
             Form form = new Views.Reports.SummaryReportFrm();
             form.Text = "Open boq summary";
             form.TopLevel = false;
-            form.TopMost = true;
+            //form.TopMost = true;
             form.FormBorderStyle = FormBorderStyle.Fixed3D;
             form.WindowState = FormWindowState.Normal;
             form.Dock = DockStyle.Fill;
@@ -260,7 +260,7 @@ namespace ESProMeter
 		{
             Form form = new Views.Reports.DetailReportFrm();
             form.TopLevel = false;
-            form.TopMost = true;
+            //form.TopMost = true;
             form.FormBorderStyle = FormBorderStyle.Fixed3D;
             form.WindowState = FormWindowState.Normal;
             form.Dock = DockStyle.Fill;
