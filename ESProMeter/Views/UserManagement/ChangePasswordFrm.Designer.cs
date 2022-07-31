@@ -33,9 +33,9 @@ namespace ESProMeter.Views.UserManagement
 			this.label3 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.textBox2 = new System.Windows.Forms.TextBox();
-			this.textBox3 = new System.Windows.Forms.TextBox();
+			this.txtOldPassword = new System.Windows.Forms.TextBox();
+			this.txtNewPassword = new System.Windows.Forms.TextBox();
+			this.txtConfirmPassword = new System.Windows.Forms.TextBox();
 			this.mbtSave = new FontAwesome.Sharp.Material.MaterialButton();
 			this.mbtCancel = new FontAwesome.Sharp.Material.MaterialButton();
 			this.SuspendLayout();
@@ -46,8 +46,8 @@ namespace ESProMeter.Views.UserManagement
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(411, 42);
 			this.label1.TabIndex = 0;
-			this.label1.Text = "Enter your old password and new password and click Save. Make sure, password are " +
-    "case sensitive with at lease three characters. ";
+			this.label1.Text = "Enter your old password and new password then click Save. Make sure, password are" +
+    " case sensitive with at lease three characters. ";
 			// 
 			// label3
 			// 
@@ -76,37 +76,36 @@ namespace ESProMeter.Views.UserManagement
 			this.label5.TabIndex = 0;
 			this.label5.Text = "Reconfirm password:";
 			// 
-			// textBox1
+			// txtOldPassword
 			// 
-			this.textBox1.Location = new System.Drawing.Point(12, 79);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.PasswordChar = '*';
-			this.textBox1.PlaceholderText = "Enter your old password";
-			this.textBox1.Size = new System.Drawing.Size(411, 23);
-			this.textBox1.TabIndex = 1;
+			this.txtOldPassword.Location = new System.Drawing.Point(12, 79);
+			this.txtOldPassword.Name = "txtOldPassword";
+			this.txtOldPassword.PasswordChar = '*';
+			this.txtOldPassword.PlaceholderText = "Enter your old password";
+			this.txtOldPassword.Size = new System.Drawing.Size(411, 23);
+			this.txtOldPassword.TabIndex = 0;
 			// 
-			// textBox2
+			// txtNewPassword
 			// 
-			this.textBox2.Location = new System.Drawing.Point(12, 134);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.PasswordChar = '*';
-			this.textBox2.PlaceholderText = "Your new password";
-			this.textBox2.Size = new System.Drawing.Size(411, 23);
-			this.textBox2.TabIndex = 1;
+			this.txtNewPassword.Location = new System.Drawing.Point(12, 134);
+			this.txtNewPassword.Name = "txtNewPassword";
+			this.txtNewPassword.PasswordChar = '*';
+			this.txtNewPassword.PlaceholderText = "Your new password";
+			this.txtNewPassword.Size = new System.Drawing.Size(411, 23);
+			this.txtNewPassword.TabIndex = 1;
 			// 
-			// textBox3
+			// txtConfirmPassword
 			// 
-			this.textBox3.Location = new System.Drawing.Point(12, 187);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.PasswordChar = '*';
-			this.textBox3.PlaceholderText = "Confirm";
-			this.textBox3.Size = new System.Drawing.Size(411, 23);
-			this.textBox3.TabIndex = 1;
+			this.txtConfirmPassword.Location = new System.Drawing.Point(12, 187);
+			this.txtConfirmPassword.Name = "txtConfirmPassword";
+			this.txtConfirmPassword.PasswordChar = '*';
+			this.txtConfirmPassword.PlaceholderText = "Confirm";
+			this.txtConfirmPassword.Size = new System.Drawing.Size(411, 23);
+			this.txtConfirmPassword.TabIndex = 2;
 			// 
 			// mbtSave
 			// 
 			this.mbtSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
-			this.mbtSave.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.mbtSave.FlatAppearance.BorderColor = System.Drawing.Color.MediumOrchid;
 			this.mbtSave.FlatAppearance.BorderSize = 2;
 			this.mbtSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Aqua;
@@ -119,7 +118,7 @@ namespace ESProMeter.Views.UserManagement
 			this.mbtSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.mbtSave.Name = "mbtSave";
 			this.mbtSave.Size = new System.Drawing.Size(126, 30);
-			this.mbtSave.TabIndex = 26;
+			this.mbtSave.TabIndex = 3;
 			this.mbtSave.Text = "Save";
 			this.mbtSave.UseVisualStyleBackColor = false;
 			this.mbtSave.Click += new System.EventHandler(this.mbtSave_Click);
@@ -137,7 +136,7 @@ namespace ESProMeter.Views.UserManagement
 			this.mbtCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.mbtCancel.Name = "mbtCancel";
 			this.mbtCancel.Size = new System.Drawing.Size(126, 30);
-			this.mbtCancel.TabIndex = 27;
+			this.mbtCancel.TabIndex = 4;
 			this.mbtCancel.Text = "Cancel";
 			this.mbtCancel.UseVisualStyleBackColor = false;
 			// 
@@ -150,9 +149,9 @@ namespace ESProMeter.Views.UserManagement
 			this.ClientSize = new System.Drawing.Size(430, 251);
 			this.Controls.Add(this.mbtSave);
 			this.Controls.Add(this.mbtCancel);
-			this.Controls.Add(this.textBox3);
-			this.Controls.Add(this.textBox2);
-			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.txtConfirmPassword);
+			this.Controls.Add(this.txtNewPassword);
+			this.Controls.Add(this.txtOldPassword);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.label3);
@@ -173,9 +172,9 @@ namespace ESProMeter.Views.UserManagement
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label5;
-		private System.Windows.Forms.TextBox textBox1;
-		private System.Windows.Forms.TextBox textBox2;
-		private System.Windows.Forms.TextBox textBox3;
+		private System.Windows.Forms.TextBox txtOldPassword;
+		private System.Windows.Forms.TextBox txtNewPassword;
+		private System.Windows.Forms.TextBox txtConfirmPassword;
 		private FontAwesome.Sharp.Material.MaterialButton mbtSave;
 		private FontAwesome.Sharp.Material.MaterialButton mbtCancel;
 	}

@@ -16,5 +16,19 @@ namespace ESProMeter.Views.UserManagement
 		{
 			InitializeComponent();
 		}
+
+		private void mbtNew_Click(object sender, EventArgs e)
+		{
+			Form form = new Views.UserManagement.UserFrm();
+			form.Text = "Create New User";
+			form.ShowDialog();
+		}
+
+		private void mbtEdit_Click(object sender, EventArgs e)
+		{
+			Form form = new Views.UserManagement.UserFrm();
+			form.Text = "Edit User";
+			form.ShowDialog();
+		}
 	}
 }
