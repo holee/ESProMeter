@@ -18,8 +18,8 @@ namespace ESProMeter.Views.Items
         private DateTime _createdAt = DateTime.Now;
         private DateTime _updatedAt = DateTime.Now;
         private byte _isRate = 0;
-        public ItemType ItemTypes { get;set; }
-
+        public ItemsType ItemTypes { get;set; }
+        public ActionStatus ActionStatus { get; set; }
         #endregion
         #region Properties
         public string ITEMNAME
@@ -84,12 +84,22 @@ namespace ESProMeter.Views.Items
             pnlSearch.SendToBack();
             pnlSearch.Hide();
         }
-        public AddItemFrm(long Id,ActionType action)
+        private void textName_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (this.IsItemExist(textName.Text.Trim()))
+            {
+                MessageBox.Show("Item already exist", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                textName.SelectAll();
+                textName.Focus();
+                return;
+            }
+        }
+        public AddItemFrm(long Id,ItemsType itemType,ActionType action)
         {
             InitializeComponent();
             this.ShowItemType(this.cmbType);
             this.ShowUom(this.cmbUom);
-            this.GetItemForUpdate(Id, this);
+            this.GetItemForUpdate(itemType, Id,this);
             switch (action)
             {
                 case ActionType.EDIT:
@@ -103,7 +113,12 @@ namespace ESProMeter.Views.Items
                 default:
                     break;
             }
-          
+            if (this.ActionStatus == ActionStatus.Edit)
+            {
+                cmbType.Enabled = false;
+
+            }
+
             pnlSearch.SendToBack();
             pnlSearch.Hide();
         }
@@ -112,12 +127,12 @@ namespace ESProMeter.Views.Items
             if (((TextBox)sender).Text.Length > 0)
             {
                 ((DataTable)dgvItem.DataSource)?.Clear();
-                this.SearchItemList(dgvItem, ((TextBox)sender).Text,"ID", "ItemName", "ItemType", "Uom", "UomID", "Cost");
+                this.GetItemsWithoutBoqByName(((TextBox)sender).Text,dgvItem,"ID", "ItemName", "ItemType", "Uom", "UomID", "Cost");
             }
             else
             {
                 ((DataTable)dgvItem.DataSource)?.Clear();
-                this.SearchItemList(dgvItem,10, "ID", "ItemName", "ItemType", "Uom", "UomID", "Cost");
+                this.GetItemsWithBoq(dgvItem,10,"ID", "ItemName", "ItemType", "Uom", "UomID", "Cost");
             }
         }
 
@@ -142,17 +157,13 @@ namespace ESProMeter.Views.Items
         private void AddItemFrm_Load(object sender, EventArgs e)
         {
             
-            if (ItemListFrm.actionType == 1)
-            {
-                this.cmbType.Enabled = false;
-            }
             switch (ItemTypes)
             {
-                case Enums.ItemType.Boq:
+                case Enums.ItemsType.Boq:
                     ShowBoqForm();
                     
                     break;
-                case Enums.ItemType.Item:
+                case Enums.ItemsType.Item:
                     ShowItemForm();
                     break;
                 default:
@@ -167,40 +178,60 @@ namespace ESProMeter.Views.Items
 
         private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbType.SelectedIndex == 0)
+            if (cmbType.SelectedIndex ==3)
             {
                 ShowBoqForm();
-                this.ItemTypes = ItemType.Boq;
+                this.ItemTypes = ItemsType.Boq;
             }
             else
             {
-                this.ItemTypes = ItemType.Item;
+                this.ItemTypes = ItemsType.Item;
                 ShowItemForm();
             }
         }
 
-        int itemSequence = 1;
         private void dgvItem_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvItem.Columns[e.ColumnIndex].Name== "Column1" &&
                     (dgvItem.Columns[e.ColumnIndex] is DataGridViewButtonColumn))
             {
-                var id = dgvItem.GetValue<long>(e.RowIndex, "ItemID");
-                if (CheckItemExist(id))
+                if (dgvItem.SelectedRows.Count > 0)
                 {
-                    textBox1.Text = "";
-                    MessageBox.Show("Item Already exist in the list", "ESPRO-METER", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
+                    var selectedRow = dgvItem.SelectedRows[0];
+                    var id = selectedRow.GetValue<long>("ItemID");
+                    if (CheckItemExist(id))
+                    {
+                        textBox1.Text = "";
+                        MessageBox.Show("Item Already exist in the list", "ESPRO-METER", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    ///--------------------------------------------
+                    DataTable table = ((DataTable)dgvBoq?.DataSource);
+                    var items = selectedRow.GetValues("ItemID", "ItemName", "ItemType", "Uom", "UomID");
+                    items.Add(Utility.NumberString(1, "N2"));
+                    if (table!=null) {
+                        DataRow r = table.NewRow();
+                        r[0] = items[0];
+                        r[1] = items[1];
+                        r[2] = items[2];
+                        r[3] = items[3];
+                        r[4] = items[4];
+                        r[5] = items[5];
+                        r[6] = items[6];
+                        table.Rows.Add(r);
+                    }
+                    else
+                    {
+                        dgvBoq.Rows.Add(items.ToArray());
+                    }
                 }
-                var data=this.SearchItemList(id, "ID", "ItemName", "ItemType", "Uom", "UomID");
-                data.Add(Utility.NumberString(1,"N2"));
-                dgvBoq.Rows.Add(data.ToArray());
+                //------------------------------------
                 toggle = false;
                 pnlSearch.Hide();
                 pnlSearch.SendToBack();
                 textBox1.Text = "";
                 btndropDown.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronUpBox;
-                itemSequence++;
+                
             }
         }
 
@@ -212,6 +243,7 @@ namespace ESProMeter.Views.Items
         {
             foreach (DataGridViewRow item in dgvBoq.Rows)
             {
+                if (item.Cells["BOQITEMLINEID"].Value == null) continue;
                 if (item.Cells["BOQITEMLINEID"].Value.Equals(value))
                 {
                     return true;
@@ -267,7 +299,7 @@ namespace ESProMeter.Views.Items
                 toggle = true;
                 btndropDown.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronDownBox;
                 ((DataTable)dgvItem.DataSource)?.Clear();
-                this.SearchItemList(dgvItem,10,"ID", "ItemName", "ItemType", "Uom", "UomID", "Cost");
+                this.GetItemsWithoutBoq(dgvItem,"ID", "ItemName", "ItemType", "Uom", "UomID", "Cost");
                 dgvBoq.SendToBack();
             }
             else
@@ -314,6 +346,24 @@ namespace ESProMeter.Views.Items
 
             }
         }
+
+        private void dgvBoq_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            
+             dgvBoq.SetText(e.RowIndex, "BOQITEMLINESEQ", e.RowIndex + 1);
+            //dgvBoq.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Red;
+            
+        }
+
+        private void dgvBoq_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            for(int i = 0; i < dgvBoq.Rows.Count; i++)
+            {
+                dgvBoq.SetText(i, "BOQITEMLINESEQ",i+1);
+            }
+        }
+
+       
     }
 }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ESProMeter.Enums
 {
-    public enum ItemType 
+    public enum ItemsType 
     {
         Boq,
         Item

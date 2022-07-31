@@ -8,6 +8,7 @@ namespace ESProMeter.Enums
 {
     public enum ActionStatus
     {
-
+        New,
+        Edit
     }
 }

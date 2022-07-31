@@ -1,11 +1,6 @@
 ﻿using System.Windows.Forms;
 using ESProMeter.Extensions;
-using System.Data;
-using System.Collections.Generic;
-using ESProMeter.DataAccess;
 using ESProMeter.Services;
-using ESProMeter.IVews;
-using Dapper;
 using ESProMeter.Views.Items;
 using ESProMeter.Enums;
 
@@ -13,161 +8,72 @@ namespace ESProMeter.Controllers
 {
     public static class ItemController
     {
-        
-        private static readonly SqlAccess instance = DataUtility.GetInstance;
-        public static bool SearchByFieldName(this Form form,string fieldName,object searchValue,out DataTable destination, string op = "=")
+        /// <summary>
+        /// Get Items And Boqs
+        /// </summary>
+        /// <param name="form"></param>
+        /// <param name="grid"></param>
+        /// <param name="page"></param>
+        /// <param name="columns"></param>
+        public static void GetItemsWithBoq(this Form form, DataGridView grid,int page=10,params string[] columns)
         {
-            string sql = $"SELECT * FROM [dbo].[vItemWithUom] WHERE {fieldName} {op} @fieldName;";
-            destination = new DataTable();
-            destination = instance.UseSql(sql)
-                                  .FindAsTable<dynamic>(new { fieldName = searchValue });
-            if(destination.Rows.Count > 0)
+            if (page <= 0)
             {
-                return true;
+                if (AppService.GetItemInstance.GetAllItems(1, out var table))
+                {
+                    table.SelectColumn(columns).UseDataTableAsGridView(grid);
+                }
             }
-            return false;
+            else
+            {
+                if (AppService.GetItemInstance.GetAllItems(1,page, out var table))
+                {
+                    table.SelectColumn(columns).UseDataTableAsGridView(grid);
+                }
+            }
+        }
+        public static void GetItemsWithoutBoq(this Form form, DataGridView grid, params string[] columns) 
+        {
+            if (AppService.GetItemInstance.GetItemWithoutBoq(1, out var table))
+            {
+                table.SelectColumn(columns).UseDataTableAsGridView(grid);
+            }
+        }
+        public static void GetItemsWithoutBoqByName(this Form form,string itemName, DataGridView grid, params string[] columns)
+        {
+            if (AppService.GetItemInstance.GetItemWithoutBoqByName(1,itemName,out var table))
+            {
+                table.SelectColumn(columns).UseDataTableAsGridView(grid);
+            }
+        } 
+        public static void ShowItemList(this Form form, DataGridView grid,byte isActive)
+        {
+            if(AppService.GetItemInstance.GetAllItems(isActive,out var table))
+            {
+                grid.DataSource = table;
+            }
+
         }
 
-        public static void ShowItemList(this Form form,DataGridView grid,params string[] columns)
+        public static bool MakeItemInactiveOrActive(this Form form,long id,byte i)
         {
-            var sql = columns.Length == 0 ? "*" : string.Join(",", columns);
-            instance.UseSql($"SELECT {sql} FROM VItem;")
-               .FindAsTable<dynamic?>(null)
-               .UseDataTableAsGridView(grid);
-        }
-        public static void ShowItemList(this Form form, DataGridView grid,
-            Dictionary<string,object> search, 
-            params string[] columns)
-        {
-            List<string> list = new List<string>();
-            foreach(KeyValuePair<string,object> kv in search)
-            {
-                list.Add($"{kv.Key}={kv.Value}");
-            }
-            var condition = string.Join("",list.ToArray());
-            var sql = columns.Length == 0 ? "*" : string.Join(",", columns);
-            instance.UseSql($"SELECT {sql} FROM VItem;")
-               .FindAsTable<dynamic?>(null)
-               .UseDataTableAsGridView(grid);
-        }
-        public static void ShowItemList(this Form form,DataGridView grid, string type, string itemName, params string[] columns)
-        {
-            var sql = columns.Length == 0 ? "*" : string.Join(",", columns);
-
-            instance.UseSql($"SELECT TOP(10) {sql} FROM [dbo].[VItem] WHERE [ITEMTYPE]=@type AND [Name] LIKE @itemName+'%';")
-               .FindAsTable(new { type = type, itemName = itemName })
-               .UseDataTableAsGridView(grid);
+            return AppService.GetItemInstance.MakeInActiveOrActive(id, i);
         }
 
-        public static void SearchItemList(this Form form, DataGridView grid, string itemName, params string[] columns)
-        {
-            var sql = columns.Length == 0 ? "*" : string.Join(",", columns); 
 
-            if(instance.UseSql($"SELECT {sql} FROM [dbo].[VItem] WHERE [ITEMTYPE] NOT IN ('BillOfQuantity') AND [ItemName] LIKE @itemName+'%';")
-               .FindAsTable(new { itemName = itemName },out DataTable table))
+        public static void ShowItemList(this Form form, DataGridView grid, byte isActive,
+            int page,string fieldName="ItemName",string orderBy="ASC")
+        {
+            if (AppService.GetItemInstance.GetAllItems(isActive,page, out var table))
             {
-                table.UseDataTableAsGridView(grid);
+                table.DefaultView.Sort = $"{fieldName} {orderBy}";
+                grid.DataSource = table;
             }
-        }
 
-        public static void SearchItemList(this Form form, DataGridView grid, int rows, params string[] columns)
-        {
-            var sql = columns.Length == 0 ? "*" : string.Join(",", columns);
-
-            if (instance.UseSql($"SELECT TOP({rows}) {sql} FROM [dbo].[VItem] WHERE [ITEMTYPE] NOT IN ('BillOfQuantity')")
-               .FindAsTable<dynamic>(null, out DataTable table))
-            {
-                table.UseDataTableAsGridView(grid);
-            }
         }
-        public static List<object> SearchItemList(this Form form,long itemId, params string[] columns)
+        public static bool IsItemExist(this Form form, string itemName)
         {
-            List<object?> list = new List<object?>();
-            var sql = columns.Length == 0 ? "*" : string.Join(",", columns);
-            if(instance.UseSql($"SELECT TOP(10) {sql} FROM [dbo].[VItem] WHERE NOT [ItemType]='BillOfQuantity' AND [ID]=@itemId")
-               .FindOne(new { itemId = itemId },out DataRow row))
-            {
-                list.AddRange(row.ItemArray);
-            }
-            return list;
-        }
-        //VItem
-        public static void ShowItemList(this Form form, DataGridView grid,string itemName, params string[] columns)
-        {
-            var sql = columns.Length == 0 ? "*" : string.Join(",", columns);
-
-            instance.UseSql($"SELECT {sql} FROM [dbo].[VItem] WHERE [ItemName] LIKE @itemName+'%';")
-               .FindAsTable(new {itemName = itemName })
-               .UseDataTableAsGridView(grid);
-        }
-        public static bool SearchByFieldName(this Form form,string type, string fieldName, object searchValue, out DataTable destination, string op = "=")
-        {
-            string sql = $"SELECT * FROM [dbo].[vItemWithUom] WHERE {fieldName} {op} @fieldName AND [Type]=@type;";
-            destination = new DataTable();
-            destination = instance.UseSql(sql)
-                            .FindAsTable<dynamic>(new { fieldName = searchValue, type = type });
-            if (destination.Rows.Count > 0)
-            {
-                return true;
-            }
-            return false;
-        }
-        public static bool MakeItemActiveOrInActive(this Form form, bool isActive = false)
-        {
-            var id = form.AsDataGrid("dataItemList").AsNumber<long>("Column1");
-            var sql = "UPDATE [dbo].[Item] SET IsActive=@IsActive WHERE ItemID=@ItemID";
-            if (instance.UseSql(sql)
-                .InsertOrUpdate(new { isActive = isActive, ItemID = id }) > 0)
-            {
-                form.AsDataGrid("dataItemList").SetText("Column12", isActive);
-                return true;
-            }
-            return false;
-        }
-        public static bool DeleteItem(this Form form,long id)
-        {
-            try
-            {
-                instance.StartTransaction();
-                instance.UseSql("DELETE FROM [dbo].[TITEM] WHERE ID=@itemID;")
-                       .Delete<dynamic>(new { itemID = id });
-                instance.UseSql("DELETE FROM [dbo].[TBOQITEMLINE] WHERE BOQITEMID=@itemID;")
-                        .Delete<dynamic>(new { itemID = id });
-                instance.ComitTransaction();
-                return true;
-            }
-            catch (System.Exception)
-            {
-                instance.RollbackTransaction();
-                return false;
-            }
-            
-        }
-        public static void ShowItemList(this Form form, DataGridView grid, string sortBy="ID", string sortType = "DESC")
-        {
-            instance.UseSql($"SELECT * FROM [dbo].[VItem] ORDER BY {sortBy} {sortType};")
-               .FindAsTable<dynamic?>(null)
-               .UseDataTableAsGridView(grid);
-        }
-        public static void ShowItemList(this Form form,DataGridView grid, int numberOfRows, string sortBy,string sortType = "DESC")
-        {
-            instance.UseSql($"SELECT TOP({numberOfRows}) * FROM [dbo].[VItem] ORDER BY {sortBy} {sortType};")
-               .FindAsTable<dynamic?>(null)
-               .UseDataTableAsGridView(grid);
-        }
-        public static void ShowItemList(this Form form,DataGridView grid, string type, int numberOfRows, string sortBy,string sortType="DESC")
-        {
-            instance.UseSql($"SELECT TOP({numberOfRows}) * FROM [dbo].[VItem] WHERE [ItemType]=@type ORDER BY {sortBy} {sortType};")
-               .FindAsTable<dynamic>(new { type=type })
-               .UseDataTableAsGridView(grid);
-        }
-        public static void ShowItemList(this Form form,DataGridView grid, string type, string itemName, int numberOfRows, string sortBy,string sortType, params string[] columns)
-        {
-            var sql = columns.Length == 0 ? "*" : string.Join(",", columns);
-
-            instance.UseSql($"SELECT TOP(numberOfRows) {sql} FROM [dbo].[VItem] WHERE [ItemType]=@type AND [ItemName] LIKE @itemName+'%' ORDER BY {sortBy} {sortType};")
-               .FindAsTable(new { type = type, itemName = itemName })
-               .UseDataTableAsGridView(grid);
+            return AppService.GetItemInstance.ItemAlreadyExist(itemName);
         }
 
         /// <summary>
@@ -177,101 +83,70 @@ namespace ESProMeter.Controllers
         /// <param name="itemId"></param>
         /// <param name="item"></param>
         /// <param name="columns"></param>
-        public static void GetItemForUpdate(this Form form, long itemId,AddItemFrm item)
+        public static void GetItemForUpdate(this Form form,ItemsType itemType, long itemId,AddItemFrm item)
         {
-            if(AppService.GetItemInstance.GetItemWithItemLineById(itemId, item, out var table)) 
+            switch(itemType)    
             {
-                var newTable = table.SelectColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE","UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ");
-                item.AsControl<DataGridView>("dgvBoq").DataSource = newTable;
+                case ItemsType.Boq:
+                     if (AppService.GetItemInstance.GetItemWithItemLineById(itemId, item, out var table))
+                     {
+                            var newTable = table.SelectColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ");
+                            item.AsControl<DataGridView>("dgvBoq").DataSource = newTable;
+                     }
+                    break;
+                case ItemsType.Item:
+                    AppService.GetItemInstance.GetItemById(itemId, item);
+                    break;
             }
         }
-       
-        public static void ShowItemType(this Form form)
+        public static void ShowItemType(this Form form, ComboBox storage)
         {
-            instance.UseSql("SELECT * FROM [dbo].[TTYPE];")
-                .FindAsTable<dynamic?>(null)
-                .AsCombobox(form.AsControl<ComboBox>("cmbType"), "Type", "Type");
-        }
-        public static void ShowItemType(this Form form,ComboBox storage)
-        {
-            instance.UseSql("SELECT [ID],[TYPENAME] FROM [dbo].[TTYPE] WHERE [TYPENAME] NOT IN ('AdditionalCost','Margin','Inflation') AND [TypeOf]='item' ORDER BY  [TYPENAME] ASC;")
-                .FindAsTable<dynamic?>(null)
-                .AsCombobox(storage, "TYPENAME", "ID");
-        }
-        public static void ShowItemType(this Form form,string ofType="item",params string[] types)
-        {
-            string query = "";
-            if (types.Length > 0)
-            {
-                List<string> newValue = new List<string>();
-                foreach (string type in types)
-                {
-                    newValue.Add($"'{type}'");
-                }
-                query =string.Join(",", newValue.ToArray());
+            if(AppService.GetItemInstance.GetItemsType(out var table)){
+                table.SelectColumn("ID", "TYPENAME")
+                        .AsCombobox(storage, "TYPENAME", "ID");
             }
 
-            instance.UseSql($"SELECT [TypeID],[Type] FROM [dbo].[TYPE] WHERE [type] NOT IN ({query}) AND [TypeOf]=@ofType;")
-                .FindAsTable(new { ofType=ofType})
-                .AsCombobox(form.AsControl<ComboBox>("cmbType"), "Type", "Type");
         }
-        public static void ShowBoqItems(this Form form)
-        {
-            instance.UseSql("SELECT [TypeID],[Type] FROM [dbo].[TYPE] WHERE [type]='Bill Of Quantity' AND [TypeOf]='item';")
-                .FindAsTable<dynamic?>(null)
-                .AsCombobox(form.AsControl<ComboBox>("cmbType"), "Type", "Type");
-        }
-        public static void ShowItems(this Form form)
-        {
-            instance.UseSql("SELECT [TypeID],[Type] FROM [dbo].[TYPE] WHERE [type] NOT IN ('Additional Cost','Margin','Inflation','Bill Of Quantity') AND [TypeOf]='item';")
-                .FindAsTable<dynamic>(new { }).AsCombobox(form.AsControl<ComboBox>("cmbType"), "Type", "Type");
-        }
+      
         public static void ShowUom(this Form form)
         {
-            instance.UseSql("SELECT UomID,Abbreviation FROM [TUOM]")
-                .FindAsTable<dynamic?>(null).AsCombobox(form.AsControl<ComboBox>("cmbUom"), "Abbreviation", "UOMID");
-        }
-        public static void ShowUom(this Form form,ComboBox storage)
-        {
-            instance.UseSql("SELECT ID,UOMNAME FROM [TUOM]")
-                .FindAsTable<dynamic?>(null)
-                .AsCombobox(storage, "UOMNAME", "ID");
-        }
-        public static void GetItemType(this Form form,string key,string typeName)
-        {
-            var cmb = form.AsCombobox(key);
-            instance.UseSql("SELECT * FROM [dbo].[iTEM] WHERE [type]=@type;")
-                           .FindAsTable(new { type=typeName})
-                           .AsCombobox(cmb, "Type", "Type");
-        }
-        public static bool GetItemTypeById(this Form form,long id,out DataRow row)
-        {
-            if (instance.UseSql("SELECT * FROM [dbo].[vItemWithUom] WHERE [ItemId]=@id;")
-                           .FindOne(new { id = id }, out row)) {
-                return row != null;
+            if (AppService.UomGetInstance.GetAllUoms(1, out var table))
+            {
+                table.SelectColumn("Abbreviation", "ID")
+                       .AsCombobox(form.AsControl<ComboBox>("cmbUom"), "Abbreviation", "ID");
             }
-            return false;
+
+
         }
-        public static (DataRow row,bool found) GetItemTypeById(this Form form, long id,params string[] columns)
+        public static void ShowUom(this Form form, ComboBox storage)
         {
-            string sql = columns.Length == 0 ? "*" : string.Join(",", columns);
-            if(instance.UseSql($"SELECT {sql} FROM [dbo].[vItemWithUom] WHERE [ItemId]=@id;")
-                           .FindOne<dynamic>(new { id = id },out DataRow row)){
-                if (row != null)
-                {
-                    return (row, true);
-                }
+            if (AppService.UomGetInstance.GetAllUoms(1, out var table))
+            {
+                table.SelectColumn("Abbreviation", "ID")
+                       .AsCombobox(storage, "Abbreviation", "ID");
             }
-            return (null, false);
         }
-        public static void ItemCreate(this Form form,AddItemFrm itemFrm,ItemType itemType)
+        
+
+
+
+
+
+        /// <summary>
+        /// Create and Update Items
+        /// </summary>
+        /// <param name="form"></param>
+        /// <param name="itemFrm"></param>
+        /// <param name="itemType"></param>
+
+        public static void ItemCreate(this Form form,AddItemFrm itemFrm,ItemsType itemType)
         {
             switch (itemType)
             {
-                case ItemType.Item:
+                case ItemsType.Item:
                     AppService.GetItemInstance.ItemCreate(itemFrm);
                     break;
-                case ItemType.Boq:
+                case ItemsType.Boq:
                     var constainer = itemFrm.AsControl<DataGridView>("dgvBoq");
                     AppService.GetItemInstance.BoqCreateItemLine(itemFrm, constainer);
                     break;
@@ -279,14 +154,14 @@ namespace ESProMeter.Controllers
                     break;
             }    
         }
-        public static void ItemUpdate(this Form form,AddItemFrm item,ItemType itemType) 
+        public static void ItemUpdate(this Form form,AddItemFrm item,ItemsType itemType) 
         {
             switch(itemType)
             {
-                case ItemType.Item:
+                case ItemsType.Item:
                     AppService.GetItemInstance.ItemUpdate(item);
                 break;
-                case ItemType.Boq:
+                case ItemsType.Boq:
                     var constainer = item.AsControl<DataGridView>("dgvBoq");
                     AppService.GetItemInstance.BoqUpdateItemLine(item, constainer);
                 break;
@@ -294,13 +169,164 @@ namespace ESProMeter.Controllers
                     break;
             }
         }
-       
-       
 
+        /// <summary>
+        /// Items And Boq Delete
+        /// </summary>
+        /// <param name="form"></param>
+        /// <param name="isActive"></param>
+        /// <returns></returns>
+
+        public static bool MakeItemActiveOrInActive(this Form form, bool isActive = false)
+        {
+            //var id = form.AsDataGrid("dataItemList").AsNumber<long>("Column1");
+            //var sql = "UPDATE [dbo].[Item] SET IsActive=@IsActive WHERE ItemID=@ItemID";
+            //if (instance.UseSql(sql)
+            //    .InsertOrUpdate(new { isActive = isActive, ItemID = id }) > 0)
+            //{
+            //    form.AsDataGrid("dataItemList").SetText("Column12", isActive);
+            //    return true;
+            //}
+            return false;
+        }
+        public static bool DeleteItem(this Form form, long id)
+        {
+            try
+            {
+                return AppService.GetItemInstance.DeleteItemWithBoq(id);
+            }
+            catch (System.Exception)
+            {
+                return false;
+            }
+
+        }
     }
 }
 
+//public static void GetItemType(this Form form, string key, string typeName)
+//{
+//    var cmb = form.AsCombobox(key);
+//    instance.UseSql("SELECT * FROM [dbo].[iTEM] WHERE [type]=@type;")
+//                   .FindAsTable(new { type = typeName })
+//                   .AsCombobox(cmb, "Type", "Type");
+//}
+//public static bool GetItemTypeById(this Form form, long id, out DataRow row)
+//{
+//    if (instance.UseSql("SELECT * FROM [dbo].[vItemWithUom] WHERE [ItemId]=@id;")
+//                   .FindOne(new { id = id }, out row))
+//    {
+//        return row != null;
+//    }
+//    return false;
+//}
+//public static (DataRow row, bool found) GetItemTypeById(this Form form, long id, params string[] columns)
+//{
+//    string sql = columns.Length == 0 ? "*" : string.Join(",", columns);
+//    if (instance.UseSql($"SELECT {sql} FROM [dbo].[vItemWithUom] WHERE [ItemId]=@id;")
+//                   .FindOne<dynamic>(new { id = id }, out DataRow row))
+//    {
+//        if (row != null)
+//        {
+//            return (row, true);
+//        }
+//    }
+//    return (null, false);
+//}
 
+//public static void ShowItemType(this Form form, string ofType = "item", params string[] types)
+//{
+//    string query = "";
+//    if (types.Length > 0)
+//    {
+//        List<string> newValue = new List<string>();
+//        foreach (string type in types)
+//        {
+//            newValue.Add($"'{type}'");
+//        }
+//        query = string.Join(",", newValue.ToArray());
+//    }
+
+//    instance.UseSql($"SELECT [TypeID],[Type] FROM [dbo].[TYPE] WHERE [type] NOT IN ({query}) AND [TypeOf]=@ofType;")
+//        .FindAsTable(new { ofType = ofType })
+//        .AsCombobox(form.AsControl<ComboBox>("cmbType"), "Type", "Type");
+//}
+//public static void ShowBoqItems(this Form form)
+//{
+//    instance.UseSql("SELECT [TypeID],[Type] FROM [dbo].[TYPE] WHERE [type]='Bill Of Quantity' AND [TypeOf]='item';")
+//        .FindAsTable<dynamic?>(null)
+//        .AsCombobox(form.AsControl<ComboBox>("cmbType"), "Type", "Type");
+//}
+//public static void ShowItems(this Form form)
+//{
+//    instance.UseSql("SELECT [TypeID],[Type] FROM [dbo].[TYPE] WHERE [type] NOT IN ('Additional Cost','Margin','Inflation','Bill Of Quantity') AND [TypeOf]='item';")
+//        .FindAsTable<dynamic>(new { }).AsCombobox(form.AsControl<ComboBox>("cmbType"), "Type", "Type");
+//}
+//private static readonly SqlAccess instance = DataUtility.GetInstance;
+//public static bool SearchByFieldName(this Form form,string fieldName,object searchValue,out DataTable destination, string op = "=")
+//{
+//    string sql = $"SELECT * FROM [dbo].[vItemWithUom] WHERE {fieldName} {op} @fieldName;";
+//    destination = new DataTable();
+//    destination = instance.UseSql(sql)
+//                          .FindAsTable<dynamic>(new { fieldName = searchValue });
+//    if(destination.Rows.Count > 0)
+//    {
+//        return true;
+//    }
+//    return false;
+//}
+
+//public static void ShowItemList(this Form form,DataGridView grid,params string[] columns)
+//{
+//    var sql = columns.Length == 0 ? "*" : string.Join(",", columns);
+//    instance.UseSql($"SELECT {sql} FROM VItem;")
+//       .FindAsTable<dynamic?>(null)
+//       .UseDataTableAsGridView(grid);
+//}
+
+////VItem
+//public static void ShowItemList(this Form form, DataGridView grid,string itemName, params string[] columns)
+//{
+//    var sql = columns.Length == 0 ? "*" : string.Join(",", columns);
+
+//    instance.UseSql($"SELECT {sql} FROM [dbo].[VItem] WHERE [ItemName] LIKE @itemName+'%';")
+//       .FindAsTable(new {itemName = itemName })
+//       .UseDataTableAsGridView(grid);
+//}
+//public static bool SearchByFieldName(this Form form,string type, string fieldName, object searchValue, out DataTable destination, string op = "=")
+//{
+//    string sql = $"SELECT * FROM [dbo].[vItemWithUom] WHERE {fieldName} {op} @fieldName AND [Type]=@type;";
+//    destination = new DataTable();
+//    destination = instance.UseSql(sql)
+//                    .FindAsTable<dynamic>(new { fieldName = searchValue, type = type });
+//    if (destination.Rows.Count > 0)
+//    {
+//        return true;
+//    }
+//    return false;
+//}
+
+
+//public static void ShowItemList(this Form form,DataGridView grid, int numberOfRows, string sortBy,string sortType = "DESC")
+//{
+//    instance.UseSql($"SELECT TOP({numberOfRows}) * FROM [dbo].[VItem] ORDER BY {sortBy} {sortType};")
+//       .FindAsTable<dynamic?>(null)
+//       .UseDataTableAsGridView(grid);
+//}
+//public static void ShowItemList(this Form form,DataGridView grid, string type, int numberOfRows, string sortBy,string sortType="DESC")
+//{
+//    instance.UseSql($"SELECT TOP({numberOfRows}) * FROM [dbo].[VItem] WHERE [ItemType]=@type ORDER BY {sortBy} {sortType};")
+//       .FindAsTable<dynamic>(new { type=type })
+//       .UseDataTableAsGridView(grid);
+//}
+//public static void ShowItemList(this Form form,DataGridView grid, string type, string itemName, int numberOfRows, string sortBy,string sortType, params string[] columns)
+//{
+//    var sql = columns.Length == 0 ? "*" : string.Join(",", columns);
+
+//    instance.UseSql($"SELECT TOP(numberOfRows) {sql} FROM [dbo].[VItem] WHERE [ItemType]=@type AND [ItemName] LIKE @itemName+'%' ORDER BY {sortBy} {sortType};")
+//       .FindAsTable(new { type = type, itemName = itemName })
+//       .UseDataTableAsGridView(grid);
+//}
 
 
 //public static bool GetExtraItem(this Form form, out DataTable data)

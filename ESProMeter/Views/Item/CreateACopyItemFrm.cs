@@ -8,35 +8,42 @@ using System.Windows.Forms;
 
 namespace ESProMeter.Views.Items
 {
-    public partial class CreateACopyItemFrm : Form,IItem
+    public partial class CreateACopyItemFrm : Form, IItem
     {
-        public string ItemName { 
-            get => textName.Text.Trim(); 
-            set => textName.SetText(value); 
+        public string ItemName
+        {
+            get => textName.Text.Trim();
+            set => textName.SetText(value);
         }
-        public string ItemType { 
-            get => cmbType.Text; 
-            set => cmbType.Text=value; 
+        public string ItemType
+        {
+            get => cmbType.Text;
+            set => cmbType.Text = value;
         }
-        public long UomId { 
-            get => (long)cmbUom.SelectedValue; 
-            set => cmbUom.SelectedValue=value; 
+        public long UomId
+        {
+            get => (long)cmbUom.SelectedValue;
+            set => cmbUom.SelectedValue = value;
         }
-        public decimal Cost { 
-            get => textCost.AsNumber<decimal>(); 
-            set => textCost.SetText(value); 
+        public decimal Cost
+        {
+            get => textCost.AsNumber<decimal>();
+            set => textCost.SetText(value);
         }
-        public string Description { 
-            get => textDescription.Text.Trim(); 
-            set => textDescription.SetText(value); 
+        public string Description
+        {
+            get => textDescription.Text.Trim();
+            set => textDescription.SetText(value);
         }
-        public bool IsActive { 
-            get => !chkIsInActive.Checked; 
-            set => chkIsInActive.Checked = !value; 
+        public bool IsActive
+        {
+            get => !chkIsInActive.Checked;
+            set => chkIsInActive.Checked = !value;
         }
-        public long Id { 
-            get => lblItemID.AsNumber<long>(); 
-            set => lblItemID.SetText(value); 
+        public long Id
+        {
+            get => lblItemID.AsNumber<long>();
+            set => lblItemID.SetText(value);
         }
         public CreateACopyItemFrm()
         {
@@ -57,12 +64,12 @@ namespace ESProMeter.Views.Items
         {
             if (((TextBox)sender).Text.Length > 0)
             {
-                ((DataTable)dgvItem.DataSource)?.Clear();
-                this.SearchItemList(dgvItem, ((TextBox)sender).Text,"ID", "ItemName", "ItemType", "Uom", "UomID", "Cost");
-                dgvItem.Visible = true;
-                dgvItem.BringToFront();
-                dgvItem.Location = new Point(((TextBox)sender).Location.X, ((TextBox)sender).Location.Y + ((TextBox)sender).Height);
-                return;
+                //((DataTable)dgvItem.DataSource)?.Clear();
+                //this.SearchItemList(dgvItem, ((TextBox)sender).Text, "ID", "ItemName", "ItemType", "Uom", "UomID", "Cost");
+                //dgvItem.Visible = true;
+                //dgvItem.BringToFront();
+                //dgvItem.Location = new Point(((TextBox)sender).Location.X, ((TextBox)sender).Location.Y + ((TextBox)sender).Height);
+                //return;
             }
             dgvItem.Visible = false;
             dgvItem.SendToBack();
@@ -77,7 +84,7 @@ namespace ESProMeter.Views.Items
             this.materialButton1.Location = new Point(460, 220);
             this.materialButton2.Location = new Point(585, 220);
         }
-        private void ShowBoqItemOnlyForm() 
+        private void ShowBoqItemOnlyForm()
         {
             this.groupBoq.Visible = true;
             this.Controls.Add(this.groupBoq);
@@ -88,24 +95,15 @@ namespace ESProMeter.Views.Items
         }
         private void AddItemFrm_Load(object sender, EventArgs e)
         {
-            
-            if (ItemListFrm.actionType == 1)
-            {
-               
-                this.cmbType.Enabled = false;
-            }
-            else
-            {
-               
-            }
-            if(ItemListFrm._itemType != 0)
-            {
-                ShowItemOnlyForm();
-            }
-            else
-            {
-                ShowBoqItemOnlyForm();
-            }
+
+            //if(ItemListFrm._itemType != 0)
+            //{
+            //    ShowItemOnlyForm();
+            //}
+            //else
+            //{
+            //    ShowBoqItemOnlyForm();
+            //}
         }
 
         private void materialButton2_Click(object sender, EventArgs e)
@@ -115,7 +113,7 @@ namespace ESProMeter.Views.Items
 
         private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbType.SelectedIndex == 0)
+            if (cmbType.SelectedIndex == 3)
             {
                 ShowBoqItemOnlyForm();
             }
@@ -128,7 +126,7 @@ namespace ESProMeter.Views.Items
         int itemSequence = 1;
         private void dgvItem_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvItem.Columns[e.ColumnIndex].Name== "Column1" &&
+            if (dgvItem.Columns[e.ColumnIndex].Name == "Column1" &&
                     (dgvItem.Columns[e.ColumnIndex] is DataGridViewButtonColumn))
             {
                 var id = dgvItem.GetValue<long>(e.RowIndex, "ItemID");
@@ -139,13 +137,13 @@ namespace ESProMeter.Views.Items
                     textBox1.Text = "";
                     return;
                 }
-                var data=this.SearchItemList(id, "ID", "ItemName", "ItemType", "Uom", "UomID");
-                data.Add(Utility.NumberString(1,"N2"));
-                dgvBoq.Rows.Add(data.ToArray());
-                dgvItem.Visible = false;
-                dgvItem.SendToBack();
-                textBox1.Text = "";
-                itemSequence++;
+                //var data=this.SearchItemList(id, "ID", "ItemName", "ItemType", "Uom", "UomID");
+                //data.Add(Utility.NumberString(1,"N2"));
+                //dgvBoq.Rows.Add(data.ToArray());
+                //dgvItem.Visible = false;
+                //dgvItem.SendToBack();
+                //textBox1.Text = "";
+                //itemSequence++;
             }
         }
 
@@ -161,7 +159,7 @@ namespace ESProMeter.Views.Items
                 {
                     return true;
                 }
-                    
+
             }
             return false;
         }
@@ -174,7 +172,7 @@ namespace ESProMeter.Views.Items
                 {
                     this.DialogResult = DialogResult.OK;
                 }
-                
+
             }
             else
             {
@@ -183,7 +181,7 @@ namespace ESProMeter.Views.Items
                     //this.CreateNewBoqItem(this, this.dgvBoq);
                     this.DialogResult = DialogResult.OK;
                 }
-                
+
             }
         }
 
@@ -191,7 +189,7 @@ namespace ESProMeter.Views.Items
         {
             if (dgvBoq.Rows.Count > 0)
             {
-                if (dgvBoq.Columns[e.ColumnIndex].Name== "btnDeleteColumn"
+                if (dgvBoq.Columns[e.ColumnIndex].Name == "btnDeleteColumn"
                     && dgvBoq.Columns[e.ColumnIndex] is DataGridViewColumn)
                 {
                     dgvBoq.Rows.RemoveAt(e.RowIndex);

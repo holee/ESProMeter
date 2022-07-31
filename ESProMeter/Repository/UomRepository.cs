@@ -3,27 +3,22 @@ using ESProMeter.Extensions;
 using ESProMeter.IVews;
 using ESProMeter.Services;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ESProMeter.Repository
 {
     public class UomRepository
     {
-        private static readonly SqlAccess instance = DataUtility.GetInstance;
         public bool GetAllUoms(byte isActive,out DataTable table)
         {
-            return instance.UseProcedure($"UOM_sp_SELECT_ALL").FindAsTable<dynamic>(new
+            return AppService.SqlGetInstance.UseProcedure($"UOM_sp_SELECT_ALL").FindAsTable<dynamic>(new
             {
                 isAct = isActive,
             }, out table);
         }
         public bool GetAllUoms(byte isActive,int PerPage, out DataTable table)
         {
-            return instance.UseProcedure($"UOM_sp_SELECT_ALL").FindAsTable<dynamic>(new 
+            return AppService.SqlGetInstance.UseProcedure($"UOM_sp_SELECT_ALL_PAGES").FindAsTable<dynamic>(new 
             { 
                 isAct = isActive,
                 PerPage= PerPage
@@ -31,7 +26,7 @@ namespace ESProMeter.Repository
         }
         public bool GetAllUOMTypes(out DataTable table)
         {
-            return instance.UseProcedure($"UOMTYPE_SP_SELECT_ALL").FindAsTable<dynamic>(null, out table);
+            return AppService.SqlGetInstance.UseProcedure($"UOMTYPE_SP_SELECT_ALL").FindAsTable<dynamic>(null, out table);
         }
         public void UomCreate(ITUom uom)
         {
@@ -41,7 +36,7 @@ namespace ESProMeter.Repository
             }
             else
             {
-                instance.UseProcedure("UOM_sp_CreateNew")
+                AppService.SqlGetInstance.UseProcedure("UOM_sp_CreateNew")
                         .InsertOrUpdate<dynamic>(new
                         {
                             uom.UOMNAME,
@@ -57,7 +52,7 @@ namespace ESProMeter.Repository
             }
             else
             {
-                instance.UseProcedure("UOM_sp_EDIT")
+                AppService.SqlGetInstance.UseProcedure("UOM_sp_EDIT")
                         .InsertOrUpdate<dynamic>(new
                         {
                             uom.ID,
@@ -71,14 +66,14 @@ namespace ESProMeter.Repository
         }
         public bool CheckUomExist(string name)
         {
-            return instance.UseProcedure("UOM_sp_CHECKEDUOMNAME_EXIST").Exist(new
+            return AppService.SqlGetInstance.UseProcedure("UOM_sp_CHECKEDUOMNAME_EXIST").Exist(new
             {
                 UOMNAME = name
             });
         }
         public bool CheckUomExistWithSame(string name, long UomId)
         {
-            return instance.UseProcedure("UOM_sp_CHECKEDUOMNAME_EXIST_WITHID").Count<int, dynamic>(new
+            return AppService.SqlGetInstance.UseProcedure("UOM_sp_CHECKEDUOMNAME_EXIST_WITHID").Count<int, dynamic>(new
             {
                 UOMNAME = name,
                 ID = UomId
@@ -89,7 +84,7 @@ namespace ESProMeter.Repository
         {
             try
             {
-                if (instance.UseProcedure("UOM_sp_SELECT_BYID").FindOne<dynamic>(new
+                if (AppService.SqlGetInstance.UseProcedure("UOM_sp_SELECT_BYID").FindOne<dynamic>(new
                 {
                     ID = id
                 }, out var row))
@@ -112,7 +107,7 @@ namespace ESProMeter.Repository
         {
             try
             {
-               var deletedRow=instance.UseProcedure("UOM_sp_DELETE").Delete<dynamic>(new { @ID=id });
+               var deletedRow= AppService.SqlGetInstance.UseProcedure("UOM_sp_DELETE").Delete<dynamic>(new { @ID=id });
                 return deletedRow > 0;
             }
             catch (Exception ex)
@@ -124,7 +119,7 @@ namespace ESProMeter.Repository
         {
             try
             {
-                var rowsAffected = instance.UseProcedure("[UOM_sp_MAKEINACTIVE]")
+                var rowsAffected = AppService.SqlGetInstance.UseProcedure("[UOM_sp_MAKEINACTIVE]")
                                             .InsertOrUpdate<dynamic>(new { @ID=id, @ISACTIVE=isActive });
                 return rowsAffected > 0;
             }

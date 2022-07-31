@@ -17,12 +17,48 @@ namespace ESProMeter.Repository
         /// <param name="grid"></param>
         /// <param name="sortBy"></param>
         /// <param name="sortType"></param>
-        public bool ShowItemList(out DataTable table)
+        public bool GetAllItems(byte isActive,out DataTable table)
         {
-            return AppService.SqlGetInstance.UseProcedure("")
-               .FindAsTable<dynamic?>(null, out table);
+            return AppService.SqlGetInstance.UseProcedure("ITEM_sp_SELECT_ALL")
+               .FindAsTable<dynamic>(new
+               {
+                   @ISACTIVE=isActive
+               }, out table);
         }
-        public void ItemGetById(long itemId,ITItem item)
+        public bool GetAllItems(byte isActive,int page, out DataTable table)
+        {
+            return AppService.SqlGetInstance.UseProcedure("[ITEM_sp_SELECT_BY_PAGE]")
+               .FindAsTable<dynamic>(new
+               {
+                   @ISACTIVE = isActive,
+                   @PAGE=page
+
+               }, out table);
+        }
+        public bool GetItemWithoutBoq(byte isActive, out DataTable table)  
+        {
+            return AppService.SqlGetInstance.UseProcedure("[ITEM_sp_SELECT_ITEMWITHOUTBOQ]")
+               .FindAsTable<dynamic>(new
+               {
+                   @ISACTIVE = isActive
+               }, out table);
+        }
+        public bool GetItemWithoutBoqByName(byte isActive,string itemName, out DataTable table)
+        {
+            return AppService.SqlGetInstance.UseProcedure("[ITEM_sp_SELECT_ITEMWITHOUTBOQ_BY_NAME]")
+               .FindAsTable<dynamic>(new
+               {
+                   @ITEMNAME= itemName,
+                   @ISACTIVE = isActive
+               }, out table);
+        }
+        
+        public bool GetItemsType(out DataTable table)
+        {
+            return AppService.SqlGetInstance.UseProcedure("[ITEMTYPE_SP_SELECT]")
+               .FindAsTable<dynamic>(null, out table);
+        }
+        public void GetItemById(long itemId,ITItem item)
         {
             if(AppService.SqlGetInstance.UseProcedure("ITEM_sp_SELECT_BY_ID")
                .FindOne<dynamic>(new { @ID = itemId }, out var row))
@@ -49,14 +85,13 @@ namespace ESProMeter.Repository
                 item.ISACTIVE = row.GetValue<byte>("IsActive");
                 item.UOMID = row.GetValue<long>("UomID");
                 item.ITEMTYPE = row.GetValue<string>("ItemType");
-                if(item.ITEMTYPE.ToLower() == "BillOfQuantity".ToLower())
-                {
-                    return AppService.GetItemInstance.GetBoqItemLineByID(itemId, out boqTable);
-                }
+                AppService.GetItemInstance.GetBoqItemLineByItemID(itemId, out boqTable);
                 return true;
             }
             return false;
         }
+
+
         /// <summary>
         /// Create Items and update
         /// </summary>
@@ -142,7 +177,7 @@ namespace ESProMeter.Repository
                             item.ISRATE
                         });
                 //remove existing item
-                AppService.SqlGetInstance.UseSql("DELETE FROM TBOQITEMLINE WHERE ID=@id;")
+                AppService.SqlGetInstance.UseSql("DELETE FROM TBOQITEMLINE WHERE BOQITEMID=@id;")
                         .Delete<dynamic>(new { id = item.ID });
 
                 //update existing boq_item_line
@@ -160,9 +195,13 @@ namespace ESProMeter.Repository
 
         }
 
-        
+        public bool DeleteItemWithBoq(long itemId)
+        {
+            return AppService.SqlGetInstance.UseProcedure("ITEM_sp_DELETE")
+                        .Delete<dynamic>(new { @itemID = itemId })>0;
+        }
 
-     public bool GetBoqItemLineByID(long itemID,out DataTable table)
+     public bool GetBoqItemLineByItemID(long itemID,out DataTable table)
         {
             try
             {
@@ -182,9 +221,17 @@ namespace ESProMeter.Repository
 
 
 
+        public bool MakeInActiveOrActive(long id,byte isActive) 
+        {
+            var count = AppService.SqlGetInstance.UseProcedure("[ITEM_sp_ISACTIVE]")
+                    .InsertOrUpdate<dynamic>(new { 
+                     @ID=id,
+                        @ISACTIVE = isActive
+                    });
+            return count > 0;
+        }
 
-
-
+        
 
 
 
@@ -199,9 +246,9 @@ namespace ESProMeter.Repository
         /// </summary>
         /// <param name="itemName"></param>
         /// <returns></returns>
-        public  bool ItemExist(string itemName)
+        public  bool ItemAlreadyExist(string itemName) 
         {
-            var count = AppService.SqlGetInstance.UseSql("SELECT COUNT(*) FROM [dbo].[Item] WHERE ITEMNAME=@itemName")
+            var count = AppService.SqlGetInstance.UseSql("SELECT COUNT(*) FROM [dbo].[VItem] WHERE ITEMNAME=@itemName")
                     .Count<int, dynamic>(new { itemName = itemName });
             return count > 0;
         }
@@ -214,14 +261,14 @@ namespace ESProMeter.Repository
         /// <returns></returns>
         public bool ItemSame(long itemID, string itemName)
         {
-            var count = AppService.SqlGetInstance.UseSql("SELECT COUNT(*) FROM [dbo].[Item] WHERE ITEMNAME=@itemName AND itemID <> @itemID")
-                    .Count<int, dynamic>(new { itemID = itemID, itemName = itemName });
+            var count = AppService.SqlGetInstance.UseSql("SELECT COUNT(*) FROM [dbo].[VItem] WHERE ITEMNAME=@itemName AND ID <> @ID")
+                    .Count<int, dynamic>(new { ID = itemID, itemName = itemName });
             return count > 0;
         }
-        public bool ItemExist(long itemRefId, long boqItemLineRefID)
+        public bool ItemExist(long itemId, long boqItemLineID)
         {
             var count = AppService.SqlGetInstance.UseSql("SELECT COUNT(*) FROM [dbo].[ITEMBOQLINE] WHERE ItemRefID=@itemRefId AND BOQItemLineRefID=@boqItemLineRefID")
-                    .Count<int, dynamic>(new { boqItemLineRefID = boqItemLineRefID, itemRefId = itemRefId });
+                    .Count<int, dynamic>(new { boqItemLineRefID = boqItemLineID, itemRefId = itemId });
             return count > 0;
         }
 

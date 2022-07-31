@@ -8,7 +8,24 @@ namespace ESProMeter.Extensions
 {
     public static class DataGridViewExtension
     {
-
+        public static List<object> GetValues(this DataGridViewRow row,params string[] celllNames)
+        {
+            if (row.Cells.Count == 0) return default;
+            List<object> obj=new List<object> ();
+            foreach (DataGridViewCell cell in row.Cells)
+            {
+                foreach (var item in celllNames)
+                {
+                    if (cell.DataGridView.Columns[cell.ColumnIndex].Name.ToLower() == item.ToLower())
+                    {
+                        obj.Add(cell.Value);
+                    }
+                    else continue;
+                }
+                
+            }
+            return obj;
+        }
         public static List<T> SelectedValues<T>(this DataGridView gridview,int rowIndex = 0)
         {
             var list = new List<T>();

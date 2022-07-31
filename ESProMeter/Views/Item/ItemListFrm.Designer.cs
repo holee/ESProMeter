@@ -33,22 +33,33 @@ namespace ESProMeter.Views.Items
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tlDelete = new System.Windows.Forms.ToolStrip();
-            this.tlsNew = new System.Windows.Forms.ToolStripButton();
+            this.tlsNew = new System.Windows.Forms.ToolStripDropDownButton();
             this.tlsEdit = new System.Windows.Forms.ToolStripButton();
             this.tlsdelete = new System.Windows.Forms.ToolStripButton();
             this.tlCreateACopy = new System.Windows.Forms.ToolStripButton();
             this.tlsRefresh = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
+            this.tlsActive = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.excelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textSearch = new System.Windows.Forms.TextBox();
             this.cmbFieldName = new System.Windows.Forms.ComboBox();
             this.dataItemList = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Active = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.cmdNumberRows = new System.Windows.Forms.ComboBox();
+            this.cmbPage = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,20 +73,11 @@ namespace ESProMeter.Views.Items
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmbSortBy = new System.Windows.Forms.ComboBox();
+            this.cmbSortByField = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbmSortType = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tlDelete.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataItemList)).BeginInit();
             this.SuspendLayout();
@@ -83,6 +85,7 @@ namespace ESProMeter.Views.Items
             // tlDelete
             // 
             this.tlDelete.AutoSize = false;
+            this.tlDelete.BackColor = System.Drawing.Color.Silver;
             this.tlDelete.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.tlDelete.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tlsNew,
@@ -90,7 +93,7 @@ namespace ESProMeter.Views.Items
             this.tlsdelete,
             this.tlCreateACopy,
             this.tlsRefresh,
-            this.toolStripButton5,
+            this.tlsActive,
             this.toolStripSeparator1,
             this.toolStripDropDownButton1});
             this.tlDelete.Location = new System.Drawing.Point(0, 0);
@@ -104,7 +107,7 @@ namespace ESProMeter.Views.Items
             this.tlsNew.Image = ((System.Drawing.Image)(resources.GetObject("tlsNew.Image")));
             this.tlsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlsNew.Name = "tlsNew";
-            this.tlsNew.Size = new System.Drawing.Size(51, 37);
+            this.tlsNew.Size = new System.Drawing.Size(60, 37);
             this.tlsNew.Text = "New";
             this.tlsNew.Click += new System.EventHandler(this.tslNewClick);
             // 
@@ -144,14 +147,14 @@ namespace ESProMeter.Views.Items
             this.tlsRefresh.Text = "Refresh";
             this.tlsRefresh.Click += new System.EventHandler(this.tlsRefresh_Click);
             // 
-            // toolStripButton5
+            // tlsActive
             // 
-            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
-            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(100, 37);
-            this.toolStripButton5.Text = "Make Inactive";
-            this.toolStripButton5.Click += new System.EventHandler(this.tlMakeInActiveClick);
+            this.tlsActive.Image = ((System.Drawing.Image)(resources.GetObject("tlsActive.Image")));
+            this.tlsActive.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tlsActive.Name = "tlsActive";
+            this.tlsActive.Size = new System.Drawing.Size(100, 37);
+            this.tlsActive.Text = "Make Inactive";
+            this.tlsActive.Click += new System.EventHandler(this.tlMakeInActiveClick);
             // 
             // toolStripSeparator1
             // 
@@ -179,7 +182,7 @@ namespace ESProMeter.Views.Items
             this.textSearch.Location = new System.Drawing.Point(64, 48);
             this.textSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textSearch.Name = "textSearch";
-            this.textSearch.Size = new System.Drawing.Size(313, 23);
+            this.textSearch.Size = new System.Drawing.Size(205, 23);
             this.textSearch.TabIndex = 1;
             this.textSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textSearch_KeyUp);
             // 
@@ -191,7 +194,7 @@ namespace ESProMeter.Views.Items
             "ItemName",
             "Uom",
             "Cost"});
-            this.cmbFieldName.Location = new System.Drawing.Point(428, 49);
+            this.cmbFieldName.Location = new System.Drawing.Point(321, 49);
             this.cmbFieldName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbFieldName.Name = "cmbFieldName";
             this.cmbFieldName.Size = new System.Drawing.Size(140, 23);
@@ -218,13 +221,13 @@ namespace ESProMeter.Views.Items
             this.dataItemList.ColumnHeadersHeight = 25;
             this.dataItemList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataItemList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
+            this.ID,
             this.Column2,
             this.Column3,
             this.Column7,
             this.Column4,
             this.Column5,
-            this.Column12,
+            this.Active,
             this.Column8,
             this.Column9,
             this.Column10,
@@ -232,7 +235,7 @@ namespace ESProMeter.Views.Items
             this.Column13});
             this.dataItemList.EnableHeadersVisualStyles = false;
             this.dataItemList.GridColor = System.Drawing.Color.IndianRed;
-            this.dataItemList.Location = new System.Drawing.Point(14, 87);
+            this.dataItemList.Location = new System.Drawing.Point(14, 104);
             this.dataItemList.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dataItemList.MultiSelect = false;
             this.dataItemList.Name = "dataItemList";
@@ -241,8 +244,122 @@ namespace ESProMeter.Views.Items
             this.dataItemList.RowTemplate.Height = 25;
             this.dataItemList.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataItemList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataItemList.Size = new System.Drawing.Size(921, 419);
+            this.dataItemList.Size = new System.Drawing.Size(921, 402);
             this.dataItemList.TabIndex = 3;
+            this.dataItemList.SelectionChanged += new System.EventHandler(this.dataItemList_SelectionChanged);
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "ItemName";
+            this.Column2.FillWeight = 138.1693F;
+            this.Column2.HeaderText = "Item Name";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column2.Width = 200;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "ItemType";
+            this.Column3.FillWeight = 65.11635F;
+            this.Column3.HeaderText = "Type";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column3.Width = 94;
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "UomName";
+            this.Column7.FillWeight = 62.71698F;
+            this.Column7.HeaderText = "Uom Type";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column7.Width = 91;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "Uom";
+            this.Column4.FillWeight = 68.39866F;
+            this.Column4.HeaderText = "Sub Uom Type";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column4.Width = 99;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "Cost";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Column5.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Column5.FillWeight = 142.993F;
+            this.Column5.HeaderText = "Cost";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Active
+            // 
+            this.Active.DataPropertyName = "IsActive";
+            this.Active.FillWeight = 59.83959F;
+            this.Active.HeaderText = "Active";
+            this.Active.Name = "Active";
+            this.Active.ReadOnly = true;
+            this.Active.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Active.Width = 87;
+            // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "Description";
+            this.Column8.FillWeight = 108.7606F;
+            this.Column8.HeaderText = "Description";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column8.Width = 350;
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "EditSequense";
+            this.Column9.HeaderText = "EditSequense";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            this.Column9.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column9.Visible = false;
+            // 
+            // Column10
+            // 
+            this.Column10.DataPropertyName = "CreatedTime";
+            this.Column10.HeaderText = "Create Time";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            this.Column10.Visible = false;
+            // 
+            // Column11
+            // 
+            this.Column11.DataPropertyName = "ModifiedTime";
+            this.Column11.HeaderText = "Modified Time";
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            this.Column11.Visible = false;
+            // 
+            // Column13
+            // 
+            this.Column13.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column13.DataPropertyName = "UOMID";
+            this.Column13.HeaderText = "Column13";
+            this.Column13.Name = "Column13";
+            this.Column13.ReadOnly = true;
+            this.Column13.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column13.Visible = false;
             // 
             // label1
             // 
@@ -254,42 +371,32 @@ namespace ESProMeter.Views.Items
             this.label1.TabIndex = 4;
             this.label1.Text = "Search";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(576, 47);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 24);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btnSearchClick);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(387, 53);
+            this.label2.Location = new System.Drawing.Point(280, 53);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 15);
             this.label2.TabIndex = 6;
             this.label2.Text = "Field";
             // 
-            // cmdNumberRows
+            // cmbPage
             // 
-            this.cmdNumberRows.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmdNumberRows.FormattingEnabled = true;
-            this.cmdNumberRows.Items.AddRange(new object[] {
+            this.cmbPage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPage.FormattingEnabled = true;
+            this.cmbPage.Items.AddRange(new object[] {
             "50",
             "100",
             "200",
             "500",
             "1000"});
-            this.cmdNumberRows.Location = new System.Drawing.Point(884, 50);
-            this.cmdNumberRows.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cmdNumberRows.Name = "cmdNumberRows";
-            this.cmdNumberRows.Size = new System.Drawing.Size(51, 23);
-            this.cmdNumberRows.TabIndex = 2;
+            this.cmbPage.Location = new System.Drawing.Point(884, 50);
+            this.cmbPage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cmbPage.Name = "cmbPage";
+            this.cmbPage.Size = new System.Drawing.Size(51, 23);
+            this.cmbPage.TabIndex = 2;
+            this.cmbPage.SelectedIndexChanged += new System.EventHandler(this.cmbPage_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -403,158 +510,81 @@ namespace ESProMeter.Views.Items
             this.dataGridViewTextBoxColumn12.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn12.Visible = false;
             // 
-            // cmbSortBy
+            // cmbSortByField
             // 
-            this.cmbSortBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSortBy.FormattingEnabled = true;
-            this.cmbSortBy.Items.AddRange(new object[] {
+            this.cmbSortByField.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSortByField.FormattingEnabled = true;
+            this.cmbSortByField.Items.AddRange(new object[] {
             "ItemName",
             "Uom",
             "Cost"});
-            this.cmbSortBy.Location = new System.Drawing.Point(717, 48);
-            this.cmbSortBy.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cmbSortBy.Name = "cmbSortBy";
-            this.cmbSortBy.Size = new System.Drawing.Size(72, 23);
-            this.cmbSortBy.TabIndex = 2;
-            this.cmbSortBy.SelectedIndexChanged += new System.EventHandler(this.cmbSortBySelectedIndexChanged);
+            this.cmbSortByField.Location = new System.Drawing.Point(558, 51);
+            this.cmbSortByField.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cmbSortByField.Name = "cmbSortByField";
+            this.cmbSortByField.Size = new System.Drawing.Size(72, 23);
+            this.cmbSortByField.TabIndex = 2;
+            this.cmbSortByField.SelectedIndexChanged += new System.EventHandler(this.cmbSortBySelectedIndexChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(676, 51);
+            this.label4.Location = new System.Drawing.Point(517, 54);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(32, 15);
             this.label4.TabIndex = 6;
             this.label4.Text = "Field";
             // 
-            // Column1
+            // cbmSortType
             // 
-            this.Column1.DataPropertyName = "ID";
-            this.Column1.HeaderText = "ID";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Visible = false;
+            this.cbmSortType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbmSortType.FormattingEnabled = true;
+            this.cbmSortType.Items.AddRange(new object[] {
+            "ASC",
+            "DESC"});
+            this.cbmSortType.Location = new System.Drawing.Point(708, 51);
+            this.cbmSortType.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cbmSortType.Name = "cbmSortType";
+            this.cbmSortType.Size = new System.Drawing.Size(72, 23);
+            this.cbmSortType.TabIndex = 2;
+            this.cbmSortType.SelectedIndexChanged += new System.EventHandler(this.cmbSortBySelectedIndexChanged);
             // 
-            // Column2
+            // label5
             // 
-            this.Column2.DataPropertyName = "ItemName";
-            this.Column2.FillWeight = 138.1693F;
-            this.Column2.HeaderText = "Item Name";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column2.Width = 200;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(647, 55);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 15);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Order By";
             // 
-            // Column3
+            // checkBox1
             // 
-            this.Column3.DataPropertyName = "ItemType";
-            this.Column3.FillWeight = 65.11635F;
-            this.Column3.HeaderText = "Type";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column3.Width = 94;
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "UomName";
-            this.Column7.FillWeight = 62.71698F;
-            this.Column7.HeaderText = "Uom Type";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column7.Width = 91;
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "Uom";
-            this.Column4.FillWeight = 68.39866F;
-            this.Column4.HeaderText = "Sub Uom Type";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column4.Width = 99;
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "Cost";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Column5.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Column5.FillWeight = 142.993F;
-            this.Column5.HeaderText = "Cost";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column12
-            // 
-            this.Column12.DataPropertyName = "IsActive";
-            this.Column12.FillWeight = 59.83959F;
-            this.Column12.HeaderText = "Active";
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            this.Column12.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column12.Width = 87;
-            // 
-            // Column8
-            // 
-            this.Column8.DataPropertyName = "Description";
-            this.Column8.FillWeight = 108.7606F;
-            this.Column8.HeaderText = "Description";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column8.Width = 350;
-            // 
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "EditSequense";
-            this.Column9.HeaderText = "EditSequense";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            this.Column9.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column9.Visible = false;
-            // 
-            // Column10
-            // 
-            this.Column10.DataPropertyName = "CreatedTime";
-            this.Column10.HeaderText = "Create Time";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            this.Column10.Visible = false;
-            // 
-            // Column11
-            // 
-            this.Column11.DataPropertyName = "ModifiedTime";
-            this.Column11.HeaderText = "Modified Time";
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            this.Column11.Visible = false;
-            // 
-            // Column13
-            // 
-            this.Column13.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Column13.DataPropertyName = "UOMID";
-            this.Column13.HeaderText = "Column13";
-            this.Column13.Name = "Column13";
-            this.Column13.ReadOnly = true;
-            this.Column13.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column13.Visible = false;
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(14, 79);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(109, 19);
+            this.checkBox1.TabIndex = 7;
+            this.checkBox1.Text = "Include Inactive";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // ItemListFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(949, 519);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataItemList);
-            this.Controls.Add(this.cmdNumberRows);
-            this.Controls.Add(this.cmbSortBy);
+            this.Controls.Add(this.cmbPage);
+            this.Controls.Add(this.cbmSortType);
+            this.Controls.Add(this.cmbSortByField);
             this.Controls.Add(this.cmbFieldName);
             this.Controls.Add(this.textSearch);
             this.Controls.Add(this.tlDelete);
@@ -562,7 +592,6 @@ namespace ESProMeter.Views.Items
             this.Name = "ItemListFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Item List";
-            this.Load += new System.EventHandler(this.ItemListFrm_Load);
             this.tlDelete.ResumeLayout(false);
             this.tlDelete.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataItemList)).EndInit();
@@ -574,18 +603,16 @@ namespace ESProMeter.Views.Items
 		#endregion
 
 		private System.Windows.Forms.ToolStrip tlDelete;
-		private System.Windows.Forms.ToolStripButton tlsNew;
 		private System.Windows.Forms.ToolStripButton tlsEdit;
 		private System.Windows.Forms.ToolStripButton tlsdelete;
 		private System.Windows.Forms.ToolStripButton tlCreateACopy;
-		private System.Windows.Forms.ToolStripButton toolStripButton5;
+		private System.Windows.Forms.ToolStripButton tlsActive;
 		private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
 		private System.Windows.Forms.ToolStripMenuItem excelToolStripMenuItem;
 		private System.Windows.Forms.TextBox textSearch;
 		private System.Windows.Forms.ComboBox cmbFieldName;
 		private System.Windows.Forms.DataGridView dataItemList;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
@@ -596,22 +623,26 @@ namespace ESProMeter.Views.Items
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.ComboBox cmdNumberRows;
+        private System.Windows.Forms.ComboBox cmbPage;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripButton tlsRefresh;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
-        private System.Windows.Forms.ComboBox cmbSortBy;
+        private System.Windows.Forms.ComboBox cmbSortByField;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.ToolStripDropDownButton tlsNew;
+        private System.Windows.Forms.ComboBox cbmSortType;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Active;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;

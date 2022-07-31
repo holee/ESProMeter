@@ -97,7 +97,7 @@ namespace ESProMeter.Extensions
                 return default(bool);
             }
         }
-        public static T? AsNumber<T>(this DataGridView grid, string colName) where T : IConvertible
+        public static T AsNumber<T>(this DataGridView grid, string colName) where T : IConvertible
         {
             try
             {
@@ -109,7 +109,7 @@ namespace ESProMeter.Extensions
                 return default(T);
             }
         }
-        public static T? AsNumber<T>(this DataGridView grid, int rowIndex, string colName) where T : IConvertible
+        public static T AsNumber<T>(this DataGridView grid, int rowIndex, string colName) where T : IConvertible
         {
             try
             {
@@ -121,7 +121,7 @@ namespace ESProMeter.Extensions
                 return default(T);
             }
         }
-        public static T? AsValue<T>(this DataGridView grid, int rowIndex, string colName) where T : IConvertible
+        public static T AsValue<T>(this DataGridView grid, int rowIndex, string colName) where T : IConvertible
         {
             try
             {
@@ -133,7 +133,7 @@ namespace ESProMeter.Extensions
                 return default(T);
             }
         }
-        public static T? GetValue<T>(this DataGridView grid, int rowIndex, string colName)
+        public static T GetValue<T>(this DataGridView grid, int rowIndex, string colName)
         {
             try
             {
@@ -145,7 +145,7 @@ namespace ESProMeter.Extensions
             }
         }
 
-        public static T? GetValue<T>(this ComboBox grid)
+        public static T GetValue<T>(this ComboBox grid)
         {
             try
             {
@@ -156,12 +156,11 @@ namespace ESProMeter.Extensions
                 return default(T);
             }
         }
-        public static T? AsNumber<T>(this ComboBox grid) where T : IConvertible
+        public static T GetSelectedValue<T>(this ComboBox grid) 
         {
             try
             {
-                var value=grid.SelectedValue??grid.Text;
-                return (T)Convert.ChangeType(value, typeof(T));
+                return (T)Convert.ChangeType(grid.SelectedValue, typeof(T));
             }
             catch
             {
@@ -172,21 +171,18 @@ namespace ESProMeter.Extensions
         {
             return grid.Text.Trim()??"";
         }
-        public static T? AsNumber<T>(this ComboBox combo,bool isValueFromSelectItem) where T : IConvertible
+        public static T AsNumber<T>(this ComboBox combo,bool isValueFromSelectItem=false) where T : IConvertible
         {
-            if (combo.SelectedValue == null || combo.Text.Length==0)
+            if (combo.SelectedValue == null && combo.Text.Length == 0)
             {
                 return default(T);
             }
-            else
+            if (isValueFromSelectItem)
             {
-                if (isValueFromSelectItem)
-                {
-                    return (T)Convert.ChangeType(combo.SelectedValue, typeof(T));
-                }
-                return (T)Convert.ChangeType(combo.SelectedItem, typeof(T));
+                if (combo.SelectedValue == null) return default(T);
+                return (T)Convert.ChangeType(combo.SelectedValue, typeof(T));
             }
-
+            return (T)Convert.ChangeType(combo.Text, typeof(T));
         }
 
 
