@@ -142,21 +142,10 @@ namespace ESProMeter.Views.Companies
             if (this.IsValid(txtAddress, txtCountry, txtProvince,txtCompanyName))
             {
                 this.UpdateCompany(this);
-                this.Reset(txtAddress,txtCountry,txtProvince,txtCompanyName);   
+                //this.Reset(txtAddress,txtCountry,txtProvince,txtCompanyName);
+                MessageBox.Show("Comapany was updated.", "Compayb", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
-        private void CompanInfoFrm_Load(object sender, EventArgs e)
-        {
-            this.rbtContactInformation.Checked=true;
-            //this.ShowCompanyInformation();
-        }
-
-		private void panel1_Paint(object sender, PaintEventArgs e)
-		{
-
-		}
-
         private void materialButton2_Click(object sender, EventArgs e)
         {
             this.Close();

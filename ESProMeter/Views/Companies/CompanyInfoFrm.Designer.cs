@@ -593,7 +593,6 @@
             this.MaximizeBox = false;
             this.Name = "CompanyInfoFrm";
             this.Text = "Company Information";
-            this.Load += new System.EventHandler(this.CompanInfoFrm_Load);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);

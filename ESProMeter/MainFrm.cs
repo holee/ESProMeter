@@ -53,7 +53,7 @@ namespace ESProMeter
         {
             ItemListFrm frmItem = new ItemListFrm();
             frmItem.TopLevel = false;
-            frmItem.TopMost = true;
+            //frmItem.TopMost = true;
             frmItem.FormBorderStyle = FormBorderStyle.None;
             frmItem.WindowState= FormWindowState.Maximized;
             panel2.Controls.Clear();
