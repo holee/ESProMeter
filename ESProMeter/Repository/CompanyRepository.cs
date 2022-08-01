@@ -9,7 +9,7 @@ namespace ESProMeter.Repository
         public bool IsCompanyExist()
         {
             return AppService.SqlGetInstance
-                         .UseProcedure("[VCompany]")
+                         .UseProcedure("[COMPANY_sp_EXIST]")
                              .Count<int, dynamic>(null) > 0;
         }
         public void UpdateCompany(ITCOMPANYINFO com)
@@ -20,13 +20,46 @@ namespace ESProMeter.Repository
                 AppService.SqlGetInstance.StartTransaction();
                 if (IsCompanyExist())
                 {
-                    AppService.AddressGetInstance.AddressUpdate(new Models.TAddressInfo
+                    if (com.CONTADDRESSID == 0)
                     {
-                        ID=com.CONTADDRESSID,
-                        COUNTRY=com.COUNTRY,
-                        PROVINCE=com.PROVINCE,
-                        ADDRESS=com.ADDRESS
-                    });
+                      com.CONTADDRESSID=AppService.AddressGetInstance.AddressCreate(new Models.TAddressInfo
+                        {
+                            COUNTRY = com.COUNTRY,
+                            PROVINCE = com.PROVINCE,
+                            ADDRESS = com.ADDRESS
+                        });
+                    }
+                    else
+                    {
+                        AppService.AddressGetInstance.AddressUpdate(new Models.TAddressInfo
+                        {
+                            ID = com.CONTADDRESSID,
+                            COUNTRY = com.COUNTRY,
+                            PROVINCE = com.PROVINCE,
+                            ADDRESS = com.ADDRESS
+                        });
+
+                    }
+                    if (com.LEGALADDRESSID == 0)
+                    {
+                      com.LEGALADDRESSID= AppService.AddressGetInstance.AddressCreate(new Models.TAddressInfo
+                        {
+                            COUNTRY = com.COUNTRY,
+                            PROVINCE = com.PROVINCE,
+                            ADDRESS = com.ADDRESS
+                        });
+                    }
+                    else
+                    {
+                        AppService.AddressGetInstance.AddressUpdate(new Models.TAddressInfo
+                        {
+                            ID = com.CONTADDRESSID,
+                            COUNTRY = com.COUNTRY,
+                            PROVINCE = com.PROVINCE,
+                            ADDRESS = com.ADDRESS
+                        });
+                    }
+
                     //Update Comanpy
                     AppService.SqlGetInstance
                                 .UseProcedure("Company_sp_UPDATE")
@@ -42,32 +75,45 @@ namespace ESProMeter.Repository
                                         @Fax=com.FAX,
                                         @Email=com.EMAIL,
                                         @WebSite=com.WEBSITE,
-                                        @LogoFilePath=com.LOGOFILEPATH
+                                        @LogoFilePath=com.LOGOFILEPATH,
+                                        @LegalAddressId=com.LEGALADDRESSID,
+                                        @ContactAddressId=com.CONTADDRESSID
                                     });
                 }
                 else
                 {
                     //Create Address
-                   var id=AppService.AddressGetInstance.AddressCreate(new Models.TAddressInfo
+                   var contactAddressId=AppService.AddressGetInstance.AddressCreate(new Models.TAddressInfo
                     {
                         COUNTRY = com.COUNTRY,
                         PROVINCE = com.PROVINCE,
                         ADDRESS = com.ADDRESS
                     });
+                    var legalAddressId = AppService.AddressGetInstance.AddressCreate(new Models.TAddressInfo
+                    {
+                        COUNTRY = com.LEGALCOUNTRY,
+                        PROVINCE = com.LEGALPROVINCE,
+                        ADDRESS = com.LEGALCOUNTRY
+
+                    });
                     //create new company
+                    com.LEGALADDRESSID = (int)legalAddressId;
+                    com.CONTADDRESSID = (int)contactAddressId;
                     AppService.SqlGetInstance
                                 .UseProcedure("Company_sp_CREATE")
                                     .InsertOrUpdate<dynamic>(new
                                     {
-                                        @CompanyName = com.COMPANYNAME,
-                                        @LegalCompanyName = com.LEGALCOMPANYNAME,
-                                        @AltLegalCompanyName = com.ALTLEGALCOMPANYNAME,
-                                        @MainPhone = com.MAINPHONE,
-                                        @AltPhone = com.ALTPHONE,
-                                        @Fax = com.FAX,
-                                        @Email = com.EMAIL,
-                                        @WebSite = com.WEBSITE,
-                                        @LogoFilePath = com.LOGOFILEPATH
+                                        com.COMPANYNAME,
+                                        com.LEGALCOMPANYNAME,
+                                        com.ALTLEGALCOMPANYNAME,
+                                        com.MAINPHONE,
+                                        com.ALTPHONE,
+                                        com.FAX,
+                                        com.EMAIL,
+                                        com.WEBSITE,
+                                        com.LOGOFILEPATH,
+                                        com.LEGALADDRESSID,
+                                        com.CONTADDRESSID
                                     });
                 }
 
@@ -83,17 +129,17 @@ namespace ESProMeter.Repository
         public void ShowCompanyInformation(ITCOMPANYINFO com)
         {
             if (AppService.SqlGetInstance
-                            .UseProcedure("[Company_sp_SELECT]")
+                            .UseProcedure("[CompanyWithAddress_sp_SELECT]")
                                 .FindOne<dynamic>(null, out var row))
             {
                 com.COMPANYNAME = row.GetValue<string>("CompanyName");
                 com.LEGALCOMPANYNAME = row.GetValue<string>("LegalCompanyName");
                 com.ALTLEGALCOMPANYNAME = row.GetValue<string>("AltLegalCompanyName");
-                com.ADDRESS = row.GetValue<string>("Address");
-                com.COUNTRY = row.GetValue<string>("Country");
+                com.ADDRESS = row.GetValue<string>("ContactAddress");
+                com.COUNTRY = row.GetValue<string>("ContactCountry");
                 com.ALTPHONE = row.GetValue<string>("AltPhone");
                 com.MAINPHONE = row.GetValue<string>("MainPhone");
-                com.PROVINCE = row.GetValue<string>("Province");
+                com.PROVINCE = row.GetValue<string>("ContactProvince");
                 com.EMAIL = row.GetValue<string>("Email");
                 com.WEBSITE = row.GetValue<string>("WebSite");
                 com.FAX = row.GetValue<string>("FAX");
@@ -101,6 +147,9 @@ namespace ESProMeter.Repository
                 com.MDT = row.GetValue<DateTime>("MDT");
                 com.CONTADDRESSID = row.GetValue<int>("CONTADDRESSID");
                 com.LEGALADDRESSID = row.GetValue<int>("LEGALADDRESSID");
+                com.LEGALCOUNTRY = row.GetValue<string>("LegalCountry");
+                com.LEGALPROVINCE = row.GetValue<string>("LegalProvince");
+                com.LEGALADDRESS = row.GetValue<string>("LegalAddress");
                 com.ID = row.GetValue<int>("ID");
                 com.EDSEQ = row.GetValue<int>("EDSEQ");
             }

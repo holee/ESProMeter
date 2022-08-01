@@ -8,8 +8,11 @@ namespace ESProMeter.IVews
 		public string COMPANYNAME { get; set; }
 		public string LEGALCOMPANYNAME { get; set; }
 		public string ALTLEGALCOMPANYNAME { get; set; }
-		public int CONTADDRESSID { get; set; }
-		public int LEGALADDRESSID { get; set; }
+		public long CONTADDRESSID { get; set; }
+        public string LEGALADDRESS { get; set; }
+        public string LEGALPROVINCE { get; set; }
+        public string LEGALCOUNTRY { get; set; }
+        public long LEGALADDRESSID { get; set; }
 		public string MAINPHONE { get; set; }
 		public string ALTPHONE { get; set; }
 		public string FAX { get; set; }

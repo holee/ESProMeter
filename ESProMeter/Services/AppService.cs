@@ -155,5 +155,19 @@ namespace ESProMeter.Services
                 return itemRepository;
             }
         }
+        //
+
+        private static CompanyRepository companyRepository = null;
+        public static CompanyRepository GetCompanyInstance
+        {
+            get
+            {
+                if (companyRepository == null)
+                {
+                    companyRepository = new CompanyRepository();
+                }
+                return companyRepository;
+            }
+        }
     }
 }

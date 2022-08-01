@@ -267,5 +267,17 @@ namespace ESProMeter
             panel2.Controls.Add(form);
             form.Show();
         }
-	}
+
+        private void myCompanyInformationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form form = new Views.Companies.CompanyInfoFrm();
+            //form.TopLevel = false;
+            ////form.TopMost = true;
+            //form.FormBorderStyle = FormBorderStyle.Fixed3D;
+            //form.WindowState = FormWindowState.Normal;
+            //form.Dock = DockStyle.Fill;
+            //panel2.Controls.Add(form);
+            form.Show();
+        }
+    }
 }
