@@ -47,7 +47,7 @@ namespace ESProMeter.Views.UnitOfMeasures
         public AddUoMFrm()
 		{
 			InitializeComponent();
-            if (UomService.GetInstance.GetAllUOMTypes(out var table))
+            if (AppService.UomGetInstance.GetAllUOMTypes(out var table))
             {
                 cmbType.DataSource = table;
                 cmbType.ValueMember = "ID";
@@ -58,13 +58,13 @@ namespace ESProMeter.Views.UnitOfMeasures
 		public AddUoMFrm(long id)
 		{
 			InitializeComponent();
-            if (UomService.GetInstance.GetAllUOMTypes(out var table))
+            if (AppService.UomGetInstance.GetAllUOMTypes(out var table))
             {
                 cmbType.DataSource = table;
                 cmbType.ValueMember = "ID";
                 cmbType.DisplayMember = "TYPENAME";
             }
-            UomService.GetInstance.ShowUomFormForUpdate(this, id);
+            AppService.UomGetInstance.ShowUomFormForUpdate(this, id);
             if (lblUomID.AsNumber<long>() > 0)
             {
                 mbtSave.Text = "Update";
