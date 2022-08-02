@@ -1,11 +1,5 @@
 ﻿using ESProMeter.DataAccess;
 using ESProMeter.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace ESProMeter.Services
 {
     public class AppService
@@ -155,7 +149,9 @@ namespace ESProMeter.Services
                 return itemRepository;
             }
         }
-        //
+        /// <summary>
+        /// 
+        /// </summary>
 
         private static CompanyRepository companyRepository = null;
         public static CompanyRepository GetCompanyInstance

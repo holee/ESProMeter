@@ -56,6 +56,10 @@ namespace ESProMeter
             //frmItem.TopMost = true;
             frmItem.FormBorderStyle = FormBorderStyle.None;
             frmItem.WindowState= FormWindowState.Maximized;
+            frmItem.Anchor = AnchorStyles.Left;
+            frmItem.Anchor = AnchorStyles.Right;
+            frmItem.Anchor = AnchorStyles.Bottom;
+            frmItem.Anchor = AnchorStyles.Top;
             panel2.Controls.Clear();
             panel2.Controls.Add(frmItem);
             frmItem.Show();
@@ -278,6 +282,11 @@ namespace ESProMeter
             //form.Dock = DockStyle.Fill;
             //panel2.Controls.Add(form);
             form.Show();
+        }
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+            panel2.Controls?.Clear();
         }
     }
 }

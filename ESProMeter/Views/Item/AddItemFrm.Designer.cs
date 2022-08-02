@@ -32,8 +32,8 @@ namespace ESProMeter.Views.Items
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.textName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -103,6 +103,8 @@ namespace ESProMeter.Views.Items
             this.pnlSearch = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dgvItem = new System.Windows.Forms.DataGridView();
+            this.btndropDown = new FontAwesome.Sharp.Material.MaterialButton();
+            this.lblItemID = new System.Windows.Forms.Label();
             this.ItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemType = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -110,8 +112,6 @@ namespace ESProMeter.Views.Items
             this.UomID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btndropDown = new FontAwesome.Sharp.Material.MaterialButton();
-            this.lblItemID = new System.Windows.Forms.Label();
             this.GENERAL.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBoq.SuspendLayout();
@@ -651,9 +651,9 @@ namespace ESProMeter.Views.Items
             // 
             // groupBoq
             // 
-            this.groupBoq.Controls.Add(this.dgvBoq);
             this.groupBoq.Controls.Add(this.pnlSearch);
             this.groupBoq.Controls.Add(this.btndropDown);
+            this.groupBoq.Controls.Add(this.dgvBoq);
             this.groupBoq.Location = new System.Drawing.Point(18, 228);
             this.groupBoq.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBoq.Name = "groupBoq";
@@ -765,10 +765,10 @@ namespace ESProMeter.Views.Items
             // btnDeleteColumn
             // 
             this.btnDeleteColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.IndianRed;
-            this.btnDeleteColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.IndianRed;
+            this.btnDeleteColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.btnDeleteColumn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteColumn.HeaderText = "Delete";
             this.btnDeleteColumn.Name = "btnDeleteColumn";
@@ -792,11 +792,12 @@ namespace ESProMeter.Views.Items
             // textBox1
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.textBox1.Location = new System.Drawing.Point(0, 0);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBox1.Name = "textBox1";
             this.textBox1.PlaceholderText = "type your item here";
-            this.textBox1.Size = new System.Drawing.Size(552, 23);
+            this.textBox1.Size = new System.Drawing.Size(600, 23);
             this.textBox1.TabIndex = 30;
             this.textBox1.Tag = "Name";
             this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
@@ -819,7 +820,7 @@ namespace ESProMeter.Views.Items
             this.Cost,
             this.Column1});
             this.dgvItem.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgvItem.Location = new System.Drawing.Point(0, 18);
+            this.dgvItem.Location = new System.Drawing.Point(0, 29);
             this.dgvItem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvItem.MultiSelect = false;
             this.dgvItem.Name = "dgvItem";
@@ -828,10 +829,42 @@ namespace ESProMeter.Views.Items
             this.dgvItem.RowTemplate.Height = 25;
             this.dgvItem.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvItem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvItem.Size = new System.Drawing.Size(600, 164);
+            this.dgvItem.Size = new System.Drawing.Size(600, 153);
             this.dgvItem.TabIndex = 31;
             this.dgvItem.VirtualMode = true;
             this.dgvItem.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItem_CellContentClick);
+            // 
+            // btndropDown
+            // 
+            this.btndropDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(70)))), ((int)(((byte)(118)))));
+            this.btndropDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btndropDown.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btndropDown.ForeColor = System.Drawing.Color.White;
+            this.btndropDown.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronUpBox;
+            this.btndropDown.IconColor = System.Drawing.Color.White;
+            this.btndropDown.IconSize = 27;
+            this.btndropDown.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btndropDown.Location = new System.Drawing.Point(534, 22);
+            this.btndropDown.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btndropDown.Name = "btndropDown";
+            this.btndropDown.Size = new System.Drawing.Size(122, 35);
+            this.btndropDown.TabIndex = 32;
+            this.btndropDown.Text = "Select Item";
+            this.btndropDown.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btndropDown.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btndropDown.UseVisualStyleBackColor = false;
+            this.btndropDown.Click += new System.EventHandler(this.btndropDown_Click);
+            this.btndropDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btndropDown_MouseClick);
+            // 
+            // lblItemID
+            // 
+            this.lblItemID.AutoSize = true;
+            this.lblItemID.Location = new System.Drawing.Point(518, 38);
+            this.lblItemID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblItemID.Name = "lblItemID";
+            this.lblItemID.Size = new System.Drawing.Size(13, 15);
+            this.lblItemID.TabIndex = 30;
+            this.lblItemID.Text = "0";
             // 
             // ItemID
             // 
@@ -886,10 +919,10 @@ namespace ESProMeter.Views.Items
             // Column1
             // 
             this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle3;
             this.Column1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Column1.HeaderText = "Action";
             this.Column1.Name = "Column1";
@@ -897,39 +930,8 @@ namespace ESProMeter.Views.Items
             this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Column1.Text = "Select";
             this.Column1.UseColumnTextForButtonValue = true;
+            this.Column1.Visible = false;
             this.Column1.Width = 80;
-            // 
-            // btndropDown
-            // 
-            this.btndropDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(70)))), ((int)(((byte)(118)))));
-            this.btndropDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btndropDown.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btndropDown.ForeColor = System.Drawing.Color.White;
-            this.btndropDown.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronUpBox;
-            this.btndropDown.IconColor = System.Drawing.Color.White;
-            this.btndropDown.IconSize = 27;
-            this.btndropDown.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btndropDown.Location = new System.Drawing.Point(534, 22);
-            this.btndropDown.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btndropDown.Name = "btndropDown";
-            this.btndropDown.Size = new System.Drawing.Size(122, 35);
-            this.btndropDown.TabIndex = 32;
-            this.btndropDown.Text = "Select Item";
-            this.btndropDown.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btndropDown.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btndropDown.UseVisualStyleBackColor = false;
-            this.btndropDown.Click += new System.EventHandler(this.btndropDown_Click);
-            this.btndropDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btndropDown_MouseClick);
-            // 
-            // lblItemID
-            // 
-            this.lblItemID.AutoSize = true;
-            this.lblItemID.Location = new System.Drawing.Point(518, 38);
-            this.lblItemID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblItemID.Name = "lblItemID";
-            this.lblItemID.Size = new System.Drawing.Size(13, 15);
-            this.lblItemID.TabIndex = 30;
-            this.lblItemID.Text = "0";
             // 
             // AddItemFrm
             // 

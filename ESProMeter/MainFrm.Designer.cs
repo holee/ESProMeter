@@ -615,11 +615,12 @@
             this.iconButton2.IconColor = System.Drawing.Color.Red;
             this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton2.IconSize = 20;
-            this.iconButton2.Location = new System.Drawing.Point(844, 4);
+            this.iconButton2.Location = new System.Drawing.Point(847, 4);
             this.iconButton2.Name = "iconButton2";
             this.iconButton2.Size = new System.Drawing.Size(29, 23);
             this.iconButton2.TabIndex = 3;
             this.iconButton2.UseVisualStyleBackColor = true;
+            this.iconButton2.Click += new System.EventHandler(this.iconButton2_Click);
             // 
             // btnCloseForm
             // 
@@ -630,7 +631,7 @@
             this.btnCloseForm.IconColor = System.Drawing.Color.Red;
             this.btnCloseForm.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCloseForm.IconSize = 16;
-            this.btnCloseForm.Location = new System.Drawing.Point(927, 3);
+            this.btnCloseForm.Location = new System.Drawing.Point(930, 3);
             this.btnCloseForm.Name = "btnCloseForm";
             this.btnCloseForm.Size = new System.Drawing.Size(29, 23);
             this.btnCloseForm.TabIndex = 2;
@@ -646,7 +647,7 @@
             this.panel2.BackColor = System.Drawing.Color.Silver;
             this.panel2.Location = new System.Drawing.Point(0, 28);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(874, 545);
+            this.panel2.Size = new System.Drawing.Size(877, 545);
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 

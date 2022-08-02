@@ -3,13 +3,20 @@ using ESProMeter.Enums;
 using ESProMeter.Extensions;
 using System;
 using System.Data;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace ESProMeter.Views.Items
 {
+
 	public partial class ItemListFrm : Form
 	{
-        
+        public static void SetDoubleBuffer(Control dtg, bool DoubleBuffered)
+        {
+            typeof(Control).InvokeMember("DoubleBuffered",
+              BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.SetProperty,
+              null, dtg, new object[] { DoubleBuffered });
+        }
         public ItemListFrm()
 		{
 			InitializeComponent();
@@ -19,7 +26,8 @@ namespace ESProMeter.Views.Items
             this.cmbSortByField.SelectedIndex = 0;
             this.cmbFieldName.SelectedIndex = 0;
             this.cbmSortType.SelectedIndex = 0;
-            ShowAllItems();
+            SetDoubleBuffer(dataItemList, true);
+            
         }
 
 		private void tslNewClick(object sender, EventArgs e)
@@ -271,7 +279,12 @@ namespace ESProMeter.Views.Items
 		{
             //Select text in text box
 		}
-	}
+
+        private void ItemListFrm_Load(object sender, EventArgs e)
+        {
+            ShowAllItems();
+        }
+    }
 }
 
 

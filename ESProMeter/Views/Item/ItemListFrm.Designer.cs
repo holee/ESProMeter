@@ -213,7 +213,7 @@ namespace ESProMeter.Views.Items
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Transparent;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -592,6 +592,7 @@ namespace ESProMeter.Views.Items
             this.Name = "ItemListFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Item List";
+            this.Load += new System.EventHandler(this.ItemListFrm_Load);
             this.tlDelete.ResumeLayout(false);
             this.tlDelete.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataItemList)).EndInit();
