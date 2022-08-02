@@ -21,7 +21,7 @@ namespace ESProMeter.Views.Boq
 			tab.Cursor = Cursors.Default;
 			dtgBOQLine.Cursor = Cursors.Default;
 			dtgBOQList.Cursor = Cursors.Default;
-            if (BoqItemLineService.GetInstance.GetBoqList(1, 1,out var table))
+            if (AppService.GetBoqInstance.GetBoqList(1, 1,out var table))
 			{
 				dtgBOQList.DataSource = table;
             }
@@ -50,7 +50,7 @@ namespace ESProMeter.Views.Boq
 					txtSite.SetText(selectedRow.GetValue<string>("SITENAME"));
 					txtValidDate.SetText(selectedRow.GetValue<string>("VALIDDATE"));
 					txtReferenceNo.SetText(selectedRow.GetValue<string>("REFNUMBER"));
-					BoqItemLineService.GetInstance.GetBoqListInfoByBoqId(selectedRow.GetValue<long>("Column1"),
+					AppService.GetBoqInstance.GetBoqListInfoByBoqId(selectedRow.GetValue<long>("Column1"),
 						out var tblBoqLine, out var tblquote, out var tblactivy);
 
 					dtgActivities.DataSource = tblactivy;

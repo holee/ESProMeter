@@ -90,7 +90,7 @@ namespace ESProMeter.Controllers
 		{
 			try
 			{
-				return UserService.GetUserInstance.Authenticated(form.AsTextBox("txtUserName").Text,
+				return AppService.GetUserInstance.Authenticated(form.AsTextBox("txtUserName").Text,
 				TextEncrypt(form.AsTextBox("txtPassword").Text));
 			} catch (Exception ex) { return false; }
 		}
@@ -98,7 +98,7 @@ namespace ESProMeter.Controllers
 		{
 			try
 			{
-				return UserService.GetUserInstance.Authenticated(login?.UserName,login?.Password);
+				return AppService.GetUserInstance.Authenticated(login?.UserName,login?.Password);
 			}
 			catch (Exception ex) { return false; }
 		}
