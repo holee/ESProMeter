@@ -107,6 +107,7 @@ namespace ESProMeter.Views.Boq
 			this.mbtAddCustomer.TabIndex = 1;
 			this.mbtAddCustomer.Text = "+";
 			this.mbtAddCustomer.UseVisualStyleBackColor = false;
+			this.mbtAddCustomer.Click += new System.EventHandler(this.mbtAddCustomer_Click);
 			// 
 			// cboSite
 			// 

@@ -151,5 +151,14 @@ namespace ESProMeter.Views.Sites
                 }
             }
         }
-    }
+
+		private void mbtAddCustomer_Click(object sender, EventArgs e)
+		{
+            Form form = new Views.Customers.CustomerCreateFrm();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+		}
+	}
 }
