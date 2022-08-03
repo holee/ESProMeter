@@ -164,12 +164,15 @@ namespace ESProMeter.Views.Sites
 			// 
 			// textCustomerID
 			// 
+			this.textCustomerID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.textCustomerID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.textCustomerID.FormattingEnabled = true;
 			this.textCustomerID.Location = new System.Drawing.Point(102, 73);
 			this.textCustomerID.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.textCustomerID.Name = "textCustomerID";
 			this.textCustomerID.Size = new System.Drawing.Size(282, 23);
 			this.textCustomerID.TabIndex = 1;
+			this.textCustomerID.Leave += new System.EventHandler(this.textCustomerID_Leave);
 			// 
 			// label6
 			// 
@@ -211,7 +214,7 @@ namespace ESProMeter.Views.Sites
 			this.textName.Name = "textName";
 			this.textName.Size = new System.Drawing.Size(308, 23);
 			this.textName.TabIndex = 0;
-			this.textName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textName_KeyUp);
+			this.textName.Leave += new System.EventHandler(this.textName_Leave);
 			// 
 			// groupBox2
 			// 

@@ -82,6 +82,7 @@ namespace ESProMeter.Views.Sites
 		{
 			InitializeComponent();
             btnSave.Text = "Save";
+            this.checkInactive.Enabled = false;
             // this.ShowCustomerForUpdate();
             this.FillCustomerCmb();
         }
@@ -89,6 +90,7 @@ namespace ESProMeter.Views.Sites
         {
             InitializeComponent();
             btnSave.Text = "Update";
+            this.Text = "Update site information";
             //this.ShowFormSiteUpdate(this,siteId);
             this.FillCustomerCmb();
             this.ShowFormSiteUpdate(this, this, siteId);
@@ -97,7 +99,7 @@ namespace ESProMeter.Views.Sites
         //events
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (this.IsValid(textName, textDescription))
+            if (this.IsValid(textName))
             {
                 //if (btnSave.Text == "Save")
                 //{
@@ -129,21 +131,31 @@ namespace ESProMeter.Views.Sites
             this.Close();
         }
 
-        private void textName_KeyUp(object sender, KeyEventArgs e)
-        {
-            var text=((TextBox)sender).Text.Trim();
+        private void mbtAddCustomer_Click(object sender, EventArgs e)
+		{
+            Form form = new Views.Customers.CustomerCreateFrm();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                this.FillCustomerCmb();
+            }
+		}
+
+		private void textName_Leave(object sender, EventArgs e)
+		{
+            var text = ((TextBox)sender).Text.Trim();
+            if (text.Length == 0) return;
             if (ID == 0)
             {
                 if (this.IsSiteExist(text))
                 {
                     MessageBox.Show("Site Name already exist.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ((TextBox)sender).Select(0, ((TextBox)sender).Text.Length);
-                    return; 
+                    return;
                 }
             }
             else
             {
-                if (this.IsSiteExistsame(text,ID))
+                if (this.IsSiteExistsame(text, ID))
                 {
                     MessageBox.Show("Site Name already exist.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ((TextBox)sender).Select(0, ((TextBox)sender).Text.Length);
@@ -152,13 +164,9 @@ namespace ESProMeter.Views.Sites
             }
         }
 
-		private void mbtAddCustomer_Click(object sender, EventArgs e)
+		private void textCustomerID_Leave(object sender, EventArgs e)
 		{
-            Form form = new Views.Customers.CustomerCreateFrm();
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-
-            }
+           
 		}
 	}
 }
