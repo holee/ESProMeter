@@ -168,7 +168,7 @@ namespace ESProMeter.Views.UnitOfMeasures
 			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
 			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
 			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Transparent;
 			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
 			this.dataUom.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
