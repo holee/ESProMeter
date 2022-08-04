@@ -75,6 +75,7 @@ namespace ESProMeter.Controllers
                 constainer.DataSource = table;
                 constainer.DisplayMember = "Name";
                 constainer.ValueMember = "ID";
+                constainer.SelectedIndex = -1;
             }
         }
         public static bool DeleteCustomer(this Form form,long id,long addressID)

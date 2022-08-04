@@ -30,7 +30,10 @@ namespace ESProMeter.Views.Sites
 		private void InitializeComponent()
 		{
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.mbtAddCustomer = new FontAwesome.Sharp.Material.MaterialButton();
+			this.label8 = new System.Windows.Forms.Label();
 			this.intEditSequense = new System.Windows.Forms.Label();
+			this.checkInactive = new System.Windows.Forms.CheckBox();
 			this.textDescription = new System.Windows.Forms.TextBox();
 			this.longSiteID = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
@@ -47,16 +50,15 @@ namespace ESProMeter.Views.Sites
 			this.label2 = new System.Windows.Forms.Label();
 			this.textAddress = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.checkInactive = new System.Windows.Forms.CheckBox();
 			this.materialButton2 = new FontAwesome.Sharp.Material.MaterialButton();
 			this.btnSave = new FontAwesome.Sharp.Material.MaterialButton();
-			this.label8 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.mbtAddCustomer);
 			this.groupBox1.Controls.Add(this.label8);
 			this.groupBox1.Controls.Add(this.intEditSequense);
 			this.groupBox1.Controls.Add(this.checkInactive);
@@ -68,6 +70,7 @@ namespace ESProMeter.Views.Sites
 			this.groupBox1.Controls.Add(this.label7);
 			this.groupBox1.Controls.Add(this.label4);
 			this.groupBox1.Controls.Add(this.textName);
+			this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.groupBox1.Location = new System.Drawing.Point(14, 14);
 			this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.groupBox1.Name = "groupBox1";
@@ -76,6 +79,37 @@ namespace ESProMeter.Views.Sites
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "SITE NAME";
+			// 
+			// mbtAddCustomer
+			// 
+			this.mbtAddCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
+			this.mbtAddCustomer.FlatAppearance.BorderColor = System.Drawing.Color.MediumOrchid;
+			this.mbtAddCustomer.FlatAppearance.BorderSize = 2;
+			this.mbtAddCustomer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Aqua;
+			this.mbtAddCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.mbtAddCustomer.ForeColor = System.Drawing.Color.WhiteSmoke;
+			this.mbtAddCustomer.IconChar = FontAwesome.Sharp.MaterialIcons.None;
+			this.mbtAddCustomer.IconColor = System.Drawing.Color.White;
+			this.mbtAddCustomer.IconSize = 1;
+			this.mbtAddCustomer.Location = new System.Drawing.Point(383, 71);
+			this.mbtAddCustomer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.mbtAddCustomer.Name = "mbtAddCustomer";
+			this.mbtAddCustomer.Size = new System.Drawing.Size(26, 27);
+			this.mbtAddCustomer.TabIndex = 8;
+			this.mbtAddCustomer.Text = "+";
+			this.mbtAddCustomer.UseVisualStyleBackColor = false;
+			this.mbtAddCustomer.Click += new System.EventHandler(this.mbtAddCustomer_Click);
+			// 
+			// label8
+			// 
+			this.label8.ForeColor = System.Drawing.Color.DimGray;
+			this.label8.Location = new System.Drawing.Point(102, 160);
+			this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(543, 31);
+			this.label8.TabIndex = 7;
+			this.label8.Text = "Give more decription on the site if necessary. You can keep it blank if you think" +
+    " that other information is enough for you.";
 			// 
 			// intEditSequense
 			// 
@@ -86,7 +120,17 @@ namespace ESProMeter.Views.Sites
 			this.intEditSequense.Size = new System.Drawing.Size(13, 15);
 			this.intEditSequense.TabIndex = 6;
 			this.intEditSequense.Text = "0";
-			this.intEditSequense.Visible = false;
+			// 
+			// checkInactive
+			// 
+			this.checkInactive.AutoSize = true;
+			this.checkInactive.Location = new System.Drawing.Point(545, 25);
+			this.checkInactive.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.checkInactive.Name = "checkInactive";
+			this.checkInactive.Size = new System.Drawing.Size(100, 19);
+			this.checkInactive.TabIndex = 6;
+			this.checkInactive.Text = "Site is inactive";
+			this.checkInactive.UseVisualStyleBackColor = true;
 			// 
 			// textDescription
 			// 
@@ -106,7 +150,6 @@ namespace ESProMeter.Views.Sites
 			this.longSiteID.Size = new System.Drawing.Size(13, 15);
 			this.longSiteID.TabIndex = 5;
 			this.longSiteID.Text = "0";
-			this.longSiteID.Visible = false;
 			// 
 			// label5
 			// 
@@ -121,16 +164,20 @@ namespace ESProMeter.Views.Sites
 			// 
 			// textCustomerID
 			// 
+			this.textCustomerID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.textCustomerID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.textCustomerID.FormattingEnabled = true;
 			this.textCustomerID.Location = new System.Drawing.Point(102, 73);
 			this.textCustomerID.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.textCustomerID.Name = "textCustomerID";
-			this.textCustomerID.Size = new System.Drawing.Size(299, 23);
+			this.textCustomerID.Size = new System.Drawing.Size(282, 23);
 			this.textCustomerID.TabIndex = 1;
+			this.textCustomerID.Leave += new System.EventHandler(this.textCustomerID_Leave);
 			// 
 			// label6
 			// 
 			this.label6.AutoSize = true;
+			this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.label6.Location = new System.Drawing.Point(15, 104);
 			this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label6.Name = "label6";
@@ -152,6 +199,7 @@ namespace ESProMeter.Views.Sites
 			// label4
 			// 
 			this.label4.AutoSize = true;
+			this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.label4.Location = new System.Drawing.Point(22, 76);
 			this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label4.Name = "label4";
@@ -166,7 +214,7 @@ namespace ESProMeter.Views.Sites
 			this.textName.Name = "textName";
 			this.textName.Size = new System.Drawing.Size(308, 23);
 			this.textName.TabIndex = 0;
-			this.textName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textName_KeyUp);
+			this.textName.Leave += new System.EventHandler(this.textName_Leave);
 			// 
 			// groupBox2
 			// 
@@ -177,6 +225,7 @@ namespace ESProMeter.Views.Sites
 			this.groupBox2.Controls.Add(this.label2);
 			this.groupBox2.Controls.Add(this.textAddress);
 			this.groupBox2.Controls.Add(this.label1);
+			this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.groupBox2.Location = new System.Drawing.Point(14, 215);
 			this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.groupBox2.Name = "groupBox2";
@@ -195,7 +244,6 @@ namespace ESProMeter.Views.Sites
 			this.longAddrRefId.Size = new System.Drawing.Size(13, 15);
 			this.longAddrRefId.TabIndex = 5;
 			this.longAddrRefId.Text = "0";
-			this.longAddrRefId.Visible = false;
 			// 
 			// textCountry
 			// 
@@ -216,7 +264,8 @@ namespace ESProMeter.Views.Sites
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(23, 167);
+			this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.label3.Location = new System.Drawing.Point(79, 162);
 			this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(61, 15);
@@ -226,7 +275,8 @@ namespace ESProMeter.Views.Sites
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(23, 129);
+			this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.label2.Location = new System.Drawing.Point(48, 129);
 			this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(92, 15);
@@ -245,23 +295,13 @@ namespace ESProMeter.Views.Sites
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(23, 32);
+			this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.label1.Location = new System.Drawing.Point(84, 29);
 			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(56, 15);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "ADDRESS";
-			// 
-			// checkInactive
-			// 
-			this.checkInactive.AutoSize = true;
-			this.checkInactive.Location = new System.Drawing.Point(545, 25);
-			this.checkInactive.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.checkInactive.Name = "checkInactive";
-			this.checkInactive.Size = new System.Drawing.Size(100, 19);
-			this.checkInactive.TabIndex = 6;
-			this.checkInactive.Text = "Site is inactive";
-			this.checkInactive.UseVisualStyleBackColor = true;
 			// 
 			// materialButton2
 			// 
@@ -301,17 +341,6 @@ namespace ESProMeter.Views.Sites
 			this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnSave.UseVisualStyleBackColor = false;
 			this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-			// 
-			// label8
-			// 
-			this.label8.ForeColor = System.Drawing.Color.DimGray;
-			this.label8.Location = new System.Drawing.Point(102, 160);
-			this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(543, 31);
-			this.label8.TabIndex = 7;
-			this.label8.Text = "Give more decription on the site if necessary. You can keep it blank if you think" +
-    " that other information is enough for you.";
 			// 
 			// AddSiteFrm
 			// 
@@ -359,5 +388,6 @@ namespace ESProMeter.Views.Sites
         private System.Windows.Forms.Label intEditSequense;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Label label8;
+		private FontAwesome.Sharp.Material.MaterialButton mbtAddCustomer;
 	}
 }

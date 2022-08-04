@@ -137,9 +137,19 @@ namespace ESProMeter.Views.Sites
                     if (this.MakeSiteActiveOrInactive(id, (byte)active))
                     {
 						selectedRow.Cells["IsActive"].Value = active;
+
+						if (active ==0 && chkInlcudeInActive.Checked==false)
+						{
+							siteDataGrid.Rows.RemoveAt(selectedRow.Index);
+						}
                     }
 				}
 			}
         }
-    }
+
+		private void excelToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			//open and excel file and pass the grid data to excel then open excel application
+		}
+	}
 }

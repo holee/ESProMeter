@@ -36,5 +36,10 @@ namespace ESProMeter.Views.Boq
 		{
 			this.Close();
 		}
+
+		private void mbtAddCustomer_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 }

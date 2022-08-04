@@ -18,12 +18,15 @@ namespace ESProMeter.Controllers
     {
         public static void GetAllSites(this Form form,byte isActive,int perPage=50) 
         {
-            if(AppService.SiteGetInstance.GetAllSites(isActive,perPage,out var table))
+            var container = form.AsControl<DataGridView>("siteDataGrid");
+            if (AppService.SiteGetInstance.GetAllSites(isActive, perPage, out var table))
             {
-                var container = form.AsControl<DataGridView>("siteDataGrid");
                 container.DataSource = table;
             }
-
+            else
+            {
+                container.DataSource = "";
+            }
         }
 
 
