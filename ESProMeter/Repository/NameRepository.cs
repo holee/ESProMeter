@@ -116,18 +116,19 @@ namespace ESProMeter.Repository
             
         }
 
-        public int CustomerCreateGetId(ITName model)
+        public bool CustomerCreate(ITName model,out long customerId)
         {
             AppService.SqlGetInstance.StartTransaction();
+            customerId = 0;
             try
             {
                 var addressId = AppService.AddressGetInstance.AddressCreate(model);
                 model.ADDRESSID = addressId;
-                var affectedRows = AppService.SqlGetInstance
+                customerId = AppService.SqlGetInstance
                                     .UseProcedure("[NAME_sp_INSERT]")
-                                    .InsertOrUpdate<dynamic>(new
+                                    .InsertGetId<long,dynamic>(new
                                     {
-                                        model.NAME,
+                                        model.NAME, 
                                         model.NAMETYPE,
                                         model.SALUTATION,
                                         model.FIRSTNAME,
@@ -142,12 +143,13 @@ namespace ESProMeter.Repository
                                         model.CREDITLIMIT,
                                     });
                 AppService.SqlGetInstance.ComitTransaction();
-                return affectedRows;
+                return customerId > 0;
+               
             }
             catch
             {
                 AppService.SqlGetInstance.RollbackTransaction();
-                return 0;
+                return false;
             }
 
         }

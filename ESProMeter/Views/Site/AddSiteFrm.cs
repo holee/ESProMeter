@@ -34,8 +34,8 @@ namespace ESProMeter.Views.Sites
         }
         public long CUSTOMERID
         { 
-            get => textCustomerID.AsNumber<long>(true); 
-            set => textCustomerID.SelectedValue=value; 
+            get => cmbCustomerID.AsNumber<long>(true); 
+            set => cmbCustomerID.SelectedValue=value; 
         }
         public byte ISACTIVE
         { 
@@ -83,8 +83,27 @@ namespace ESProMeter.Views.Sites
 			InitializeComponent();
             btnSave.Text = "Save";
             this.checkInactive.Enabled = false;
-            // this.ShowCustomerForUpdate();
             this.FillCustomerCmb();
+            this.cmbCustomerID.LostFocus += (s, e) =>
+            {
+                if (cmbCustomerID.SelectedValue == null && cmbCustomerID.Text.Length > 0)
+                {
+                    if (MessageBox.Show("there is not any customer in system.", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        Views.Customers.CustomerCreateFrm form = new Views.Customers.CustomerCreateFrm();
+                        form.NAME = cmbCustomerID.Text;
+                        if (this.CustomerCreateOrUpdate(form, out var id))
+                        {
+                            this.FillCustomerCmb();
+                            this.cmbCustomerID.SelectedValue = id;
+                        }
+                        else
+                        {
+                            this.FillCustomerCmb();
+                        }
+                    }
+                }
+            };
         }
         public AddSiteFrm(long siteId)
         {
@@ -133,10 +152,18 @@ namespace ESProMeter.Views.Sites
 
         private void mbtAddCustomer_Click(object sender, EventArgs e)
 		{
-            Form form = new Views.Customers.CustomerCreateFrm();
+            Views.Customers.CustomerCreateFrm form = new Views.Customers.CustomerCreateFrm();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                this.FillCustomerCmb();
+                if (this.CustomerCreateOrUpdate(form,out var id))
+                {
+                    this.FillCustomerCmb();
+                    this.cmbCustomerID.SelectedValue = id;
+                }
+                else
+                {
+                    this.FillCustomerCmb();
+                }
             }
 		}
 
@@ -168,5 +195,10 @@ namespace ESProMeter.Views.Sites
 		{
            
 		}
-	}
+
+        private void cmbCustomerID_MouseLeave(object sender, EventArgs e)
+        {
+            
+        }
+    }
 }

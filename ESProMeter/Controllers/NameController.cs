@@ -37,6 +37,19 @@ namespace ESProMeter.Controllers
             }
 
         }
+
+        public static bool CustomerCreateOrUpdate(this Form form, CustomerCreateFrm customer,out long id)
+        {
+            try
+            {
+                return AppService.GetNameInstance.CustomerCreate(customer,out id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
         public static void ShowCustomerCenter(this Form form,byte isActive=1)
         {
             try
@@ -71,7 +84,7 @@ namespace ESProMeter.Controllers
         {
             if (AppService.CustomerInstance.ShowCustomerCenter("Customer", 1, out var table))
             {
-                var constainer = form.AsControl<ComboBox>("textCustomerID");
+                var constainer = form.AsControl<ComboBox>("cmbCustomerID");
                 constainer.DataSource = table;
                 constainer.DisplayMember = "Name";
                 constainer.ValueMember = "ID";
