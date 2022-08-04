@@ -11,12 +11,7 @@ namespace ESProMeter.Views.Items
 
 	public partial class ItemListFrm : Form
 	{
-        public static void SetDoubleBuffer(Control dtg, bool DoubleBuffered)
-        {
-            typeof(Control).InvokeMember("DoubleBuffered",
-              BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.SetProperty,
-              null, dtg, new object[] { DoubleBuffered });
-        }
+        
         public ItemListFrm()
 		{
 			InitializeComponent();
@@ -25,7 +20,7 @@ namespace ESProMeter.Views.Items
 			this.cmbPage.SelectedIndex = 0;
             this.cmbFieldName.SelectedIndex = 0;
             this.cbmSortType.SelectedIndex = 0;
-            //SetDoubleBuffer(dataItemList, true);
+            FormExtension.SetDoubleBuffer(dataItemList, true);
             
         }
 

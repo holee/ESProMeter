@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace ESProMeter.Extensions
 {
     public static class FormExtension
     {
+        public static void SetDoubleBuffer(Control dtg, bool DoubleBuffered)
+        {
+            typeof(Control).InvokeMember("DoubleBuffered",
+              BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.SetProperty,
+              null, dtg, new object[] { DoubleBuffered });
+        }
 
         public static Dictionary<string,object> ErrorList=new Dictionary<string, object>();
         public static void ClearForm(this Form form,params Control[] ctrls)
