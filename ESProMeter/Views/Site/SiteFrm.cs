@@ -21,7 +21,7 @@ namespace ESProMeter.Views.Sites
 			AddSiteFrm form = new AddSiteFrm();
 			if (form.ShowDialog() == DialogResult.OK)
 			{
-				this.SiteCreateNewOrUpdate(form, form);
+				this.SiteCreateNewOrUpdate(form,form);
 				ShowAllSites();
 			}
 		}
