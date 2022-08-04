@@ -13,6 +13,7 @@ namespace ESProMeter.Views.UnitOfMeasures
 		{
 			InitializeComponent();
 			tlsSelectedRow.SelectedIndex = 0;
+			
 			ShowUom();
 		}
 
@@ -111,7 +112,14 @@ namespace ESProMeter.Views.UnitOfMeasures
 				if (this.MakeInactive(id, IsActive))
 				{
 					this.dataUom.SetText("IsActive", IsActive);
-					stbMakInactive.Text = IsActive == 0 ? "Make Active" : "Make in Active";
+					if (IsActive == 0 && this.chkInactive.Checked == false)
+					{
+						dataUom.Rows.RemoveAt(row.Index);
+					}
+					else
+					{
+						stbMakInactive.Text = IsActive == 0 ? "Make Active" : "Make Inctive";
+					}
 				}
 				
 			}
@@ -168,7 +176,7 @@ namespace ESProMeter.Views.UnitOfMeasures
 					}
                     else
                     {
-						stbMakInactive.Text = "Make In Active";
+						stbMakInactive.Text = "Make Inactive";
 
 					}
                 }
@@ -201,5 +209,10 @@ namespace ESProMeter.Views.UnitOfMeasures
 				}
 			}
         }
-    }
+
+		private void dataUom_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		{
+
+		}
+	}
 }
