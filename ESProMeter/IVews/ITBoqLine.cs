@@ -1,7 +1,7 @@
 ﻿namespace ESProMeter.IVews
 {
-    public interface ITBoqLine
-    {
+    public interface ITBOQLINE
+	{
 			public long BOQID { get; set; }
 			public long BOQITEMID { get; set; }
 			public int LineSeq { get; set; }

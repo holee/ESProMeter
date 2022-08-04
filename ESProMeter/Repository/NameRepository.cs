@@ -74,6 +74,12 @@ namespace ESProMeter.Repository
                 model.ADDRESS = row.GetValue<string>("ADDRESS");
             }
         }
+        
+        /// <summary>
+        /// Create Update And Delete
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public int CustomerCreate(ITName model)
         {
             AppService.SqlGetInstance.StartTransaction();
@@ -109,6 +115,43 @@ namespace ESProMeter.Repository
             }
             
         }
+
+        public int CustomerCreateGetId(ITName model)
+        {
+            AppService.SqlGetInstance.StartTransaction();
+            try
+            {
+                var addressId = AppService.AddressGetInstance.AddressCreate(model);
+                model.ADDRESSID = addressId;
+                var affectedRows = AppService.SqlGetInstance
+                                    .UseProcedure("[NAME_sp_INSERT]")
+                                    .InsertOrUpdate<dynamic>(new
+                                    {
+                                        model.NAME,
+                                        model.NAMETYPE,
+                                        model.SALUTATION,
+                                        model.FIRSTNAME,
+                                        model.LASTNAME,
+                                        model.JOBTITLE,
+                                        model.ADDRESSID,
+                                        model.MAINPHONE,
+                                        model.ALTPHONE,
+                                        model.FAX,
+                                        model.EMAIL,
+                                        model.WEBSITE,
+                                        model.CREDITLIMIT,
+                                    });
+                AppService.SqlGetInstance.ComitTransaction();
+                return affectedRows;
+            }
+            catch
+            {
+                AppService.SqlGetInstance.RollbackTransaction();
+                return 0;
+            }
+
+        }
+
         public int CustomerUpdate(ITName model)
         {
             AppService.SqlGetInstance.StartTransaction();

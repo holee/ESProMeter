@@ -1,13 +1,14 @@
-﻿using System;
+﻿using ESProMeter.IVews;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ESProMeter.IVews
+namespace ESProMeter.Models
 {
-    public interface ITBOQLINEDETAILS 
-    {
+    public class TBOQLINEDETAILS: ITBOQLINEDETAILS
+	{
 		public long BOQID { get; set; }
 		public long BOQITEMID { get; set; }
 		public decimal BOQITEMQTY { get; set; }

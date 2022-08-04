@@ -23,10 +23,9 @@ namespace ESProMeter.Views.Items
             dataItemList.ClearSelection();
             //dataItemList.AutoGenerateColumns = false;
 			this.cmbPage.SelectedIndex = 0;
-            this.cmbSortByField.SelectedIndex = 0;
             this.cmbFieldName.SelectedIndex = 0;
             this.cbmSortType.SelectedIndex = 0;
-            SetDoubleBuffer(dataItemList, true);
+            //SetDoubleBuffer(dataItemList, true);
             
         }
 
@@ -50,16 +49,15 @@ namespace ESProMeter.Views.Items
 
         private void ShowAllItems()
         {
-            var orderBy = cmbSortByField.Text.Length==0?"ItemName": cmbSortByField.Text;
             var orderType = cbmSortType.Text.Length==0?"ASC": cbmSortType.Text;
             var page = cmbPage.AsNumber<int>()==0?50: cmbPage.AsNumber<int>();
             if (checkBox1.Checked)
             {
-                this.ShowItemList(this.dataItemList, 0, page, orderBy, orderType);
+                this.ShowItemList(this.dataItemList, 0, page,orderType);
             }
             else
             {
-                this.ShowItemList(this.dataItemList, 1, page, orderBy, orderType);
+                this.ShowItemList(this.dataItemList, 1, page, orderType);
             }
         }
         private void tlCreateACopy_Click(object sender, EventArgs e)

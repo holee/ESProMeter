@@ -71,6 +71,16 @@ namespace ESProMeter.Controllers
             }
 
         }
+        public static void ShowItemList(this Form form, DataGridView grid, byte isActive,
+           int page, string orderBy = "ASC")
+        {
+            if (AppService.GetItemInstance.GetAllItems(isActive, page, out var table))
+            {
+                table.DefaultView.Sort = $"ITEMTYPE,ITEMNAME {orderBy}";
+                grid.DataSource = table;
+            }
+
+        }
         public static bool IsItemExist(this Form form, string itemName)
         {
             return AppService.GetItemInstance.ItemAlreadyExist(itemName);

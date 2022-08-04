@@ -12,8 +12,13 @@ namespace ESProMeter.Repository
 {
     public class BoqItemLineRepository
     {
-        public long TBoqCreate(ITBoq tBoq)
-        {
+        /// <summary>
+        /// Create And Update BOQ
+        /// </summary>
+        /// <param name="tBoq"></param>
+        /// <returns></returns>
+        public long BoqCreate(ITBoq tBoq) 
+        { 
             return DataUtility.GetInstance
                        .UseProcedure("")
                        .InsertGetId<long, dynamic>(new
@@ -34,9 +39,9 @@ namespace ESProMeter.Repository
                        });
 
         }
-        public long TBoqUpdate(ITBoq tBoq)
+        public long BoqUpdate(ITBoq tBoq)
         {
-            return DataUtility.GetInstance
+            return AppService.SqlGetInstance
                        .UseProcedure("")
                        .InsertGetId<long, dynamic>(new
                        {
@@ -57,15 +62,36 @@ namespace ESProMeter.Repository
                        });
 
         }
-        public void TBoqLineCreate(DataTable data)
+        /// <summary>
+        /// Create and update BoqLine
+        /// </summary>
+        /// <param name="data"></param>
+        public void BoqLineCreate(DataTable data)
         {
-            DataUtility.GetInstance
+            AppService.SqlGetInstance
                        .UseProcedure("")
                        .InsertFromTable("", data, "");
 
         }
+        public void BoqLineCreate(ITBOQLINE line)
+        {
+            AppService.SqlGetInstance
+                       .UseProcedure("")
+                       .InsertOrUpdate<dynamic>(new
+                       {
+                           line.BOQID,
+                           line.BOQITEMID,
+                           line.LineSeq,
+                           line.NO,
+                           line.BOQITEMDESC,
+                           line.BOQITEMUOMID,
+                           line.BOQITEMQTY,
+                           line.REMARKS,
+                           line.UID
+                       });
 
-        public void TBoqLineCreate(ITBoqLine line)
+        }
+        public void BoqLineUpdate(ITBOQLINE line)
         {
             DataUtility.GetInstance
                        .UseProcedure("")
@@ -83,63 +109,58 @@ namespace ESProMeter.Repository
                        });
 
         }
-        public void TBoqLineUpdate(ITBoqLine line)
+
+       /// <summary>
+       /// Create and Update BOQLINE DETAILS
+       /// </summary>
+       /// <param name="itemLine"></param>
+        public void BoqLineDetailsUpdate(ITBOQLINEDETAILS details)
+        { 
+            DataUtility.GetInstance
+                       .UseProcedure("")
+                       .InsertOrUpdate<dynamic>(new
+                       {
+                           
+                       });
+
+        }
+        public void BoqLineDetailsUpdate(DataTable details)
+        {
+            DataUtility.GetInstance
+                       .UseProcedure("")
+                       .InsertFromTable("",details,"");
+
+        }
+        public void BoqLineDetailsCreate(ITBOQLINEDETAILS details) 
         {
             DataUtility.GetInstance
                        .UseProcedure("")
                        .InsertOrUpdate<dynamic>(new
                        {
-                           line.BOQID,
-                           line.BOQITEMID,
-                           line.LineSeq,
-                           line.NO,
-                           line.BOQITEMDESC,
-                           line.BOQITEMUOMID,
-                           line.BOQITEMQTY,
-                           line.REMARKS,
-                           line.UID
+                           
                        });
 
         }
 
-        public void TBoqItemLineUpdate(ITBoqItemLine itemLine)
+        public void BoqLineDetailsCreate(DataTable   details)
         {
             DataUtility.GetInstance
-                       .UseProcedure("")
-                       .InsertOrUpdate<dynamic>(new
-                       {
-                           itemLine.BOQITEMID,
-                           itemLine.BOQITEMLINEID,
-                           itemLine.BOQITEMLINESEQ,
-                           itemLine.BOQITEMLINEUOMID,
-                           itemLine.BOQITEMLINEQTY
-                       });
+                       .UseProcedure("BOQLINEDETAILS_sp_INSERT")
+                       .InsertFromTable("udtParam", details, "udt_TBOQLINEDETAILS_Insert");
 
         }
-
-        public void TBoqItemLineCreate(ITBoqItemLine itemLine)
-        {
-            DataUtility.GetInstance
-                       .UseProcedure("")
-                       .InsertOrUpdate<dynamic>(new
-                       {
-                           itemLine.BOQITEMID,
-                           itemLine.BOQITEMLINEID,
-                           itemLine.BOQITEMLINESEQ,
-                           itemLine.BOQITEMLINEUOMID,
-                           itemLine.BOQITEMLINEQTY
-                       });
-
-        }
-
+        /// <summary>
+        /// SELECT
+        /// </summary>
+        /// <param name="isActive"></param>
+        /// <param name="status"></param>
+        /// <param name="tblBoq"></param>
+        /// <returns></returns>
 
         public void GetBoqListInfoByBoqId(long boqId,
             out DataTable tblBoq, out DataTable tblQuote, out DataTable tblActivity)
         {
-            tblBoq = new();
-            tblQuote = new();
-            tblActivity = new();
-            DataUtility.GetInstance
+            AppService.SqlGetInstance
                 .UseProcedure("BOQLine_Sp_SELECT")
                 .FindAsTable(new 
                 {
@@ -159,31 +180,29 @@ namespace ESProMeter.Repository
                 }, out tblActivity);
 
         }
+
+       
         public bool GetBoqList(int isActive,int status,out DataTable tblBoq)
         {
-            return DataUtility.GetInstance
+            return AppService.SqlGetInstance
                 .UseProcedure("BOQ_sp_SELECT_ALL")
                 .FindAsTable<dynamic?>(new { isAct = isActive, status= status }, out tblBoq);
         }
-        public bool GetBoqList(byte isActive, int status,string[] columns, out DataTable tblBoq)
+        public bool GetBoqList(byte isActive, int status, out DataTable tblBoq)
         {
-            var sql = columns.Length==0? "*" : string.Join(",", columns);
-            return DataUtility.GetInstance
+            return AppService.SqlGetInstance
                 .UseProcedure("BOQ1_sp_SELECT_ALL")
                 .FindAsTable<dynamic?>(new { 
                     isAct = isActive, 
-                    status = status,
-                    columns= sql
+                    status = status
                 }, out tblBoq);
         }
 
 
 
-        public void GetBoqListByBoqId(long boqId,
-           out DataTable tblBoq)
+        public void GetBoqListByBoqId(long boqId,out DataTable tblBoq)
         {
-            tblBoq = new();
-            DataUtility.GetInstance
+            AppService.SqlGetInstance
                 .UseProcedure("BOQLine_Sp_SELECT")
                 .FindAsTable(new
                 {
@@ -192,7 +211,7 @@ namespace ESProMeter.Repository
         }
         public bool GetBoqLine(long boqId,bool isBoqClosed,out DataTable table)
         {
-            if (DataUtility.GetInstance
+            if (AppService.SqlGetInstance
                 .UseProcedure("BOQLine_Sp_SELECT")
                 .FindAsTable(new { 
                     isBoqClosed=isBoqClosed,
@@ -207,7 +226,7 @@ namespace ESProMeter.Repository
         public void GetBoqItemLine(long boqId,out DataTable table)
         {
             table = new();
-            if (DataUtility.GetInstance
+            if (AppService.SqlGetInstance
                 .UseProcedure("")
                 .FindAsTable(new { boqId = boqId }, out table)) ;
            
@@ -216,7 +235,7 @@ namespace ESProMeter.Repository
         public void GetBoqQuote(long boqId,out DataTable table)
         {
             table = new();
-            if (DataUtility.GetInstance
+            if (AppService.SqlGetInstance
                 .UseProcedure("")
                 .FindAsTable(new { boqId = boqId }, out table)) ;
           

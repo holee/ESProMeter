@@ -73,8 +73,6 @@ namespace ESProMeter.Views.Items
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmbSortByField = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.cbmSortType = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -510,31 +508,6 @@ namespace ESProMeter.Views.Items
             this.dataGridViewTextBoxColumn12.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn12.Visible = false;
             // 
-            // cmbSortByField
-            // 
-            this.cmbSortByField.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSortByField.FormattingEnabled = true;
-            this.cmbSortByField.Items.AddRange(new object[] {
-            "ItemName",
-            "Uom",
-            "Cost"});
-            this.cmbSortByField.Location = new System.Drawing.Point(558, 51);
-            this.cmbSortByField.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cmbSortByField.Name = "cmbSortByField";
-            this.cmbSortByField.Size = new System.Drawing.Size(72, 23);
-            this.cmbSortByField.TabIndex = 2;
-            this.cmbSortByField.SelectedIndexChanged += new System.EventHandler(this.cmbSortBySelectedIndexChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(517, 54);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(32, 15);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Field";
-            // 
             // cbmSortType
             // 
             this.cbmSortType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -578,13 +551,11 @@ namespace ESProMeter.Views.Items
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataItemList);
             this.Controls.Add(this.cmbPage);
             this.Controls.Add(this.cbmSortType);
-            this.Controls.Add(this.cmbSortByField);
             this.Controls.Add(this.cmbFieldName);
             this.Controls.Add(this.textSearch);
             this.Controls.Add(this.tlDelete);
@@ -631,8 +602,6 @@ namespace ESProMeter.Views.Items
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
-        private System.Windows.Forms.ComboBox cmbSortByField;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ToolStripDropDownButton tlsNew;
         private System.Windows.Forms.ComboBox cbmSortType;
         private System.Windows.Forms.Label label5;
