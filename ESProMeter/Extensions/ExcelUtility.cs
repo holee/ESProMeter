@@ -43,6 +43,7 @@ namespace ESProMeter.Extensions
             xlApp.Workbooks.Open(fileName);
             try
             {
+                ///insert columns header
                 for (int k = 0; k < data.Columns.Count; k++)
                 {
                     xlApp.Cells[1, 1 + k].Value = data.Columns[k].ColumnName;
@@ -50,6 +51,7 @@ namespace ESProMeter.Extensions
                     xlApp.Cells[1, 1 + k].Interior.Color = Color.Yellow;
                     xlApp.Cells[1, 1 + k].Borders.Weight = 2d;
                 }
+                ///write data
                 for (int i = 0; i < data.Rows.Count; i++)
                 {
                     for (int k = 0; k < data.Columns.Count; k++)
@@ -79,6 +81,7 @@ namespace ESProMeter.Extensions
             xlApp.Workbooks.Open(fileName);
             try
             {
+                //create columns header
                 for (int k = 0; k < data.Columns.Count; k++)
                 {
                     xlApp.Cells[1,k+1].Value = data.Columns[k].ColumnName;
@@ -86,6 +89,7 @@ namespace ESProMeter.Extensions
                     xlApp.Cells[1, 1 + k].Interior.Color = Color.Yellow;
                     xlApp.Cells[1, 1 + k].Borders.Weight = 2d;
                 }
+                //insert data to excel
                 for (int i = 0; i < data.Rows.Count; i++)
                 {
                     for (int k = 0; k < data.Columns.Count; k++)
@@ -93,6 +97,44 @@ namespace ESProMeter.Extensions
                         xlApp.Cells[2 + i, 1 + k].Value = data.Rows[i][k];
                         xlApp.Cells[2 + i, 1 + k].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
                         xlApp.Cells[2 + i, 1 + k].Borders.Weight = 2d;
+                    }
+
+                }
+                xlApp.Columns.AutoFit();
+                xlApp.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                releaseObject(xlApp);
+            }
+
+        }
+        public static void Print(this DataTable data, string fileName,int row)
+        {
+            Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
+            xlApp.Workbooks.Open(fileName);
+            try
+            {
+                //create columns header
+                for (int k = 0; k < data.Columns.Count; k++)
+                {
+                    xlApp.Cells[row, row + k].Value = data.Columns[k].ColumnName;
+                    xlApp.Cells[row, row + k].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlDash;
+                    xlApp.Cells[row, row + k].Interior.Color = Color.Yellow;
+                    xlApp.Cells[row, row + k].Borders.Weight = 2d;
+                }
+                //insert data to excel
+                for (int i = 0; i < data.Rows.Count; i++)
+                {
+                    for (int k = 0; k < data.Columns.Count; k++)
+                    {
+                        xlApp.Cells[row + i, row + k].Value = data.Rows[i][k];
+                        xlApp.Cells[row + i, row + k].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                        xlApp.Cells[row + i, row + k].Borders.Weight = 2d;
                     }
 
                 }
