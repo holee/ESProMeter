@@ -2,6 +2,7 @@
 using ESProMeter.Extensions;
 using ESProMeter.IVews;
 using System;
+using System.Data;
 using System.Windows.Forms;
 
 namespace ESProMeter.Views.Sites
@@ -150,6 +151,15 @@ namespace ESProMeter.Views.Sites
 		private void excelToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			//open and excel file and pass the grid data to excel then open excel application
+
+			var data = ((DataTable)siteDataGrid.DataSource);
+			var path = "D:/test.xlsx";
+            if (!System.IO.File.Exists(path))
+            {
+				System.IO.File.Create(path);
+            }
+			data.Print("ESProMeter.Excels.test.xlsx", "A2","B2");
+
 		}
 	}
 }
