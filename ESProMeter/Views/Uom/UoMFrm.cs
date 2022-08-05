@@ -214,5 +214,10 @@ namespace ESProMeter.Views.UnitOfMeasures
 		{
 
 		}
+
+		private void excelToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 }
