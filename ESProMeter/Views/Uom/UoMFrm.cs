@@ -13,7 +13,7 @@ namespace ESProMeter.Views.UnitOfMeasures
 		{
 			InitializeComponent();
 			tlsSelectedRow.SelectedIndex = 0;
-			
+			FormExtension.SetDoubleBuffer(dataUom, true);
 			ShowUom();
 		}
 
