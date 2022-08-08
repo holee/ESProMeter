@@ -91,7 +91,7 @@ namespace ESProMeter.Controllers
 			{
 				return AppService.GetUserInstance.Authenticated(form.AsTextBox("txtUserName").Text,
 				TextEncrypt(form.AsTextBox("txtPassword").Text));
-			} catch (Exception ex) { return false; }
+			} catch { return false; }
 		}
 		public static bool GrantUserAccess(this Form form, UserLoginFrm user)
 		{
@@ -117,7 +117,7 @@ namespace ESProMeter.Controllers
 				
 				return true;
 			}
-			catch (Exception ex) { return false; }
+			catch { return false; }
 
 
 		}
