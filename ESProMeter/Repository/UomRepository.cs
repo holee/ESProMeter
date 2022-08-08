@@ -71,6 +71,13 @@ namespace ESProMeter.Repository
                 UOMNAME = name
             });
         }
+        public bool IsUomAlreadyUsed(long uomId) 
+        {
+            return AppService.SqlGetInstance.UseSql("SELECT COUNT(*) FROM VItem WHERE UOMID=@UOMID").Exist(new
+            {
+                @UOMID = uomId
+            });
+        }
         public bool CheckUomExistWithSame(string name, long UomId)
         {
             return AppService.SqlGetInstance.UseProcedure("UOM_sp_CHECKEDUOMNAME_EXIST_WITHID").Count<int, dynamic>(new
@@ -107,6 +114,7 @@ namespace ESProMeter.Repository
         {
             try
             {
+              
                var deletedRow= AppService.SqlGetInstance.UseProcedure("UOM_sp_DELETE").Delete<dynamic>(new { @ID=id });
                 return deletedRow > 0;
             }

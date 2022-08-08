@@ -59,17 +59,25 @@ namespace ESProMeter.Views.UnitOfMeasures
 		}
         private void stbDeleteUoM_Click(object sender, EventArgs e)
         {
-			if (dataUom.Rows.Count > 0)
+			if (dataUom.SelectedRows.Count > 0)
 			{
 				var row = dataUom.SelectedRows[0];
 				var id = row.GetValue<long>("ID");
 				if (MessageBox.Show("Do you want to delete?", "Confirm", MessageBoxButtons.OKCancel,MessageBoxIcon.Question) == DialogResult.OK)
                 {
-					if (this.DeleteUomById(id))
-					{
-						this.dataUom.Rows.Remove(row);
-						//row.Visible = false;
+                    try
+                    {
+						if (this.DeleteUomById(id))
+						{
+							this.dataUom.Rows.Remove(row);
+							//row.Visible = false;
+						}
 					}
+                    catch(Exception ex)
+                    {
+						MessageBox.Show(ex.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    }
+					
 				}
 				
 			}

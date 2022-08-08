@@ -181,6 +181,10 @@ namespace ESProMeter.Controllers
         {
             try
             {
+                if (AppService.UomGetInstance.IsUomAlreadyUsed(id))
+                {
+                    throw new Exception("UOM Already in use.");
+                }
                 return AppService.UomGetInstance.Delete(id);
             }
             catch (Exception ex)
