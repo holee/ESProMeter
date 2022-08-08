@@ -10,7 +10,10 @@ namespace ESProMeter.Repository
         {
             return AppService.SqlGetInstance
                                 .UseProcedure("NAME_sp_SELECT")
-                                .FindAsTable<dynamic>(new { @ISACTIVE= isActive },out table);
+                                .FindAsTable<dynamic>(new { 
+                                    @ISACTIVE= isActive,
+                                    @NAMETYPE="Customer"
+                                },out table);
         }
         public bool CustomersCenter(string nameType, byte isActive, out DataTable table) 
         {

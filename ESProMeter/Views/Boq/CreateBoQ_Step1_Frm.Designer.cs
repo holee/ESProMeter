@@ -125,8 +125,7 @@ namespace ESProMeter.Views.Boq
             this.cboCustomerName.Name = "cboCustomerName";
             this.cboCustomerName.Size = new System.Drawing.Size(363, 23);
             this.cboCustomerName.TabIndex = 0;
-            this.cboCustomerName.SelectionChangeCommitted += new System.EventHandler(this.cboCustomerName_SelectionChangeCommitted);
-            this.cboCustomerName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cboCustomerName_KeyUp);
+          
             // 
             // label2
             // 

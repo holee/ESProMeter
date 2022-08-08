@@ -11,6 +11,8 @@ using ESProMeter.Services;
 using ESProMeter.Sessions;
 using System.Security.Cryptography;
 using ESProMeter.IVews;
+using ESProMeter.Views.FileAndLogin;
+using ESProMeter.Models;
 
 namespace ESProMeter.Controllers
 {
@@ -19,8 +21,6 @@ namespace ESProMeter.Controllers
 		public static string TextEncrypt(string input)
 		{
 			// step 1, calculate MD5 hash from input
-			
-
 			MD5 md5 = MD5.Create();
 			byte[] inputBytes = Encoding.ASCII.GetBytes(input);
 			byte[] hash = md5.ComputeHash(inputBytes);
@@ -52,7 +52,7 @@ namespace ESProMeter.Controllers
 			return false;
 		}
 
-		public static bool setServerConnectionInformation(this Form form)
+		public static bool SetServerConnectionInformation(this Form form)
 		{
 			try
 			{
@@ -63,13 +63,12 @@ namespace ESProMeter.Controllers
 				UserSession.DatabaseName = row.GetValue<string>("DBName");
 				UserSession.UserName = row.GetValue<string>("UName");
 				UserSession.Password = row.GetValue<string>("Password");
-
 				MainFrm.ULNF.lblSelectedCompany.Text = UserSession.CompanyName;
 				return true;
 			}
 			catch (Exception ex)
 			{
-				throw ex;
+				throw new Exception(ex.Message);
 			}
 		}
 
@@ -82,7 +81,7 @@ namespace ESProMeter.Controllers
 			} 
 			catch (Exception ex)
 			{
-				throw ex;
+				throw new Exception(ex.Message);
 			}
 		}
 
@@ -94,13 +93,17 @@ namespace ESProMeter.Controllers
 				TextEncrypt(form.AsTextBox("txtPassword").Text));
 			} catch (Exception ex) { return false; }
 		}
-		public static bool GrantUserAccess(this Form form,ILogin login)
+		public static bool GrantUserAccess(this Form form, UserLoginFrm user)
 		{
 			try
 			{
-				return AppService.GetUserInstance.Authenticated(login?.UserName,login?.Password);
+				ILogin login = (ILogin)user;
+				return AppService.GetUserInstance.Authenticated((LoginModel)login);
 			}
-			catch (Exception ex) { return false; }
+			catch
+			{ 
+				return false; 
+			}
 		}
 
 		public static bool memorizeUserCredential(this Form form)

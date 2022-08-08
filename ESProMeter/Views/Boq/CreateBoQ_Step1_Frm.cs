@@ -104,7 +104,9 @@ namespace ESProMeter.Views.Boq
         public CreateBoQ_Step1_Frm()
         {
             InitializeComponent();
-            //this.FillCustomerCmb(cboCustomerName);
+            cboCustomerName.AutoCompleteMode=AutoCompleteMode.SuggestAppend;
+            cboCustomerName.AutoCompleteSource = AutoCompleteSource.ListItems;
+            this.FillCustomerCmb(cboCustomerName);
             this.cboCustomerName.LostFocus += (s, e) =>
             {
                 if (cboCustomerName.SelectedValue == null && cboCustomerName.Text.Length > 0)
@@ -125,6 +127,18 @@ namespace ESProMeter.Views.Boq
                     //}
                 }
             };
+
+            this.cboCustomerName.SelectedValueChanged += (s, e) =>
+            {
+                if (cboCustomerName.SelectedValue == null) return;
+                if (cboCustomerName.SelectedValue != null && cboCustomerName.Text.Length > 0)
+                {
+                    var id = cboCustomerName.AsNumber<long>(true);
+                    this.FillSitesCmbByCustomer(id, cboSite);
+
+                }
+            };
+
             this.cboSite.LostFocus += (s, e) =>
             {
                 if (cboSite.SelectedValue == null && cboSite.Text.Length > 0)
@@ -213,35 +227,24 @@ namespace ESProMeter.Views.Boq
                 this.FillSitesCmbByCustomer(cboCustomerName.AsNumber<long>(true),cboSite);
             }
         }
-
-        private void cboCustomerName_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            if(cboCustomerName.SelectedIndex != -1)
-            {
-                var id = cboCustomerName.AsNumber<long>(true);
-                this.FillSitesCmbByCustomer(id, cboSite);
-
-            }
-        }
-        private void cboCustomerName_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (cboCustomerName.Text.Length > 0)
-            {
-                var txtsearch = ((ComboBox)sender).Text.Trim();
-                this.FillCustomerCmb(cboCustomerName, txtsearch);
-                cboCustomerName.DroppedDown = true;
-                cboCustomerName.Cursor = Cursor.Current;
-                //cboCustomerName.SelectionStart = cboCustomerName.Text.Length + 1;
-            }
-            else
-            {
-                this.cboCustomerName.DroppedDown = false;
-                ((System.Data.DataTable)cboCustomerName.DataSource)?.Rows?.Clear();
-               
-            }
-        }
+        
     }
 }
+
+//if (cboCustomerName.Text.Length > 0)
+//{
+//    var txtsearch = ((ComboBox)sender).Text.Trim();
+//    this.FillCustomerCmb(cboCustomerName, txtsearch);
+//    cboCustomerName.DroppedDown = true;
+//    cboCustomerName.Cursor = Cursor.Current;
+//    //cboCustomerName.SelectionStart = cboCustomerName.Text.Length + 1;
+//}
+//else
+//{
+//    this.cboCustomerName.DroppedDown = false;
+//    ((System.Data.DataTable)cboCustomerName.DataSource)?.Rows?.Clear();
+
+//}
 
 
 //if (cboCustomerName.SelectedValue == null && cboCustomerName.Text.Length > 0)

@@ -92,7 +92,7 @@ namespace ESProMeter.Controllers
         }
         public static void FillCustomerCmb(this Form form,ComboBox constainer)
         {
-            if (AppService.CustomerInstance.ShowCustomerCenter("Customer", 1, out var table))
+            if (AppService.GetNameInstance.GetAllCustomers(1, out var table))
             {
                 constainer.DataSource = table;
                 constainer.DisplayMember = "Name";

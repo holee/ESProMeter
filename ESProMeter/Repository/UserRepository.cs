@@ -1,13 +1,8 @@
 ﻿using ESProMeter.Extensions;
 using ESProMeter.IVews;
+using ESProMeter.Models;
 using ESProMeter.Services;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace ESProMeter.Repository
 {
     public class UserRepository
@@ -22,8 +17,46 @@ namespace ESProMeter.Repository
             }
             return false;
         }
-
-
+        public bool Authenticated(string username, string password,bool remember)
+        {
+            if (DataUtility.GetInstance
+                       .UseProcedure("USER_sp_LOGIN")
+                       .FindOne(new { UID = username }, out DataRow row))
+            {
+                
+                if(SecurityService.Verify(password, row.GetValue<string>("PASSWORD")))
+                {
+                    if (remember)
+                    {
+                        Properties.Settings.Default.userLoginUserName = row.GetValue<string>("UERID");
+                        Properties.Settings.Default.userLoginPassword = row.GetValue<string>("PASSWORD");
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool Authenticated(LoginModel model)
+        {
+            if (DataUtility.GetInstance
+                       .UseProcedure("USER_sp_LOGIN")
+                       .FindOne(new { 
+                           UID = model.UserName
+                       }, out DataRow row))
+            {
+                
+                if(SecurityService.Verify(model.Password, row.GetValue<string>("PASSWORD")))
+                {
+                    if (model.RememberMe)
+                    {
+                        Properties.Settings.Default.userLoginUserName = row.GetValue<string>("UERID");
+                        Properties.Settings.Default.userLoginPassword = row.GetValue<string>("PASSWORD");
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
         public bool Register(IUser user)
         {
                 return DataUtility.GetInstance
@@ -38,6 +71,21 @@ namespace ESProMeter.Repository
         }
 
 
+
+
+
+
+
+
+
+
+
+        //private funciton
+
+        private void Write(string a)
+        {
+            
+        }
 
 
 

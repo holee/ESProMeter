@@ -28,7 +28,7 @@ namespace ESProMeter.Views.FileAndLogin
 				if (MainFrm.ULNF == null || MainFrm.ULNF.Visible == false) MainFrm.ULNF = new Views.FileAndLogin.UserLoginFrm();
 				MainFrm.ULNF.StartPosition = FormStartPosition.CenterScreen;
 
-				this.setServerConnectionInformation();
+				this.SetServerConnectionInformation();
 
 
 				if (this.openCompanyFileConnection())
