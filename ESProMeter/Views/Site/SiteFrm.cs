@@ -45,26 +45,31 @@ namespace ESProMeter.Views.Sites
 			siteDataGrid.ClearSelection();
 		}
 		
-
-
         private void SiteFrm_Load(object sender, EventArgs e)
         {
 			siteDataGrid.ClearSelection();
 
 		}
-
         private void tlsDelete_Click(object sender, EventArgs e)
         {
-			if (this.siteDataGrid.Rows.Count <= 0) return;
+			if (siteDataGrid.SelectedRows.Count <= 0) return;
             if (siteDataGrid.SelectedRows.Count > 0) {
 				var selectedRow = siteDataGrid.SelectedRows[0];
 				var id = selectedRow.GetValue<long>("ID");
 				if (MessageBox.Show("Do you want to delete this data?", "Confirm?", MessageBoxButtons.YesNo) == DialogResult.Yes)
 				{
-                    if (this.DeleteSite(id))
+                    try
                     {
-						siteDataGrid.Rows.Remove(selectedRow);
+						if (this.DeleteSite(id))
+						{
+							siteDataGrid.Rows.Remove(selectedRow);
+						}
 					}
+                    catch (Exception ex)
+                    {
+						MessageBox.Show("Error",ex.Message,MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    }
+                    
 				}
 			}
 			

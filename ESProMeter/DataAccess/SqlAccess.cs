@@ -20,6 +20,10 @@ namespace ESProMeter.DataAccess
             _connection = null;   
             _transaction = null; 
         }
+        /// <summary>
+        /// Open and close connection
+        /// </summary>
+        /// <param name="sqlString"></param>
         public SqlAccess(string sqlString)
         {
             this._connectionString = sqlString;
@@ -31,6 +35,13 @@ namespace ESProMeter.DataAccess
             _connection=new SqlConnection(this._connectionString);
             return this;
         }
+        public void CloseConnection()
+        {
+            _connection?.Close();
+        }
+        /// <summary>
+        /// Transaction
+        /// </summary>
         public void StartTransaction()
         {
             if (_connection != null)
@@ -38,11 +49,7 @@ namespace ESProMeter.DataAccess
                 _connection?.Open();
                 _transaction = _connection?.BeginTransaction();
             }
-        }
-        public void CloseConnection()
-        {
-            _connection?.Close();
-        }
+        }    
         public void ComitTransaction()
         {
             _transaction?.Commit();
@@ -58,6 +65,11 @@ namespace ESProMeter.DataAccess
             ComitTransaction();
 
         }
+        /// <summary>
+        /// Use SQL OR Store Procedure
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
         public ISqlAccess UseSql(string sql)
         {
             this._sql = sql;
@@ -70,6 +82,12 @@ namespace ESProMeter.DataAccess
             this._commandType = CommandType.StoredProcedure;
             return this;
         }
+        /// <summary>
+        /// INSERT
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         public int InsertOrUpdate<T>(T parameters)
         {
             var affectedRow=_connection.Execute(_sql, param: parameters, transaction: _transaction, commandType: _commandType);
@@ -94,15 +112,29 @@ namespace ESProMeter.DataAccess
             return _connection.ExecuteScalar<T>(_sql, param: parameters, commandType: _commandType, transaction: _transaction);
         }
        
+        /// <summary>
+        /// DELETE
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
         public int Delete<T>(T parameter)
         {
             return _connection.Execute(_sql, param: parameter, transaction: _transaction, commandType: _commandType);
         }
+       
+        /// <summary>
+        /// SELECT AND FIND
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="parameters"></param>
+        /// <param name="table"></param>
+        /// <returns></returns>
         public DataTable FindAsTable<T>(T parameters)
         {
             DataTable table = new DataTable();
-            var result = _connection.ExecuteReader(_sql, param: parameters,transaction:_transaction,commandType:_commandType);
-            table.Load(result);
+        var result = _connection.ExecuteReader(_sql, param: parameters, transaction: _transaction, commandType: _commandType);
+        table.Load(result);
              return table;
         }
         public bool FindAsTable<T>(T parameters, out DataTable table)

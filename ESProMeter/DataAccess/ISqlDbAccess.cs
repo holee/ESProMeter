@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-
+﻿using System.Data;
 namespace ESProMeter.DataAccess 
 {
 
@@ -25,8 +22,6 @@ namespace ESProMeter.DataAccess
         int InsertFromTable(string ParamName,DataTable data,string typeName);
         int Delete<T>(T parameter);
         T Count<T,U>(U parameter);  
-
-
     }
 
 

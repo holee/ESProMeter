@@ -34,7 +34,6 @@ namespace ESProMeter.Repository
                         }, out table);
 
         }
-        
         public bool GetAllSitesByCustomer(byte isActive,long Id,out DataTable table)
         {
             return AppService.SqlGetInstance.UseProcedure("[SITE_sp_SELECT_BY_CUSTOMER]")
@@ -45,8 +44,15 @@ namespace ESProMeter.Repository
                         }, out table);
         }
 
-
-
+        public bool IsSiteAlreadyInUsed(long siteID)
+        {
+            return AppService.SqlGetInstance
+                                .UseSql("SELECT COUNT(*) FROM VBOQ WHERE SITEID=@SITEID;")
+                                    .Exist(new
+                                        {
+                                               @SITEID = siteID,
+                                        });
+        }
         /// <summary>
         /// Create Update and Delete
         /// </summary>
@@ -155,13 +161,16 @@ namespace ESProMeter.Repository
         {
             try
             {
+                if (IsSiteAlreadyInUsed(id))
+                {
+                    throw new Exception("This Site Already In Used.");
+                }
                 return AppService.SqlGetInstance
                                     .UseProcedure("SITE_sp_DELETE")
                                      .Delete<dynamic>(new
                                      {
                                          ID=id
                                      });
-
             }
             catch (Exception ex)
             {
