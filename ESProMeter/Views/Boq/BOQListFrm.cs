@@ -1,18 +1,11 @@
 ﻿using ESProMeter.Extensions;
 using ESProMeter.Services;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ESProMeter.Views.Boq
 {
-	public partial class BOQListFrm : Form
+    public partial class BOQListFrm : Form
 	{
 		public BOQListFrm()
 		{
@@ -21,7 +14,7 @@ namespace ESProMeter.Views.Boq
 			tab.Cursor = Cursors.Default;
 			dtgBOQLine.Cursor = Cursors.Default;
 			dtgBOQList.Cursor = Cursors.Default;
-            if (AppService.GetBoqInstance.GetBoqList(1, 1,out var table))
+            if (AppService.GetBoqItemLineInstance.GetBoqList(1, 1,out var table))
 			{
 				dtgBOQList.DataSource = table;
             }
@@ -50,7 +43,7 @@ namespace ESProMeter.Views.Boq
 					txtSite.SetText(selectedRow.GetValue<string>("SITENAME"));
 					txtValidDate.SetText(selectedRow.GetValue<string>("VALIDDATE"));
 					txtReferenceNo.SetText(selectedRow.GetValue<string>("REFNUMBER"));
-					AppService.GetBoqInstance.GetBoqListInfoByBoqId(selectedRow.GetValue<long>("Column1"),
+					AppService.GetBoqItemLineInstance.GetBoqListInfoByBoqId(selectedRow.GetValue<long>("ID"),
 						out var tblBoqLine, out var tblquote, out var tblactivy);
 
 					dtgActivities.DataSource = tblactivy;
@@ -59,5 +52,19 @@ namespace ESProMeter.Views.Boq
 				}
 			}
 		}
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dtgBOQList.SelectedRows.Count > 0)
+            {
+				var selectedRow=dtgBOQList.SelectedRows[0];
+				var id = selectedRow.GetValue<long>("ID");
+				CreateBoQ_Step2_Frm form = new CreateBoQ_Step2_Frm(id);
+
+				form.Show();
+
+
+            }
+        }
     }
 }

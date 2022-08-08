@@ -16,11 +16,11 @@ namespace ESProMeter.Views.FileAndLogin
 {
     public partial class UserLoginFrm : Form, ILogin
 	{
-        public string? UserName { 
+        public string UserName { 
 			get => txtUserName.Text.Trim(); 
 			set => txtUserName.SetText(value); 
 		}
-        public string? Password { 
+        public string Password { 
 			get => txtPassword.Text.Trim(); 
 			set => txtPassword.SetText(value); 
 		}

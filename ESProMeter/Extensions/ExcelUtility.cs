@@ -1,7 +1,10 @@
-﻿using System;
+﻿using ClosedXML.Excel;
+using System;
 using System.Data;
 using System.Drawing;
 using System.Threading.Tasks;
+using workbook=Microsoft.Office.Interop.Excel.Workbook;
+
 namespace ESProMeter.Extensions
 {
     public static class ExcelUtility
@@ -115,31 +118,14 @@ namespace ESProMeter.Extensions
         }
         public static void Print(this DataTable data, string fileName,int row)
         {
-            Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
-            xlApp.Workbooks.Open(fileName);
+            //Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
+            //xlApp.Workbooks.Open(fileName);
             try
             {
-                //create columns header
-                for (int k = 0; k < data.Columns.Count; k++)
-                {
-                    xlApp.Cells[row, row + k].Value = data.Columns[k].ColumnName;
-                    xlApp.Cells[row, row + k].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlDash;
-                    xlApp.Cells[row, row + k].Interior.Color = Color.Yellow;
-                    xlApp.Cells[row, row + k].Borders.Weight = 2d;
-                }
-                //insert data to excel
-                for (int i = 0; i < data.Rows.Count; i++)
-                {
-                    for (int k = 0; k < data.Columns.Count; k++)
-                    {
-                        xlApp.Cells[row + i, row + k].Value = data.Rows[i][k];
-                        xlApp.Cells[row + i, row + k].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-                        xlApp.Cells[row + i, row + k].Borders.Weight = 2d;
-                    }
-
-                }
-                xlApp.Columns.AutoFit();
-                xlApp.Visible = true;
+                XLWorkbook wb = new XLWorkbook();
+                wb.Range("A10");
+                wb.Worksheets.Add(data, "Sheet1");
+                wb.SaveAs(fileName);
             }
             catch (Exception ex)
             {
@@ -147,7 +133,7 @@ namespace ESProMeter.Extensions
             }
             finally
             {
-                releaseObject(xlApp);
+               // releaseObject(xlApp);
             }
 
         }

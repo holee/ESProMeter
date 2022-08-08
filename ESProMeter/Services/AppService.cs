@@ -75,7 +75,7 @@ namespace ESProMeter.Services
         /// </summary>
         private static BoqItemLineRepository boq=null;
 
-        public static BoqItemLineRepository GetBoqInstance
+        public static BoqItemLineRepository GetBoqItemLineInstance
         {
             get
             {
@@ -163,6 +163,23 @@ namespace ESProMeter.Services
                     companyRepository = new CompanyRepository();
                 }
                 return companyRepository;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+
+        private static BoqRepository boqRepository = null;
+        public static BoqRepository GetBoqInstance
+        {
+            get
+            {
+                if (boqRepository == null)
+                {
+                    boqRepository = new BoqRepository();
+                }
+                return boqRepository;
             }
         }
     }

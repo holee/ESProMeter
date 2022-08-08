@@ -1,10 +1,4 @@
 ﻿using ESProMeter.IVews;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace ESProMeter.Models
 {
     public class TBOQLINEDETAILS: ITBOQLINEDETAILS

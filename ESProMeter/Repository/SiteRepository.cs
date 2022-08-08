@@ -1,19 +1,22 @@
-﻿using ESProMeter.DataAccess;
-using ESProMeter.Extensions;
+﻿using ESProMeter.Extensions;
 using ESProMeter.IVews;
 using ESProMeter.Services;
 using System;
 using System.Data;
-using System.Linq;
-
 namespace ESProMeter.Repository
 {
     public class SiteRepository
     {
-        private static readonly SqlAccess instance = DataUtility.GetInstance;
+        /// <summary>
+        /// GET
+        /// </summary>
+        /// <param name="isActive"></param>
+        /// <param name="perPage"></param>
+        /// <param name="table"></param>
+        /// <returns></returns>
         public bool GetAllSites(byte isActive,int perPage,out DataTable table)
         {
-            return instance.UseProcedure("[SITE_sp_SELECT_ALL]")
+            return AppService.SqlGetInstance.UseProcedure("[SITE_sp_SELECT_ALL]")
                         .FindAsTable<dynamic>(new 
                         {
                             @ISACTIVE= isActive,
@@ -21,12 +24,74 @@ namespace ESProMeter.Repository
                         }, out table);
 
         }
-        public void SiteCreate(ITSite site,ITAddressInfo address)
+        public bool GetAllSites(byte isActive, out DataTable table)
         {
-            instance.StartTransaction();
+            return AppService.SqlGetInstance.UseProcedure("[SITE_sp_SELECT_ALL]")
+                        .FindAsTable<dynamic>(new
+                        {
+                            @ISACTIVE = isActive,
+                            @PERPAGE = 1000
+                        }, out table);
+
+        }
+        
+        public bool GetAllSitesByCustomer(byte isActive,long Id,out DataTable table)
+        {
+            return AppService.SqlGetInstance.UseProcedure("[SITE_sp_SELECT_BY_CUSTOMER]")
+                        .FindAsTable<dynamic>(new
+                        {
+                            @ISACTIVE = isActive,
+                            @CUSTOMERID=Id
+                        }, out table);
+        }
+
+
+
+        /// <summary>
+        /// Create Update and Delete
+        /// </summary>
+        /// <param name="site"></param>
+        /// <param name="address"></param>
+        /// <param name="id"></param>
+        /// <exception cref="Exception"></exception>
+        public void SiteCreate(ITSite site, ITAddressInfo address,out long id)
+        {
+            AppService.SqlGetInstance.StartTransaction();
+            id = 0;
             try
             {
-                var addressId=instance.UseProcedure("ADDRESS_sp_INSERT")
+                var addressId = AppService.SqlGetInstance.UseProcedure("ADDRESS_sp_INSERT")
+                                        .InsertGetId<long, dynamic>(new
+                                        {
+                                            address.ADDRESS,
+                                            address.PROVINCE,
+                                            address.COUNTRY
+                                        });
+
+                site.ADDRESSID = addressId;
+                id=AppService.SqlGetInstance.UseProcedure("SITE_sp_INSERT")
+                           .InsertGetId<long,dynamic>(new
+                           {
+                               site.SITENAME,
+                               site.ADDRESSID,
+                               site.DESCRIPTION,
+                               site.CUSTOMERID,
+                           });
+                AppService.SqlGetInstance.ComitTransaction();
+            }
+            catch (Exception ex)
+            {
+                AppService.SqlGetInstance.RollbackTransaction();
+                throw new Exception(ex.Message);
+            }
+
+        }
+        public void SiteCreate(ITSite site,ITAddressInfo address)
+        {
+            AppService.SqlGetInstance.StartTransaction();
+            try
+            {
+                var addressId= AppService.SqlGetInstance.UseProcedure("ADDRESS_sp_INSERT")
                                         .InsertGetId<long,dynamic>(new
                                         {
                                             address.ADDRESS,
@@ -36,7 +101,7 @@ namespace ESProMeter.Repository
 
                 site.ADDRESSID = addressId;
 
-                instance.UseProcedure("SITE_sp_INSERT")
+                AppService.SqlGetInstance.UseProcedure("SITE_sp_INSERT")
                            .InsertOrUpdate<dynamic>(new
                            {
                                site.SITENAME,
@@ -44,21 +109,21 @@ namespace ESProMeter.Repository
                                site.DESCRIPTION,
                                site.CUSTOMERID,
                            });
-                instance.ComitTransaction();
+                AppService.SqlGetInstance.ComitTransaction();
             }
             catch (Exception ex)
             {
-                instance.RollbackTransaction();
+                AppService.SqlGetInstance.RollbackTransaction();
                 throw new Exception(ex.Message);
             }
 
         }
         public  void SiteUpdate(ITSite site,ITAddressInfo address)
         {
-            instance.StartTransaction();
+            AppService.SqlGetInstance.StartTransaction();
             try
             {
-                instance.UseProcedure("ADDRESS_sp_UPDATE")
+                AppService.SqlGetInstance.UseProcedure("ADDRESS_sp_UPDATE")
                                         .InsertOrUpdate<dynamic>(new
                                         {
                                             address.ID,
@@ -66,7 +131,7 @@ namespace ESProMeter.Repository
                                             address.PROVINCE,
                                             address.COUNTRY
                                         });
-                instance.UseProcedure("SITE_sp_UPDATE")
+                AppService.SqlGetInstance.UseProcedure("SITE_sp_UPDATE")
                            .InsertOrUpdate<dynamic>(new
                            {
                                site.ID,
@@ -77,11 +142,11 @@ namespace ESProMeter.Repository
                                site.ISACTIVE,
                                site.EDSEQ
                            });
-                instance.ComitTransaction();
+                AppService.SqlGetInstance.ComitTransaction();
             }
             catch (Exception ex)
             {
-                instance.RollbackTransaction();
+                AppService.SqlGetInstance.RollbackTransaction();
                 throw new Exception(ex.Message);
             }
 
@@ -103,8 +168,6 @@ namespace ESProMeter.Repository
                 throw new Exception(ex.Message);
             }
         }
-
-
         public void ShowSiteForUpdate(ITSite site,ITAddressInfo tAddress, long siteId)
         {
             try
@@ -132,7 +195,6 @@ namespace ESProMeter.Repository
                 throw new Exception(ex.Message);
             }
         }
-
         public  bool IsSiteExist(string name)
         {
             try
@@ -153,7 +215,6 @@ namespace ESProMeter.Repository
                 throw ;
             }
         }
-
         public  bool IsSiteExistsame(string name, long siteId)
         {
             try

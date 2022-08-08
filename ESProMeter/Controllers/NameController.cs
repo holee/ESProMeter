@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using ESProMeter.Enums;
 using ESProMeter.Views.Customers;
 using ESProMeter.IVews;
+using System.Data;
 
 namespace ESProMeter.Controllers
 {
@@ -37,7 +38,6 @@ namespace ESProMeter.Controllers
             }
 
         }
-
         public static bool CustomerCreateOrUpdate(this Form form, CustomerCreateFrm customer,out long id)
         {
             try
@@ -70,7 +70,6 @@ namespace ESProMeter.Controllers
                 throw;
             }
         }
-
         public static void GetAllCustomers(this Form form,string gridName)
         {
            if(AppService.CustomerInstance.ShowCustomerCenter("Customer",1,out var table))
@@ -89,6 +88,27 @@ namespace ESProMeter.Controllers
                 constainer.DisplayMember = "Name";
                 constainer.ValueMember = "ID";
                 constainer.SelectedIndex = -1;
+            }
+        }
+        public static void FillCustomerCmb(this Form form,ComboBox constainer)
+        {
+            if (AppService.CustomerInstance.ShowCustomerCenter("Customer", 1, out var table))
+            {
+                constainer.DataSource = table;
+                constainer.DisplayMember = "Name";
+                constainer.ValueMember = "ID";
+                constainer.SelectedIndex = -1;
+            }
+        }
+        public static void FillCustomerCmb(this Form form, ComboBox constainer,string customerName)
+        {
+            
+            if (AppService.GetNameInstance.GetCustomersByName(1,customerName, out var table))
+            {
+                constainer.DataSource = table;
+                constainer.DisplayMember = "Name";
+                constainer.ValueMember = "ID";
+                constainer.SelectedIndex=-1;
             }
         }
         public static bool DeleteCustomer(this Form form,long id,long addressID)
