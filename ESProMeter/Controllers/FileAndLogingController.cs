@@ -93,12 +93,11 @@ namespace ESProMeter.Controllers
 				TextEncrypt(form.AsTextBox("txtPassword").Text));
 			} catch { return false; }
 		}
-		public static bool GrantUserAccess(this Form form, UserLoginFrm user)
+		public static bool GrantUserAccess(this Form form, ILogin login)
 		{
 			try
 			{
-				ILogin login = (ILogin)user;
-				return AppService.GetUserInstance.Authenticated((LoginModel)login);
+				return AppService.GetUserInstance.Authenticated(login.UserName,login.Password);
 			}
 			catch
 			{ 
