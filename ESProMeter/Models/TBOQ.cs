@@ -1,7 +1,8 @@
-﻿using System;
-namespace ESProMeter.IViews
+﻿using ESProMeter.IViews;
+using System;
+namespace ESProMeter.Models
 {
-    public interface ITBOQ
+    public class TBOQ : ITBOQ
     {
 		public long ID { get; set; }
 		public DateTime CDT { get; set; }

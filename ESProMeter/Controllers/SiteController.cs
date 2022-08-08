@@ -1,14 +1,8 @@
-﻿using Dapper;
-using ESProMeter.Extensions;
-using ESProMeter.Models;
+﻿using ESProMeter.Extensions;
 using ESProMeter.Services;
-using ESProMeter.IViews;
 using System;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Windows.Forms;
-using ESProMeter.DataAccess;
 using ESProMeter.Enums;
 using ESProMeter.IVews;
 
@@ -16,9 +10,19 @@ namespace ESProMeter.Controllers
 {
     public static class SiteController
     {
+        public static void GetAllSitesByCustomer(this Form form,byte isActive, long customerId, out DataTable table)
+        {
+            AppService.SqlGetInstance.UseProcedure("[SITE_sp_SELECT_BY_CUSTOMER]")
+                        .FindAsTable<dynamic>(new
+                        {
+                            @ISACTIVE = isActive,
+                            @CUSTOMERID = customerId
+                        }, out table);
+        }
         public static void GetAllSites(this Form form,byte isActive,int perPage=50) 
         {
             var container = form.AsControl<DataGridView>("siteDataGrid");
+            ((DataTable)container.DataSource)?.Rows.Clear();
             if (AppService.SiteGetInstance.GetAllSites(isActive, perPage, out var table))
             {
                 container.DataSource = table;
@@ -28,8 +32,27 @@ namespace ESProMeter.Controllers
                 container.DataSource = "";
             }
         }
-
-
+        public static void FillSitesCmb(this Form form, ComboBox constainer)
+        {
+            ((DataTable)constainer.DataSource)?.Rows.Clear();
+            if (AppService.SiteGetInstance.GetAllSites(1, out var table))
+            {
+                constainer.DataSource = table;
+                constainer.DisplayMember = "SITENAME";
+                constainer.ValueMember = "ID";
+                constainer.SelectedIndex = -1;
+            }
+        }
+        public static void FillSitesCmbByCustomer(this Form form,long customerId, ComboBox constainer)
+        {
+            ((DataTable)constainer.DataSource)?.Rows.Clear();
+            if (AppService.SiteGetInstance.GetAllSitesByCustomer(1,customerId, out var table))
+            {
+                constainer.DataSource = table;
+                constainer.DisplayMember = "SITENAME";
+                constainer.ValueMember = "ID";
+            }
+        }
         public static void SiteCreateNewOrUpdate(this Form form,ITSite site,ITAddressInfo tAddress, ActionType actionType=ActionType.CREATE)
         {
             switch (actionType)
@@ -42,6 +65,13 @@ namespace ESProMeter.Controllers
                     break;
                 default:break;
             }
+        }
+
+        public static bool SiteCreateNewOrUpdate(this Form form, Views.Sites.AddSiteFrm data,out long id)
+        {
+            id = 0;  
+            AppService.SiteGetInstance.SiteCreate(data, data,out id);
+            return id > 0;
         }
         public static void ShowFormSiteUpdate(this Form form,ITSite site,ITAddressInfo tAddress, long siteId)
         {

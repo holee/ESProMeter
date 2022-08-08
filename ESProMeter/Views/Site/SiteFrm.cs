@@ -153,12 +153,12 @@ namespace ESProMeter.Views.Sites
 			//open and excel file and pass the grid data to excel then open excel application
 
 			var data = ((DataTable)siteDataGrid.DataSource);
-			var path = "D:/test.xlsx";
+			var path = @"D:/test.xlsx";
             if (!System.IO.File.Exists(path))
             {
 				System.IO.File.Create(path);
             }
-			data.Print("ESProMeter.Excels.test.xlsx", "A2","B2");
+			data.Print(path,10);
 
 		}
 	}

@@ -40,9 +40,6 @@ namespace ESProMeter.Views.Boq
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.cboFieldName = new System.Windows.Forms.ComboBox();
             this.dtgBOQList = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chkIncludeClosedBOQ = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
@@ -83,6 +80,9 @@ namespace ESProMeter.Views.Boq
             this.activitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -129,6 +129,7 @@ namespace ESProMeter.Views.Boq
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
@@ -204,7 +205,7 @@ namespace ESProMeter.Views.Boq
             this.dtgBOQList.BackgroundColor = System.Drawing.Color.White;
             this.dtgBOQList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgBOQList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
+            this.ID,
             this.Column2,
             this.Column3});
             this.dtgBOQList.Location = new System.Drawing.Point(6, 70);
@@ -218,27 +219,6 @@ namespace ESProMeter.Views.Boq
             this.dtgBOQList.Size = new System.Drawing.Size(368, 353);
             this.dtgBOQList.TabIndex = 0;
             this.dtgBOQList.SelectionChanged += new System.EventHandler(this.dtgBOQList_SelectionChanged);
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "ID";
-            this.Column1.HeaderText = "ID";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "CUSTOMERNAME";
-            this.Column2.HeaderText = "CUSTOMER";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "BOQDATE";
-            this.Column3.HeaderText = "DATE";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
             // 
             // chkIncludeClosedBOQ
             // 
@@ -538,7 +518,6 @@ namespace ESProMeter.Views.Boq
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tab.Controls.Add(this.tabPage1);
             this.tab.Controls.Add(this.tabPage2);
-            this.tab.Cursor = System.Windows.Forms.Cursors.Default;
             this.tab.Location = new System.Drawing.Point(0, 0);
             this.tab.Name = "tab";
             this.tab.SelectedIndex = 0;
@@ -640,6 +619,27 @@ namespace ESProMeter.Views.Boq
             this.deleteToolStripMenuItem3.Size = new System.Drawing.Size(52, 20);
             this.deleteToolStripMenuItem3.Text = "Delete";
             // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "CUSTOMERNAME";
+            this.Column2.HeaderText = "CUSTOMER";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "BOQDATE";
+            this.Column3.HeaderText = "DATE";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
             // BOQListFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -732,7 +732,7 @@ namespace ESProMeter.Views.Boq
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
 		private System.Windows.Forms.ToolStripMenuItem finalQuoteToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem exportToExcelToolStripMenuItem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }

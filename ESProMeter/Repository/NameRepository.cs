@@ -74,7 +74,17 @@ namespace ESProMeter.Repository
                 model.ADDRESS = row.GetValue<string>("ADDRESS");
             }
         }
-        
+        public bool GetCustomersByName(byte isActive,string customerName, out DataTable table)
+        {
+            return AppService.SqlGetInstance
+                                .UseProcedure("NAME_sp_SELECT_BY_NAME")
+                                .FindAsTable<dynamic>(new 
+                                {
+                                    @Name = customerName,
+                                    @NAMETYPE = "customer",
+                                    @ISACTIVE = isActive
+                                }, out table);
+        }
         /// <summary>
         /// Create Update And Delete
         /// </summary>

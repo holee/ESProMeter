@@ -17,7 +17,7 @@ namespace ESProMeter.Repository
         /// </summary>
         /// <param name="tBoq"></param>
         /// <returns></returns>
-        public long BoqCreate(ITBoq tBoq) 
+        public long BoqCreate(ITBOQ tBoq) 
         { 
             return DataUtility.GetInstance
                        .UseProcedure("")
@@ -39,7 +39,7 @@ namespace ESProMeter.Repository
                        });
 
         }
-        public long BoqUpdate(ITBoq tBoq)
+        public long BoqUpdate(ITBOQ tBoq)
         {
             return AppService.SqlGetInstance
                        .UseProcedure("")
