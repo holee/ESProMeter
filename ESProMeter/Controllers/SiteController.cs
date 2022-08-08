@@ -89,6 +89,10 @@ namespace ESProMeter.Controllers
         {
             try
             {
+                if (AppService.SiteGetInstance.IsSiteAlreadyInUsed(siteId))
+                {
+                    throw new Exception("This Site Already In Used.");
+                }
                 return AppService.SiteGetInstance.SiteDelete(siteId)>0;
             }
             catch (Exception ex)

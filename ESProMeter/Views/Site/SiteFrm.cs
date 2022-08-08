@@ -67,7 +67,7 @@ namespace ESProMeter.Views.Sites
 					}
                     catch (Exception ex)
                     {
-						MessageBox.Show("Error",ex.Message,MessageBoxButtons.OK,MessageBoxIcon.Error);
+						MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
                     }
                     
 				}

@@ -161,10 +161,7 @@ namespace ESProMeter.Repository
         {
             try
             {
-                if (IsSiteAlreadyInUsed(id))
-                {
-                    throw new Exception("This Site Already In Used.");
-                }
+                
                 return AppService.SqlGetInstance
                                     .UseProcedure("SITE_sp_DELETE")
                                      .Delete<dynamic>(new
