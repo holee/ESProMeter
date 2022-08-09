@@ -35,20 +35,22 @@ namespace ESProMeter.Repository
 
                }, out table);
         }
-        public bool GetItemWithoutBoq(byte isActive, out DataTable table)  
+        public bool GetItemWithoutBoq(byte isActive,string itemType, out DataTable table)  
         {
             return AppService.SqlGetInstance.UseProcedure("[ITEM_sp_SELECT_ITEMWITHOUTBOQ]")
                .FindAsTable<dynamic>(new
                {
-                   @ISACTIVE = isActive
+                   @ISACTIVE = isActive,
+                   @ITEMTYPE=itemType
                }, out table);
         }
-        public bool GetItemWithoutBoqByName(byte isActive,string itemName, out DataTable table)
+        public bool GetItemWithoutBoqByName(byte isActive,string itemName,string itemType, out DataTable table)
         {
             return AppService.SqlGetInstance.UseProcedure("[ITEM_sp_SELECT_ITEMWITHOUTBOQ_BY_NAME]")
                .FindAsTable<dynamic>(new
                {
                    @ITEMNAME= itemName,
+                   @ITEMTYPE=itemType,
                    @ISACTIVE = isActive
                }, out table);
         }
@@ -72,9 +74,11 @@ namespace ESProMeter.Repository
                 item.ITEMTYPE = row.GetValue<string>("ItemType");
             }
         }
-        public bool GetItemWithItemLineById(long itemId, ITItem item,out DataTable boqTable) 
+        public bool GetItemWithItemLineById(long itemId, ITItem item,out DataTable labour,out DataTable machinery,out DataTable material) 
         {
-            boqTable = new DataTable();
+            labour=new();
+            machinery=new();
+            material=new();
             if (AppService.SqlGetInstance.UseProcedure("ITEM_sp_SELECT_BY_ID")
                .FindOne<dynamic>(new { @ID=itemId }, out var row))
             {
@@ -85,9 +89,11 @@ namespace ESProMeter.Repository
                 item.ISACTIVE = row.GetValue<byte>("IsActive");
                 item.UOMID = row.GetValue<long>("UomID");
                 item.ITEMTYPE = row.GetValue<string>("ItemType");
-                AppService.GetItemInstance.GetBoqItemLineByItemID(itemId, out boqTable);
+                AppService.GetItemInstance.GetBoqItemLineByItemID(itemId, "labour", out labour);
+                AppService.GetItemInstance.GetBoqItemLineByItemID(itemId, "machinery", out machinery);
+                AppService.GetItemInstance.GetBoqItemLineByItemID(itemId, "material", out material);
                 return true;
-            }
+            };
             return false;
         }
 
@@ -159,6 +165,34 @@ namespace ESProMeter.Repository
             }
 
         }
+        public void BoqCreateItemLine(ITItem item, DataTable grid)
+        {
+            try
+            {
+                AppService.SqlGetInstance.StartTransaction();
+                //create new item
+                var id = AppService.SqlGetInstance.UseProcedure("ITEM_INSERT")
+                        .InsertGetId<long, dynamic>(new
+                        {
+                            item.ITEMNAME,
+                            item.DESCRIPTION,
+                            item.ITEMTYPE,
+                            item.UOMID,
+                            item.COST,
+                            item.ISRATE
+                        });
+                //create boq item line
+                AppService.SqlGetInstance.UseProcedure("SP_BoqItemLineInert")
+                        .InsertFromTable(new { BoqItemLine = grid.AsTableValuedParameter("udt_BoqItemLine_Insert") });
+                AppService.SqlGetInstance.ComitTransaction();
+            }
+            catch
+            {
+                AppService.SqlGetInstance.RollbackTransaction();
+                throw;
+            }
+
+        }
         public  void BoqUpdateItemLine(ITItem item, DataGridView grid)
         {
             try
@@ -195,6 +229,41 @@ namespace ESProMeter.Repository
 
         }
 
+
+        public void BoqUpdateItemLine(ITItem item, DataTable grid)
+        {
+            try
+            {
+                AppService.SqlGetInstance.StartTransaction();
+                //update existing boq item
+                AppService.SqlGetInstance.UseProcedure("ITEM_UPDATE_SP")
+                        .InsertOrUpdate<dynamic>(new
+                        {
+                            item.ID,
+                            item.ITEMNAME,
+                            item.DESCRIPTION,
+                            item.ITEMTYPE,
+                            item.UOMID,
+                            item.COST,
+                            item.ISRATE
+                        });
+                //remove existing item
+                AppService.SqlGetInstance.UseSql("DELETE FROM TBOQITEMLINE WHERE BOQITEMID=@id;")
+                        .Delete<dynamic>(new { id = item.ID });
+
+                //update existing boq_item_line
+                AppService.SqlGetInstance.UseProcedure("SP_BoqItemLineInert")
+                        .InsertFromTable(new { BoqItemLine = grid.AsTableValuedParameter("udt_BoqItemLine_Insert") });
+
+                AppService.SqlGetInstance.ComitTransaction();
+            }
+            catch
+            {
+                AppService.SqlGetInstance.RollbackTransaction();
+                throw;
+            }
+
+        }
         public bool DeleteItemWithBoq(long itemId)
         {
             return AppService.SqlGetInstance.UseProcedure("ITEM_sp_DELETE")
@@ -213,12 +282,28 @@ namespace ESProMeter.Repository
             }
             catch
             {
-     
                 throw;
             }
 
         }
 
+        public void GetBoqItemLineByItemID(long itemID,string ItemTypeName, out DataTable table)
+        {
+            try
+            {
+                table=AppService.SqlGetInstance.UseProcedure("BOQITEMLINE_sp_SELECT_BY_ID")
+                        .FindAsTable<dynamic>(new
+                        {
+                            @BOQITEMID = itemID,
+                            @ITEMTYPE= ItemTypeName
+                        });
+            }
+            catch
+            {
+                throw;
+            }
+
+        }
 
 
         public bool MakeInActiveOrActive(long id,byte isActive) 

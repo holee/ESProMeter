@@ -3,6 +3,7 @@ using ESProMeter.Extensions;
 using ESProMeter.Services;
 using ESProMeter.Views.Items;
 using ESProMeter.Enums;
+using System.Data;
 
 namespace ESProMeter.Controllers
 {
@@ -32,16 +33,16 @@ namespace ESProMeter.Controllers
                 }
             }
         }
-        public static void GetItemsWithoutBoq(this Form form, DataGridView grid, params string[] columns) 
+        public static void GetItemsWithoutBoq(this Form form, DataGridView grid,string itemType, params string[] columns) 
         {
-            if (AppService.GetItemInstance.GetItemWithoutBoq(1, out var table))
+            if (AppService.GetItemInstance.GetItemWithoutBoq(1, itemType, out var table))
             {
                 table.SelectColumn(columns).UseDataTableAsGridView(grid);
             }
         }
-        public static void GetItemsWithoutBoqByName(this Form form,string itemName, DataGridView grid, params string[] columns)
+        public static void GetItemsWithoutBoqByName(this Form form,string itemName,string itemType, DataGridView grid, params string[] columns)
         {
-            if (AppService.GetItemInstance.GetItemWithoutBoqByName(1,itemName,out var table))
+            if (AppService.GetItemInstance.GetItemWithoutBoqByName(1,itemName, itemType, out var table))
             {
                 table.SelectColumn(columns).UseDataTableAsGridView(grid);
             }
@@ -98,11 +99,12 @@ namespace ESProMeter.Controllers
             switch(itemType)    
             {
                 case ItemsType.Boq:
-                     if (AppService.GetItemInstance.GetItemWithItemLineById(itemId, item, out var table))
+                     if (AppService.GetItemInstance.GetItemWithItemLineById(itemId, item, out var labour,out var machinery,out var material))
                      {
-                            var newTable = table.SelectColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ");
-                            item.AsControl<DataGridView>("dgvBoq").DataSource = newTable;
-                     }
+                        item.AsControl<DataGridView>("dgvLabor").DataSource = labour.SelectColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ");
+                        item.AsControl<DataGridView>("dgvMachinary").DataSource = machinery.SelectColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ");
+                        item.AsControl<DataGridView>("dgvMaterial").DataSource = material.SelectColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ");
+                    }
                     break;
                 case ItemsType.Item:
                     AppService.GetItemInstance.GetItemById(itemId, item);
@@ -163,6 +165,20 @@ namespace ESProMeter.Controllers
                 default:
                     break;
             }    
+        }
+        public static void ItemCreate(this Form form, AddItemFrm itemFrm,DataTable table, ItemsType itemType)
+        {
+            switch (itemType)
+            {
+                case ItemsType.Item:
+                    AppService.GetItemInstance.ItemCreate(itemFrm);
+                    break;
+                case ItemsType.Boq:
+                    AppService.GetItemInstance.BoqCreateItemLine(itemFrm, table);
+                    break;
+                default:
+                    break;
+            }
         }
         public static void ItemUpdate(this Form form,AddItemFrm item,ItemsType itemType) 
         {

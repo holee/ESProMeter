@@ -36,7 +36,7 @@ namespace ESProMeter.Views.Items
                 }
                 else
                 {
-                    this.ItemCreate(form, ItemsType.Boq);
+                    this.ItemCreate(form,ItemsType.Boq);
                 }
                 ShowAllItems();
             }
