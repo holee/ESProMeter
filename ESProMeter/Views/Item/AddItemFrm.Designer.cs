@@ -1326,9 +1326,9 @@ namespace ESProMeter.Views.Items
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(677, 551);
+            this.Controls.Add(this.GENERAL);
             this.Controls.Add(this.lblItemID);
             this.Controls.Add(this.groupBoq);
-            this.Controls.Add(this.GENERAL);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.materialButton2);
