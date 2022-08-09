@@ -290,8 +290,6 @@ namespace ESProMeter.Views.Items
             this.dgvBoq.Visible = false;
             this.dgvBoq.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBoq_CellContentClick);
             this.dgvBoq.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvBoq_DataError);
-            this.dgvBoq.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvBoq_RowsAdded);
-            this.dgvBoq.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvBoq_RowsRemoved);
             // 
             // BOQITEMLINEID
             // 

@@ -126,35 +126,7 @@ namespace ESProMeter.Views.Items
             pnlSearch.SendToBack();
             pnlSearch.Hide();
         }
-        void CreateTempTable()
-        {
-            if ((DataTable)dgvLabor?.DataSource == null)
-            {
-                CreateTable(ref labourTable);
-            }
-            else
-            {
-                labourTable = (DataTable)dgvLabor?.DataSource;
-            }
-            if ((DataTable)dgvMachinary.DataSource != null)
-            {
-                machinaryTable = (DataTable)dgvMachinary.DataSource;
-            }
-            else
-            {
-                CreateTable(ref machinaryTable);
-            }
-            if ((DataTable)dgvMaterial.DataSource != null)
-            {
-                materialTable = (DataTable)dgvMaterial.DataSource;
-            }
-            else
-            {
-                CreateTable(ref materialTable);
-            }
-
-            CreateTable(ref boqTable);
-        }
+      
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
             var searchText = ((TextBox)sender).Text.Trim();
@@ -349,20 +321,6 @@ namespace ESProMeter.Views.Items
 
             }
         }
-        private void dgvBoq_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-
-            //dgvBoq.SetText(e.RowIndex, "BOQITEMLINESEQ", e.RowIndex + 1);
-            //dgvBoq.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Red;
-
-        }
-        private void dgvBoq_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
-        {
-            for (int i = 0; i < dgvBoq.Rows.Count; i++)
-            {
-                dgvBoq.SetText(i, "BOQITEMLINESEQ", i + 1);
-            }
-        }
         private void dgvItem_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (dgvItem.SelectedRows.Count > 0)
@@ -423,24 +381,6 @@ namespace ESProMeter.Views.Items
             textBox1.Text = "";
             btndropDown.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronUpBox;
         }
-        private void Add(DataTable table,params object[] values)
-        {
-            if(values != null || values.Length > 0)
-            {
-                table.Rows.Add(values);
-            }
-        }
-        private void CreateTable(ref DataTable table)
-        {
-            table = new DataTable();
-            table.Columns.Add("BOQITEMLINEID", typeof(long));
-            table.Columns.Add("BOQITEMITEMLINENAME", typeof(string));
-            table.Columns.Add("BOQITEMITEMLINETYPE", typeof(string));
-            table.Columns.Add("UOM", typeof(string));
-            table.Columns.Add("BOQITEMLINEUOMID", typeof(long));
-            table.Columns.Add("BOQITEMLINEQTY", typeof(decimal));
-            table.Columns.Add("BOQITEMLINESEQ", typeof(int));
-        }
         private void dgvMaterial_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvMaterial.Rows.Count> 0)
@@ -489,6 +429,53 @@ namespace ESProMeter.Views.Items
                 textName.Focus();
                 return;
             }
+        }
+        private void Add(DataTable table, params object[] values)
+        {
+            if (values != null || values.Length > 0)
+            {
+                table.Rows.Add(values);
+            }
+        }
+        private void CreateTable(ref DataTable table)
+        {
+            table = new DataTable();
+            table.Columns.Add("BOQITEMLINEID", typeof(long));
+            table.Columns.Add("BOQITEMITEMLINENAME", typeof(string));
+            table.Columns.Add("BOQITEMITEMLINETYPE", typeof(string));
+            table.Columns.Add("UOM", typeof(string));
+            table.Columns.Add("BOQITEMLINEUOMID", typeof(long));
+            table.Columns.Add("BOQITEMLINEQTY", typeof(decimal));
+            table.Columns.Add("BOQITEMLINESEQ", typeof(int));
+        }
+        private void CreateTempTable()
+        {
+            if ((DataTable)dgvLabor?.DataSource == null)
+            {
+                CreateTable(ref labourTable);
+            }
+            else
+            {
+                labourTable = (DataTable)dgvLabor?.DataSource;
+            }
+            if ((DataTable)dgvMachinary.DataSource != null)
+            {
+                machinaryTable = (DataTable)dgvMachinary.DataSource;
+            }
+            else
+            {
+                CreateTable(ref machinaryTable);
+            }
+            if ((DataTable)dgvMaterial.DataSource != null)
+            {
+                materialTable = (DataTable)dgvMaterial.DataSource;
+            }
+            else
+            {
+                CreateTable(ref materialTable);
+            }
+
+            CreateTable(ref boqTable);
         }
     }
 }
