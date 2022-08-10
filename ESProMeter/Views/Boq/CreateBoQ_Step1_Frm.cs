@@ -164,42 +164,52 @@ namespace ESProMeter.Views.Boq
 
         private void mbtNext_Click(object sender, EventArgs e)
         {
+            CreateBoQ_Step2_Frm form = new CreateBoQ_Step2_Frm();
+            form.TopLevel = false;
+            form.TopMost = true;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.WindowState = FormWindowState.Maximized;
+            form.Dock = DockStyle.Fill;
+            MainFrm.MainF.panel2.Controls.Clear();
+            MainFrm.MainF.panel2.Controls.Add(form);
+            form.Show();
+            this.Close();
 
-            if (cboCustomerName.SelectedValue != null
-                && cboSite.SelectedValue != null)
-            {
-                if (this.BoqCreate(this, out var id))
-                {
-                    CreateBoQ_Step2_Frm form = new CreateBoQ_Step2_Frm(id);
-                    form.TopLevel = false;
-                    form.TopMost = true;
-                    form.FormBorderStyle = FormBorderStyle.None;
-                    form.WindowState = FormWindowState.Maximized;
-                    form.Dock = DockStyle.Fill;
-                    MainFrm.MainF.panel2.Controls.Clear();
-                    MainFrm.MainF.panel2.Controls.Add(form);
-                    form.Show();
-                    this.Close();
-                }
-            }
-            else
-            {
-                if (cboCustomerName.SelectedValue == null)
-                {
-                    MessageBox.Show("Please select customer name and site name.", "Information",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    cboCustomerName.Focus();
-                    return;
-                }
-                if (cboSite.SelectedValue == null)
-                {
-                    MessageBox.Show("Please select site name and site name.", "Information",
-                   MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    cboSite.Focus();
-                    return;
-                }
+            //if (cboCustomerName.SelectedValue != null
+            //    && cboSite.SelectedValue != null)
+            //{
+            //    if (this.BoqCreate(this, out var id))
+            //    {
+            //        CreateBoQ_Step2_Frm form = new CreateBoQ_Step2_Frm(id);
+            //        form.TopLevel = false;
+            //        form.TopMost = true;
+            //        form.FormBorderStyle = FormBorderStyle.None;
+            //        form.WindowState = FormWindowState.Maximized;
+            //        form.Dock = DockStyle.Fill;
+            //        MainFrm.MainF.panel2.Controls.Clear();
+            //        MainFrm.MainF.panel2.Controls.Add(form);
+            //        form.Show();
+            //        this.Close();
+            //    }
+            //}
+            //else
+            //{
+            //    if (cboCustomerName.SelectedValue == null)
+            //    {
+            //        MessageBox.Show("Please select customer name and site name.", "Information",
+            //        MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        cboCustomerName.Focus();
+            //        return;
+            //    }
+            //    if (cboSite.SelectedValue == null)
+            //    {
+            //        MessageBox.Show("Please select site name and site name.", "Information",
+            //       MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        cboSite.Focus();
+            //        return;
+            //    }
 
-            }
+            //}
         }
 
         private void mbtCancel_Click(object sender, EventArgs e)

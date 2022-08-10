@@ -2,9 +2,6 @@
 using ESProMeter.IViews;
 using ESProMeter.Services;
 using ESProMeter.Views.Boq;
-using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Windows.Forms;
 
 namespace ESProMeter.Controllers
@@ -25,6 +22,16 @@ namespace ESProMeter.Controllers
         {
             AppService.GetBoqInstance.BoqGetById(id, boqForm);
         }
+
+        public static void BoqLineCreate(this Form form,DataGridView grid)
+        {
+            var table=grid.ToTable("BOQID", "BOQITEMID", "LineSeq", "NO", "BOQITEMDESC", "BOQITEMUOMID", "BOQITEMQTY", "REMARKS", "UID");
+            AppService.GetBoqInstance.BoqLineCreate(table);
+        }
+
+
+
+
     }
 }
 

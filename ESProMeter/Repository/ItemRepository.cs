@@ -44,6 +44,7 @@ namespace ESProMeter.Repository
                    @ITEMTYPE=itemType
                }, out table);
         }
+
         public bool GetItemWithoutBoqByName(byte isActive,string itemName,string itemType, out DataTable table)
         {
             return AppService.SqlGetInstance.UseProcedure("[ITEM_sp_SELECT_ITEMWITHOUTBOQ_BY_NAME]")
@@ -54,7 +55,17 @@ namespace ESProMeter.Repository
                    @ISACTIVE = isActive
                }, out table);
         }
-        
+
+        public bool GetBoqItems(byte isActive, string itemName, out DataTable table)
+        {
+            return AppService.SqlGetInstance.UseProcedure("[ITEM_sp_SELECT_BOQITEM]")
+               .FindAsTable<dynamic>(new
+               {
+                   @ISACTIVE = isActive,
+                   @ITEMNAME = itemName
+               }, out table);
+        }
+
         public bool GetItemsType(out DataTable table)
         {
             return AppService.SqlGetInstance.UseProcedure("[ITEMTYPE_SP_SELECT]")

@@ -133,8 +133,8 @@ namespace ESProMeter.DataAccess
         public DataTable FindAsTable<T>(T parameters)
         {
             DataTable table = new DataTable();
-        var result = _connection.ExecuteReader(_sql, param: parameters, transaction: _transaction, commandType: _commandType);
-        table.Load(result);
+            var result = _connection.ExecuteReader(_sql, param: parameters, transaction: _transaction, commandType: _commandType);
+            table.Load(result);
              return table;
         }
         public bool FindAsTable<T>(T parameters, out DataTable table)

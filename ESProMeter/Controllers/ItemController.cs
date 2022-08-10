@@ -22,14 +22,14 @@ namespace ESProMeter.Controllers
             {
                 if (AppService.GetItemInstance.GetAllItems(1, out var table))
                 {
-                    table.SelectColumn(columns).UseDataTableAsGridView(grid);
+                    table.WithColumn(columns).UseDataTableAsGridView(grid);
                 }
             }
             else
             {
                 if (AppService.GetItemInstance.GetAllItems(1,page, out var table))
                 {
-                    table.SelectColumn(columns).UseDataTableAsGridView(grid);
+                    table.WithColumn(columns).UseDataTableAsGridView(grid);
                 }
             }
         }
@@ -37,16 +37,24 @@ namespace ESProMeter.Controllers
         {
             if (AppService.GetItemInstance.GetItemWithoutBoq(1, itemType, out var table))
             {
-                table.SelectColumn(columns).UseDataTableAsGridView(grid);
+                table.WithColumn(columns).UseDataTableAsGridView(grid);
             }
         }
         public static void GetItemsWithoutBoqByName(this Form form,string itemName,string itemType, DataGridView grid, params string[] columns)
         {
             if (AppService.GetItemInstance.GetItemWithoutBoqByName(1,itemName, itemType, out var table))
             {
-                table.SelectColumn(columns).UseDataTableAsGridView(grid);
+                table.WithColumn(columns).UseDataTableAsGridView(grid);
             }
-        } 
+        }
+
+        public static void GetBoqItems(this Form form, DataGridView grid, string itemName, params string[] columns)
+        {
+            if (AppService.GetItemInstance.GetBoqItems(1, itemName, out var table))
+            {
+                table.WithColumn(columns).UseDataTableAsGridView(grid);
+            }
+        }
         public static void ShowItemList(this Form form, DataGridView grid,byte isActive)
         {
             if(AppService.GetItemInstance.GetAllItems(isActive,out var table))
@@ -101,9 +109,9 @@ namespace ESProMeter.Controllers
                 case ItemsType.Boq:
                      if (AppService.GetItemInstance.GetItemWithItemLineById(itemId, item, out var labour,out var machinery,out var material))
                      {
-                        item.AsControl<DataGridView>("dgvLabor").DataSource = labour.SelectColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ");
-                        item.AsControl<DataGridView>("dgvMachinary").DataSource = machinery.SelectColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ");
-                        item.AsControl<DataGridView>("dgvMaterial").DataSource = material.SelectColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ");
+                        item.AsControl<DataGridView>("dgvLabor").DataSource = labour.WithColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ");
+                        item.AsControl<DataGridView>("dgvMachinary").DataSource = machinery.WithColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ");
+                        item.AsControl<DataGridView>("dgvMaterial").DataSource = material.WithColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ");
                     }
                     break;
                 case ItemsType.Item:
@@ -114,7 +122,7 @@ namespace ESProMeter.Controllers
         public static void ShowItemType(this Form form, ComboBox storage)
         {
             if(AppService.GetItemInstance.GetItemsType(out var table)){
-                table.SelectColumn("ID", "TYPENAME")
+                table.WithColumn("ID", "TYPENAME")
                         .AsCombobox(storage, "TYPENAME", "ID");
             }
 
@@ -124,7 +132,7 @@ namespace ESProMeter.Controllers
         {
             if (AppService.UomGetInstance.GetAllUoms(1, out var table))
             {
-                table.SelectColumn("Abbreviation", "ID")
+                table.WithColumn("Abbreviation", "ID")
                        .AsCombobox(form.AsControl<ComboBox>("cmbUom"), "Abbreviation", "ID");
             }
 
@@ -134,7 +142,7 @@ namespace ESProMeter.Controllers
         {
             if (AppService.UomGetInstance.GetAllUoms(1, out var table))
             {
-                table.SelectColumn("Abbreviation", "ID")
+                table.WithColumn("Abbreviation", "ID")
                        .AsCombobox(storage, "Abbreviation", "ID");
             }
         }

@@ -53,7 +53,7 @@ namespace ESProMeter.Extensions
 
         }
 
-        public static DataTable SelectColumn(this DataTable table,params string[] columns)
+        public static DataTable WithColumn(this DataTable table,params string[] columns)
         {
             if (table.Rows.Count > 0 && table.Columns.Count > 0)
             {
@@ -63,7 +63,7 @@ namespace ESProMeter.Extensions
             }
             return default(DataTable);
         }
-        public static DataTable ToTable(this DataGridView grid, params string[] columns)
+        public static DataTable AsTable(this DataGridView grid, params string[] columns)
         {
             try
             {

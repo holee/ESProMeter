@@ -117,7 +117,7 @@ namespace ESProMeter.Extensions
             DataTable table = new DataTable();
             foreach (string column in columns)
             {
-                table.Columns.Add(column,typeof(long));
+                table.Columns.Add(column);
             }
             foreach (DataGridViewRow row in view.Rows)
             {

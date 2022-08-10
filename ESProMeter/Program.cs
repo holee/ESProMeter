@@ -1,4 +1,3 @@
-
 using ESProMeter.Views.Items;
 using System;
 using System.Windows.Forms;

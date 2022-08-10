@@ -21,7 +21,7 @@ namespace ESProMeter.Repository
         {
             if (DataUtility.GetInstance
                        .UseProcedure("USER_sp_LOGIN")
-                       .FindOne(new { UID = username }, out DataRow row))
+                       .FindOne<dynamic>(new { UID = username }, out DataRow row))
             {
                 
                 if(SecurityService.Verify(password, row.GetValue<string>("PASSWORD")))

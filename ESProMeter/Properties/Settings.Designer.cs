@@ -154,5 +154,17 @@ namespace ESProMeter.Properties {
                 this["userLoginUserName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("40")]
+        public int menuSide {
+            get {
+                return ((int)(this["menuSide"]));
+            }
+            set {
+                this["menuSide"] = value;
+            }
+        }
     }
 }

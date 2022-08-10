@@ -1,4 +1,5 @@
 ﻿using ESProMeter.Extensions;
+using ESProMeter.IVews;
 using ESProMeter.IViews;
 using ESProMeter.Services;
 using System;
@@ -116,9 +117,46 @@ namespace ESProMeter.Repository
                                 }, out table);
         }
 
+        /// <summary>
+        /// BOQLINE
+        /// </summary>
+        /// <param name="model"></param>
+        public void BoqLineCreate(DataTable model)
+        {
+            AppService.SqlGetInstance
+                        .UseProcedure("[TBOQLINE_sp_INSERT]")
+                            .InsertFromTable("TBOQLINE", model, "TBOQLINE_udt_INSERT");
+        }   
+
+
+    
+
+
+
+
+
+
 
 
 
 
     }
 }
+
+
+//    {
+//        AppService.SqlGetInstance
+//                    .UseProcedure("[TBOQLINE_sp_INSERT]")
+//                        .InsertFromTable(new
+//                        {
+//                            model.BOQID,
+//                            model.BOQITEMID,
+//                            model.NO,
+//                            model.LineSeq,
+//                            model.BOQITEMUOMID,
+//                            model.BOQITEMDESC,
+//                            model.REMARKS,
+//                            model.BOQITEMQTY,
+//                            model.UID
+//},);
+//    }   

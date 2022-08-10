@@ -477,6 +477,11 @@ namespace ESProMeter.Views.Items
 
             CreateTable(ref boqTable);
         }
+
+        private void btndropDown_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
