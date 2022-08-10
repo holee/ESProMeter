@@ -12,8 +12,8 @@ namespace ESProMeter.DataAccess
     public interface ISqlAccess 
     {
         void StartTransaction();
-        DataTable FindAsTable<T>(T parameters);
-        bool FindAsTable<T>(T parameters,out DataTable table);
+        DataTable SelectAsTable<T>(T parameters);
+        bool SelectAsTable<T>(T parameters,out DataTable table);
         bool FindOne<T>(T paramaters , out DataRow row);
         bool Exist(object paramaters);
         T InsertGetId<T,U>(U parameters);

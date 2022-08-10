@@ -17,7 +17,7 @@ namespace ESProMeter.Repository
             {
                 return AppService.SqlGetInstance
                                      .UseProcedure("NAME_sp_SELECT")
-                                     .FindAsTable<dynamic>(new
+                                     .SelectAsTable<dynamic>(new
                                      {
                                          @NAMETYPE=name,
                                          @ISACTIVE=isActive

@@ -622,7 +622,7 @@ namespace ESProMeter.Views.Boq
             this.BOQITEMDESC.HeaderText = "BOQ ITEMLINE DESCRIPTION";
             this.BOQITEMDESC.Name = "BOQITEMDESC";
             this.BOQITEMDESC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.BOQITEMDESC.Width = 200;
+            this.BOQITEMDESC.Width = 300;
             // 
             // BOQITEMQTY
             // 

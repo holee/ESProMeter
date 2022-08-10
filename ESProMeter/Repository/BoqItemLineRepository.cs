@@ -162,19 +162,19 @@ namespace ESProMeter.Repository
         {
             AppService.SqlGetInstance
                 .UseProcedure("BOQLine_Sp_SELECT")
-                .FindAsTable(new 
+                .SelectAsTable(new 
                 {
                     BOQID = boqId
                 }, out tblBoq);
             DataUtility.GetInstance
                 .UseProcedure("QUOTE_sp_SELECT")
-                .FindAsTable(new
+                .SelectAsTable(new
                 {
                     BOQID = boqId
                 }, out tblQuote);
             DataUtility.GetInstance
                 .UseProcedure("ACTIVITY_sp_SELECT")
-                .FindAsTable(new
+                .SelectAsTable(new
                 {
                     BOQID = boqId
                 }, out tblActivity);
@@ -186,13 +186,13 @@ namespace ESProMeter.Repository
         {
             return AppService.SqlGetInstance
                 .UseProcedure("BOQ_sp_SELECT_ALL")
-                .FindAsTable<dynamic?>(new { isAct = isActive, status= status }, out tblBoq);
+                .SelectAsTable<dynamic?>(new { isAct = isActive, status= status }, out tblBoq);
         }
         public bool GetBoqList(byte isActive, int status, out DataTable tblBoq)
         {
             return AppService.SqlGetInstance
                 .UseProcedure("BOQ1_sp_SELECT_ALL")
-                .FindAsTable<dynamic?>(new { 
+                .SelectAsTable<dynamic?>(new { 
                     isAct = isActive, 
                     status = status
                 }, out tblBoq);
@@ -204,7 +204,7 @@ namespace ESProMeter.Repository
         {
             AppService.SqlGetInstance
                 .UseProcedure("BOQLine_Sp_SELECT")
-                .FindAsTable(new
+                .SelectAsTable(new
                 {
                     BOQID = boqId
                 }, out tblBoq);
@@ -213,7 +213,7 @@ namespace ESProMeter.Repository
         {
             if (AppService.SqlGetInstance
                 .UseProcedure("BOQLine_Sp_SELECT")
-                .FindAsTable(new { 
+                .SelectAsTable(new { 
                     isBoqClosed=isBoqClosed,
                     BOQID= boqId
                 },out table))
@@ -228,7 +228,7 @@ namespace ESProMeter.Repository
             table = new();
             if (AppService.SqlGetInstance
                 .UseProcedure("")
-                .FindAsTable(new { boqId = boqId }, out table)) ;
+                .SelectAsTable(new { boqId = boqId }, out table)) ;
            
         }
 
@@ -237,7 +237,7 @@ namespace ESProMeter.Repository
             table = new();
             if (AppService.SqlGetInstance
                 .UseProcedure("")
-                .FindAsTable(new { boqId = boqId }, out table)) ;
+                .SelectAsTable(new { boqId = boqId }, out table)) ;
           
         }
 

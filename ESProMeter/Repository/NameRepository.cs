@@ -10,7 +10,7 @@ namespace ESProMeter.Repository
         {
             return AppService.SqlGetInstance
                                 .UseProcedure("NAME_sp_SELECT")
-                                .FindAsTable<dynamic>(new { 
+                                .SelectAsTable<dynamic>(new { 
                                     @ISACTIVE= isActive,
                                     @NAMETYPE="Customer"
                                 },out table);
@@ -21,7 +21,7 @@ namespace ESProMeter.Repository
             {
                 return AppService.SqlGetInstance
                                      .UseProcedure("NAME_sp_SELECT")
-                                     .FindAsTable<dynamic>(new
+                                     .SelectAsTable<dynamic>(new
                                      {
                                          @NAMETYPE =nameType,
                                          @ISACTIVE = isActive
@@ -38,7 +38,7 @@ namespace ESProMeter.Repository
             {
                 return AppService.SqlGetInstance
                                      .UseProcedure("NAME_sp_SELECT")
-                                     .FindAsTable<dynamic>(new
+                                     .SelectAsTable<dynamic>(new
                                      {
                                          @CustmerName= custmerName,
                                          @NAMETYPE = nameType,
@@ -81,7 +81,7 @@ namespace ESProMeter.Repository
         {
             return AppService.SqlGetInstance
                                 .UseProcedure("NAME_sp_SELECT_BY_NAME")
-                                .FindAsTable<dynamic>(new 
+                                .SelectAsTable<dynamic>(new 
                                 {
                                     @Name = customerName,
                                     @NAMETYPE = "customer",

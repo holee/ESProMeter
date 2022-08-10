@@ -11,14 +11,14 @@ namespace ESProMeter.Repository
     {
         public bool GetAllUoms(byte isActive,out DataTable table)
         {
-            return AppService.SqlGetInstance.UseProcedure($"UOM_sp_SELECT_ALL").FindAsTable<dynamic>(new
+            return AppService.SqlGetInstance.UseProcedure($"UOM_sp_SELECT_ALL").SelectAsTable<dynamic>(new
             {
                 isAct = isActive,
             }, out table);
         }
         public bool GetAllUoms(byte isActive,int PerPage, out DataTable table)
         {
-            return AppService.SqlGetInstance.UseProcedure($"UOM_sp_SELECT_ALL_PAGES").FindAsTable<dynamic>(new 
+            return AppService.SqlGetInstance.UseProcedure($"UOM_sp_SELECT_ALL_PAGES").SelectAsTable<dynamic>(new 
             { 
                 isAct = isActive,
                 PerPage= PerPage
@@ -26,7 +26,7 @@ namespace ESProMeter.Repository
         }
         public bool GetAllUOMTypes(out DataTable table)
         {
-            return AppService.SqlGetInstance.UseProcedure($"UOMTYPE_SP_SELECT_ALL").FindAsTable<dynamic>(null, out table);
+            return AppService.SqlGetInstance.UseProcedure($"UOMTYPE_SP_SELECT_ALL").SelectAsTable<dynamic>(null, out table);
         }
         public void UomCreate(ITUom uom)
         {

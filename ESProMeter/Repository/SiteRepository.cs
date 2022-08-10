@@ -17,7 +17,7 @@ namespace ESProMeter.Repository
         public bool GetAllSites(byte isActive,int perPage,out DataTable table)
         {
             return AppService.SqlGetInstance.UseProcedure("[SITE_sp_SELECT_ALL]")
-                        .FindAsTable<dynamic>(new 
+                        .SelectAsTable<dynamic>(new 
                         {
                             @ISACTIVE= isActive,
                             @PERPAGE= perPage
@@ -27,7 +27,7 @@ namespace ESProMeter.Repository
         public bool GetAllSites(byte isActive, out DataTable table)
         {
             return AppService.SqlGetInstance.UseProcedure("[SITE_sp_SELECT_ALL]")
-                        .FindAsTable<dynamic>(new
+                        .SelectAsTable<dynamic>(new
                         {
                             @ISACTIVE = isActive,
                             @PERPAGE = 1000
@@ -37,7 +37,7 @@ namespace ESProMeter.Repository
         public bool GetAllSitesByCustomer(byte isActive,long Id,out DataTable table)
         {
             return AppService.SqlGetInstance.UseProcedure("[SITE_sp_SELECT_BY_CUSTOMER]")
-                        .FindAsTable<dynamic>(new
+                        .SelectAsTable<dynamic>(new
                         {
                             @ISACTIVE = isActive,
                             @CUSTOMERID=Id

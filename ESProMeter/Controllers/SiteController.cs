@@ -13,7 +13,7 @@ namespace ESProMeter.Controllers
         public static void GetAllSitesByCustomer(this Form form,byte isActive, long customerId, out DataTable table)
         {
             AppService.SqlGetInstance.UseProcedure("[SITE_sp_SELECT_BY_CUSTOMER]")
-                        .FindAsTable<dynamic>(new
+                        .SelectAsTable<dynamic>(new
                         {
                             @ISACTIVE = isActive,
                             @CUSTOMERID = customerId

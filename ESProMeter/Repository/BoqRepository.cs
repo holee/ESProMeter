@@ -110,7 +110,7 @@ namespace ESProMeter.Repository
         {
             return AppService.SqlGetInstance
                             .UseProcedure("[BOQ_sp_SELECT]")
-                                .FindAsTable<dynamic>(new
+                                .SelectAsTable<dynamic>(new
                                 {
                                     ISACTIVE=isActive,
                                     STATUS=status,
