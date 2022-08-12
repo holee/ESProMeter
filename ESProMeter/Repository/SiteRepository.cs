@@ -201,6 +201,35 @@ namespace ESProMeter.Repository
                 throw new Exception(ex.Message);
             }
         }
+
+        public void ShowSiteForUpdate(ITSite site, long siteId)
+        {
+            try
+            {
+                if (AppService.SqlGetInstance.UseProcedure("SITE_sp_SELECTED_BY_ID")
+                           .FindOne<dynamic>(new { ID = siteId }, out var row))
+
+                {
+                    site.ID = row.GetValue<long>("ID");
+                    site.CUSTOMERID = row.GetValue<long>("CUSTOMERID");
+                    site.SITENAME = row.GetValue<string>("SITENAME");
+                    site.DESCRIPTION = row.GetValue<string>("DESCRIPTION");
+                    site.ADDRESSID = row.GetValue<long>("ADDRESSID");
+                    site.ISACTIVE = row.GetValue<byte>("ISACTIVE");
+                    site.EDSEQ = row.GetValue<int>("EDSEQ");
+                    //site.ID = site.ADDRESSID;
+                    //site.PROVINCE = row.GetValue<string>("PROVINCE");
+                    //site.COUNTRY = row.GetValue<string>("COUNTRY");
+                    //site.ADDRESS = row.GetValue<string>("ADDRESS");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public  bool IsSiteExist(string name)
         {
             try

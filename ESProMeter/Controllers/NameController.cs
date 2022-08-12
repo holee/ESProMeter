@@ -38,7 +38,7 @@ namespace ESProMeter.Controllers
             }
 
         }
-        public static bool CustomerCreateOrUpdate(this Form form, CustomerCreateFrm customer,out long id)
+        public static bool CustomerCreate(this Form form, CustomerCreateFrm customer,out long id)
         {
             try
             {

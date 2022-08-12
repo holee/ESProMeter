@@ -63,7 +63,7 @@ namespace ESProMeter.Views.Boq
         }
         public long CUSTOMERID
         {
-            get => cboCustomerName.AsNumber<long>();
+            get => cboCustomerName.AsNumber<long>(true);
             set => cboCustomerName.SelectedValue = value;
         }
         public DateTime BOQDATE
@@ -113,7 +113,48 @@ namespace ESProMeter.Views.Boq
         public CreateBoQ_Step2_Frm()
         {
             InitializeComponent();
+            this.cboCustomerName.LostFocus += (s, e) =>
+            {
+                if (cboCustomerName.SelectedValue == null && cboCustomerName.Text.Length > 0)
+                {
+                    if (MessageBox.Show("there is not any customer in system.", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        Views.Customers.CustomerCreateFrm form = new Views.Customers.CustomerCreateFrm();
+                        form.NAME = cboCustomerName.Text;
+                        if (this.CustomerCreate(form, out var id))
+                        {
+                            this.FillCustomerCmb(cboCustomerName);
+                            this.cboCustomerName.SelectedValue = id;
+                        }
+                        else
+                        {
+                            this.FillCustomerCmb(cboCustomerName);
+                        }
+                    }
+                }
+            };
+            this.cboSite.LostFocus += (s, e) =>
+            {
+                if (cboSite.SelectedValue == null && cboSite.Text.Length > 0)
+                {
+                    if (MessageBox.Show("there is not any Site in system.", "Bill Of Qauntity", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        Sites.AddSiteFrm form = new Sites.AddSiteFrm();
+                        if (cboCustomerName.SelectedValue != null)
+                        {
+                            form.SITENAME = cboSite.Text;
+                            form.CUSTOMERID = cboCustomerName.AsNumber<long>(true);
+                            if (this.SiteCreateNewOrUpdate(form, out var id))
+                            {
+                                this.FillSitesCmbByCustomer(cboCustomerName.AsNumber<long>(true), cboSite);
+                                this.cboSite.SelectedValue = id;
+                            }
+                        }
 
+                    }
+                    else return;
+                }
+            };
         }
         public CreateBoQ_Step2_Frm(long id)
         {
@@ -121,7 +162,42 @@ namespace ESProMeter.Views.Boq
             this.FillCustomerCmb(cboCustomerName);
             this.FillSitesCmb(cboSite);
             this.BoqGetById(id, this);
-
+            this.cboCustomerName.LostFocus += (s, e) =>
+            {
+                if (cboCustomerName.SelectedValue == null && cboCustomerName.Text.Length > 0)
+                {
+                    if (MessageBox.Show("there is not any customer in system.", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        Views.Customers.CustomerCreateFrm form = new Views.Customers.CustomerCreateFrm();
+                        form.NAME = cboCustomerName.Text;
+                        if (this.CustomerCreate(form, out var id))
+                        {
+                            this.FillCustomerCmb(cboCustomerName);
+                            this.cboCustomerName.SelectedValue = id;
+                        }
+                        else
+                        {
+                            this.FillCustomerCmb(cboCustomerName);
+                        }
+                    }
+                }
+            };
+        }
+        /// <summary>
+        /// Key Press event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TextBoxKeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
         }
         private void txtBOQDesc_Enter(object sender, EventArgs e)
         {
@@ -152,35 +228,12 @@ namespace ESProMeter.Views.Boq
             //this.txtTermsCondition.Top = this.Height - 50;
         }
 
-        private void mbtCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void cboCustomerName_SelectionChangeCommitted(object sender, EventArgs e)
         {
 
         }
 
-        private void btnAddSection_Click(object sender, EventArgs e)
-        {
-            var _boqId = lblID.AsNumber<long>();
-            SectionFrm form = new SectionFrm();
-            if (form.ShowDialog(this) == DialogResult.OK)
-            {
-                if (dgvBoqList.SelectedRows.Count == 0)
-                {
-                    dgvBoqList.Rows.Add(null, _boqId,1, null,form.SectionText);
-                }
-                else
-                {
-                    var index = dgvBoqList.SelectedRows[0].Index;
-                    dgvBoqList.Rows.Insert(index,null, _boqId, index, null, form.SectionText);
-                }
-
-                dgvBoqList.ClearSelection();
-            }
-        }
+        
 
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -193,28 +246,7 @@ namespace ESProMeter.Views.Boq
             }
         }
 
-        private void materialButton3_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (!toggle)
-            {
-                pnlSearch.BackColor = Color.Transparent;
-                pnlSearch.BorderStyle = BorderStyle.None;
-                pnlSearch.Height = 200;
-                pnlSearch.Location = new Point(materialButton3.Location.X - (pnlSearch.Width - materialButton3.Width), materialButton3.Location.Y + materialButton3.Height);
-                pnlSearch.BringToFront();
-                pnlSearch.Show();
-                toggle = true;
-                this.GetBoqItems(dgvItem, null, "ID", "ItemName", "Description", "ItemType", "Uom", "UomID");
-                materialButton3.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronDownBox;
-            }
-            else
-            {
-                pnlSearch.SendToBack();
-                pnlSearch.Hide();
-                toggle = false;
-                materialButton3.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronUpBox;
-            }
-        }
+    
 
         private void txtItemBoqSearch_KeyUp(object sender, KeyEventArgs e)
         {
@@ -222,6 +254,12 @@ namespace ESProMeter.Views.Boq
             this.GetBoqItems(dgvItem, searchText, "ID", "ItemName", "Description", "ItemType", "Uom", "UomID");
         }
 
+
+        /// <summary>
+        /// DataGridView Events
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dgvItem_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvItem.SelectedRows.Count > 0)
@@ -252,52 +290,44 @@ namespace ESProMeter.Views.Boq
             }
             dgvBoqList.ClearSelection();
         }
-
-        /// <summary>
-        /// Move Datagridview Rows
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void dataGridView1_MouseMove(object sender, MouseEventArgs e)
         {
             if (dgvBoqList.SelectedRows.Count <= 0) return;
             if (e.Button == MouseButtons.Left && dragLabel != null)
             {
                 dragLabel.Location = e.Location;
-                dgvBoqList.ClearSelection();
             }
-            //if ((e.Button & MouseButtons.Left) == MouseButtons.Left)
-            //{
-            //    // If the mouse moves outside the rectangle, start the drag.
-            //    if (dragBoxFromMouseDown != Rectangle.Empty &&
-            //    !dragBoxFromMouseDown.Contains(e.X, e.Y))
-            //    {
-            //        // Proceed with the drag and drop, passing in the list item.                    
-            //        DragDropEffects dropEffect = dgvBoqList.DoDragDrop(
-            //              dgvBoqList.Rows[rowIndexFromMouseDown],
-            //              DragDropEffects.Move);
-            //    }
-            //}
+            if ((e.Button & MouseButtons.Left) == MouseButtons.Left)
+            {
+                // If the mouse moves outside the rectangle, start the drag.
+                if (dragBoxFromMouseDown != Rectangle.Empty &&
+                !dragBoxFromMouseDown.Contains(e.X, e.Y))
+                {
+                    // Proceed with the drag and drop, passing in the list item.                    
+                    DragDropEffects dropEffect = dgvBoqList.DoDragDrop(
+                          dgvBoqList.Rows[rowIndexFromMouseDown],
+                          DragDropEffects.Move);
+                }
+            }
         }
         private void dataGridView1_MouseDown(object sender, MouseEventArgs e)
         {
             if (dgvBoqList.SelectedRows.Count <= 0) return;
-            //// Get the index of the item the mouse is below.
-            //this.dgvBoqList.Cursor = Cursors.SizeAll;
-            //rowIndexFromMouseDown = dgvBoqList.HitTest(e.X, e.Y).RowIndex;
-            //if (rowIndexFromMouseDown != -1)
-            //{
-            //    Size dragSize = SystemInformation.DragSize;
-
-            //    dragBoxFromMouseDown = new Rectangle(
-            //              new Point(
-            //                e.X - (dragSize.Width / 2),
-            //                e.Y - (dragSize.Height / 2)),
-            //          dragSize);
-            //}
-            //else
-            //    // Reset the rectangle if the mouse is not over an item in the ListBox.
-            //    dragBoxFromMouseDown = Rectangle.Empty;
+            // Get the index of the item the mouse is below.
+            this.dgvBoqList.Cursor = Cursors.SizeAll;
+            rowIndexFromMouseDown = dgvBoqList.HitTest(e.X, e.Y).RowIndex;
+            if (rowIndexFromMouseDown != -1)
+            {
+                Size dragSize = SystemInformation.DragSize;
+                dragBoxFromMouseDown = new Rectangle(
+                          new Point(
+                            e.X - (dragSize.Width / 2),
+                            e.Y - (dragSize.Height / 2)),
+                      dragSize);
+            }
+            else
+                // Reset the rectangle if the mouse is not over an item in the ListBox.
+                dragBoxFromMouseDown = Rectangle.Empty;
         }
 
         private void dataGridView1_DragOver(object sender, DragEventArgs e)
@@ -309,68 +339,42 @@ namespace ESProMeter.Views.Boq
         }
         private void dataGridView1_DragDrop(object sender, DragEventArgs e)
         {
+            Point clientPoint = dgvBoqList.PointToClient(new Point(e.X, e.Y));
+            // Get the row index of the item the mouse is below. 
+            rowIndexOfItemUnderMouseToDrop = dgvBoqList.HitTest(clientPoint.X, clientPoint.Y).RowIndex;
 
-            //if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            //{
-            //    // Fetch the file(s) names with full path here to be processed
-            //    string[] fileList = (string[])e.Data.GetData(DataFormats.FileDrop);
+            if (rowIndexOfItemUnderMouseToDrop ==- 1 
+                || rowIndexOfItemUnderMouseToDrop >= dgvBoqList.Rows.Count-1)
+            {
+                return;
+            }
+                // If the drag operation was a move then remove and insert the row.
 
-            //    // Your desired code goes here to process the file(s) being dropped
+                if (e.Effect == DragDropEffects.Move)
+            {
+                try
+                {
+                        DataGridViewRow rowToMove = e.Data.GetData(typeof(DataGridViewRow)) as DataGridViewRow;
+                        dgvBoqList.Rows.RemoveAt(rowIndexFromMouseDown);
+                        dgvBoqList.Rows.Insert(rowIndexOfItemUnderMouseToDrop, rowToMove);
+                        dgvBoqList.Rows[rowIndexOfItemUnderMouseToDrop].Selected = true;
+                        if (dragLabel != null)
+                        {
+                            dragLabel.Dispose();
+                            dragLabel = null;
+                        }
+                }
+                catch
+                {
 
-            //    MessageBox.Show(fileList[0]);
-            //}
+                }
 
-            //Point clientPoint = dgvBoqList.PointToClient(new Point(e.X, e.Y));
-            //// Get the row index of the item the mouse is below. 
-            //rowIndexOfItemUnderMouseToDrop = dgvBoqList.HitTest(clientPoint.X, clientPoint.Y).RowIndex;
-            //// If the drag operation was a move then remove and insert the row.
-            //if (e.Effect == DragDropEffects.Move)
-            //{
-            //    try
-            //    {
-            //        DataGridViewRow rowToMove = e.Data.GetData(typeof(DataGridViewRow)) as DataGridViewRow;
-            //        if (rowIndexOfItemUnderMouseToDrop >= dgvBoqList.Rows.Count)
-            //        {
-            //            return;
-            //        }
-            //        dgvBoqList.Rows.RemoveAt(rowIndexFromMouseDown);
-            //        dgvBoqList.Rows.Insert(rowIndexOfItemUnderMouseToDrop, rowToMove);
-            //        dgvBoqList.Rows[rowIndexOfItemUnderMouseToDrop].Selected = true;
-                    
-            //    }
-            //    catch
-            //    {
-
-            //    }
-
-            //}
+            }
         }
         private void dgvBoqList_MouseUp(object sender, MouseEventArgs e)
         {
             if (dgvBoqList.SelectedRows.Count <= 0) return;
-            this.dgvBoqList.Cursor = Cursors.Default;
-            var hit = dgvBoqList.HitTest(e.X, e.Y);
-            int dropRow = -1;
-            if (hit.Type != DataGridViewHitTestType.None)
-            {
-                dropRow = hit.RowIndex;
-                if (dragRow >= 0)
-                {
-                    int tgtRow = dropRow + (dragRow > dropRow ? 1 : 0);
-                    if (tgtRow != dragRow)
-                    {
-                        DataGridViewRow row = dgvBoqList.Rows[dragRow];
-                        dgvBoqList.Rows.Remove(row);
-                        dgvBoqList.Rows.Insert(tgtRow, row);
-                        dgvBoqList.ClearSelection();
-                        row.Selected = true;
-                    }
-                }
-            }
-            else { 
-                dgvBoqList.Rows[dragRow].Selected = true; 
-            }
-
+           
             if (dragLabel != null)
             {
                 dragLabel.Dispose();
@@ -378,44 +382,147 @@ namespace ESProMeter.Views.Boq
             }
         }
 
-        private void dgvBoqList_DragEnter(object sender, DragEventArgs e)
-        {
-            //if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            //{
-            //    // modify the drag drop effects to Move
-            //    e.Effect = DragDropEffects.Move;
-            //}
-            //else
-            //{
-            //    // no need for any drag drop effect
-            //    e.Effect = DragDropEffects.None;
-            //}
-        }
+      
 
         private void dgvBoqList_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
             dragRow = e.RowIndex;
             if (dragLabel == null)
-            {
                 dragLabel = new Label();
-                if (dgvBoqList[e.ColumnIndex, e.RowIndex].Value != null) 
+                dragLabel.Width = dgvBoqList.Width /2;
+                dragLabel.Text = dgvBoqList.Rows[e.RowIndex].Cells["BOQITEMDESC"].Value.ToString();
+                dragLabel.Parent = dgvBoqList;
+                dragLabel.Location = e.Location;
+        }
+
+
+
+        private void dgvBoqList_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            for (int i = 0; i < dgvBoqList.RowCount; i++)
+            {
+                dgvBoqList.SetText(i, "Column2", i+1);
+            }
+            
+        }
+        private void dgvBoqList_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvBoqList.Columns[e.ColumnIndex].Name == "BOQITEMQTY")
+            {
+                if (dgvBoqList.Rows[e.RowIndex].Cells["BOQITEMQTY"].Value == null)
                 {
-                   dragLabel.SetText(dgvBoqList[e.ColumnIndex, e.RowIndex].Value);
+                    dgvBoqList.SetText(e.RowIndex, "BOQITEMQTY", Utility.NumberString(0, "N2"));
                 }
                 else
                 {
-                    dragLabel.SetText("");
+                    var value = dgvBoqList.GetValue<decimal>(e.RowIndex, "BOQITEMQTY");
+                    dgvBoqList.NumberFormat(e.RowIndex, "BOQITEMQTY", value, "N2");
                 }
             }
-            dragLabel.Parent = dgvBoqList;
-            dragLabel.Location = e.Location;
+        }
+        private void dgvBoqList_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (dgvBoqList.Columns["BOQITEMQTY"].Name== "BOQITEMQTY"
+                && dgvBoqList.Columns["BOQITEMQTY"] is DataGridViewTextBoxColumn)
+            {
+                TextBox qauntityTextBox = e.Control as TextBox;
+                qauntityTextBox.KeyPress += TextBoxKeyPress;
+            }
         }
 
+        /// <summary>
+        /// Button Events
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mbtAddSite_Click(object sender, EventArgs e)
+        {
+            if (cboCustomerName.SelectedValue == null)
+            {
+                MessageBox.Show("Please select customer.", "BOQ", MessageBoxButtons.OK);
+                return;
+            }
+            var customerId = cboCustomerName.SelectedValue;
+            Views.Sites.AddSiteFrm form = new Sites.AddSiteFrm(customerId);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                this.SiteCreateNewOrUpdate(form, form, Enums.ActionType.CREATE);
+                this.FillSitesCmbByCustomer(cboCustomerName.AsNumber<long>(true), cboSite);
+            }
+        }
+        private void mbtAddCustomer_Click(object sender, EventArgs e)
+        {
+            Views.Customers.CustomerCreateFrm form = new Customers.CustomerCreateFrm();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                this.CustomerCreate(form, out var id);
+                this.FillCustomerCmb(cboCustomerName);
+                this.cboCustomerName.SelectedValue = id;
+            }
+        }
         private void materialButton1_Click(object sender, EventArgs e)
         {
             this.BoqLineCreate(dgvBoqList);
+            this.BoqUpdate(this);
+            this.ClearForm();
         }
+
+        private void materialButton3_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (!toggle)
+            {
+                pnlSearch.BackColor = Color.Transparent;
+                pnlSearch.BorderStyle = BorderStyle.None;
+                pnlSearch.Height = 200;
+                pnlSearch.Location = new Point(materialButton3.Location.X - (pnlSearch.Width - materialButton3.Width), materialButton3.Location.Y + materialButton3.Height);
+                pnlSearch.BringToFront();
+                pnlSearch.Show();
+                toggle = true;
+                this.GetBoqItems(dgvItem, null, "ID", "ItemName", "Description", "ItemType", "Uom", "UomID");
+                materialButton3.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronDownBox;
+            }
+            else
+            {
+                pnlSearch.SendToBack();
+                pnlSearch.Hide();
+                toggle = false;
+                materialButton3.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronUpBox;
+            }
+        }
+
+        private void mbtCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnAddSection_Click(object sender, EventArgs e)
+        {
+            if (toggle)
+            {
+                pnlSearch.SendToBack();
+                pnlSearch.Hide();
+                toggle = false;
+                materialButton3.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronUpBox;
+            }
+            var _boqId = lblID.AsNumber<long>();
+            SectionFrm form = new SectionFrm();
+            if (form.ShowDialog(this) == DialogResult.OK)
+            {
+                if (dgvBoqList.SelectedRows.Count == 0)
+                {
+                    dgvBoqList.Rows.Add(null, _boqId, 1, null, form.SectionText);
+                }
+                else
+                {
+                    var index = dgvBoqList.SelectedRows[0].Index;
+                    dgvBoqList.Rows.Insert(index + 1, null, _boqId, index, null, form.SectionText);
+                }
+
+                dgvBoqList.ClearSelection();
+            }
+        }
+
     }
 }
 
@@ -479,4 +586,28 @@ namespace ESProMeter.Views.Boq
 //    DT.Rows.InsertAt(newRow, tgtRow);
 //    dataGridView1.Refresh();
 //    dataGridView1.Rows[tgtRow].Selected = true;
+//}
+
+
+//this.dgvBoqList.Cursor = Cursors.Default;
+//var hit = dgvBoqList.HitTest(e.X, e.Y);
+//int dropRow = -1;
+//if (hit.Type != DataGridViewHitTestType.None)
+//{
+//    //dropRow = hit.RowIndex;
+//    //if (dragRow >= 0)
+//    //{
+//    //    int tgtRow = dropRow + (dragRow > dropRow ? 1 : 0);
+//    //    if (tgtRow != dragRow)
+//    //    {
+//    //        DataGridViewRow row = dgvBoqList.Rows[dragRow];
+//    //        dgvBoqList.Rows.Remove(row);
+//    //        dgvBoqList.Rows.Insert(tgtRow, row);
+//    //        dgvBoqList.ClearSelection();
+//    //        row.Selected = true;
+//    //    }
+//    //}
+//}
+//else { 
+//    //dgvBoqList.Rows[dragRow].Selected = true; 
 //}

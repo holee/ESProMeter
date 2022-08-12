@@ -31,7 +31,7 @@ namespace ESProMeter.Views.Boq
 
         private void materialButton1_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.None;
+            this.Close();
         }
     }
 }

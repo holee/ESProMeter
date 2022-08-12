@@ -18,7 +18,18 @@ namespace ESProMeter.Controllers
         {
             return AppService.GetBoqInstance.BoqCreate(data);
         }
-
+        public static bool BoqCreate(this Form form, ITBOQ data)
+        {
+            return AppService.GetBoqInstance.BoqCreate(data);
+        }
+        public static bool BoqUpdate(this Form form, CreateBoQ_Step1_Frm data) 
+        {
+            return AppService.GetBoqInstance.BoqUpdate(data);
+        }
+        public static bool BoqUpdate(this Form form, ITBOQ data)
+        {
+            return AppService.GetBoqInstance.BoqUpdate(data);
+        }
         public static bool BoqCreate(this Form form, CreateBoQ_Step1_Frm data,out long id)
         {
             return AppService.GetBoqInstance.BoqCreate(data,out id);

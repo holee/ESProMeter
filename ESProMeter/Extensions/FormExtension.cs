@@ -192,20 +192,7 @@ namespace ESProMeter.Extensions
                 txt.Rows[rowIndex].Cells[colName].Value = value;
             }
         } 
-        public static void SetTextFormat<T>(this DataGridView txt, int rowIndex, string colName,string format, T value) where T:IFormattable
-        {
-            if (txt.Rows.Count > 0)
-            {
-                if(value == null)
-                {
-                    txt.Rows[rowIndex].Cells[colName].Value = "";
-                }
-                else
-                {
-                    txt.Rows[rowIndex].Cells[colName].Value = string.Format(format,value);
-                }
-            }
-        }
+       
         public static void SetText(this DataGridView txt, int colIndex, object value)
         {
             if (txt.Rows.Count > 0)
@@ -357,17 +344,7 @@ namespace ESProMeter.Extensions
             }
             return (bool)gRow.Cells[colName].Value;
         }
-        public static void UseDataTableAsGridView<T>(this List<T> source,DataGridView dataGrid) where T:class
-        {
-            if (source.Count > 0)
-            {
-                if (dataGrid.Rows.Count > 0)
-                {
-                    ((List<T>)dataGrid.DataSource).Clear();
-                }
-                dataGrid.DataSource = source;
-            }
-        }
+        
         public static void UseDataTableAsGridView(this DataTable source, DataGridView grid)
         {
             if (source != null)
@@ -411,11 +388,56 @@ namespace ESProMeter.Extensions
                 label.Visible=false;
             }
         }
-        
         public static string AsString(this DateTimePicker picker,string formater="MM/dd/yyyy")
         {
             return picker.Value.ToString(formater);
         }
-    
+
+        /// <summary>
+        /// Format
+        /// </summary>
+        /// <param name="txt"></param>
+        /// <param name="rowIndex"></param>
+        /// <param name="colName"></param>
+        /// <param name="value"></param>
+        /// <param name="format"></param>
+        public static void NumberFormat(this DataGridView txt, int rowIndex, string colName, object value, string format = "N2")
+        {
+            if (rowIndex >= 0)
+            {
+                if (value == null)
+                {
+                    txt.SetText(rowIndex, colName, Utility.NumberString(0, format));
+                }
+                else
+                {
+                    txt.SetText(rowIndex, colName, Utility.NumberString(value, format));
+                }
+            }
+        }
+        public static void NumberFormat(this TextBox txt, object value, string format = "N2")
+        {
+
+            if (value == null)
+            {
+                txt.SetText(Utility.NumberString(0, format));
+            }
+            else
+            {
+                txt.SetText(Utility.NumberString(value, format));
+            }
+        }
+        public static void NumberFormat(this Label txt, object value, string format = "N2")
+        {
+
+            if (value == null)
+            {
+                txt.SetText(Utility.NumberString(0, format));
+            }
+            else
+            {
+                txt.SetText(Utility.NumberString(value, format));
+            }
+        }
     }
 }

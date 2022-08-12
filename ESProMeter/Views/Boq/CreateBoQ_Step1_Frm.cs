@@ -112,20 +112,21 @@ namespace ESProMeter.Views.Boq
             {
                 if (cboCustomerName.SelectedValue == null && cboCustomerName.Text.Length > 0)
                 {
-                    //if (MessageBox.Show("there is not any customer in system.", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    //{
-                    //    Views.Customers.CustomerCreateFrm form = new Views.Customers.CustomerCreateFrm();
-                    //    form.NAME = cboCustomerName.Text;
-                    //    if (this.CustomerCreateOrUpdate(form, out var id))
-                    //    {
-                    //        this.FillCustomerCmb(cboCustomerName);
-                    //        this.cboCustomerName.SelectedValue = id;
-                    //    }
-                    //    else
-                    //    {
-                    //        this.FillCustomerCmb(cboCustomerName);
-                    //    }
-                    //}
+                    if (MessageBox.Show("there is not any customer in system.", "Bill Of Qauntity", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        Views.Customers.CustomerCreateFrm form = new Views.Customers.CustomerCreateFrm();
+                        form.NAME = cboCustomerName.Text;
+                        if (this.CustomerCreate(form, out var id))
+                        {
+                            this.FillCustomerCmb(cboCustomerName);
+                            this.cboCustomerName.SelectedValue = id;
+                        }
+                        else
+                        {
+                            this.FillCustomerCmb(cboCustomerName);
+                        }
+                    }
+                    else return;
                 }
             };
 
@@ -144,73 +145,97 @@ namespace ESProMeter.Views.Boq
             {
                 if (cboSite.SelectedValue == null && cboSite.Text.Length > 0)
                 {
-                    if (MessageBox.Show("there is not any Site in system.", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (MessageBox.Show("there is not any Site in system.", "Bill Of Qauntity", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         Sites.AddSiteFrm form = new Sites.AddSiteFrm();
-                        if(cboCustomerName.SelectedValue != null)
+                        if (cboCustomerName.SelectedValue != null)
                         {
                             form.SITENAME = cboSite.Text;
                             form.CUSTOMERID = cboCustomerName.AsNumber<long>(true);
                             if (this.SiteCreateNewOrUpdate(form, out var id))
                             {
-                                this.FillSitesCmbByCustomer(cboCustomerName.AsNumber<long>(true),cboSite);
+                                this.FillSitesCmbByCustomer(cboCustomerName.AsNumber<long>(true), cboSite);
                                 this.cboSite.SelectedValue = id;
                             }
                         }
-                        
+
                     }
+                    else return;
                 }
             };
         }
 
-        private void mbtNext_Click(object sender, EventArgs e)
+
+        //Key Press event
+        private void TextBoxKeyPress(object sender, KeyPressEventArgs e)
         {
-            //CreateBoQ_Step2_Frm form = new CreateBoQ_Step2_Frm();
-            //form.TopLevel = false;
-            //form.TopMost = true;
-            //form.FormBorderStyle = FormBorderStyle.None;
-            //form.WindowState = FormWindowState.Maximized;
-            //form.Dock = DockStyle.Fill;
-            //MainFrm.MainF.panel2.Controls.Clear();
-            //MainFrm.MainF.panel2.Controls.Add(form);
-            //form.Show();
-            //this.Close();
-
-            if (cboCustomerName.SelectedValue != null
-                && cboSite.SelectedValue != null)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
             {
-                if (this.BoqCreate(this, out var id))
-                {
-                    CreateBoQ_Step2_Frm form = new CreateBoQ_Step2_Frm(id);
-                    form.TopLevel = false;
-                    form.TopMost = true;
-                    form.FormBorderStyle = FormBorderStyle.None;
-                    form.WindowState = FormWindowState.Maximized;
-                    form.Dock = DockStyle.Fill;
-                    MainFrm.MainF.panel2.Controls.Clear();
-                    MainFrm.MainF.panel2.Controls.Add(form);
-                    form.Show();
-                    this.Close();
-                }
+                e.Handled = true;
             }
-            else
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
-                if (cboCustomerName.SelectedValue == null)
-                {
-                    MessageBox.Show("Please select customer name and site name.", "Information",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    cboCustomerName.Focus();
-                    return;
-                }
-                if (cboSite.SelectedValue == null)
-                {
-                    MessageBox.Show("Please select site name and site name.", "Information",
-                   MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    cboSite.Focus();
-                    return;
-                }
-
+                e.Handled = true;
             }
+        }
+
+        private void dtgBOQCostSettingEditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (dtgBOQCostSetting.Columns["Column4"].Name == "Column4"
+                && dtgBOQCostSetting.Columns["Column4"] is DataGridViewTextBoxColumn)
+            {
+                TextBox qauntityTextBox = e.Control as TextBox;
+                qauntityTextBox.KeyPress += TextBoxKeyPress;
+            }
+        }
+        private void mbtNext_Click(object sender, EventArgs e) 
+        {
+            CreateBoQ_Step2_Frm form = new CreateBoQ_Step2_Frm();
+            form.TopLevel = false;
+            form.TopMost = true;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.WindowState = FormWindowState.Maximized;
+            form.Dock = DockStyle.Fill;
+            MainFrm.MainF.panel2.Controls.Clear();
+            MainFrm.MainF.panel2.Controls.Add(form);
+            form.Show();
+            this.Close();
+
+            //if (cboCustomerName.SelectedValue != null
+            //    && cboSite.SelectedValue != null)
+            //{
+            //    if (this.BoqCreate(this, out var id))
+            //    {
+            //        CreateBoQ_Step2_Frm form = new CreateBoQ_Step2_Frm(id);
+            //        form.TopLevel = false;
+            //        form.TopMost = true;
+            //        form.FormBorderStyle = FormBorderStyle.None;
+            //        form.WindowState = FormWindowState.Maximized;
+            //        form.Dock = DockStyle.Fill;
+            //        MainFrm.MainF.panel2.Controls.Clear();
+            //        MainFrm.MainF.panel2.Controls.Add(form);
+            //        form.Show();
+            //        this.Close();
+            //    }
+            //}
+            //else
+            //{
+            //    if (cboCustomerName.SelectedValue == null)
+            //    {
+            //        MessageBox.Show("Please select customer name and site name.", "Information",
+            //        MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        cboCustomerName.Focus();
+            //        return;
+            //    }
+            //    if (cboSite.SelectedValue == null)
+            //    {
+            //        MessageBox.Show("Please select site name and site name.", "Information",
+            //       MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        cboSite.Focus();
+            //        return;
+            //    }
+
+            //}
         }
 
         private void mbtCancel_Click(object sender, EventArgs e)
@@ -220,18 +245,26 @@ namespace ESProMeter.Views.Boq
 
         private void mbtAddCustomer_Click(object sender, EventArgs e)
         {
+            
             Views.Customers.CustomerCreateFrm form = new Customers.CustomerCreateFrm();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                this.CustomerCreateOrUpdate(form, Enums.ActionType.CREATE);
+                this.CustomerCreate(form, out var id);
                 this.FillCustomerCmb(cboCustomerName);
+                this.cboCustomerName.SelectedValue = id;
             }
 
         }
 
         private void mbtAddSite_Click(object sender, EventArgs e)
         {
-            Views.Sites.AddSiteFrm form = new Sites.AddSiteFrm();
+            if (cboCustomerName.SelectedValue == null)
+            {
+                MessageBox.Show( "Please select customer.","BOQ",MessageBoxButtons.OK);
+                return;
+            }
+            var customerId = cboCustomerName.SelectedValue;
+            Views.Sites.AddSiteFrm form = new Sites.AddSiteFrm(customerId);
             if (form.ShowDialog() == DialogResult.OK)
             {
                 this.SiteCreateNewOrUpdate(form, form, Enums.ActionType.CREATE);

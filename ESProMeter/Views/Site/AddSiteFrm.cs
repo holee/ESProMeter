@@ -42,8 +42,6 @@ namespace ESProMeter.Views.Sites
             get => checkInactive.Checked?(byte)0:(byte)1; 
             set => checkInactive.Checked=value==0?true:false; 
         }
-       
-
         public string ADDRESS
         { 
             get => textAddress.Text.Trim(); 
@@ -84,36 +82,27 @@ namespace ESProMeter.Views.Sites
             btnSave.Text = "Save";
             this.checkInactive.Enabled = false;
             this.FillCustomerCmb();
-            this.cmbCustomerID.LostFocus += (s, e) =>
-            {
-                if (cmbCustomerID.SelectedValue == null && cmbCustomerID.Text.Length > 0)
-                {
-                    if (MessageBox.Show("there is not any customer in system.", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        Views.Customers.CustomerCreateFrm form = new Views.Customers.CustomerCreateFrm();
-                        form.NAME = cmbCustomerID.Text;
-                        if (this.CustomerCreateOrUpdate(form, out var id))
-                        {
-                            this.FillCustomerCmb();
-                            this.cmbCustomerID.SelectedValue = id;
-                        }
-                        else
-                        {
-                            this.FillCustomerCmb();
-                        }
-                    }
-                }
-            };
+           
         }
         public AddSiteFrm(long siteId)
         {
             InitializeComponent();
             btnSave.Text = "Update";
             this.Text = "Update site information";
-            //this.ShowFormSiteUpdate(this,siteId);
             this.FillCustomerCmb();
             this.ShowFormSiteUpdate(this, this, siteId);
         }
+
+        public AddSiteFrm(object customerId)
+        {
+            InitializeComponent();
+            btnSave.Text = "Save";
+            this.Text = "Create New Site";
+            this.FillCustomerCmb(cmbCustomerID);
+            cmbCustomerID.SelectedValue = customerId;
+            cmbCustomerID.Enabled = false;
+        }
+
 
         //events
         private void btnSave_Click(object sender, EventArgs e)
@@ -155,7 +144,7 @@ namespace ESProMeter.Views.Sites
             Views.Customers.CustomerCreateFrm form = new Views.Customers.CustomerCreateFrm();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                if (this.CustomerCreateOrUpdate(form,out var id))
+                if (this.CustomerCreate(form,out var id))
                 {
                     this.FillCustomerCmb();
                     this.cmbCustomerID.SelectedValue = id;
