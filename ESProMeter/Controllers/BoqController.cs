@@ -8,6 +8,12 @@ namespace ESProMeter.Controllers
 {
     public static class BoqController
     {
+        /// <summary>
+        /// CREATE AND UPDATE
+        /// </summary>
+        /// <param name="form"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public static bool BoqCreate(this Form form,CreateBoQ_Step1_Frm data)
         {
             return AppService.GetBoqInstance.BoqCreate(data);
@@ -29,7 +35,12 @@ namespace ESProMeter.Controllers
             AppService.GetBoqInstance.BoqLineCreate(table);
         }
 
-
+        public static void GetAdditionalCost(this Form form,DataGridView container)
+        {
+            AppService.GetBoqInstance
+                            .GetAdditinalCost(out var table);
+            table.UseDataTableAsGridView(container);
+        }
 
 
     }

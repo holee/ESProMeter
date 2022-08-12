@@ -129,6 +129,12 @@ namespace ESProMeter.Repository
         }   
 
 
+        public void GetAdditinalCost(out DataTable table)
+        {
+            AppService.SqlGetInstance
+                            .UseProcedure("[SETTING_sp_SELECT]")
+                                .SelectAsTable<dynamic>(null,out table);
+        }
     
 
 
