@@ -29,6 +29,7 @@ namespace ESProMeter.Views.Boq
 		/// </summary>
 		private void InitializeComponent()
 		{
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.mbtAddSite = new FontAwesome.Sharp.Material.MaterialButton();
             this.mbtAddCustomer = new FontAwesome.Sharp.Material.MaterialButton();
@@ -42,13 +43,6 @@ namespace ESProMeter.Views.Boq
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dtgBOQCostSetting = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtTermsCondition = new System.Windows.Forms.TextBox();
             this.txtBOQTitle = new System.Windows.Forms.TextBox();
@@ -57,6 +51,13 @@ namespace ESProMeter.Views.Boq
             this.dtpValidDate = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgBOQCostSetting)).BeginInit();
@@ -211,7 +212,7 @@ namespace ESProMeter.Views.Boq
             this.groupBox1.Controls.Add(this.dtgBOQCostSetting);
             this.groupBox1.Location = new System.Drawing.Point(4, 140);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(501, 242);
+            this.groupBox1.Size = new System.Drawing.Size(327, 242);
             this.groupBox1.TabIndex = 29;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "BOQ ADDITIONAL COST DEFAULT SETTINGS";
@@ -236,80 +237,27 @@ namespace ESProMeter.Views.Boq
             this.dtgBOQCostSetting.RowTemplate.DividerHeight = 1;
             this.dtgBOQCostSetting.RowTemplate.Height = 25;
             this.dtgBOQCostSetting.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgBOQCostSetting.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgBOQCostSetting.Size = new System.Drawing.Size(483, 214);
+            this.dtgBOQCostSetting.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dtgBOQCostSetting.Size = new System.Drawing.Size(303, 214);
             this.dtgBOQCostSetting.TabIndex = 8;
             this.dtgBOQCostSetting.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dtgBOQCostSettingEditingControlShowing);
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "CODE";
-            this.Column1.HeaderText = "CODE";
-            this.Column1.Name = "Column1";
-            this.Column1.Visible = false;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "DESCRIPTION";
-            this.Column2.HeaderText = "DESCRIPTION";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 150;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "TYPE";
-            this.Column3.HeaderText = "TYPE";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 70;
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "VALUE";
-            this.Column4.HeaderText = "VALUE";
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 60;
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "CATEGORY";
-            this.Column5.HeaderText = "CATEGORY";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.DataPropertyName = "VALUEAS";
-            this.Column6.HeaderText = "VALUEAS";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 80;
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "IsACT";
-            this.Column7.HeaderText = "ACTIVE";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Visible = false;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.txtTermsCondition);
-            this.groupBox2.Location = new System.Drawing.Point(511, 140);
+            this.groupBox2.Location = new System.Drawing.Point(337, 140);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(344, 242);
+            this.groupBox2.Size = new System.Drawing.Size(518, 242);
             this.groupBox2.TabIndex = 29;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "TERMS && CONDITION";
             // 
             // txtTermsCondition
             // 
-            this.txtTermsCondition.Location = new System.Drawing.Point(6, 22);
+            this.txtTermsCondition.Location = new System.Drawing.Point(42, 22);
             this.txtTermsCondition.Multiline = true;
             this.txtTermsCondition.Name = "txtTermsCondition";
-            this.txtTermsCondition.Size = new System.Drawing.Size(329, 214);
+            this.txtTermsCondition.Size = new System.Drawing.Size(467, 214);
             this.txtTermsCondition.TabIndex = 9;
             // 
             // txtBOQTitle
@@ -360,6 +308,66 @@ namespace ESProMeter.Views.Boq
             this.label7.Size = new System.Drawing.Size(71, 15);
             this.label7.TabIndex = 28;
             this.label7.Text = "VALID DATE:";
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "CODE";
+            this.Column1.HeaderText = "CODE";
+            this.Column1.Name = "Column1";
+            this.Column1.Visible = false;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "DESCRIPTION";
+            this.Column2.HeaderText = "DESCRIPTION";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 150;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "TYPE";
+            this.Column3.HeaderText = "TYPE";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column3.Visible = false;
+            this.Column3.Width = 70;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "VALUE";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.Format = "0.00";
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Column4.HeaderText = "VALUE";
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 60;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "CATEGORY";
+            this.Column5.HeaderText = "CATEGORY";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Visible = false;
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "VALUEAS";
+            this.Column6.HeaderText = "VALUEAS";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 80;
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "IsACT";
+            this.Column7.HeaderText = "ACTIVE";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Visible = false;
             // 
             // CreateBoQ_Step1_Frm
             // 

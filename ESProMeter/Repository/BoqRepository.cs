@@ -28,7 +28,14 @@ namespace ESProMeter.Repository
                                 boq.SITEID,
                                 boq.TERMSCONDITION,
                                 boq.STATUS,
-                                boq.UID
+                                boq.UID,
+                                boq.LOSSOFEFFECIENCYRATE,
+                                boq.OPERATIONRATE,
+                                boq.OVERHEADRATE,
+                                boq.SAFETYRATE,
+                                boq.TRANSPORTATIONRATE,
+                                boq.MARGINRATE,
+                                boq.INFlATIONRATE
                             });
             return id > 0;
 
@@ -47,7 +54,14 @@ namespace ESProMeter.Repository
                                 boq.SITEID,
                                 boq.TERMSCONDITION,
                                 boq.STATUS,
-                                boq.UID
+                                boq.UID,
+                                boq.LOSSOFEFFECIENCYRATE,
+                                boq.OPERATIONRATE,
+                                boq.OVERHEADRATE,
+                                boq.SAFETYRATE,
+                                boq.TRANSPORTATIONRATE,
+                                boq.MARGINRATE,
+                                boq.INFlATIONRATE
                             });
             return id > 0;
 
@@ -68,7 +82,14 @@ namespace ESProMeter.Repository
                                 boq.SITEID,
                                 boq.TERMSCONDITION,
                                 boq.STATUS,
-                                boq.UID
+                                boq.UID,
+                                boq.LOSSOFEFFECIENCYRATE,
+                                boq.OPERATIONRATE,
+                                boq.OVERHEADRATE,
+                                boq.SAFETYRATE,
+                                boq.TRANSPORTATIONRATE,
+                                boq.MARGINRATE,
+                                boq.INFlATIONRATE
                             });
             return id > 0;
 
@@ -103,6 +124,13 @@ namespace ESProMeter.Repository
                 boq.TERMSCONDITION = row.GetValue<string>("TERMSCONDITION");
                 boq.REFNUMBER = row.GetValue<string>("REFNUMBER");
                 boq.ISACTIVE = row.GetValue<byte>("ISACTIVE");
+                boq.LOSSOFEFFECIENCYRATE = row.GetValue<decimal>("LOSSOFEFFECIENCYRATE");
+                boq.OPERATIONRATE = row.GetValue<decimal>("OPERATIONRATE");
+                boq.OVERHEADRATE = row.GetValue<decimal>("OVERHEADRATE");
+                boq.SAFETYRATE = row.GetValue<decimal>("SAFETYRATE");
+                boq.MARGINRATE = row.GetValue<decimal>("MARGINRATE");
+                boq.INFlATIONRATE = row.GetValue<decimal>("INFlATIONRATE");
+                boq.TRANSPORTATIONRATE = row.GetValue<decimal>("TRANSPORTATIONRATE");
             }
         }
 

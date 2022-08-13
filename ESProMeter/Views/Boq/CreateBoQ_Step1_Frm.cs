@@ -18,6 +18,13 @@ namespace ESProMeter.Views.Boq
         private long _id = 0;
         private int _status = 1;
         private long _uid = 0;
+        private decimal _loe; 
+        private decimal _op;
+        private decimal _over;
+        private decimal _safty;
+        private decimal _tran;
+        private decimal _margin;
+        private decimal _inflation;
         #endregion
         #region properties
         public long ID
@@ -100,6 +107,56 @@ namespace ESProMeter.Views.Boq
             get => _uid;
             set => _uid = value;
         }
+        public decimal LOSSOFEFFECIENCYRATE {
+            get 
+            {
+                return dtgBOQCostSetting.GetValue<decimal>(0, "Column4");
+            }
+            set => _loe=value; 
+        }
+        public decimal OPERATIONRATE {
+            get
+            {
+                return dtgBOQCostSetting.GetValue<decimal>(1, "Column4");
+            }
+            set => _op=value; 
+        }
+        public decimal OVERHEADRATE {
+            get
+            {
+                return dtgBOQCostSetting.GetValue<decimal>(2, "Column4");
+            }
+            set => _over=value; 
+        }
+        public decimal SAFETYRATE {
+            get
+            {
+                return dtgBOQCostSetting.GetValue<decimal>(3, "Column4");
+            }
+            set => _safty=value; 
+        }
+        public decimal TRANSPORTATIONRATE {
+            get
+            {
+                return dtgBOQCostSetting.GetValue<decimal>(4, "Column4");
+            }
+            set => _tran = value;
+        }
+        public decimal MARGINRATE {
+            get
+            {
+                return dtgBOQCostSetting.GetValue<decimal>(5, "Column4");
+            }
+            set => _margin=value; 
+        }
+        public decimal INFlATIONRATE {
+            get
+            {
+                return dtgBOQCostSetting.GetValue<decimal>(6, "Column4");
+            }
+            set => _inflation=value; 
+        }
+
         #endregion
         public CreateBoQ_Step1_Frm()
         {
@@ -190,52 +247,52 @@ namespace ESProMeter.Views.Boq
         }
         private void mbtNext_Click(object sender, EventArgs e) 
         {
-            CreateBoQ_Step2_Frm form = new CreateBoQ_Step2_Frm();
-            form.TopLevel = false;
-            form.TopMost = true;
-            form.FormBorderStyle = FormBorderStyle.None;
-            form.WindowState = FormWindowState.Maximized;
-            form.Dock = DockStyle.Fill;
-            MainFrm.MainF.panel2.Controls.Clear();
-            MainFrm.MainF.panel2.Controls.Add(form);
-            form.Show();
-            this.Close();
+            //CreateBoQ_Step2_Frm form = new CreateBoQ_Step2_Frm();
+            //form.TopLevel = false;
+            //form.TopMost = true;
+            //form.FormBorderStyle = FormBorderStyle.None;
+            //form.WindowState = FormWindowState.Maximized;
+            //form.Dock = DockStyle.Fill;
+            //MainFrm.MainF.panel2.Controls.Clear();
+            //MainFrm.MainF.panel2.Controls.Add(form);
+            //form.Show();
+            //this.Close();
 
-            //if (cboCustomerName.SelectedValue != null
-            //    && cboSite.SelectedValue != null)
-            //{
-            //    if (this.BoqCreate(this, out var id))
-            //    {
-            //        CreateBoQ_Step2_Frm form = new CreateBoQ_Step2_Frm(id);
-            //        form.TopLevel = false;
-            //        form.TopMost = true;
-            //        form.FormBorderStyle = FormBorderStyle.None;
-            //        form.WindowState = FormWindowState.Maximized;
-            //        form.Dock = DockStyle.Fill;
-            //        MainFrm.MainF.panel2.Controls.Clear();
-            //        MainFrm.MainF.panel2.Controls.Add(form);
-            //        form.Show();
-            //        this.Close();
-            //    }
-            //}
-            //else
-            //{
-            //    if (cboCustomerName.SelectedValue == null)
-            //    {
-            //        MessageBox.Show("Please select customer name and site name.", "Information",
-            //        MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        cboCustomerName.Focus();
-            //        return;
-            //    }
-            //    if (cboSite.SelectedValue == null)
-            //    {
-            //        MessageBox.Show("Please select site name and site name.", "Information",
-            //       MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        cboSite.Focus();
-            //        return;
-            //    }
+            if (cboCustomerName.SelectedValue != null
+                && cboSite.SelectedValue != null)
+            {
+                if (this.BoqCreate(this, out var id))
+                {
+                    CreateBoQ_Step2_Frm form = new CreateBoQ_Step2_Frm(id);
+                    form.TopLevel = false;
+                    form.TopMost = true;
+                    form.FormBorderStyle = FormBorderStyle.None;
+                    form.WindowState = FormWindowState.Maximized;
+                    form.Dock = DockStyle.Fill;
+                    MainFrm.MainF.panel2.Controls.Clear();
+                    MainFrm.MainF.panel2.Controls.Add(form);
+                    form.Show();
+                    this.Close();
+                }
+            }
+            else
+            {
+                if (cboCustomerName.SelectedValue == null)
+                {
+                    MessageBox.Show("Please select customer name and site name.", "Information",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cboCustomerName.Focus();
+                    return;
+                }
+                if (cboSite.SelectedValue == null)
+                {
+                    MessageBox.Show("Please select site name and site name.", "Information",
+                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cboSite.Focus();
+                    return;
+                }
 
-            //}
+            }
         }
 
         private void mbtCancel_Click(object sender, EventArgs e)

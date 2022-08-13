@@ -19,5 +19,12 @@ namespace ESProMeter.IViews
 		public string TERMSCONDITION { get; set; }
 		public int STATUS { get; set; }
 		public long UID { get; set; }
-	}
+        public decimal LOSSOFEFFECIENCYRATE { get; set; }
+        public decimal OPERATIONRATE { get; set; }
+        public decimal OVERHEADRATE { get; set; }
+        public decimal SAFETYRATE { get; set; }
+		public decimal TRANSPORTATIONRATE { get; set; }
+        public decimal MARGINRATE { get; set; }
+        public decimal INFlATIONRATE { get; set; }
+    }
 }

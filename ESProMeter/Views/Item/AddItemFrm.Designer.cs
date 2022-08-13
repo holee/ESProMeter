@@ -33,9 +33,9 @@ namespace ESProMeter.Views.Items
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.textName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -103,16 +103,6 @@ namespace ESProMeter.Views.Items
             this.mnrItemName = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.groupBoq = new System.Windows.Forms.GroupBox();
             this.btndropDown = new FontAwesome.Sharp.Material.MaterialButton();
-            this.pnlSearch = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dgvItem = new System.Windows.Forms.DataGridView();
-            this.ItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Uom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UomID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgvLabor = new System.Windows.Forms.DataGridView();
@@ -144,13 +134,21 @@ namespace ESProMeter.Views.Items
             this.dataGridViewTextBoxColumn30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ButtonColumn3 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.pnlSearch = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.dgvItem = new System.Windows.Forms.DataGridView();
+            this.ItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Uom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UomID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.lblItemID = new System.Windows.Forms.Label();
             this.GENERAL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBoq)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBoq.SuspendLayout();
-            this.pnlSearch.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvItem)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLabor)).BeginInit();
@@ -158,6 +156,8 @@ namespace ESProMeter.Views.Items
             ((System.ComponentModel.ISupportInitialize)(this.dgvMachinary)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterial)).BeginInit();
+            this.pnlSearch.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvItem)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -840,130 +840,6 @@ namespace ESProMeter.Views.Items
             this.btndropDown.Click += new System.EventHandler(this.btndropDown_Click);
             this.btndropDown.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btndropDown_MouseClick);
             // 
-            // pnlSearch
-            // 
-            this.pnlSearch.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.pnlSearch.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlSearch.Controls.Add(this.textBox1);
-            this.pnlSearch.Controls.Add(this.dgvItem);
-            this.pnlSearch.Location = new System.Drawing.Point(33, 44);
-            this.pnlSearch.Name = "pnlSearch";
-            this.pnlSearch.Size = new System.Drawing.Size(587, 126);
-            this.pnlSearch.TabIndex = 31;
-            // 
-            // textBox1
-            // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(0, 5);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.PlaceholderText = "type your item here";
-            this.textBox1.Size = new System.Drawing.Size(583, 23);
-            this.textBox1.TabIndex = 30;
-            this.textBox1.Tag = "Name";
-            this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
-            // 
-            // dgvItem
-            // 
-            this.dgvItem.AllowUserToAddRows = false;
-            this.dgvItem.AllowUserToDeleteRows = false;
-            this.dgvItem.AllowUserToResizeColumns = false;
-            this.dgvItem.AllowUserToResizeRows = false;
-            this.dgvItem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvItem.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvItem.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ItemID,
-            this.ItemName,
-            this.ItemType,
-            this.Uom,
-            this.UomID,
-            this.Cost,
-            this.Column1});
-            this.dgvItem.Location = new System.Drawing.Point(0, 29);
-            this.dgvItem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.dgvItem.MultiSelect = false;
-            this.dgvItem.Name = "dgvItem";
-            this.dgvItem.ReadOnly = true;
-            this.dgvItem.RowHeadersVisible = false;
-            this.dgvItem.RowTemplate.Height = 25;
-            this.dgvItem.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvItem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvItem.Size = new System.Drawing.Size(583, 93);
-            this.dgvItem.TabIndex = 31;
-            this.dgvItem.VirtualMode = true;
-            this.dgvItem.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvItem_CellMouseDoubleClick);
-            // 
-            // ItemID
-            // 
-            this.ItemID.DataPropertyName = "ID";
-            this.ItemID.HeaderText = "ItemID";
-            this.ItemID.MinimumWidth = 2;
-            this.ItemID.Name = "ItemID";
-            this.ItemID.ReadOnly = true;
-            this.ItemID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ItemID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ItemID.Width = 60;
-            // 
-            // ItemName
-            // 
-            this.ItemName.DataPropertyName = "ItemName";
-            this.ItemName.HeaderText = "Item Name";
-            this.ItemName.Name = "ItemName";
-            this.ItemName.ReadOnly = true;
-            this.ItemName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ItemName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ItemName.Width = 200;
-            // 
-            // ItemType
-            // 
-            this.ItemType.DataPropertyName = "ItemType";
-            this.ItemType.HeaderText = "ItemType";
-            this.ItemType.Name = "ItemType";
-            this.ItemType.ReadOnly = true;
-            // 
-            // Uom
-            // 
-            this.Uom.DataPropertyName = "Uom";
-            this.Uom.HeaderText = "Uom";
-            this.Uom.Name = "Uom";
-            this.Uom.ReadOnly = true;
-            // 
-            // UomID
-            // 
-            this.UomID.DataPropertyName = "UomID";
-            this.UomID.HeaderText = "UomID";
-            this.UomID.Name = "UomID";
-            this.UomID.ReadOnly = true;
-            this.UomID.Visible = false;
-            // 
-            // Cost
-            // 
-            this.Cost.DataPropertyName = "Cost";
-            this.Cost.HeaderText = "Cost";
-            this.Cost.Name = "Cost";
-            this.Cost.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle6;
-            this.Column1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Column1.HeaderText = "Action";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column1.Text = "Select";
-            this.Column1.UseColumnTextForButtonValue = true;
-            this.Column1.Visible = false;
-            this.Column1.Width = 80;
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -973,7 +849,7 @@ namespace ESProMeter.Views.Items
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(637, 230);
+            this.tabControl1.Size = new System.Drawing.Size(621, 230);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 32;
             // 
@@ -984,7 +860,7 @@ namespace ESProMeter.Views.Items
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabPage1.Size = new System.Drawing.Size(629, 202);
+            this.tabPage1.Size = new System.Drawing.Size(613, 202);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Labor";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1310,6 +1186,130 @@ namespace ESProMeter.Views.Items
             this.ButtonColumn3.UseColumnTextForButtonValue = true;
             this.ButtonColumn3.Width = 70;
             // 
+            // pnlSearch
+            // 
+            this.pnlSearch.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.pnlSearch.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlSearch.Controls.Add(this.textBox1);
+            this.pnlSearch.Controls.Add(this.dgvItem);
+            this.pnlSearch.Location = new System.Drawing.Point(33, 44);
+            this.pnlSearch.Name = "pnlSearch";
+            this.pnlSearch.Size = new System.Drawing.Size(587, 126);
+            this.pnlSearch.TabIndex = 31;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.Location = new System.Drawing.Point(0, 5);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.PlaceholderText = "type your item here";
+            this.textBox1.Size = new System.Drawing.Size(583, 23);
+            this.textBox1.TabIndex = 30;
+            this.textBox1.Tag = "Name";
+            this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
+            // 
+            // dgvItem
+            // 
+            this.dgvItem.AllowUserToAddRows = false;
+            this.dgvItem.AllowUserToDeleteRows = false;
+            this.dgvItem.AllowUserToResizeColumns = false;
+            this.dgvItem.AllowUserToResizeRows = false;
+            this.dgvItem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvItem.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvItem.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ItemID,
+            this.ItemName,
+            this.ItemType,
+            this.Uom,
+            this.UomID,
+            this.Cost,
+            this.Column1});
+            this.dgvItem.Location = new System.Drawing.Point(0, 29);
+            this.dgvItem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dgvItem.MultiSelect = false;
+            this.dgvItem.Name = "dgvItem";
+            this.dgvItem.ReadOnly = true;
+            this.dgvItem.RowHeadersVisible = false;
+            this.dgvItem.RowTemplate.Height = 25;
+            this.dgvItem.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvItem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvItem.Size = new System.Drawing.Size(583, 93);
+            this.dgvItem.TabIndex = 31;
+            this.dgvItem.VirtualMode = true;
+            this.dgvItem.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvItem_CellMouseDoubleClick);
+            // 
+            // ItemID
+            // 
+            this.ItemID.DataPropertyName = "ID";
+            this.ItemID.HeaderText = "ItemID";
+            this.ItemID.MinimumWidth = 2;
+            this.ItemID.Name = "ItemID";
+            this.ItemID.ReadOnly = true;
+            this.ItemID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ItemID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ItemID.Width = 60;
+            // 
+            // ItemName
+            // 
+            this.ItemName.DataPropertyName = "ItemName";
+            this.ItemName.HeaderText = "Item Name";
+            this.ItemName.Name = "ItemName";
+            this.ItemName.ReadOnly = true;
+            this.ItemName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ItemName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ItemName.Width = 200;
+            // 
+            // ItemType
+            // 
+            this.ItemType.DataPropertyName = "ItemType";
+            this.ItemType.HeaderText = "ItemType";
+            this.ItemType.Name = "ItemType";
+            this.ItemType.ReadOnly = true;
+            // 
+            // Uom
+            // 
+            this.Uom.DataPropertyName = "Uom";
+            this.Uom.HeaderText = "Uom";
+            this.Uom.Name = "Uom";
+            this.Uom.ReadOnly = true;
+            // 
+            // UomID
+            // 
+            this.UomID.DataPropertyName = "UomID";
+            this.UomID.HeaderText = "UomID";
+            this.UomID.Name = "UomID";
+            this.UomID.ReadOnly = true;
+            this.UomID.Visible = false;
+            // 
+            // Cost
+            // 
+            this.Cost.DataPropertyName = "Cost";
+            this.Cost.HeaderText = "Cost";
+            this.Cost.Name = "Cost";
+            this.Cost.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Column1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Column1.HeaderText = "Action";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column1.Text = "Select";
+            this.Column1.UseColumnTextForButtonValue = true;
+            this.Column1.Visible = false;
+            this.Column1.Width = 80;
+            // 
             // lblItemID
             // 
             this.lblItemID.AutoSize = true;
@@ -1351,9 +1351,6 @@ namespace ESProMeter.Views.Items
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBoq.ResumeLayout(false);
-            this.pnlSearch.ResumeLayout(false);
-            this.pnlSearch.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvItem)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLabor)).EndInit();
@@ -1361,6 +1358,9 @@ namespace ESProMeter.Views.Items
             ((System.ComponentModel.ISupportInitialize)(this.dgvMachinary)).EndInit();
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterial)).EndInit();
+            this.pnlSearch.ResumeLayout(false);
+            this.pnlSearch.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvItem)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
