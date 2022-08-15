@@ -56,7 +56,7 @@ namespace ESProMeter.Controllers
             {
                if(AppService.GetNameInstance.CustomersCenter("Customer", isActive, out var table))
                 {
-                    var container = form.AsDataGrid("gridCustomer");
+                    var container = form.AsDataGrid("dgvCustomer");
                     container.DataSource = table;
                     for (int i = 2; i < container.Columns.Count; i++)
                     {

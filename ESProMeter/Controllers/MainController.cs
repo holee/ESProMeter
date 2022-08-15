@@ -13,7 +13,7 @@ namespace ESProMeter.Controllers
 		public static void AccessableRole(bool EnableRole)
 		{
 			//Show split container
-			MainFrm.MainF.splitContainer1.Visible = EnableRole;
+			
 
 			//Main form menu
 			//File

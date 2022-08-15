@@ -47,7 +47,6 @@ namespace ESProMeter.Controllers
                 table.WithColumn(columns).UseDataTableAsGridView(grid);
             }
         }
-
         public static void GetBoqItems(this Form form, DataGridView grid, string itemName, params string[] columns)
         {
             if (AppService.GetItemInstance.GetBoqItems(1, itemName, out var table))
@@ -63,13 +62,10 @@ namespace ESProMeter.Controllers
             }
 
         }
-
         public static bool MakeItemInactiveOrActive(this Form form,long id,byte i)
         {
             return AppService.GetItemInstance.MakeInActiveOrActive(id, i);
         }
-
-
         public static void ShowItemList(this Form form, DataGridView grid, byte isActive,
             int page,string fieldName="ItemName",string orderBy="ASC")
         {
@@ -107,7 +103,7 @@ namespace ESProMeter.Controllers
             switch(itemType)    
             {
                 case ItemsType.Boq:
-                     if (AppService.GetItemInstance.GetItemWithItemLineById(itemId, item, out var labour,out var machinery,out var material))
+                     if (AppService.GetItemInstance.GetBoqItemWithItemLineById(itemId, item, out var labour,out var machinery,out var material))
                      {
                         item.AsControl<DataGridView>("dgvLabor").DataSource = labour.WithColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ");
                         item.AsControl<DataGridView>("dgvMachinary").DataSource = machinery.WithColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ");
@@ -117,6 +113,15 @@ namespace ESProMeter.Controllers
                 case ItemsType.Item:
                     AppService.GetItemInstance.GetItemById(itemId, item);
                     break;
+            }
+        }
+        public static void GetItemForUpdate(this Form form,long itemId)
+        {
+            if (AppService.GetItemInstance.GetBoqItemWithItemLineById(itemId,out var labour, out var machinery, out var material))
+            {
+                form.AsControl<DataGridView>("dgvLabor").DataSource = labour.WithColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ");
+                form.AsControl<DataGridView>("dgvMachinary").DataSource = machinery.WithColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ");
+                form.AsControl<DataGridView>("dgvMaterial").DataSource = material.WithColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ");
             }
         }
         public static void ShowItemType(this Form form, ComboBox storage)
@@ -146,11 +151,6 @@ namespace ESProMeter.Controllers
                        .AsCombobox(storage, "Abbreviation", "ID");
             }
         }
-        
-
-
-
-
 
         /// <summary>
         /// Create and Update Items

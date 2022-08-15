@@ -59,11 +59,8 @@ namespace ESProMeter.Views.Boq
             {
 				var selectedRow=dtgBOQList.SelectedRows[0];
 				var id = selectedRow.GetValue<long>("ID");
-				CreateBoQ_Step2_Frm form = new CreateBoQ_Step2_Frm(id);
-
+				CreateBoQ_Step2_Frm form = new CreateBoQ_Step2_Frm(id,Enums.ActionType.EDIT);
 				form.Show();
-
-
             }
         }
     }

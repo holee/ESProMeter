@@ -30,12 +30,8 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.dtpValidDate = new System.Windows.Forms.DateTimePicker();
-            this.dtpDate = new System.Windows.Forms.DateTimePicker();
-            this.txtBOQDesc = new System.Windows.Forms.TextBox();
-            this.txtBOQTitle = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.txtOperation = new System.Windows.Forms.TextBox();
+            this.txtLoseEffecency = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -68,27 +64,28 @@
             this.dataGridViewTextBoxColumn30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ButtonColumn3 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtgBOQCostSetting = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.mbtNext = new FontAwesome.Sharp.Material.MaterialButton();
-            this.mbtCancel = new FontAwesome.Sharp.Material.MaterialButton();
-            this.mbtAddSite = new FontAwesome.Sharp.Material.MaterialButton();
-            this.mbtAddCustomer = new FontAwesome.Sharp.Material.MaterialButton();
-            this.cboSite = new System.Windows.Forms.ComboBox();
-            this.cboCustomerName = new System.Windows.Forms.ComboBox();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.txtInflation = new System.Windows.Forms.TextBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtMargin = new System.Windows.Forms.TextBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txtTransportation = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txtSafty = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtOverhead = new System.Windows.Forms.TextBox();
+            this.mbtNext = new FontAwesome.Sharp.Material.MaterialButton();
+            this.mbtCancel = new FontAwesome.Sharp.Material.MaterialButton();
             this.groupBox2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -97,57 +94,29 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvMachinary)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterial)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgBOQCostSetting)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dtpValidDate
+            // txtOperation
             // 
-            this.dtpValidDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpValidDate.Location = new System.Drawing.Point(814, 64);
-            this.dtpValidDate.Name = "dtpValidDate";
-            this.dtpValidDate.Size = new System.Drawing.Size(180, 23);
-            this.dtpValidDate.TabIndex = 33;
+            this.txtOperation.Location = new System.Drawing.Point(158, 75);
+            this.txtOperation.Name = "txtOperation";
+            this.txtOperation.Size = new System.Drawing.Size(109, 23);
+            this.txtOperation.TabIndex = 34;
             // 
-            // dtpDate
+            // txtLoseEffecency
             // 
-            this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDate.Location = new System.Drawing.Point(550, 64);
-            this.dtpDate.Name = "dtpDate";
-            this.dtpDate.Size = new System.Drawing.Size(163, 23);
-            this.dtpDate.TabIndex = 32;
-            // 
-            // txtBOQDesc
-            // 
-            this.txtBOQDesc.Location = new System.Drawing.Point(126, 93);
-            this.txtBOQDesc.Multiline = true;
-            this.txtBOQDesc.Name = "txtBOQDesc";
-            this.txtBOQDesc.Size = new System.Drawing.Size(868, 38);
-            this.txtBOQDesc.TabIndex = 34;
-            // 
-            // txtBOQTitle
-            // 
-            this.txtBOQTitle.Location = new System.Drawing.Point(126, 64);
-            this.txtBOQTitle.Name = "txtBOQTitle";
-            this.txtBOQTitle.Size = new System.Drawing.Size(363, 23);
-            this.txtBOQTitle.TabIndex = 31;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(737, 67);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(71, 15);
-            this.label7.TabIndex = 37;
-            this.label7.Text = "VALID DATE:";
+            this.txtLoseEffecency.Location = new System.Drawing.Point(158, 46);
+            this.txtLoseEffecency.Name = "txtLoseEffecency";
+            this.txtLoseEffecency.Size = new System.Drawing.Size(109, 23);
+            this.txtLoseEffecency.TabIndex = 31;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.tabControl1);
-            this.groupBox2.Location = new System.Drawing.Point(348, 151);
+            this.groupBox2.Location = new System.Drawing.Point(374, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(646, 284);
+            this.groupBox2.Size = new System.Drawing.Size(646, 430);
             this.groupBox2.TabIndex = 41;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "BOQ ITEM LINE";
@@ -161,7 +130,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(621, 256);
+            this.tabControl1.Size = new System.Drawing.Size(621, 390);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 33;
             // 
@@ -172,7 +141,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabPage1.Size = new System.Drawing.Size(613, 228);
+            this.tabPage1.Size = new System.Drawing.Size(613, 362);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Labor";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -193,7 +162,8 @@
             this.laborBOQItemLineQty,
             this.dataGridViewTextBoxColumn3,
             this.ButtonColumn1});
-            this.dgvLabor.Location = new System.Drawing.Point(6, 6);
+            this.dgvLabor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvLabor.Location = new System.Drawing.Point(4, 3);
             this.dgvLabor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvLabor.MultiSelect = false;
             this.dgvLabor.Name = "dgvLabor";
@@ -201,7 +171,7 @@
             this.dgvLabor.RowTemplate.Height = 25;
             this.dgvLabor.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvLabor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvLabor.Size = new System.Drawing.Size(603, 216);
+            this.dgvLabor.Size = new System.Drawing.Size(605, 356);
             this.dgvLabor.TabIndex = 0;
             // 
             // laborBOQItemLineRefID
@@ -288,7 +258,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabPage2.Size = new System.Drawing.Size(613, 228);
+            this.tabPage2.Size = new System.Drawing.Size(613, 362);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Machinary";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -308,6 +278,7 @@
             this.dataGridViewTextBoxColumn24,
             this.Column10,
             this.ButtonColumn2});
+            this.dgvMachinary.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMachinary.Location = new System.Drawing.Point(4, 3);
             this.dgvMachinary.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvMachinary.MultiSelect = false;
@@ -315,7 +286,7 @@
             this.dgvMachinary.RowHeadersVisible = false;
             this.dgvMachinary.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvMachinary.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMachinary.Size = new System.Drawing.Size(602, 219);
+            this.dgvMachinary.Size = new System.Drawing.Size(605, 356);
             this.dgvMachinary.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn23
@@ -380,6 +351,7 @@
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.IndianRed;
             this.ButtonColumn2.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ButtonColumn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonColumn2.HeaderText = "Delete";
             this.ButtonColumn2.Name = "ButtonColumn2";
             this.ButtonColumn2.ReadOnly = true;
@@ -394,7 +366,7 @@
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabPage3.Size = new System.Drawing.Size(613, 228);
+            this.tabPage3.Size = new System.Drawing.Size(613, 362);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Material";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -415,13 +387,14 @@
             this.dataGridViewTextBoxColumn30,
             this.Column9,
             this.ButtonColumn3});
-            this.dgvMaterial.Location = new System.Drawing.Point(7, 3);
+            this.dgvMaterial.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvMaterial.Location = new System.Drawing.Point(4, 3);
             this.dgvMaterial.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvMaterial.Name = "dgvMaterial";
             this.dgvMaterial.RowHeadersVisible = false;
             this.dgvMaterial.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvMaterial.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMaterial.Size = new System.Drawing.Size(596, 219);
+            this.dgvMaterial.Size = new System.Drawing.Size(605, 356);
             this.dgvMaterial.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn29
@@ -491,6 +464,7 @@
             // 
             // ButtonColumn3
             // 
+            this.ButtonColumn3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonColumn3.HeaderText = "Delete";
             this.ButtonColumn3.Name = "ButtonColumn3";
             this.ButtonColumn3.ReadOnly = true;
@@ -498,117 +472,203 @@
             this.ButtonColumn3.UseColumnTextForButtonValue = true;
             this.ButtonColumn3.Width = 60;
             // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "IsACT";
-            this.Column7.HeaderText = "ACTIVE";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Visible = false;
-            // 
-            // Column6
-            // 
-            this.Column6.DataPropertyName = "VALUEAS";
-            this.Column6.HeaderText = "VALUEAS";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 80;
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "CATEGORY";
-            this.Column5.HeaderText = "CATEGORY";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Visible = false;
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "VALUE";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "0.00";
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Column4.HeaderText = "VALUE";
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 60;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "TYPE";
-            this.Column3.HeaderText = "TYPE";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column3.Visible = false;
-            this.Column3.Width = 70;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "DESCRIPTION";
-            this.Column2.HeaderText = "DESCRIPTION";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 150;
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "CODE";
-            this.Column1.HeaderText = "CODE";
-            this.Column1.Name = "Column1";
-            this.Column1.Visible = false;
-            // 
-            // dtgBOQCostSetting
-            // 
-            this.dtgBOQCostSetting.AllowUserToAddRows = false;
-            this.dtgBOQCostSetting.AllowUserToDeleteRows = false;
-            this.dtgBOQCostSetting.BackgroundColor = System.Drawing.Color.White;
-            this.dtgBOQCostSetting.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgBOQCostSetting.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column6,
-            this.Column7});
-            this.dtgBOQCostSetting.Location = new System.Drawing.Point(9, 22);
-            this.dtgBOQCostSetting.Name = "dtgBOQCostSetting";
-            this.dtgBOQCostSetting.RowHeadersVisible = false;
-            this.dtgBOQCostSetting.RowTemplate.DividerHeight = 1;
-            this.dtgBOQCostSetting.RowTemplate.Height = 25;
-            this.dtgBOQCostSetting.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgBOQCostSetting.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dtgBOQCostSetting.Size = new System.Drawing.Size(303, 252);
-            this.dtgBOQCostSetting.TabIndex = 8;
-            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.dtgBOQCostSetting);
-            this.groupBox1.Location = new System.Drawing.Point(15, 151);
+            this.groupBox1.Controls.Add(this.textBox12);
+            this.groupBox1.Controls.Add(this.textBox11);
+            this.groupBox1.Controls.Add(this.txtLoseEffecency);
+            this.groupBox1.Controls.Add(this.txtInflation);
+            this.groupBox1.Controls.Add(this.textBox10);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.txtMargin);
+            this.groupBox1.Controls.Add(this.textBox9);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.textBox8);
+            this.groupBox1.Controls.Add(this.txtTransportation);
+            this.groupBox1.Controls.Add(this.textBox7);
+            this.groupBox1.Controls.Add(this.txtSafty);
+            this.groupBox1.Controls.Add(this.textBox6);
+            this.groupBox1.Controls.Add(this.txtOverhead);
+            this.groupBox1.Controls.Add(this.txtOperation);
+            this.groupBox1.Location = new System.Drawing.Point(32, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(327, 284);
             this.groupBox1.TabIndex = 42;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "BOQ ADDITIONAL COST DEFAULT SETTINGS";
             // 
+            // textBox12
+            // 
+            this.textBox12.Location = new System.Drawing.Point(273, 46);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.ReadOnly = true;
+            this.textBox12.Size = new System.Drawing.Size(48, 23);
+            this.textBox12.TabIndex = 31;
+            this.textBox12.Text = "%";
+            this.textBox12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox11
+            // 
+            this.textBox11.Location = new System.Drawing.Point(273, 220);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.ReadOnly = true;
+            this.textBox11.Size = new System.Drawing.Size(48, 23);
+            this.textBox11.TabIndex = 34;
+            this.textBox11.Text = "%";
+            this.textBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtInflation
+            // 
+            this.txtInflation.Location = new System.Drawing.Point(158, 220);
+            this.txtInflation.Name = "txtInflation";
+            this.txtInflation.Size = new System.Drawing.Size(109, 23);
+            this.txtInflation.TabIndex = 34;
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(273, 191);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.ReadOnly = true;
+            this.textBox10.Size = new System.Drawing.Size(48, 23);
+            this.textBox10.TabIndex = 34;
+            this.textBox10.Text = "%";
+            this.textBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 223);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 15);
+            this.label7.TabIndex = 38;
+            this.label7.Text = "INFLATION";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 194);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 15);
+            this.label6.TabIndex = 38;
+            this.label6.Text = "MARGIN";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 165);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(104, 15);
+            this.label4.TabIndex = 38;
+            this.label4.Text = "TRANSPORTATION";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 141);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 15);
+            this.label2.TabIndex = 38;
+            this.label2.Text = "SAFTY";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 112);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(67, 15);
+            this.label1.TabIndex = 38;
+            this.label1.Text = "OVERHEAD";
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 96);
+            this.label5.Location = new System.Drawing.Point(6, 80);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(110, 15);
+            this.label5.Size = new System.Drawing.Size(70, 15);
             this.label5.TabIndex = 38;
-            this.label5.Text = "BOQ DESCRIPTION:";
+            this.label5.Text = "OPERATION";
+            // 
+            // txtMargin
+            // 
+            this.txtMargin.Location = new System.Drawing.Point(158, 191);
+            this.txtMargin.Name = "txtMargin";
+            this.txtMargin.Size = new System.Drawing.Size(109, 23);
+            this.txtMargin.TabIndex = 34;
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(273, 162);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.ReadOnly = true;
+            this.textBox9.Size = new System.Drawing.Size(48, 23);
+            this.textBox9.TabIndex = 34;
+            this.textBox9.Text = "%";
+            this.textBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(57, 67);
+            this.label3.Location = new System.Drawing.Point(6, 49);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 15);
+            this.label3.Size = new System.Drawing.Size(93, 15);
             this.label3.TabIndex = 39;
-            this.label3.Text = "BOQ TITLE:";
+            this.label3.Text = "LOSEEFFICENCY";
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(273, 133);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
+            this.textBox8.Size = new System.Drawing.Size(48, 23);
+            this.textBox8.TabIndex = 34;
+            this.textBox8.Text = "%";
+            this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtTransportation
+            // 
+            this.txtTransportation.Location = new System.Drawing.Point(158, 162);
+            this.txtTransportation.Name = "txtTransportation";
+            this.txtTransportation.Size = new System.Drawing.Size(109, 23);
+            this.txtTransportation.TabIndex = 34;
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(273, 104);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.ReadOnly = true;
+            this.textBox7.Size = new System.Drawing.Size(48, 23);
+            this.textBox7.TabIndex = 34;
+            this.textBox7.Text = "%";
+            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtSafty
+            // 
+            this.txtSafty.Location = new System.Drawing.Point(158, 133);
+            this.txtSafty.Name = "txtSafty";
+            this.txtSafty.Size = new System.Drawing.Size(109, 23);
+            this.txtSafty.TabIndex = 34;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(273, 75);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.ReadOnly = true;
+            this.textBox6.Size = new System.Drawing.Size(48, 23);
+            this.textBox6.TabIndex = 34;
+            this.textBox6.Text = "%";
+            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtOverhead
+            // 
+            this.txtOverhead.Location = new System.Drawing.Point(158, 104);
+            this.txtOverhead.Name = "txtOverhead";
+            this.txtOverhead.Size = new System.Drawing.Size(109, 23);
+            this.txtOverhead.TabIndex = 34;
             // 
             // mbtNext
             // 
@@ -621,13 +681,14 @@
             this.mbtNext.IconChar = FontAwesome.Sharp.MaterialIcons.None;
             this.mbtNext.IconColor = System.Drawing.Color.White;
             this.mbtNext.IconSize = 1;
-            this.mbtNext.Location = new System.Drawing.Point(723, 441);
+            this.mbtNext.Location = new System.Drawing.Point(759, 448);
             this.mbtNext.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.mbtNext.Name = "mbtNext";
             this.mbtNext.Size = new System.Drawing.Size(126, 30);
             this.mbtNext.TabIndex = 35;
             this.mbtNext.Text = "Change";
             this.mbtNext.UseVisualStyleBackColor = false;
+            this.mbtNext.Click += new System.EventHandler(this.mbtNext_Click);
             // 
             // mbtCancel
             // 
@@ -637,7 +698,7 @@
             this.mbtCancel.IconChar = FontAwesome.Sharp.MaterialIcons.None;
             this.mbtCancel.IconColor = System.Drawing.Color.White;
             this.mbtCancel.IconSize = 1;
-            this.mbtCancel.Location = new System.Drawing.Point(857, 441);
+            this.mbtCancel.Location = new System.Drawing.Point(893, 448);
             this.mbtCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.mbtCancel.Name = "mbtCancel";
             this.mbtCancel.Size = new System.Drawing.Size(126, 30);
@@ -646,119 +707,15 @@
             this.mbtCancel.UseVisualStyleBackColor = false;
             this.mbtCancel.Click += new System.EventHandler(this.mbtCancel_Click);
             // 
-            // mbtAddSite
-            // 
-            this.mbtAddSite.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
-            this.mbtAddSite.FlatAppearance.BorderColor = System.Drawing.Color.MediumOrchid;
-            this.mbtAddSite.FlatAppearance.BorderSize = 2;
-            this.mbtAddSite.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Aqua;
-            this.mbtAddSite.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.mbtAddSite.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.mbtAddSite.IconChar = FontAwesome.Sharp.MaterialIcons.None;
-            this.mbtAddSite.IconColor = System.Drawing.Color.White;
-            this.mbtAddSite.IconSize = 1;
-            this.mbtAddSite.Location = new System.Drawing.Point(802, 4);
-            this.mbtAddSite.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.mbtAddSite.Name = "mbtAddSite";
-            this.mbtAddSite.Size = new System.Drawing.Size(26, 27);
-            this.mbtAddSite.TabIndex = 3;
-            this.mbtAddSite.Text = "+";
-            this.mbtAddSite.UseVisualStyleBackColor = false;
-            // 
-            // mbtAddCustomer
-            // 
-            this.mbtAddCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
-            this.mbtAddCustomer.FlatAppearance.BorderColor = System.Drawing.Color.MediumOrchid;
-            this.mbtAddCustomer.FlatAppearance.BorderSize = 2;
-            this.mbtAddCustomer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Aqua;
-            this.mbtAddCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.mbtAddCustomer.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.mbtAddCustomer.IconChar = FontAwesome.Sharp.MaterialIcons.None;
-            this.mbtAddCustomer.IconColor = System.Drawing.Color.White;
-            this.mbtAddCustomer.IconSize = 1;
-            this.mbtAddCustomer.Location = new System.Drawing.Point(477, 5);
-            this.mbtAddCustomer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.mbtAddCustomer.Name = "mbtAddCustomer";
-            this.mbtAddCustomer.Size = new System.Drawing.Size(26, 27);
-            this.mbtAddCustomer.TabIndex = 1;
-            this.mbtAddCustomer.Text = "+";
-            this.mbtAddCustomer.UseVisualStyleBackColor = false;
-            // 
-            // cboSite
-            // 
-            this.cboSite.FormattingEnabled = true;
-            this.cboSite.Location = new System.Drawing.Point(569, 6);
-            this.cboSite.Name = "cboSite";
-            this.cboSite.Size = new System.Drawing.Size(234, 23);
-            this.cboSite.TabIndex = 2;
-            // 
-            // cboCustomerName
-            // 
-            this.cboCustomerName.FormattingEnabled = true;
-            this.cboCustomerName.Location = new System.Drawing.Point(114, 8);
-            this.cboCustomerName.Name = "cboCustomerName";
-            this.cboCustomerName.Size = new System.Drawing.Size(363, 23);
-            this.cboCustomerName.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(532, 11);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(31, 15);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "SITE:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "CUSTOMER NAME:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(507, 70);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(37, 15);
-            this.label6.TabIndex = 40;
-            this.label6.Text = "DATE:";
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panel1.Controls.Add(this.mbtAddSite);
-            this.panel1.Controls.Add(this.mbtAddCustomer);
-            this.panel1.Controls.Add(this.cboSite);
-            this.panel1.Controls.Add(this.cboCustomerName);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(982, 37);
-            this.panel1.TabIndex = 30;
-            // 
             // BOQLINEFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 483);
-            this.Controls.Add(this.dtpValidDate);
-            this.Controls.Add(this.dtpDate);
-            this.Controls.Add(this.txtBOQDesc);
-            this.Controls.Add(this.txtBOQTitle);
-            this.Controls.Add(this.label7);
+            this.ClientSize = new System.Drawing.Size(1032, 490);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.mbtNext);
             this.Controls.Add(this.mbtCancel);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.panel1);
             this.Name = "BOQLINEFrm";
             this.Text = "BOQLINE DETAILS";
             this.groupBox2.ResumeLayout(false);
@@ -769,47 +726,28 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvMachinary)).EndInit();
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterial)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgBOQCostSetting)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DateTimePicker dtpValidDate;
-        private System.Windows.Forms.DateTimePicker dtpDate;
-        private System.Windows.Forms.TextBox txtBOQDesc;
-        private System.Windows.Forms.TextBox txtBOQTitle;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtOperation;
+        private System.Windows.Forms.TextBox txtLoseEffecency;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridView dtgBOQCostSetting;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private FontAwesome.Sharp.Material.MaterialButton mbtNext;
         private FontAwesome.Sharp.Material.MaterialButton mbtCancel;
-        private FontAwesome.Sharp.Material.MaterialButton mbtAddSite;
-        private FontAwesome.Sharp.Material.MaterialButton mbtAddCustomer;
-        private System.Windows.Forms.ComboBox cboSite;
-        private System.Windows.Forms.ComboBox cboCustomerName;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView dgvLabor;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.DataGridView dgvMachinary;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.DataGridView dgvMaterial;
         private System.Windows.Forms.DataGridViewTextBoxColumn laborBOQItemLineRefID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewComboBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
@@ -818,8 +756,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn laborBOQItemLineQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewButtonColumn ButtonColumn1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.DataGridView dgvMachinary;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn23;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewComboBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
@@ -828,8 +764,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewButtonColumn ButtonColumn2;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.DataGridView dgvMaterial;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn29;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewComboBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
@@ -838,5 +772,22 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn30;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewButtonColumn ButtonColumn3;
+        private System.Windows.Forms.TextBox txtInflation;
+        private System.Windows.Forms.TextBox txtMargin;
+        private System.Windows.Forms.TextBox txtTransportation;
+        private System.Windows.Forms.TextBox txtSafty;
+        private System.Windows.Forms.TextBox txtOverhead;
+        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }

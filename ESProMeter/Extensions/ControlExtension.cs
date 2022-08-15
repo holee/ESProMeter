@@ -6,7 +6,7 @@ namespace ESProMeter.Extensions
 {
     public static class ControlExtension
     {
-        public static T? GetVale<T>(this TextBox txt) where T : IConvertible
+        public static T GetVale<T>(this TextBox txt) where T : IConvertible
         {
 
             try
@@ -16,11 +16,11 @@ namespace ESProMeter.Extensions
             }
             catch
             {
-                return default(T?);
+                return default(T);
             }
 
         }
-        public static T? AsNumber<T>(this TextBox txt) where T : IConvertible
+        public static T AsNumber<T>(this TextBox txt) where T : IConvertible
         {
 
             try
@@ -34,7 +34,7 @@ namespace ESProMeter.Extensions
             }
 
         }
-        public static T? AsNumber<T>(this Label txt) where T : IConvertible
+        public static T AsNumber<T>(this Label txt) where T : IConvertible
         {
             try
             {
@@ -46,7 +46,7 @@ namespace ESProMeter.Extensions
                 return default(T);
             }
         }
-        public static T? AsNumber<T>(this DataGridView grid, int colIndex) where T : IConvertible
+        public static T AsNumber<T>(this DataGridView grid, int colIndex) where T : IConvertible
         {
             try
             {

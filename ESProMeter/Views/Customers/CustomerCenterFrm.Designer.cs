@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerCenterFrm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tlsNew = new System.Windows.Forms.ToolStripButton();
             this.tlsCustomerEdit = new System.Windows.Forms.ToolStripButton();
@@ -45,7 +45,7 @@
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textSearch = new System.Windows.Forms.TextBox();
-            this.gridCustomer = new System.Windows.Forms.DataGridView();
+            this.dgvCustomer = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,7 +88,7 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridCustomer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).BeginInit();
             this.panel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -202,6 +202,7 @@
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(129, 36);
             this.toolStripButton1.Text = "New Bill of Quanity";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // splitContainer1
             // 
@@ -215,7 +216,7 @@
             this.splitContainer1.Panel1.Controls.Add(this.iconButton1);
             this.splitContainer1.Panel1.Controls.Add(this.comboBox1);
             this.splitContainer1.Panel1.Controls.Add(this.textSearch);
-            this.splitContainer1.Panel1.Controls.Add(this.gridCustomer);
+            this.splitContainer1.Panel1.Controls.Add(this.dgvCustomer);
             // 
             // splitContainer1.Panel2
             // 
@@ -258,40 +259,40 @@
             this.textSearch.TabIndex = 1;
             this.textSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textSearch_KeyUp);
             // 
-            // gridCustomer
+            // dgvCustomer
             // 
-            this.gridCustomer.AllowUserToAddRows = false;
-            this.gridCustomer.AllowUserToDeleteRows = false;
-            this.gridCustomer.AllowUserToResizeRows = false;
-            this.gridCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvCustomer.AllowUserToAddRows = false;
+            this.dgvCustomer.AllowUserToDeleteRows = false;
+            this.dgvCustomer.AllowUserToResizeRows = false;
+            this.dgvCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridCustomer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.gridCustomer.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridCustomer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.gridCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridCustomer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvCustomer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvCustomer.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCustomer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCustomer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
             this.Column2,
             this.Column3});
-            this.gridCustomer.GridColor = System.Drawing.Color.Red;
-            this.gridCustomer.Location = new System.Drawing.Point(4, 74);
-            this.gridCustomer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.gridCustomer.Name = "gridCustomer";
-            this.gridCustomer.ReadOnly = true;
-            this.gridCustomer.RowHeadersVisible = false;
-            this.gridCustomer.RowHeadersWidth = 4;
-            this.gridCustomer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridCustomer.Size = new System.Drawing.Size(373, 554);
-            this.gridCustomer.TabIndex = 0;
-            this.gridCustomer.SelectionChanged += new System.EventHandler(this.gridCustomer_SelectionChanged);
+            this.dgvCustomer.GridColor = System.Drawing.Color.Red;
+            this.dgvCustomer.Location = new System.Drawing.Point(4, 74);
+            this.dgvCustomer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dgvCustomer.Name = "dgvCustomer";
+            this.dgvCustomer.ReadOnly = true;
+            this.dgvCustomer.RowHeadersVisible = false;
+            this.dgvCustomer.RowHeadersWidth = 4;
+            this.dgvCustomer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvCustomer.Size = new System.Drawing.Size(373, 554);
+            this.dgvCustomer.TabIndex = 0;
+            this.dgvCustomer.SelectionChanged += new System.EventHandler(this.gridCustomer_SelectionChanged);
             // 
             // ID
             // 
@@ -326,7 +327,7 @@
             this.panel2.Location = new System.Drawing.Point(8, 284);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(914, 301);
+            this.panel2.Size = new System.Drawing.Size(912, 301);
             this.panel2.TabIndex = 1;
             // 
             // tabControl1
@@ -625,7 +626,7 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridCustomer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).EndInit();
             this.panel2.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -650,7 +651,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.DataGridView gridCustomer;
+        private System.Windows.Forms.DataGridView dgvCustomer;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox textSearch;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;

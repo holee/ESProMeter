@@ -73,25 +73,18 @@
             this.openQuotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closedQuotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.materialButton7 = new FontAwesome.Sharp.Material.MaterialButton();
-            this.materialButton6 = new FontAwesome.Sharp.Material.MaterialButton();
-            this.materialButton5 = new FontAwesome.Sharp.Material.MaterialButton();
-            this.materialButton4 = new FontAwesome.Sharp.Material.MaterialButton();
-            this.materialButton3 = new FontAwesome.Sharp.Material.MaterialButton();
-            this.materialButton2 = new FontAwesome.Sharp.Material.MaterialButton();
-            this.materialButton1 = new FontAwesome.Sharp.Material.MaterialButton();
-            this.iconButton2 = new FontAwesome.Sharp.IconButton();
-            this.btnCloseForm = new FontAwesome.Sharp.IconButton();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.panelMenu = new System.Windows.Forms.Panel();
+            this.buttonSetting = new FontAwesome.Sharp.IconButton();
+            this.buttonBOQ = new FontAwesome.Sharp.IconButton();
+            this.buttonItems = new FontAwesome.Sharp.IconButton();
+            this.buttonClose = new FontAwesome.Sharp.IconButton();
+            this.buttonCustomer = new FontAwesome.Sharp.IconButton();
+            this.btnHome = new FontAwesome.Sharp.IconButton();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnMenu = new FontAwesome.Sharp.IconButton();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panelMenu.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // reportViewer1
@@ -321,6 +314,7 @@
             this.billOfQuantityToolStripMenuItem.Name = "billOfQuantityToolStripMenuItem";
             this.billOfQuantityToolStripMenuItem.Size = new System.Drawing.Size(112, 32);
             this.billOfQuantityToolStripMenuItem.Text = "Bill of Quantity";
+            //this.billOfQuantityToolStripMenuItem.Click += new System.EventHandler(this.billOfQuantityToolStripMenuItem_Click);
             // 
             // billOfQuantityListToolStripMenuItem
             // 
@@ -366,6 +360,7 @@
             this.siteListToolStripMenuItem.Name = "siteListToolStripMenuItem";
             this.siteListToolStripMenuItem.Size = new System.Drawing.Size(200, 24);
             this.siteListToolStripMenuItem.Text = "Site List";
+            this.siteListToolStripMenuItem.Click += new System.EventHandler(this.siteListToolStripMenuItem_Click);
             // 
             // toolStripMenuItem6
             // 
@@ -438,240 +433,193 @@
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(49, 32);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // splitContainer1
+            // panelMenu
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 36);
-            this.splitContainer1.Name = "splitContainer1";
+            this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(46)))), ((int)(((byte)(100)))));
+            this.panelMenu.Controls.Add(this.buttonSetting);
+            this.panelMenu.Controls.Add(this.buttonBOQ);
+            this.panelMenu.Controls.Add(this.buttonItems);
+            this.panelMenu.Controls.Add(this.buttonClose);
+            this.panelMenu.Controls.Add(this.buttonCustomer);
+            this.panelMenu.Controls.Add(this.btnHome);
+            this.panelMenu.Controls.Add(this.panel3);
+            this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelMenu.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.panelMenu.Location = new System.Drawing.Point(0, 36);
+            this.panelMenu.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.panelMenu.Name = "panelMenu";
+            this.panelMenu.Size = new System.Drawing.Size(169, 573);
+            this.panelMenu.TabIndex = 12;
             // 
-            // splitContainer1.Panel1
+            // buttonSetting
             // 
-            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(46)))), ((int)(((byte)(100)))));
-            this.splitContainer1.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.splitContainer1.Panel1.Controls.Add(this.panel1);
+            this.buttonSetting.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.buttonSetting.FlatAppearance.BorderSize = 0;
+            this.buttonSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSetting.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonSetting.ForeColor = System.Drawing.Color.White;
+            this.buttonSetting.IconChar = FontAwesome.Sharp.IconChar.Cog;
+            this.buttonSetting.IconColor = System.Drawing.Color.White;
+            this.buttonSetting.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.buttonSetting.IconSize = 32;
+            this.buttonSetting.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonSetting.Location = new System.Drawing.Point(0, 487);
+            this.buttonSetting.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.buttonSetting.Name = "buttonSetting";
+            this.buttonSetting.Size = new System.Drawing.Size(169, 43);
+            this.buttonSetting.TabIndex = 7;
+            this.buttonSetting.Tag = "Setting";
+            this.buttonSetting.Text = "Setting";
+            this.buttonSetting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonSetting.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonSetting.UseVisualStyleBackColor = true;
             // 
-            // splitContainer1.Panel2
+            // buttonBOQ
             // 
-            this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.splitContainer1.Panel2.Controls.Add(this.iconButton2);
-            this.splitContainer1.Panel2.Controls.Add(this.btnCloseForm);
-            this.splitContainer1.Panel2.Controls.Add(this.panel2);
-            this.splitContainer1.Panel2.Controls.Add(this.iconButton1);
-            this.splitContainer1.Size = new System.Drawing.Size(1061, 573);
-            this.splitContainer1.SplitterDistance = 183;
-            this.splitContainer1.SplitterWidth = 1;
-            this.splitContainer1.TabIndex = 1;
-            this.splitContainer1.Visible = false;
+            this.buttonBOQ.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonBOQ.FlatAppearance.BorderSize = 0;
+            this.buttonBOQ.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonBOQ.ForeColor = System.Drawing.Color.White;
+            this.buttonBOQ.IconChar = FontAwesome.Sharp.IconChar.Cogs;
+            this.buttonBOQ.IconColor = System.Drawing.Color.White;
+            this.buttonBOQ.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.buttonBOQ.IconSize = 32;
+            this.buttonBOQ.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonBOQ.Location = new System.Drawing.Point(0, 169);
+            this.buttonBOQ.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.buttonBOQ.Name = "buttonBOQ";
+            this.buttonBOQ.Size = new System.Drawing.Size(169, 43);
+            this.buttonBOQ.TabIndex = 6;
+            this.buttonBOQ.Tag = "Bill of Quantity";
+            this.buttonBOQ.Text = "Bill of Quantity";
+            this.buttonBOQ.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.buttonBOQ.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonBOQ.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // buttonItems
             // 
-            this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.materialButton7);
-            this.panel1.Controls.Add(this.materialButton6);
-            this.panel1.Controls.Add(this.materialButton5);
-            this.panel1.Controls.Add(this.materialButton4);
-            this.panel1.Controls.Add(this.materialButton3);
-            this.panel1.Controls.Add(this.materialButton2);
-            this.panel1.Controls.Add(this.materialButton1);
-            this.panel1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.panel1.Location = new System.Drawing.Point(0, 21);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(180, 552);
-            this.panel1.TabIndex = 0;
+            this.buttonItems.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonItems.FlatAppearance.BorderSize = 0;
+            this.buttonItems.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonItems.ForeColor = System.Drawing.Color.White;
+            this.buttonItems.IconChar = FontAwesome.Sharp.IconChar.Tractor;
+            this.buttonItems.IconColor = System.Drawing.Color.White;
+            this.buttonItems.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.buttonItems.IconSize = 32;
+            this.buttonItems.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonItems.Location = new System.Drawing.Point(0, 126);
+            this.buttonItems.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.buttonItems.Name = "buttonItems";
+            this.buttonItems.Size = new System.Drawing.Size(169, 43);
+            this.buttonItems.TabIndex = 5;
+            this.buttonItems.Tag = "Items";
+            this.buttonItems.Text = "Items";
+            this.buttonItems.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.buttonItems.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonItems.UseVisualStyleBackColor = true;
             // 
-            // materialButton7
+            // buttonClose
             // 
-            this.materialButton7.BackColor = System.Drawing.Color.Transparent;
-            this.materialButton7.FlatAppearance.BorderSize = 0;
-            this.materialButton7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.materialButton7.IconChar = FontAwesome.Sharp.MaterialIcons.Abacus;
-            this.materialButton7.IconColor = System.Drawing.Color.White;
-            this.materialButton7.IconSize = 20;
-            this.materialButton7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.materialButton7.Location = new System.Drawing.Point(3, 193);
-            this.materialButton7.Name = "materialButton7";
-            this.materialButton7.Size = new System.Drawing.Size(171, 32);
-            this.materialButton7.TabIndex = 0;
-            this.materialButton7.Text = "materialButton1";
-            this.materialButton7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.materialButton7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.materialButton7.UseVisualStyleBackColor = false;
+            this.buttonClose.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.buttonClose.FlatAppearance.BorderSize = 0;
+            this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buttonClose.ForeColor = System.Drawing.Color.White;
+            this.buttonClose.IconChar = FontAwesome.Sharp.IconChar.PowerOff;
+            this.buttonClose.IconColor = System.Drawing.Color.White;
+            this.buttonClose.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.buttonClose.IconSize = 32;
+            this.buttonClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonClose.Location = new System.Drawing.Point(0, 530);
+            this.buttonClose.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.buttonClose.Name = "buttonClose";
+            this.buttonClose.Size = new System.Drawing.Size(169, 43);
+            this.buttonClose.TabIndex = 3;
+            this.buttonClose.Tag = "Exit";
+            this.buttonClose.Text = "Exit";
+            this.buttonClose.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonClose.UseVisualStyleBackColor = true;
             // 
-            // materialButton6
+            // buttonCustomer
             // 
-            this.materialButton6.BackColor = System.Drawing.Color.Transparent;
-            this.materialButton6.FlatAppearance.BorderSize = 0;
-            this.materialButton6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.materialButton6.IconChar = FontAwesome.Sharp.MaterialIcons.Abacus;
-            this.materialButton6.IconColor = System.Drawing.Color.White;
-            this.materialButton6.IconSize = 20;
-            this.materialButton6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.materialButton6.Location = new System.Drawing.Point(3, 155);
-            this.materialButton6.Name = "materialButton6";
-            this.materialButton6.Size = new System.Drawing.Size(171, 32);
-            this.materialButton6.TabIndex = 0;
-            this.materialButton6.Text = "materialButton1";
-            this.materialButton6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.materialButton6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.materialButton6.UseVisualStyleBackColor = false;
+            this.buttonCustomer.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonCustomer.FlatAppearance.BorderSize = 0;
+            this.buttonCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCustomer.ForeColor = System.Drawing.Color.White;
+            this.buttonCustomer.IconChar = FontAwesome.Sharp.IconChar.Users;
+            this.buttonCustomer.IconColor = System.Drawing.Color.White;
+            this.buttonCustomer.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.buttonCustomer.IconSize = 32;
+            this.buttonCustomer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonCustomer.Location = new System.Drawing.Point(0, 83);
+            this.buttonCustomer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.buttonCustomer.Name = "buttonCustomer";
+            this.buttonCustomer.Size = new System.Drawing.Size(169, 43);
+            this.buttonCustomer.TabIndex = 2;
+            this.buttonCustomer.Tag = "Customer";
+            this.buttonCustomer.Text = "Customer";
+            this.buttonCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.buttonCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonCustomer.UseVisualStyleBackColor = true;
             // 
-            // materialButton5
+            // btnHome
             // 
-            this.materialButton5.BackColor = System.Drawing.Color.Transparent;
-            this.materialButton5.FlatAppearance.BorderSize = 0;
-            this.materialButton5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.materialButton5.IconChar = FontAwesome.Sharp.MaterialIcons.Abacus;
-            this.materialButton5.IconColor = System.Drawing.Color.White;
-            this.materialButton5.IconSize = 20;
-            this.materialButton5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.materialButton5.Location = new System.Drawing.Point(0, 164);
-            this.materialButton5.Name = "materialButton5";
-            this.materialButton5.Size = new System.Drawing.Size(171, 32);
-            this.materialButton5.TabIndex = 0;
-            this.materialButton5.Text = "materialButton1";
-            this.materialButton5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.materialButton5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.materialButton5.UseVisualStyleBackColor = false;
+            this.btnHome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(46)))), ((int)(((byte)(96)))));
+            this.btnHome.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnHome.FlatAppearance.BorderSize = 0;
+            this.btnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHome.ForeColor = System.Drawing.Color.White;
+            this.btnHome.IconChar = FontAwesome.Sharp.IconChar.Home;
+            this.btnHome.IconColor = System.Drawing.Color.White;
+            this.btnHome.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnHome.IconSize = 32;
+            this.btnHome.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHome.Location = new System.Drawing.Point(0, 40);
+            this.btnHome.Margin = new System.Windows.Forms.Padding(4, 3, 4, 12);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(169, 43);
+            this.btnHome.TabIndex = 1;
+            this.btnHome.Tag = "Home";
+            this.btnHome.Text = "Home";
+            this.btnHome.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnHome.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnHome.UseVisualStyleBackColor = false;
             // 
-            // materialButton4
+            // panel3
             // 
-            this.materialButton4.BackColor = System.Drawing.Color.Transparent;
-            this.materialButton4.FlatAppearance.BorderSize = 0;
-            this.materialButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.materialButton4.IconChar = FontAwesome.Sharp.MaterialIcons.Abacus;
-            this.materialButton4.IconColor = System.Drawing.Color.White;
-            this.materialButton4.IconSize = 20;
-            this.materialButton4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.materialButton4.Location = new System.Drawing.Point(0, 117);
-            this.materialButton4.Name = "materialButton4";
-            this.materialButton4.Size = new System.Drawing.Size(171, 32);
-            this.materialButton4.TabIndex = 0;
-            this.materialButton4.Text = "materialButton1";
-            this.materialButton4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.materialButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.materialButton4.UseVisualStyleBackColor = false;
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(46)))), ((int)(((byte)(96)))));
+            this.panel3.Controls.Add(this.btnMenu);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(169, 40);
+            this.panel3.TabIndex = 0;
             // 
-            // materialButton3
+            // btnMenu
             // 
-            this.materialButton3.BackColor = System.Drawing.Color.Transparent;
-            this.materialButton3.FlatAppearance.BorderSize = 0;
-            this.materialButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.materialButton3.IconChar = FontAwesome.Sharp.MaterialIcons.Abacus;
-            this.materialButton3.IconColor = System.Drawing.Color.White;
-            this.materialButton3.IconSize = 20;
-            this.materialButton3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.materialButton3.Location = new System.Drawing.Point(0, 79);
-            this.materialButton3.Name = "materialButton3";
-            this.materialButton3.Size = new System.Drawing.Size(171, 32);
-            this.materialButton3.TabIndex = 0;
-            this.materialButton3.Text = "materialButton1";
-            this.materialButton3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.materialButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.materialButton3.UseVisualStyleBackColor = false;
-            // 
-            // materialButton2
-            // 
-            this.materialButton2.BackColor = System.Drawing.Color.Transparent;
-            this.materialButton2.FlatAppearance.BorderSize = 0;
-            this.materialButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.materialButton2.IconChar = FontAwesome.Sharp.MaterialIcons.Abacus;
-            this.materialButton2.IconColor = System.Drawing.Color.White;
-            this.materialButton2.IconSize = 20;
-            this.materialButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.materialButton2.Location = new System.Drawing.Point(0, 41);
-            this.materialButton2.Name = "materialButton2";
-            this.materialButton2.Size = new System.Drawing.Size(171, 32);
-            this.materialButton2.TabIndex = 0;
-            this.materialButton2.Text = "materialButton1";
-            this.materialButton2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.materialButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.materialButton2.UseVisualStyleBackColor = false;
-            // 
-            // materialButton1
-            // 
-            this.materialButton1.BackColor = System.Drawing.Color.Transparent;
-            this.materialButton1.FlatAppearance.BorderSize = 0;
-            this.materialButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.materialButton1.IconChar = FontAwesome.Sharp.MaterialIcons.Abacus;
-            this.materialButton1.IconColor = System.Drawing.Color.White;
-            this.materialButton1.IconSize = 20;
-            this.materialButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.materialButton1.Location = new System.Drawing.Point(3, 3);
-            this.materialButton1.Name = "materialButton1";
-            this.materialButton1.Size = new System.Drawing.Size(171, 32);
-            this.materialButton1.TabIndex = 0;
-            this.materialButton1.Text = "materialButton1";
-            this.materialButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.materialButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.materialButton1.UseVisualStyleBackColor = false;
-            // 
-            // iconButton2
-            // 
-            this.iconButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconButton2.FlatAppearance.BorderSize = 0;
-            this.iconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.X;
-            this.iconButton2.IconColor = System.Drawing.Color.Red;
-            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton2.IconSize = 20;
-            this.iconButton2.Location = new System.Drawing.Point(847, 4);
-            this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(29, 23);
-            this.iconButton2.TabIndex = 3;
-            this.iconButton2.UseVisualStyleBackColor = true;
-            this.iconButton2.Click += new System.EventHandler(this.iconButton2_Click);
-            // 
-            // btnCloseForm
-            // 
-            this.btnCloseForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCloseForm.FlatAppearance.BorderSize = 0;
-            this.btnCloseForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCloseForm.IconChar = FontAwesome.Sharp.IconChar.X;
-            this.btnCloseForm.IconColor = System.Drawing.Color.Red;
-            this.btnCloseForm.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCloseForm.IconSize = 16;
-            this.btnCloseForm.Location = new System.Drawing.Point(930, 3);
-            this.btnCloseForm.Name = "btnCloseForm";
-            this.btnCloseForm.Size = new System.Drawing.Size(29, 23);
-            this.btnCloseForm.TabIndex = 2;
-            this.btnCloseForm.UseVisualStyleBackColor = true;
-            this.btnCloseForm.Click += new System.EventHandler(this.btnCloseForm_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.AutoScroll = true;
-            this.panel2.BackColor = System.Drawing.Color.Silver;
-            this.panel2.Location = new System.Drawing.Point(0, 28);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(877, 545);
-            this.panel2.TabIndex = 1;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
-            // 
-            // iconButton1
-            // 
-            this.iconButton1.FlatAppearance.BorderSize = 0;
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.AngleDoubleLeft;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 20;
-            this.iconButton1.Location = new System.Drawing.Point(-1, 3);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(29, 23);
-            this.iconButton1.TabIndex = 0;
-            this.iconButton1.UseVisualStyleBackColor = true;
-            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+            this.btnMenu.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnMenu.FlatAppearance.BorderSize = 0;
+            this.btnMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMenu.IconChar = FontAwesome.Sharp.IconChar.AngleLeft;
+            this.btnMenu.IconColor = System.Drawing.Color.White;
+            this.btnMenu.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnMenu.IconSize = 30;
+            this.btnMenu.Location = new System.Drawing.Point(128, 0);
+            this.btnMenu.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnMenu.Name = "btnMenu";
+            this.btnMenu.Size = new System.Drawing.Size(41, 40);
+            this.btnMenu.TabIndex = 0;
+            this.btnMenu.UseVisualStyleBackColor = true;
+            this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
             // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1061, 609);
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
@@ -684,11 +632,8 @@
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
+            this.panelMenu.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -701,13 +646,7 @@
         private System.Windows.Forms.ToolStripMenuItem itemListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem siteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uomItemList;
-        private FontAwesome.Sharp.IconButton iconButton1;
-        private System.Windows.Forms.Panel panel1;
-        private FontAwesome.Sharp.Material.MaterialButton materialButton1;
         private System.Windows.Forms.ToolStripMenuItem boqToolStripMenuItem;
-        internal System.Windows.Forms.Panel panel2;
-        private FontAwesome.Sharp.IconButton btnCloseForm;
-		public System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.ToolStripMenuItem myCompanyInformationToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem userRoleToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem changeMyPasswordToolStripMenuItem;
@@ -729,12 +668,6 @@
 		private System.Windows.Forms.ToolStripMenuItem siteListToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
 		private System.Windows.Forms.ToolStripMenuItem quoteListToolStripMenuItem;
-        private FontAwesome.Sharp.Material.MaterialButton materialButton7;
-        private FontAwesome.Sharp.Material.MaterialButton materialButton6;
-        private FontAwesome.Sharp.Material.MaterialButton materialButton5;
-        private FontAwesome.Sharp.Material.MaterialButton materialButton4;
-        private FontAwesome.Sharp.Material.MaterialButton materialButton3;
-        private FontAwesome.Sharp.Material.MaterialButton materialButton2;
 		public System.Windows.Forms.ToolStripMenuItem listToolStripMenuItem;
 		public System.Windows.Forms.ToolStripMenuItem customerToolStripMenuItem;
 		public System.Windows.Forms.ToolStripMenuItem companyToolStripMenuItem;
@@ -751,6 +684,14 @@
 		private System.Windows.Forms.ToolStripMenuItem openQuotesToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem closedQuotesToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem openBOQDetailsToolStripMenuItem;
-        private FontAwesome.Sharp.IconButton iconButton2;
+        private System.Windows.Forms.Panel panelMenu;
+        private FontAwesome.Sharp.IconButton buttonSetting;
+        private FontAwesome.Sharp.IconButton buttonBOQ;
+        private FontAwesome.Sharp.IconButton buttonItems;
+        private FontAwesome.Sharp.IconButton buttonClose;
+        private FontAwesome.Sharp.IconButton buttonCustomer;
+        private FontAwesome.Sharp.IconButton btnHome;
+        private System.Windows.Forms.Panel panel3;
+        private FontAwesome.Sharp.IconButton btnMenu;
     }
 }

@@ -39,13 +39,41 @@ namespace ESProMeter.Controllers
         {
             AppService.GetBoqInstance.BoqGetById(id, boqForm);
         }
-
+        public static void BoqLineGetById(this Form form, long id,DataGridView container)
+        {
+            AppService.GetBoqInstance.BoqLineGetById(id,out var table);
+            container.Rows?.Clear();
+            table.UsePlainDataToGridView(container);
+        }
+        public static void BoqLineCreateOrUpdate(this Form form, DataGridView grid,Enums.ActionType type)
+        {
+            var table = grid.ToTable("BOQID", "BOQITEMID", "LineSeq", "NO", "BOQITEMDESC", "BOQITEMUOMID", "BOQITEMQTY",
+              "REMARKS", "UID", "BOQCOST", "LOSSEFFECENCYRATE1", "OPERATIONRATE1", "OVERHEADRATE1", "SAFETYRATE1", "TRANSPORTATIONRATE1", "MARGINRATE1", "INFlATIONRATE1");
+            switch (type)
+            {
+                case Enums.ActionType.CREATE:
+                    AppService.GetBoqInstance.BoqLineCreate(table);
+                    break;
+                case Enums.ActionType.EDIT:
+                    AppService.GetBoqInstance.BoqLineUpdate(table);
+                    break;
+                default:
+                    break;
+            }
+            
+        }
         public static void BoqLineCreate(this Form form,DataGridView grid)
         {
-            var table=grid.ToTable("BOQID", "BOQITEMID", "LineSeq", "NO", "BOQITEMDESC", "BOQITEMUOMID", "BOQITEMQTY", "REMARKS", "UID");
+            var table = grid.ToTable("BOQID", "BOQITEMID", "LineSeq", "NO", "BOQITEMDESC", "BOQITEMUOMID", "BOQITEMQTY",
+                "REMARKS", "UID", "BOQCOST", "LOSSEFFECENCYRATE1", "OPERATIONRATE1", "OVERHEADRATE1", "SAFETYRATE1", "TRANSPORTATIONRATE1", "MARGINRATE1", "INFlATIONRATE1");
             AppService.GetBoqInstance.BoqLineCreate(table);
         }
-
+        public static void BoqLineUpdate(this Form form, DataGridView grid)
+        {
+            var table = grid.ToTable("BOQID", "BOQITEMID", "LineSeq", "NO", "BOQITEMDESC", "BOQITEMUOMID", "BOQITEMQTY",
+                "REMARKS", "UID", "BOQCOST", "LOSSEFFECENCYRATE1", "OPERATIONRATE1", "OVERHEADRATE1", "SAFETYRATE1", "TRANSPORTATIONRATE1", "MARGINRATE1", "INFlATIONRATE1");
+            AppService.GetBoqInstance.BoqLineUpdate(table);
+        }
         public static void GetAdditionalCost(this Form form,DataGridView container)
         {
             AppService.GetBoqInstance

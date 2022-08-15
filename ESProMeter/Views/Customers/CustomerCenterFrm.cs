@@ -10,7 +10,7 @@ namespace ESProMeter.Views.Customers
         public CustomerCenterFrm()
         {
             InitializeComponent();
-            gridCustomer.ClearSelection();
+            dgvCustomer.ClearSelection();
         }
 
         private void tlsNew_Click(object sender, EventArgs e)
@@ -56,15 +56,15 @@ namespace ESProMeter.Views.Customers
 
         private void CustomerCenterFrm_Load(object sender, EventArgs e)
         {
-
+            dgvCustomer.ClearSelection();
             this.ShowCustomerCenter();
         }
 
         private void tlsCustomerEdit_Click(object sender, EventArgs e)
         {
-            if (gridCustomer.SelectedRows.Count>0)
+            if (dgvCustomer.SelectedRows.Count>0)
             {
-                var selectedRow = gridCustomer.SelectedRows[0];
+                var selectedRow = dgvCustomer.SelectedRows[0];
                 var custID = selectedRow.GetValue<long>("ID");
                 CustomerCreateFrm frm = new CustomerCreateFrm(custID);
                 if (frm.ShowDialog() == DialogResult.OK)
@@ -89,16 +89,16 @@ namespace ESProMeter.Views.Customers
 
         private void tlsDeleteClick(object sender, EventArgs e)
         {
-            if (gridCustomer.Rows.Count > 0)
+            if (dgvCustomer.Rows.Count > 0)
             {
-                var selectedRow = gridCustomer.SelectedRows[0];
+                var selectedRow = dgvCustomer.SelectedRows[0];
                 var custID = selectedRow.GetValue<long>("ID");
                 var addressID = selectedRow.GetValue<long>("ADDRESSID");
                 if (MessageBox.Show("Do you want to delete customer?", "Confirm", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
 
                     if (this.DeleteCustomer(custID, addressID)){
-                        gridCustomer.Rows.Remove(selectedRow);
+                        dgvCustomer.Rows.Remove(selectedRow);
                     }
                     else
                     {
@@ -117,9 +117,9 @@ namespace ESProMeter.Views.Customers
 
         private void gridCustomer_SelectionChanged(object sender, EventArgs e)
         {
-            if (gridCustomer.SelectedRows.Count > 0)
+            if (dgvCustomer.SelectedRows.Count > 0)
             {
-                var row = gridCustomer.SelectedRows[0];
+                var row = dgvCustomer.SelectedRows[0];
                 var id = row.GetValue<long>("ID");
                 CustomerDetailFrm form = new CustomerDetailFrm();
                 form.TopLevel = false;
@@ -130,6 +130,17 @@ namespace ESProMeter.Views.Customers
                 this.pnlDetails.Controls.Add(form);
                 form.Show();
 
+            }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            if (dgvCustomer.SelectedRows.Count > 0)
+            {
+                var selectedRow = dgvCustomer.SelectedRows[0];
+                var cust_id = selectedRow.GetValue<long>("ID");
+                Views.Boq.CreateBoQ_Step1_Frm form = new Boq.CreateBoQ_Step1_Frm(cust_id);
+                CanOpenForm(form);
             }
         }
     }

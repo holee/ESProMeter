@@ -4,6 +4,10 @@ using ESProMeter.Views.UnitOfMeasures;
 using ESProMeter.Views.Items;
 using ESProMeter.Controllers;
 using System.Drawing;
+using ESProMeter.Enums;
+using System.Linq;
+using FontAwesome.Sharp;
+using ESProMeter.Properties;
 
 namespace ESProMeter
 {
@@ -12,7 +16,29 @@ namespace ESProMeter
         public static MainFrm MainF; //Mainform
         public static Views.FileAndLogin.FileSelectionFrm FSNF; // File Selection Form
         public static Views.FileAndLogin.UserLoginFrm ULNF; //User Login Form
+        private bool HasChildFormOpen(Form form)
+        {
+            if (MdiChildren.Any(frm => frm.Name == form.Name))
+            {
+                return true;
+            }
+            return false;
+        }
 
+        private void CanOpenForm(Form form)
+        {
+            if (!HasChildFormOpen(form))
+            {
+                form.MdiParent = this;
+                form.StartPosition = FormStartPosition.CenterParent;
+                form.Show();
+            }
+            else
+            {
+                return;
+            }
+
+        }
         public MainFrm()
         {
             InitializeComponent();
@@ -29,63 +55,34 @@ namespace ESProMeter
                 FSNF.StartPosition = FormStartPosition.CenterScreen;
                 FSNF.Show();
             }
-            catch (Exception ex)
+            catch 
             {
-                throw ex;
+                
             }
         }
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
-            if(this.splitContainer1.SplitterDistance == 60)
-            {
-                this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.AngleDoubleLeft;
-                this.splitContainer1.SplitterDistance = 180;
-            }
-            else
-            {
-                this.splitContainer1.SplitterDistance = 60;
-                this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.AngleDoubleRight;
-            }
+            
         }
 
         private void itemListToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ItemListFrm frmItem = new ItemListFrm();
-            frmItem.TopLevel = false;
-            //frmItem.TopMost = true;
-            frmItem.FormBorderStyle = FormBorderStyle.None;
             frmItem.WindowState= FormWindowState.Maximized;
-            frmItem.Anchor = AnchorStyles.Left;
-            frmItem.Anchor = AnchorStyles.Right;
-            frmItem.Anchor = AnchorStyles.Bottom;
-            frmItem.Anchor = AnchorStyles.Top;
-            panel2.Controls.Clear();
-            panel2.Controls.Add(frmItem);
-            frmItem.Show();
-            frmItem.Dock = DockStyle.Fill;
+            CanOpenForm(frmItem);
         }
 
         private void uomItemList_Click(object sender, EventArgs e)
         {
             UoMFrm frm = new UoMFrm();
-            frm.TopLevel = false;
-            frm.TopMost = true;
-            frm.FormBorderStyle = FormBorderStyle.None;
             frm.WindowState=FormWindowState.Maximized;
-            panel2.Controls.Clear();
-            panel2.Controls.Add(frm);
-            frm.StartPosition = FormStartPosition.CenterParent;
-            frm.Show();
+            CanOpenForm(frm);
         }
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            var p = panel2.Controls.Find("ItemListFrm", true);
-            if (p.Length>0)
-            {
-                ((Form)p[0]).Size = new Size(panel2.Height, panel2.Width);
-            }
+
             //frmItem.TopLevel = false;
             //frmItem.TopMost = true;
             //frmItem.Width = panel2.Width;
@@ -110,10 +107,8 @@ namespace ESProMeter
             frm.TopMost = true;
             //frm.FormBorderStyle = FormBorderStyle.None;
             frm.Location = PointToScreen(new Point(e.X, e.Y));
-            panel2.Controls.Add(frm);
             frm.Show();
-            var p=panel2.Controls.Find(frm.Name, true)[0];
-            MessageBox.Show(p.Name);
+            
         }
 
         
@@ -125,11 +120,7 @@ namespace ESProMeter
 
         private void btnCloseForm_Click(object sender, EventArgs e)
         {
-            if (panel2.Controls.Count > 0)
-            {
-                panel2.Controls.Clear();
-                return;
-            }
+            
         }
         private void DisplayFormInPanel(Form form,Panel container)
         {
@@ -159,8 +150,7 @@ namespace ESProMeter
             form.TopMost = true;
             form.FormBorderStyle = FormBorderStyle.None;
             form.WindowState = FormWindowState.Maximized;
-            panel2.Controls.Clear();
-            panel2.Controls.Add(form);
+    
             form.Show();
             form.Dock = DockStyle.Fill;
         }
@@ -179,34 +169,32 @@ namespace ESProMeter
 		private void bToolStripMenuItem_Click(object sender, EventArgs e)
 		{
             Form form = new Views.Boq.BOQListFrm();
-            form.TopLevel = false;
-            form.TopMost = true;
-            form.FormBorderStyle = FormBorderStyle.Fixed3D;
             form.WindowState = FormWindowState.Maximized;
-            panel2.Controls.Clear();
-            panel2.Controls.Add(form);
-            form.Show();
-            form.Dock = DockStyle.Fill;
+            CanOpenForm(form);
         }
 
 		private void billOfQuantityListToolStripMenuItem_Click(object sender, EventArgs e)
 		{
             Form form = new Views.Boq.CreateBoQ_Step1_Frm();
-            form.ShowDialog();
+            CanOpenForm(form);
 		}
 
 		private void toolStripMenuItem4_Click(object sender, EventArgs e)
 		{
             //Add new BOQ Item
             //Set item type as 'Bill of Quanity' then show form
-            Form form = new Views.Items.AddItemFrm();
+            Views.Items.AddItemFrm form = new Views.Items.AddItemFrm(0,Enums.ItemsType.Boq,Enums.ActionType.CREATE);
             //form.cmbType.text = 'Bill of Quantity';
-            form.ShowDialog();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                this.ItemCreate(form, ItemsType.Boq);
+            }
 		}
 
 		private void toolStripMenuItem5_Click(object sender, EventArgs e)
 		{
-            
+            Views.Sites.AddSiteFrm form = new Views.Sites.AddSiteFrm();
+            form.ShowDialog();
 		}
 
 		private void boqToolStripMenuItem_Click(object sender, EventArgs e)
@@ -224,27 +212,16 @@ namespace ESProMeter
         private void siteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form form = new Views.Sites.SiteFrm();
-            form.TopLevel = false;
-            //form.TopMost = true;
-            form.FormBorderStyle = FormBorderStyle.Fixed3D;
-            form.WindowState = FormWindowState.Normal;
-            form.Dock = DockStyle.Fill;
-            panel2.Controls.Add(form);
-            form.Show();
+            form.WindowState = FormWindowState.Maximized;
+            CanOpenForm(form);
             
         }
 
         private void customerListToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form form = new Views.Customers.CustomerCenterFrm();
-            form.TopLevel = false;
-            //form.TopMost = true;
-            form.FormBorderStyle = FormBorderStyle.None;
-            form.WindowState = FormWindowState.Normal;
-            form.Dock = DockStyle.Fill;
-            panel2.Controls.Add(form);
-            form.Show();
-
+            form.WindowState = FormWindowState.Maximized;
+            CanOpenForm(form);
         }
 
 		private void openBillOfQuantityToolStripMenuItem_Click(object sender, EventArgs e)
@@ -256,7 +233,7 @@ namespace ESProMeter
             form.FormBorderStyle = FormBorderStyle.Fixed3D;
             form.WindowState = FormWindowState.Normal;
             form.Dock = DockStyle.Fill;
-            panel2.Controls.Add(form);
+           
             form.Show();
         }
 
@@ -268,25 +245,54 @@ namespace ESProMeter
             form.FormBorderStyle = FormBorderStyle.Fixed3D;
             form.WindowState = FormWindowState.Normal;
             form.Dock = DockStyle.Fill;
-            panel2.Controls.Add(form);
             form.Show();
         }
 
         private void myCompanyInformationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form form = new Views.Companies.CompanyInfoFrm();
-            //form.TopLevel = false;
-            ////form.TopMost = true;
-            //form.FormBorderStyle = FormBorderStyle.Fixed3D;
-            //form.WindowState = FormWindowState.Normal;
-            //form.Dock = DockStyle.Fill;
-            //panel2.Controls.Add(form);
-            form.Show();
+            CanOpenForm(form);
         }
 
-        private void iconButton2_Click(object sender, EventArgs e)
+        private void btnMenu_Click(object sender, EventArgs e)
         {
-            panel2.Controls?.Clear();
+            if (panelMenu.Width <= 40)
+            {
+                btnMenu.IconChar = IconChar.AngleLeft;
+                btnMenu.IconColor = Color.White;
+                btnMenu.FlatStyle = FlatStyle.Flat;
+                btnMenu.FlatAppearance.BorderSize = 0;
+                panelMenu.Width = 150;
+                Settings.Default.menuSide = 150;
+                Settings.Default.Save();
+                foreach (Button menuItem in panelMenu.Controls.OfType<Button>())
+                {
+                    menuItem.Text = menuItem.Tag.ToString();
+                    menuItem.ImageAlign = ContentAlignment.MiddleLeft;
+                    menuItem.Padding = new Padding(0, 0, 0, 0);
+                }
+            }
+            else
+            {
+                panelMenu.Width = 40;
+                Settings.Default.menuSide = 40;
+                Settings.Default.Save();
+                btnMenu.IconChar = IconChar.AngleRight;
+                btnMenu.IconColor = Color.White;
+                btnMenu.FlatStyle = FlatStyle.Flat;
+                foreach (Button menuItem in panelMenu.Controls.OfType<Button>())
+                {
+                    menuItem.Text = String.Empty;
+                    menuItem.ImageAlign = ContentAlignment.MiddleCenter;
+                    menuItem.Padding = new Padding(0);
+                }
+            }
+        }
+        private void siteListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Views.Sites.SiteFrm formSiteList = new Views.Sites.SiteFrm();
+            formSiteList.WindowState = FormWindowState.Maximized;
+            CanOpenForm(formSiteList);
         }
     }
 }

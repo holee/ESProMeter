@@ -102,21 +102,37 @@ namespace ESProMeter.Views.Items
             InitializeComponent();
             this.ShowItemType(this.cmbType);
             this.ShowUom(this.cmbUom);
-            this.GetItemForUpdate(itemType, Id, this);
-            switch (action)
+            if (Id == 0)
             {
-                case ActionType.EDIT:
-                    CreateTempTable();
-                    cmbType.Enabled = false;
-                    btnSave.Text = "Update";
-                    break;
-                case ActionType.CreateACopy:
-                    CreateTempTable();
-                    cmbType.Enabled = false;
-                    btnSave.Text = "Save";
-                    break;
-                default:
-                    break;
+                CreateTable(ref labourTable);
+                CreateTable(ref materialTable);
+                CreateTable(ref machinaryTable);
+                CreateTable(ref boqTable);
+                cmbType.SelectedIndex = 3;
+                cmbType.Enabled = false;
+                btnSave.Text = "Save";
+                cmbType.Enabled = false;
+                pnlSearch.SendToBack();
+                pnlSearch.Hide();
+            }
+            else
+            {
+                this.GetItemForUpdate(itemType, Id, this);
+                switch (action)
+                {
+                    case ActionType.EDIT:
+                        CreateTempTable();
+                        cmbType.Enabled = false;
+                        btnSave.Text = "Update";
+                        break;
+                    case ActionType.CreateACopy:
+                        CreateTempTable();
+                        cmbType.Enabled = false;
+                        btnSave.Text = "Save";
+                        break;
+                    default:
+                        break;
+                }
             }
             if (this.ActionStatus == ActionStatus.Edit)
             {

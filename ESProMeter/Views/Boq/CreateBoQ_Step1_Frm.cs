@@ -223,6 +223,68 @@ namespace ESProMeter.Views.Boq
         }
 
 
+
+        public CreateBoQ_Step1_Frm(long cust_id)
+        {
+            InitializeComponent();
+            cboCustomerName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cboCustomerName.AutoCompleteSource = AutoCompleteSource.ListItems;
+            this.FillCustomerCmb(cboCustomerName);
+            cboCustomerName.SelectedValue = cust_id;
+            this.GetAdditionalCost(this.dtgBOQCostSetting);
+            this.cboCustomerName.LostFocus += (s, e) =>
+            {
+                if (cboCustomerName.SelectedValue == null && cboCustomerName.Text.Length > 0)
+                {
+                    if (MessageBox.Show("there is not any customer in system.", "Bill Of Qauntity", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        Views.Customers.CustomerCreateFrm form = new Views.Customers.CustomerCreateFrm();
+                        form.NAME = cboCustomerName.Text;
+                        if (this.CustomerCreate(form, out var id))
+                        {
+                            this.FillCustomerCmb(cboCustomerName);
+                            this.cboCustomerName.SelectedValue = id;
+                        }
+                        else
+                        {
+                            this.FillCustomerCmb(cboCustomerName);
+                        }
+                    }
+                    else return;
+                }
+            };
+            this.cboCustomerName.SelectedValueChanged += (s, e) =>
+            {
+                if (cboCustomerName.SelectedValue == null) return;
+                if (cboCustomerName.SelectedValue != null && cboCustomerName.Text.Length > 0)
+                {
+                    var id = cboCustomerName.AsNumber<long>(true);
+                    this.FillSitesCmbByCustomer(id, cboSite);
+                }
+            };
+            this.cboSite.LostFocus += (s, e) =>
+            {
+                if (cboSite.SelectedValue == null && cboSite.Text.Length > 0)
+                {
+                    if (MessageBox.Show("there is not any Site in system.", "Bill Of Qauntity", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        Sites.AddSiteFrm form = new Sites.AddSiteFrm();
+                        if (cboCustomerName.SelectedValue != null)
+                        {
+                            form.SITENAME = cboSite.Text;
+                            form.CUSTOMERID = cboCustomerName.AsNumber<long>(true);
+                            if (this.SiteCreateNewOrUpdate(form, out var id))
+                            {
+                                this.FillSitesCmbByCustomer(cboCustomerName.AsNumber<long>(true), cboSite);
+                                this.cboSite.SelectedValue = id;
+                            }
+                        }
+
+                    }
+                    else return;
+                }
+            };
+        }
         //Key Press event
         private void TextBoxKeyPress(object sender, KeyPressEventArgs e)
         {
@@ -263,14 +325,12 @@ namespace ESProMeter.Views.Boq
             {
                 if (this.BoqCreate(this, out var id))
                 {
-                    CreateBoQ_Step2_Frm form = new CreateBoQ_Step2_Frm(id);
+                    CreateBoQ_Step2_Frm form = new CreateBoQ_Step2_Frm(id,Enums.ActionType.CREATE);
                     form.TopLevel = false;
                     form.TopMost = true;
                     form.FormBorderStyle = FormBorderStyle.None;
                     form.WindowState = FormWindowState.Maximized;
                     form.Dock = DockStyle.Fill;
-                    MainFrm.MainF.panel2.Controls.Clear();
-                    MainFrm.MainF.panel2.Controls.Add(form);
                     form.Show();
                     this.Close();
                 }

@@ -85,7 +85,7 @@ namespace ESProMeter.Repository
                 item.ITEMTYPE = row.GetValue<string>("ItemType");
             }
         }
-        public bool GetItemWithItemLineById(long itemId, ITItem item,out DataTable labour,out DataTable machinery,out DataTable material) 
+        public bool GetBoqItemWithItemLineById(long itemId, ITItem item,out DataTable labour,out DataTable machinery,out DataTable material) 
         {
             labour=new();
             machinery=new();
@@ -109,6 +109,25 @@ namespace ESProMeter.Repository
         }
 
 
+        public bool GetBoqItemWithItemLineById(long itemId,out DataTable labour, out DataTable machinery, out DataTable material)
+        {
+            labour = new();
+            machinery = new();
+            material = new();
+            try
+            {
+                AppService.GetItemInstance.GetBoqItemLineByItemID(itemId, "labour", out labour);
+                AppService.GetItemInstance.GetBoqItemLineByItemID(itemId, "machinery", out machinery);
+                AppService.GetItemInstance.GetBoqItemLineByItemID(itemId, "material", out material);
+                return true;
+            }
+            catch
+            {
+                return false;
+                throw;
+            }
+               
+        }
         /// <summary>
         /// Create Items and update
         /// </summary>

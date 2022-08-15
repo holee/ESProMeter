@@ -70,7 +70,7 @@ namespace ESProMeter.Repository
         public bool BoqUpdate(ITBOQ boq)
         {
             var id = AppService.SqlGetInstance
-                        .UseProcedure("[TBOQ_sp_INSERT]")
+                        .UseProcedure("[TBOQ_sp_UPDATE]")
                             .InsertGetId<long, dynamic>(new
                             {
                                 boq.ID,
@@ -134,6 +134,15 @@ namespace ESProMeter.Repository
             }
         }
 
+        public void BoqLineGetById(long id,out DataTable table)
+        {
+            AppService.SqlGetInstance
+                            .UseProcedure("[TBOQLINE_sp_GET_BY_ID]")
+                                .SelectAsTable<dynamic>(new
+                                {
+                                    @BODREFID = id
+                                }, out table);
+        }
         public bool BoqGetAll(byte isActive,int status,out DataTable table)
         {
             return AppService.SqlGetInstance
@@ -145,6 +154,7 @@ namespace ESProMeter.Repository
                                 }, out table);
         }
 
+
         /// <summary>
         /// BOQLINE
         /// </summary>
@@ -154,8 +164,14 @@ namespace ESProMeter.Repository
             AppService.SqlGetInstance
                         .UseProcedure("[TBOQLINE_sp_INSERT]")
                             .InsertFromTable("TBOQLINE", model, "TBOQLINE_udt_INSERT");
-        }   
+        }
 
+        public void BoqLineUpdate(DataTable model) 
+        {
+            AppService.SqlGetInstance
+                        .UseProcedure("TBOQLINE_sp_UPDATE")
+                            .InsertFromTable("TBOQLINE", model, "TBOQLINE_udt_UPDATE");
+        }
 
         public void GetAdditinalCost(out DataTable table)
         {
@@ -164,16 +180,6 @@ namespace ESProMeter.Repository
                                 .SelectAsTable<dynamic>(null,out table);
         }
     
-
-
-
-
-
-
-
-
-
-
     }
 }
 
