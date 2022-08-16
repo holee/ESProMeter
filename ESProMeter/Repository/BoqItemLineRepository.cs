@@ -186,7 +186,7 @@ namespace ESProMeter.Repository
         {
             return AppService.SqlGetInstance
                 .UseProcedure("BOQ_sp_SELECT_ALL")
-                .SelectAsTable<dynamic?>(new { isAct = isActive, status= status }, out tblBoq);
+                .SelectAsTable<dynamic>(new { isAct = isActive, status= status }, out tblBoq);
         }
         public bool GetBoqList(byte isActive, int status, out DataTable tblBoq)
         {

@@ -133,27 +133,44 @@ namespace ESProMeter.Repository
                 boq.TRANSPORTATIONRATE = row.GetValue<decimal>("TRANSPORTATIONRATE");
             }
         }
-
-        public void BoqLineGetById(long id,out DataTable table)
-        {
-            AppService.SqlGetInstance
-                            .UseProcedure("[TBOQLINE_sp_GET_BY_ID]")
-                                .SelectAsTable<dynamic>(new
-                                {
-                                    @BODREFID = id
-                                }, out table);
-        }
-        public bool BoqGetAll(byte isActive,int status,out DataTable table)
+        public bool BoqGetAll(byte isActive, int status, out DataTable table)
         {
             return AppService.SqlGetInstance
                             .UseProcedure("[BOQ_sp_SELECT]")
                                 .SelectAsTable<dynamic>(new
                                 {
-                                    ISACTIVE=isActive,
-                                    STATUS=status,
+                                    ISACTIVE = isActive,
+                                    STATUS = status,
                                 }, out table);
         }
 
+        public void BoqGetByCustomer(long id,out DataTable table)
+        {
+            AppService.SqlGetInstance
+                            .UseProcedure("[BOQ_sp_SELECT_BY_CUSTOMER]")
+                                .SelectAsTable<dynamic>(new
+                                {
+                                    @ACTIVE="",
+                                    @STATUS="",
+                                    @CUSTOMERID = id 
+                                }, out table);
+          
+        }
+
+        public void BoqGetByCustomer(long id,int active,DateTime start,DateTime end, out DataTable table)
+        {
+            AppService.SqlGetInstance
+                            .UseProcedure("[BOQ_sp_SELECT_CUSTOMER_DATE]")
+                                .SelectAsTable<dynamic>(new
+                                {
+                                    @START=start,
+                                    @END=end,
+                                    @ACTIVE = active,
+                                    @STATUS = "",
+                                    @CUSTOMERID = id
+                                }, out table);
+
+        }
 
         /// <summary>
         /// BOQLINE
@@ -172,6 +189,16 @@ namespace ESProMeter.Repository
                         .UseProcedure("TBOQLINE_sp_UPDATE")
                             .InsertFromTable("TBOQLINE", model, "TBOQLINE_udt_UPDATE");
         }
+        public void BoqLineGetById(long id, out DataTable table)
+        {
+            AppService.SqlGetInstance
+                            .UseProcedure("[TBOQLINE_sp_GET_BY_ID]")
+                                .SelectAsTable<dynamic>(new
+                                {
+                                    @BODREFID = id
+                                }, out table);
+        }
+
 
         public void GetAdditinalCost(out DataTable table)
         {

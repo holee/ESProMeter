@@ -8,6 +8,7 @@ using ESProMeter.Enums;
 using System.Linq;
 using FontAwesome.Sharp;
 using ESProMeter.Properties;
+using ESProMeter.Views.Boq;
 
 namespace ESProMeter
 {
@@ -168,7 +169,7 @@ namespace ESProMeter
 
 		private void bToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-            Form form = new Views.Boq.BOQListFrm();
+            BOQListFrm form = new BOQListFrm();
             form.WindowState = FormWindowState.Maximized;
             CanOpenForm(form);
         }

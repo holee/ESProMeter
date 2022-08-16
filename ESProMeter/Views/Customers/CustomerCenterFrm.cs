@@ -126,6 +126,7 @@ namespace ESProMeter.Views.Customers
                 form.TopMost = true;
                 form.FormBorderStyle = FormBorderStyle.None;
                 this.GetCustomerDetails(form, id);
+                this.GetCustomerWithBoq(this.dtgBOQList, id);
                 this.pnlDetails.Controls?.Clear();
                 this.pnlDetails.Controls.Add(form);
                 form.Show();

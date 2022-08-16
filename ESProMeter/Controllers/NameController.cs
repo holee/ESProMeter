@@ -148,6 +148,35 @@ namespace ESProMeter.Controllers
 
         }
 
+        public static void GetCustomerWithBoq(this Form form,DataGridView container, long id)
+        {
+            try
+            {
+                AppService.GetBoqInstance.BoqGetByCustomer(id,out var table);
+                ((DataTable)container.DataSource)?.Rows.Clear();
+                table.UseDataTableAsGridView(container);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        public static void GetCustomerWithBoq(this Form form, DataGridView container, long id,DateTime start,DateTime end)
+        {
+            try
+            {
+                AppService.GetBoqInstance.BoqGetByCustomer(id, out var table);
+                ((DataTable)container.DataSource)?.Rows.Clear();
+                table.UseDataTableAsGridView(container);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
     }
 }
 

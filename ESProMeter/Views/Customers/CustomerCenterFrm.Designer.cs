@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerCenterFrm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tlsNew = new System.Windows.Forms.ToolStripButton();
             this.tlsCustomerEdit = new System.Windows.Forms.ToolStripButton();
@@ -269,14 +269,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvCustomer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCustomer.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCustomer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCustomer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCustomer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -327,7 +327,7 @@
             this.panel2.Location = new System.Drawing.Point(8, 284);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(912, 301);
+            this.panel2.Size = new System.Drawing.Size(911, 301);
             this.panel2.TabIndex = 1;
             // 
             // tabControl1
@@ -359,14 +359,17 @@
             // 
             // dtgBOQList
             // 
+            this.dtgBOQList.AllowUserToAddRows = false;
+            this.dtgBOQList.AllowUserToDeleteRows = false;
             this.dtgBOQList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtgBOQList.BackgroundColor = System.Drawing.Color.White;
             this.dtgBOQList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgBOQList.Location = new System.Drawing.Point(1, 35);
             this.dtgBOQList.Name = "dtgBOQList";
+            this.dtgBOQList.ReadOnly = true;
             this.dtgBOQList.RowTemplate.Height = 25;
-            this.dtgBOQList.Size = new System.Drawing.Size(917, 152);
+            this.dtgBOQList.Size = new System.Drawing.Size(889, 152);
             this.dtgBOQList.TabIndex = 4;
             // 
             // chkIncludeClosedBOQ
@@ -549,12 +552,15 @@
             // 
             // dtgContactList
             // 
+            this.dtgContactList.AllowUserToAddRows = false;
+            this.dtgContactList.AllowUserToDeleteRows = false;
             this.dtgContactList.BackgroundColor = System.Drawing.Color.White;
             this.dtgContactList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgContactList.Location = new System.Drawing.Point(1, 1);
             this.dtgContactList.Name = "dtgContactList";
+            this.dtgContactList.ReadOnly = true;
             this.dtgContactList.RowTemplate.Height = 25;
-            this.dtgContactList.Size = new System.Drawing.Size(917, 185);
+            this.dtgContactList.Size = new System.Drawing.Size(887, 185);
             this.dtgContactList.TabIndex = 1;
             // 
             // menuStrip1
