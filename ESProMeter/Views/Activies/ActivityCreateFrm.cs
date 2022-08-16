@@ -61,5 +61,6 @@ namespace ESProMeter.Views.Activies
             get => _updatedAt; 
             set => _updatedAt=value; 
         }
+        #endregion
     }
 }
