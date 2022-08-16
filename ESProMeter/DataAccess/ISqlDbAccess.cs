@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
+using System.Data;
 namespace ESProMeter.DataAccess 
 {
 
@@ -14,7 +15,9 @@ namespace ESProMeter.DataAccess
         void StartTransaction();
         DataTable SelectAsTable<T>(T parameters);
         bool SelectAsTable<T>(T parameters,out DataTable table);
+        bool SelectAsList<T,U>(T parameters, out List<U> entities) where U:class;
         bool FindOne<T>(T paramaters , out DataRow row);
+        bool FindOne<T,U>(T paramaters, out U entity) where U:class;
         bool Exist(object paramaters);
         T InsertGetId<T,U>(U parameters);
         int InsertOrUpdate<T>(T parameter);

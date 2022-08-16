@@ -56,8 +56,8 @@ namespace ESProMeter.Views.Customers
 
         private void CustomerCenterFrm_Load(object sender, EventArgs e)
         {
-            dgvCustomer.ClearSelection();
             this.ShowCustomerCenter();
+            dgvCustomer.ClearSelection();
         }
 
         private void tlsCustomerEdit_Click(object sender, EventArgs e)

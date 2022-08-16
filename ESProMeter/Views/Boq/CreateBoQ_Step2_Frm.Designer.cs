@@ -33,6 +33,7 @@ namespace ESProMeter.Views.Boq
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateBoQ_Step2_Frm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -76,7 +77,7 @@ namespace ESProMeter.Views.Boq
             this.TRANSPORTATIONRATE1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MARGINRATE1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.INFlATIONRATE1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ACTION = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ACTION = new System.Windows.Forms.DataGridViewImageColumn();
             this.REMOVE = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnSaveAndNew = new FontAwesome.Sharp.Material.MaterialButton();
             this.mbtCancel = new FontAwesome.Sharp.Material.MaterialButton();
@@ -530,14 +531,13 @@ namespace ESProMeter.Views.Boq
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("AKbalthom TNRB", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle4.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle4.NullValue")));
             this.ACTION.DefaultCellStyle = dataGridViewCellStyle4;
             this.ACTION.FillWeight = 8F;
-            this.ACTION.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ACTION.HeaderText = "ACTION";
+            this.ACTION.Image = ((System.Drawing.Image)(resources.GetObject("ACTION.Image")));
             this.ACTION.Name = "ACTION";
             this.ACTION.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ACTION.Text = "";
-            this.ACTION.UseColumnTextForButtonValue = true;
             this.ACTION.Width = 80;
             // 
             // REMOVE
@@ -1154,7 +1154,7 @@ namespace ESProMeter.Views.Boq
         private System.Windows.Forms.DataGridViewTextBoxColumn TRANSPORTATIONRATE1;
         private System.Windows.Forms.DataGridViewTextBoxColumn MARGINRATE1;
         private System.Windows.Forms.DataGridViewTextBoxColumn INFlATIONRATE1;
-        private System.Windows.Forms.DataGridViewButtonColumn ACTION;
+        private System.Windows.Forms.DataGridViewImageColumn ACTION;
         private System.Windows.Forms.DataGridViewButtonColumn REMOVE;
     }
 }

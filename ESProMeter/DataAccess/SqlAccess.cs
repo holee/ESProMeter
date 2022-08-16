@@ -162,5 +162,16 @@ namespace ESProMeter.DataAccess
             return _connection.ExecuteScalar<int>(_sql, paramaters, transaction: _transaction, commandType: _commandType) > 0;
         }
 
+        public bool FindOne<T, U>(T paramaters, out U entity) where U : class
+        {
+            entity= _connection.Query<U>(_sql, param: paramaters, transaction: _transaction, commandType: _commandType).FirstOrDefault();
+            return entity != null;
+        }
+
+        public bool SelectAsList<T, U>(T parameters, out List<U> entities) where U : class
+        {
+            entities = _connection.Query<U>(_sql, param: parameters, transaction: _transaction, commandType: _commandType).ToList();
+            return entities.Count>0;
+        }
     }
-}
+} 

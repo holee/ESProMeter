@@ -173,7 +173,7 @@ namespace ESProMeter.Repository
                     BOQID = boqId
                 }, out tblQuote);
             DataUtility.GetInstance
-                .UseProcedure("ACTIVITY_sp_SELECT")
+                .UseProcedure("ACTIVITY_sp_SELECT_BOQID")
                 .SelectAsTable(new
                 {
                     BOQID = boqId

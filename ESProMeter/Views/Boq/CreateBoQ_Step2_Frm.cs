@@ -225,16 +225,10 @@ namespace ESProMeter.Views.Boq
             this.BoqGetById(id, this);
             switch (type)
             {
-                case Enums.ActionType.CREATE:
-                    break;
                 case Enums.ActionType.EDIT:
                     this.BoqLineGetById(id, this.dgvBoqList);
                     btnSaveAndClose.Text = "Update && Close";
-                    btnSaveAndNew.Text = "Update && New";
-                    break;
-                case Enums.ActionType.DELETE:
-                    break;
-                case Enums.ActionType.CreateACopy:
+                    btnSaveAndNew.Visible = false;
                     break;
                 default:
                     break;
@@ -323,12 +317,14 @@ namespace ESProMeter.Views.Boq
         }
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (dgvBoqList.Rows[e.RowIndex].Cells["uom"].Value == null
-                && dgvBoqList.Rows[e.RowIndex].Cells["BOQITEMQTY"].Value == null)
+            if (dgvBoqList.Columns[e.ColumnIndex].Name == "BOQITEMQTY" 
+                || dgvBoqList.Columns[e.ColumnIndex].Name == "uom")
             {
-                dgvBoqList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.DarkSeaGreen;
-                dgvBoqList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
-                //dgvBoqList.Rows[e.RowIndex].DefaultCellStyle.Font = new Font("Segoe UI", 12, FontStyle.Bold);
+                if (e.Value == null)
+                {
+                    dgvBoqList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.DarkGray;
+                    dgvBoqList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
+                }
             }
         }
         private void txtItemBoqSearch_KeyUp(object sender, KeyEventArgs e)
