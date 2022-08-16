@@ -2,6 +2,7 @@
 using ESProMeter.Extensions;
 using ESProMeter.IViews;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace ESProMeter.Views.Boq
@@ -223,7 +224,29 @@ namespace ESProMeter.Views.Boq
         }
 
 
+        private bool HasChildFormOpen(Form form)
+        {
+            if (MdiChildren.Any(frm => frm.Name == form.Name))
+            {
+                return true;
+            }
+            return false;
+        }
 
+        private void CanOpenForm(Form form)
+        {
+            if (!HasChildFormOpen(form))
+            {
+                form.MdiParent = this;
+                form.StartPosition = FormStartPosition.CenterParent;
+                form.Show();
+            }
+            else
+            {
+                return;
+            }
+
+        }
         public CreateBoQ_Step1_Frm(long cust_id)
         {
             InitializeComponent();
@@ -326,12 +349,8 @@ namespace ESProMeter.Views.Boq
                 if (this.BoqCreate(this, out var id))
                 {
                     CreateBoQ_Step2_Frm form = new CreateBoQ_Step2_Frm(id,Enums.ActionType.CREATE);
-                    form.TopLevel = false;
-                    form.TopMost = true;
-                    form.FormBorderStyle = FormBorderStyle.None;
                     form.WindowState = FormWindowState.Maximized;
-                    form.Dock = DockStyle.Fill;
-                    form.Show();
+                    CanOpenForm(form);
                     this.Close();
                 }
             }
