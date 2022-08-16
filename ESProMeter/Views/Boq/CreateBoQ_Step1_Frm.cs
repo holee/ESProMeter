@@ -237,7 +237,7 @@ namespace ESProMeter.Views.Boq
         {
             if (!HasChildFormOpen(form))
             {
-                form.MdiParent = this;
+                form.MdiParent = MainFrm.ActiveForm;
                 form.StartPosition = FormStartPosition.CenterParent;
                 form.Show();
             }
