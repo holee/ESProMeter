@@ -515,7 +515,7 @@ namespace ESProMeter.Views.Boq
         {
             if (dgvBoqList.Rows.Count <= 0) return;
             if (dgvBoqList.Columns[e.ColumnIndex].Name == "ACTION"
-                && dgvBoqList.Columns[e.ColumnIndex] is DataGridViewButtonColumn)
+                && dgvBoqList.Columns[e.ColumnIndex] is DataGridViewImageColumn)
             {
 
                 if (dgvBoqList.Rows[e.RowIndex].Cells["UOM"].Value != null)
