@@ -143,7 +143,6 @@ namespace ESProMeter.Views.Sites
                     if (this.MakeSiteActiveOrInactive(id, (byte)active))
                     {
 						selectedRow.Cells["IsActive"].Value = active;
-
 						if (active ==0 && chkInlcudeInActive.Checked==false)
 						{
 							siteDataGrid.Rows.RemoveAt(selectedRow.Index);

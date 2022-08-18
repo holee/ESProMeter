@@ -1,11 +1,10 @@
 ﻿using ESProMeter.Controllers;
 using ESProMeter.Enums;
 using ESProMeter.Extensions;
+using Microsoft.Office.Interop.Excel;
 using System;
-using System.Data;
-using System.Reflection;
 using System.Windows.Forms;
-
+using static ESProMeter.Extensions.FormExtension;
 namespace ESProMeter.Views.Items
 {
 
@@ -15,13 +14,11 @@ namespace ESProMeter.Views.Items
         public ItemListFrm()
 		{
 			InitializeComponent();
+            SetDoubleBuffer(dataItemList, true);
             dataItemList.ClearSelection();
-            //dataItemList.AutoGenerateColumns = false;
 			this.cmbPage.SelectedIndex = 0;
             this.cmbFieldName.SelectedIndex = 0;
             this.cbmSortType.SelectedIndex = 0;
-            FormExtension.SetDoubleBuffer(dataItemList, true);
-            
         }
 
 		private void tslNewClick(object sender, EventArgs e)
@@ -30,11 +27,18 @@ namespace ESProMeter.Views.Items
             form.WindowState = FormWindowState.Normal;
             form.StartPosition = FormStartPosition.WindowsDefaultLocation;
             form.ActionStatus = ActionStatus.New;
+            
             if (form.ShowDialog() == DialogResult.OK)
             {
+                if (this.IsItemExist(form.ITEMNAME))
+                {
+                    MessageBox.Show("This Item already exist in database.", "Add New Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
                 if (form.ItemTypes == ItemsType.Item)
                 {
-                    this.ItemCreate(form, ItemsType.Item);
+                        this.ItemCreate(form, ItemsType.Item);
                 }
                 else
                 {
@@ -103,8 +107,16 @@ namespace ESProMeter.Views.Items
                         form.ItemTypes = ItemsType.Boq;
                         if (form.ShowDialog() == DialogResult.OK)
                         {
-                            this.ItemUpdate(form, ItemsType.Boq);
-                            this.ShowItemList(this.dataItemList,1);
+                            if (this.IsItemExist(form.ID,form.ITEMNAME))
+                            {
+                                MessageBox.Show("This Item already exist in database.", "Update Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                return;
+                            }
+                            else
+                            {
+                                this.ItemUpdate(form, ItemsType.Boq);
+                                this.ShowItemList(this.dataItemList, 1);
+                            }
                         }
                     }
                     else

@@ -33,16 +33,17 @@ namespace ESProMeter.Views.Boq
 		private void InitializeComponent()
 		{
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateBoQ_Step2_Frm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.mbtAddSite = new FontAwesome.Sharp.Material.MaterialButton();
             this.mbtAddCustomer = new FontAwesome.Sharp.Material.MaterialButton();
@@ -61,6 +62,26 @@ namespace ESProMeter.Views.Boq
             this.label4 = new System.Windows.Forms.Label();
             this.txtTermsCondition = new System.Windows.Forms.TextBox();
             this.dgvBoqList = new System.Windows.Forms.DataGridView();
+            this.NO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BOQID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BOQITEMID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itemname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BOQITEMDESC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BOQITEMQTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BOQITEMUOMID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.REMARKS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BOQCOST = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LineSeq = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LOSSEFFECENCYRATE1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OPERATIONRATE1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OVERHEADRATE1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SAFETYRATE1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TRANSPORTATIONRATE1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MARGINRATE1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.INFlATIONRATE1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ACTION = new System.Windows.Forms.DataGridViewImageColumn();
+            this.REMOVE = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnSaveAndNew = new FontAwesome.Sharp.Material.MaterialButton();
             this.mbtCancel = new FontAwesome.Sharp.Material.MaterialButton();
             this.btnSaveAndClose = new FontAwesome.Sharp.Material.MaterialButton();
@@ -96,26 +117,6 @@ namespace ESProMeter.Views.Boq
             this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dataGridViewButtonColumn2 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.lblEDSEQ = new System.Windows.Forms.Label();
-            this.NO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BOQID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BOQITEMID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BOQITEMDESC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BOQITEMQTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.uom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BOQITEMUOMID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.REMARKS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BOQCOST = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LineSeq = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LOSSEFFECENCYRATE1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OPERATIONRATE1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OVERHEADRATE1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SAFETYRATE1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TRANSPORTATIONRATE1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MARGINRATE1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.INFlATIONRATE1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ACTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.REMOVE = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBoqList)).BeginInit();
             this.pnlSearch.SuspendLayout();
@@ -348,12 +349,13 @@ namespace ESProMeter.Views.Boq
             this.dgvBoqList.MultiSelect = false;
             this.dgvBoqList.Name = "dgvBoqList";
             this.dgvBoqList.RowHeadersVisible = false;
-            this.dgvBoqList.RowTemplate.Height = 25;
+            this.dgvBoqList.RowTemplate.Height = 32;
             this.dgvBoqList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvBoqList.Size = new System.Drawing.Size(1118, 298);
             this.dgvBoqList.TabIndex = 37;
             this.dgvBoqList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBoqList_CellContentClick);
             this.dgvBoqList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBoqList_CellEndEdit);
+            this.dgvBoqList.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBoqList_CellEnter);
             this.dgvBoqList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvBoqListCellFormatting);
             this.dgvBoqList.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvBoqList_CellMouseDown);
             this.dgvBoqList.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvBoqList_EditingControlShowing);
@@ -363,6 +365,214 @@ namespace ESProMeter.Views.Boq
             this.dgvBoqList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDown);
             this.dgvBoqList.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseMove);
             this.dgvBoqList.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dgvBoqList_MouseUp);
+            // 
+            // NO
+            // 
+            this.NO.DataPropertyName = "NO";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.NO.DefaultCellStyle = dataGridViewCellStyle2;
+            this.NO.FillWeight = 5F;
+            this.NO.HeaderText = "NO";
+            this.NO.Name = "NO";
+            this.NO.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.NO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // BOQID
+            // 
+            this.BOQID.DataPropertyName = "BOQID";
+            this.BOQID.HeaderText = "BOQID";
+            this.BOQID.MinimumWidth = 2;
+            this.BOQID.Name = "BOQID";
+            this.BOQID.ReadOnly = true;
+            this.BOQID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.BOQID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.BOQID.Visible = false;
+            this.BOQID.Width = 50;
+            // 
+            // BOQITEMID
+            // 
+            this.BOQITEMID.DataPropertyName = "BOQITEMID";
+            this.BOQITEMID.HeaderText = "BOQITEMID";
+            this.BOQITEMID.MinimumWidth = 2;
+            this.BOQITEMID.Name = "BOQITEMID";
+            this.BOQITEMID.ReadOnly = true;
+            this.BOQITEMID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.BOQITEMID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.BOQITEMID.Visible = false;
+            this.BOQITEMID.Width = 50;
+            // 
+            // itemname
+            // 
+            this.itemname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.itemname.DataPropertyName = "itemname";
+            this.itemname.FillWeight = 20F;
+            this.itemname.HeaderText = "ITEM NAME";
+            this.itemname.Name = "itemname";
+            this.itemname.ReadOnly = true;
+            this.itemname.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.itemname.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // BOQITEMDESC
+            // 
+            this.BOQITEMDESC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BOQITEMDESC.DataPropertyName = "BOQITEMDESC";
+            this.BOQITEMDESC.FillWeight = 25F;
+            this.BOQITEMDESC.HeaderText = "BOQ ITEMLINE DESCRIPTION";
+            this.BOQITEMDESC.Name = "BOQITEMDESC";
+            this.BOQITEMDESC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // BOQITEMQTY
+            // 
+            this.BOQITEMQTY.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.BOQITEMQTY.DataPropertyName = "BOQITEMQTY";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.BOQITEMQTY.DefaultCellStyle = dataGridViewCellStyle3;
+            this.BOQITEMQTY.FillWeight = 8F;
+            this.BOQITEMQTY.HeaderText = "QUANTITY";
+            this.BOQITEMQTY.Name = "BOQITEMQTY";
+            this.BOQITEMQTY.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.BOQITEMQTY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // uom
+            // 
+            this.uom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.uom.DataPropertyName = "uom";
+            this.uom.FillWeight = 7F;
+            this.uom.HeaderText = "UOM";
+            this.uom.Name = "uom";
+            this.uom.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.uom.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.uom.Width = 60;
+            // 
+            // BOQITEMUOMID
+            // 
+            this.BOQITEMUOMID.DataPropertyName = "UOMID";
+            this.BOQITEMUOMID.HeaderText = "UOMID";
+            this.BOQITEMUOMID.Name = "BOQITEMUOMID";
+            this.BOQITEMUOMID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.BOQITEMUOMID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.BOQITEMUOMID.Visible = false;
+            // 
+            // REMARKS
+            // 
+            this.REMARKS.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.REMARKS.DataPropertyName = "REMARKS";
+            this.REMARKS.FillWeight = 27F;
+            this.REMARKS.HeaderText = "REMARKS";
+            this.REMARKS.Name = "REMARKS";
+            this.REMARKS.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.REMARKS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // BOQCOST
+            // 
+            this.BOQCOST.DataPropertyName = "BOQCOST";
+            this.BOQCOST.HeaderText = "BOQCOST";
+            this.BOQCOST.Name = "BOQCOST";
+            this.BOQCOST.ReadOnly = true;
+            this.BOQCOST.Visible = false;
+            // 
+            // LineSeq
+            // 
+            this.LineSeq.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.LineSeq.DataPropertyName = "LineSeq";
+            this.LineSeq.HeaderText = "ORDER";
+            this.LineSeq.Name = "LineSeq";
+            this.LineSeq.ReadOnly = true;
+            this.LineSeq.Width = 50;
+            // 
+            // LOSSEFFECENCYRATE1
+            // 
+            this.LOSSEFFECENCYRATE1.DataPropertyName = "LOSSOFEFFECIENCYRATE";
+            this.LOSSEFFECENCYRATE1.HeaderText = "LOE";
+            this.LOSSEFFECENCYRATE1.Name = "LOSSEFFECENCYRATE1";
+            this.LOSSEFFECENCYRATE1.ReadOnly = true;
+            this.LOSSEFFECENCYRATE1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.LOSSEFFECENCYRATE1.Visible = false;
+            this.LOSSEFFECENCYRATE1.Width = 50;
+            // 
+            // OPERATIONRATE1
+            // 
+            this.OPERATIONRATE1.DataPropertyName = "OPERATIONRATE";
+            this.OPERATIONRATE1.HeaderText = "OP";
+            this.OPERATIONRATE1.Name = "OPERATIONRATE1";
+            this.OPERATIONRATE1.ReadOnly = true;
+            this.OPERATIONRATE1.Visible = false;
+            this.OPERATIONRATE1.Width = 50;
+            // 
+            // OVERHEADRATE1
+            // 
+            this.OVERHEADRATE1.DataPropertyName = "OVERHEADRATE";
+            this.OVERHEADRATE1.HeaderText = "OVER";
+            this.OVERHEADRATE1.Name = "OVERHEADRATE1";
+            this.OVERHEADRATE1.ReadOnly = true;
+            this.OVERHEADRATE1.Visible = false;
+            this.OVERHEADRATE1.Width = 50;
+            // 
+            // SAFETYRATE1
+            // 
+            this.SAFETYRATE1.DataPropertyName = "SAFETYRATE";
+            this.SAFETYRATE1.HeaderText = "SAFTY";
+            this.SAFETYRATE1.Name = "SAFETYRATE1";
+            this.SAFETYRATE1.ReadOnly = true;
+            this.SAFETYRATE1.Visible = false;
+            this.SAFETYRATE1.Width = 50;
+            // 
+            // TRANSPORTATIONRATE1
+            // 
+            this.TRANSPORTATIONRATE1.DataPropertyName = "TRANSPORTATIONRATE";
+            this.TRANSPORTATIONRATE1.HeaderText = "TRANSPORT";
+            this.TRANSPORTATIONRATE1.Name = "TRANSPORTATIONRATE1";
+            this.TRANSPORTATIONRATE1.ReadOnly = true;
+            this.TRANSPORTATIONRATE1.Visible = false;
+            this.TRANSPORTATIONRATE1.Width = 50;
+            // 
+            // MARGINRATE1
+            // 
+            this.MARGINRATE1.DataPropertyName = "MARGINRATE";
+            this.MARGINRATE1.HeaderText = "MARGIN";
+            this.MARGINRATE1.Name = "MARGINRATE1";
+            this.MARGINRATE1.ReadOnly = true;
+            this.MARGINRATE1.Visible = false;
+            this.MARGINRATE1.Width = 50;
+            // 
+            // INFlATIONRATE1
+            // 
+            this.INFlATIONRATE1.DataPropertyName = "INFlATIONRATE";
+            this.INFlATIONRATE1.HeaderText = "INFLA";
+            this.INFlATIONRATE1.Name = "INFlATIONRATE1";
+            this.INFlATIONRATE1.ReadOnly = true;
+            this.INFlATIONRATE1.Visible = false;
+            this.INFlATIONRATE1.Width = 50;
+            // 
+            // ACTION
+            // 
+            this.ACTION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle4.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle4.NullValue")));
+            this.ACTION.DefaultCellStyle = dataGridViewCellStyle4;
+            this.ACTION.FillWeight = 8F;
+            this.ACTION.HeaderText = "ACTION";
+            this.ACTION.Image = ((System.Drawing.Image)(resources.GetObject("ACTION.Image")));
+            this.ACTION.Name = "ACTION";
+            this.ACTION.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ACTION.Width = 80;
+            // 
+            // REMOVE
+            // 
+            this.REMOVE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Red;
+            this.REMOVE.DefaultCellStyle = dataGridViewCellStyle5;
+            this.REMOVE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.REMOVE.HeaderText = "REMOVE";
+            this.REMOVE.Name = "REMOVE";
+            this.REMOVE.ReadOnly = true;
+            this.REMOVE.Text = "X";
+            this.REMOVE.UseColumnTextForButtonValue = true;
+            this.REMOVE.Width = 80;
             // 
             // btnSaveAndNew
             // 
@@ -376,7 +586,7 @@ namespace ESProMeter.Views.Boq
             this.btnSaveAndNew.IconChar = FontAwesome.Sharp.MaterialIcons.None;
             this.btnSaveAndNew.IconColor = System.Drawing.Color.White;
             this.btnSaveAndNew.IconSize = 1;
-            this.btnSaveAndNew.Location = new System.Drawing.Point(870, 415);
+            this.btnSaveAndNew.Location = new System.Drawing.Point(736, 415);
             this.btnSaveAndNew.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSaveAndNew.Name = "btnSaveAndNew";
             this.btnSaveAndNew.Size = new System.Drawing.Size(126, 30);
@@ -414,7 +624,7 @@ namespace ESProMeter.Views.Boq
             this.btnSaveAndClose.IconChar = FontAwesome.Sharp.MaterialIcons.None;
             this.btnSaveAndClose.IconColor = System.Drawing.Color.White;
             this.btnSaveAndClose.IconSize = 1;
-            this.btnSaveAndClose.Location = new System.Drawing.Point(736, 415);
+            this.btnSaveAndClose.Location = new System.Drawing.Point(870, 415);
             this.btnSaveAndClose.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSaveAndClose.Name = "btnSaveAndClose";
             this.btnSaveAndClose.Size = new System.Drawing.Size(126, 30);
@@ -849,206 +1059,6 @@ namespace ESProMeter.Views.Boq
             this.lblEDSEQ.TabIndex = 43;
             this.lblEDSEQ.Text = "0";
             // 
-            // NO
-            // 
-            this.NO.DataPropertyName = "NO";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.NO.DefaultCellStyle = dataGridViewCellStyle2;
-            this.NO.FillWeight = 5F;
-            this.NO.HeaderText = "NO";
-            this.NO.Name = "NO";
-            this.NO.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.NO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // BOQID
-            // 
-            this.BOQID.DataPropertyName = "BOQID";
-            this.BOQID.HeaderText = "BOQID";
-            this.BOQID.MinimumWidth = 2;
-            this.BOQID.Name = "BOQID";
-            this.BOQID.ReadOnly = true;
-            this.BOQID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.BOQID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.BOQID.Visible = false;
-            this.BOQID.Width = 50;
-            // 
-            // BOQITEMID
-            // 
-            this.BOQITEMID.DataPropertyName = "BOQITEMID";
-            this.BOQITEMID.HeaderText = "BOQITEMID";
-            this.BOQITEMID.MinimumWidth = 2;
-            this.BOQITEMID.Name = "BOQITEMID";
-            this.BOQITEMID.ReadOnly = true;
-            this.BOQITEMID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.BOQITEMID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.BOQITEMID.Visible = false;
-            this.BOQITEMID.Width = 50;
-            // 
-            // itemname
-            // 
-            this.itemname.DataPropertyName = "itemname";
-            this.itemname.FillWeight = 20F;
-            this.itemname.HeaderText = "ITEM NAME";
-            this.itemname.Name = "itemname";
-            this.itemname.ReadOnly = true;
-            this.itemname.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.itemname.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // BOQITEMDESC
-            // 
-            this.BOQITEMDESC.DataPropertyName = "BOQITEMDESC";
-            this.BOQITEMDESC.FillWeight = 25F;
-            this.BOQITEMDESC.HeaderText = "BOQ ITEMLINE DESCRIPTION";
-            this.BOQITEMDESC.Name = "BOQITEMDESC";
-            this.BOQITEMDESC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.BOQITEMDESC.Width = 380;
-            // 
-            // BOQITEMQTY
-            // 
-            this.BOQITEMQTY.DataPropertyName = "BOQITEMQTY";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.BOQITEMQTY.DefaultCellStyle = dataGridViewCellStyle3;
-            this.BOQITEMQTY.FillWeight = 8F;
-            this.BOQITEMQTY.HeaderText = "QUANTITY";
-            this.BOQITEMQTY.Name = "BOQITEMQTY";
-            this.BOQITEMQTY.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.BOQITEMQTY.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.BOQITEMQTY.Width = 60;
-            // 
-            // uom
-            // 
-            this.uom.DataPropertyName = "uom";
-            this.uom.FillWeight = 7F;
-            this.uom.HeaderText = "UOM";
-            this.uom.Name = "uom";
-            this.uom.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.uom.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.uom.Width = 60;
-            // 
-            // BOQITEMUOMID
-            // 
-            this.BOQITEMUOMID.DataPropertyName = "UOMID";
-            this.BOQITEMUOMID.HeaderText = "UOMID";
-            this.BOQITEMUOMID.Name = "BOQITEMUOMID";
-            this.BOQITEMUOMID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.BOQITEMUOMID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.BOQITEMUOMID.Visible = false;
-            // 
-            // REMARKS
-            // 
-            this.REMARKS.DataPropertyName = "REMARKS";
-            this.REMARKS.FillWeight = 27F;
-            this.REMARKS.HeaderText = "REMARKS";
-            this.REMARKS.Name = "REMARKS";
-            this.REMARKS.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.REMARKS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // BOQCOST
-            // 
-            this.BOQCOST.DataPropertyName = "BOQCOST";
-            this.BOQCOST.HeaderText = "BOQCOST";
-            this.BOQCOST.Name = "BOQCOST";
-            this.BOQCOST.ReadOnly = true;
-            // 
-            // LineSeq
-            // 
-            this.LineSeq.DataPropertyName = "LineSeq";
-            this.LineSeq.HeaderText = "ORDER";
-            this.LineSeq.Name = "LineSeq";
-            this.LineSeq.ReadOnly = true;
-            this.LineSeq.Width = 50;
-            // 
-            // LOSSEFFECENCYRATE1
-            // 
-            this.LOSSEFFECENCYRATE1.DataPropertyName = "LOSSOFEFFECIENCYRATE";
-            this.LOSSEFFECENCYRATE1.HeaderText = "LOE";
-            this.LOSSEFFECENCYRATE1.Name = "LOSSEFFECENCYRATE1";
-            this.LOSSEFFECENCYRATE1.ReadOnly = true;
-            this.LOSSEFFECENCYRATE1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.LOSSEFFECENCYRATE1.Visible = false;
-            this.LOSSEFFECENCYRATE1.Width = 50;
-            // 
-            // OPERATIONRATE1
-            // 
-            this.OPERATIONRATE1.DataPropertyName = "OPERATIONRATE";
-            this.OPERATIONRATE1.HeaderText = "OP";
-            this.OPERATIONRATE1.Name = "OPERATIONRATE1";
-            this.OPERATIONRATE1.ReadOnly = true;
-            this.OPERATIONRATE1.Visible = false;
-            this.OPERATIONRATE1.Width = 50;
-            // 
-            // OVERHEADRATE1
-            // 
-            this.OVERHEADRATE1.DataPropertyName = "OVERHEADRATE";
-            this.OVERHEADRATE1.HeaderText = "OVER";
-            this.OVERHEADRATE1.Name = "OVERHEADRATE1";
-            this.OVERHEADRATE1.ReadOnly = true;
-            this.OVERHEADRATE1.Visible = false;
-            this.OVERHEADRATE1.Width = 50;
-            // 
-            // SAFETYRATE1
-            // 
-            this.SAFETYRATE1.DataPropertyName = "SAFETYRATE";
-            this.SAFETYRATE1.HeaderText = "SAFTY";
-            this.SAFETYRATE1.Name = "SAFETYRATE1";
-            this.SAFETYRATE1.ReadOnly = true;
-            this.SAFETYRATE1.Visible = false;
-            this.SAFETYRATE1.Width = 50;
-            // 
-            // TRANSPORTATIONRATE1
-            // 
-            this.TRANSPORTATIONRATE1.DataPropertyName = "TRANSPORTATIONRATE";
-            this.TRANSPORTATIONRATE1.HeaderText = "TRANSPORT";
-            this.TRANSPORTATIONRATE1.Name = "TRANSPORTATIONRATE1";
-            this.TRANSPORTATIONRATE1.ReadOnly = true;
-            this.TRANSPORTATIONRATE1.Visible = false;
-            this.TRANSPORTATIONRATE1.Width = 50;
-            // 
-            // MARGINRATE1
-            // 
-            this.MARGINRATE1.DataPropertyName = "MARGINRATE";
-            this.MARGINRATE1.HeaderText = "MARGIN";
-            this.MARGINRATE1.Name = "MARGINRATE1";
-            this.MARGINRATE1.ReadOnly = true;
-            this.MARGINRATE1.Visible = false;
-            this.MARGINRATE1.Width = 50;
-            // 
-            // INFlATIONRATE1
-            // 
-            this.INFlATIONRATE1.DataPropertyName = "INFlATIONRATE";
-            this.INFlATIONRATE1.HeaderText = "INFLA";
-            this.INFlATIONRATE1.Name = "INFlATIONRATE1";
-            this.INFlATIONRATE1.ReadOnly = true;
-            this.INFlATIONRATE1.Visible = false;
-            this.INFlATIONRATE1.Width = 50;
-            // 
-            // ACTION
-            // 
-            this.ACTION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Red;
-            this.ACTION.DefaultCellStyle = dataGridViewCellStyle4;
-            this.ACTION.FillWeight = 8F;
-            this.ACTION.HeaderText = "ACTION";
-            this.ACTION.Name = "ACTION";
-            this.ACTION.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ACTION.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ACTION.Width = 80;
-            // 
-            // REMOVE
-            // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Red;
-            this.REMOVE.DefaultCellStyle = dataGridViewCellStyle5;
-            this.REMOVE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.REMOVE.HeaderText = "REMOVE";
-            this.REMOVE.Name = "REMOVE";
-            this.REMOVE.ReadOnly = true;
-            this.REMOVE.Text = "X";
-            this.REMOVE.UseColumnTextForButtonValue = true;
-            this.REMOVE.Width = 80;
-            // 
             // CreateBoQ_Step2_Frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1166,7 +1176,7 @@ namespace ESProMeter.Views.Boq
         private DataGridViewTextBoxColumn TRANSPORTATIONRATE1;
         private DataGridViewTextBoxColumn MARGINRATE1;
         private DataGridViewTextBoxColumn INFlATIONRATE1;
-        private DataGridViewTextBoxColumn ACTION;
+        private DataGridViewImageColumn ACTION;
         private DataGridViewButtonColumn REMOVE;
     }
 }

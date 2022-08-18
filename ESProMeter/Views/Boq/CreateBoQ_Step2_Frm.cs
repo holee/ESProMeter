@@ -337,15 +337,9 @@ namespace ESProMeter.Views.Boq
             {
                 if (item.GetValue<string>("ITEMNAME").Equals(string.Empty) || item.GetValue<string>("ITEMNAME").Equals("Section"))
                 {
-                    item.Cells["ACTION"].Value = "Edit";
                     item.DefaultCellStyle.BackColor = Color.Teal;
                     item.DefaultCellStyle.ForeColor = Color.White;
                 }
-                else
-                {
-                    item.Cells["ACTION"].Value = "Details";
-                }
-                
             }
         }
 
@@ -354,9 +348,8 @@ namespace ESProMeter.Views.Boq
             if (dgvBoqList?.SelectedRows.Count > 0)
             {
                 var selectedRow = dgvBoqList.SelectedRows[0];
-
-                if (selectedRow.Cells["itemname"].Value.Equals("Section") ||
-                    selectedRow.Cells["itemname"].Value.Equals(string.Empty))
+                var selectedText = selectedRow.GetText("ITEMNAME");
+                if (selectedText.Equals("Section") || selectedText==string.Empty)
                 {
                     dgvBoqList.Rows[e.RowIndex].Cells["BOQITEMQTY"].ReadOnly = true;
                     dgvBoqList.Rows[e.RowIndex].Cells["UOM"].ReadOnly = true;
@@ -544,12 +537,13 @@ namespace ESProMeter.Views.Boq
         }
         private void dgvBoqList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvBoqList.Rows.Count <= 0) return;
+            if (dgvBoqList.SelectedRows.Count <= 0) return;
             if (dgvBoqList.Columns[e.ColumnIndex].Name == "ACTION"
                 && dgvBoqList.Columns[e.ColumnIndex] is DataGridViewImageColumn)
             {
-
-                if (dgvBoqList.Rows[e.RowIndex].Cells["UOM"].Value != null)
+                var selectedRow = dgvBoqList.SelectedRows[0];
+                var selectedText = selectedRow.GetText("ITEMNAME");
+                if (selectedText != string.Empty)
                 {
                     var additionalCost = new ADDITIONALCOST
                     {

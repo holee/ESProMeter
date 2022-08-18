@@ -106,6 +106,7 @@ namespace ESProMeter.Extensions
                 {
                     if (((TextBox)control).Text.Trim().Length == 0)
                     {
+                        ((TextBox)control).Focus();
                         ErrorList.Add(((TextBox)control).Name,"Please enter required field.");
                         errorCount++;
                     }
@@ -122,6 +123,7 @@ namespace ESProMeter.Extensions
                 {
                     if (((RichTextBox)control).Text.Trim().Length == 0)
                     {
+                        ((RichTextBox)control).Focus();
                         ErrorList.Add(((TextBox)control).Name, "Please enter required field.");
                         errorCount++;
                     }
@@ -216,7 +218,6 @@ namespace ESProMeter.Extensions
                 txt.Rows[rowIndex].Cells[colName].Value = value;
             }
         } 
-       
         public static void SetText(this DataGridView txt, int colIndex, object value)
         {
             if (txt.Rows.Count > 0)
@@ -342,7 +343,12 @@ namespace ESProMeter.Extensions
         }
         public static object GetValue(this DataGridViewRow gRow, string colName)
         {
-            return gRow.Cells[colName].Value??default(object);
+            return gRow.Cells[colName]?.Value??default(object);
+        }
+        public static string GetText(this DataGridViewRow gRow, string colName)
+        {
+            string valueText=gRow.Cells[colName].Value!=null?gRow.Cells[colName].Value.ToString():string.Empty;
+            return valueText;
         }
         public static T GetValue<T>(this DataGridViewRow gRow, string colName) where T:IConvertible
         {
@@ -368,7 +374,6 @@ namespace ESProMeter.Extensions
             }
             return (bool)gRow.Cells[colName].Value;
         }
-        
         public static void UseDataTableAsGridView(this DataTable source, DataGridView grid)
         {
             ((DataTable)grid.DataSource)?.Rows.Clear();

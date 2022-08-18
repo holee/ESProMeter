@@ -90,7 +90,10 @@ namespace ESProMeter.Controllers
         {
             return AppService.GetItemInstance.ItemAlreadyExist(itemName);
         }
-
+        public static bool IsItemExist(this Form form,long itemId, string itemName)
+        {
+            return AppService.GetItemInstance.ItemSame(itemId,itemName);
+        }
         /// <summary>
         /// BOQ Operation
         /// </summary>
