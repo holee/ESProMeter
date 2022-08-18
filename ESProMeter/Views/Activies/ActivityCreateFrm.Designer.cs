@@ -124,6 +124,7 @@
             this.btnSaveAndNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSaveAndNew.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSaveAndNew.UseVisualStyleBackColor = false;
+            this.btnSaveAndNew.Click += new System.EventHandler(this.btnSaveAndNew_Click);
             // 
             // mbtCancel
             // 
@@ -144,6 +145,7 @@
             this.mbtCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.mbtCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.mbtCancel.UseVisualStyleBackColor = false;
+            this.mbtCancel.Click += new System.EventHandler(this.mbtCancel_Click);
             // 
             // lblActionID
             // 

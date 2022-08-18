@@ -145,7 +145,7 @@ namespace ESProMeter.Views.Boq
             this.dtgQuotes.RowHeadersVisible = false;
             this.dtgQuotes.RowTemplate.Height = 25;
             this.dtgQuotes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgQuotes.Size = new System.Drawing.Size(860, 214);
+            this.dtgQuotes.Size = new System.Drawing.Size(875, 194);
             this.dtgQuotes.TabIndex = 0;
             // 
             // tabPage2
@@ -189,6 +189,7 @@ namespace ESProMeter.Views.Boq
             this.toolStripButton6.Name = "toolStripButton6";
             this.toolStripButton6.Size = new System.Drawing.Size(94, 22);
             this.toolStripButton6.Text = "New Activity";
+            this.toolStripButton6.Click += new System.EventHandler(this.tlsActivityAddClick);
             // 
             // toolStripButton7
             // 
@@ -213,8 +214,9 @@ namespace ESProMeter.Views.Boq
             this.dtgActivities.AllowUserToDeleteRows = false;
             this.dtgActivities.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtgActivities.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dtgActivities.BackgroundColor = System.Drawing.Color.White;
-            this.dtgActivities.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgActivities.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dtgActivities.Location = new System.Drawing.Point(0, 2);
             this.dtgActivities.MultiSelect = false;
             this.dtgActivities.Name = "dtgActivities";
@@ -275,6 +277,7 @@ namespace ESProMeter.Views.Boq
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(60, 30);
             this.toolStripButton3.Text = "Delete";
+            this.toolStripButton3.Click += new System.EventHandler(this.tlsDeleteClick);
             // 
             // toolStripButton4
             // 
@@ -450,13 +453,18 @@ namespace ESProMeter.Views.Boq
             this.dtgBOQLine.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtgBOQLine.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgBOQLine.BackgroundColor = System.Drawing.Color.White;
-            this.dtgBOQLine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgBOQLine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dtgBOQLine.Location = new System.Drawing.Point(5, 71);
+            this.dtgBOQLine.MultiSelect = false;
             this.dtgBOQLine.Name = "dtgBOQLine";
+            this.dtgBOQLine.RowHeadersVisible = false;
             this.dtgBOQLine.RowTemplate.Height = 25;
+            this.dtgBOQLine.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dtgBOQLine.Size = new System.Drawing.Size(907, 258);
             this.dtgBOQLine.TabIndex = 3;
+            this.dtgBOQLine.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dtgBOQLine_CellFormatting);
             // 
             // menuStrip5
             // 
@@ -491,64 +499,64 @@ namespace ESProMeter.Views.Boq
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem4.Text = "BOQ";
             // 
             // detailsBOQToolStripMenuItem
             // 
             this.detailsBOQToolStripMenuItem.Name = "detailsBOQToolStripMenuItem";
-            this.detailsBOQToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.detailsBOQToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.detailsBOQToolStripMenuItem.Text = "Details BOQ";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // ecoMaterialToolStripMenuItem1
             // 
             this.ecoMaterialToolStripMenuItem1.Name = "ecoMaterialToolStripMenuItem1";
-            this.ecoMaterialToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.ecoMaterialToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.ecoMaterialToolStripMenuItem1.Text = "Eco Material";
             // 
             // ecoLabourToolStripMenuItem1
             // 
             this.ecoLabourToolStripMenuItem1.Name = "ecoLabourToolStripMenuItem1";
-            this.ecoLabourToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.ecoLabourToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.ecoLabourToolStripMenuItem1.Text = "Eco Labour";
             // 
             // ecoMachineryToolStripMenuItem
             // 
             this.ecoMachineryToolStripMenuItem.Name = "ecoMachineryToolStripMenuItem";
-            this.ecoMachineryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ecoMachineryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ecoMachineryToolStripMenuItem.Text = "Eco Machinery";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(149, 6);
             // 
             // projectCostToolStripMenuItem1
             // 
             this.projectCostToolStripMenuItem1.Name = "projectCostToolStripMenuItem1";
-            this.projectCostToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.projectCostToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.projectCostToolStripMenuItem1.Text = "Project Cost";
             // 
             // economicToolStripMenuItem1
             // 
             this.economicToolStripMenuItem1.Name = "economicToolStripMenuItem1";
-            this.economicToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.economicToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.economicToolStripMenuItem1.Text = "Economic";
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(149, 6);
             // 
             // finalQuoteToolStripMenuItem
             // 
             this.finalQuoteToolStripMenuItem.Name = "finalQuoteToolStripMenuItem";
-            this.finalQuoteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.finalQuoteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.finalQuoteToolStripMenuItem.Text = "Final Quote";
             // 
             // exportToExcelToolStripMenuItem

@@ -11,11 +11,16 @@ namespace ESProMeter.Views.Activies
         {
             InitializeComponent();
         }
-
+        public ActivityCreateFrm(long boq_id)
+        {
+            InitializeComponent();
+            this.BOQID = boq_id;
+        }
         #region private fields
 
         private DateTime _createdAt=DateTime.UtcNow;
         private DateTime _updatedAt=DateTime.UtcNow;
+        private int _status=0;
 
         #endregion
         #region properties
@@ -40,8 +45,8 @@ namespace ESProMeter.Views.Activies
             set => txtDescription.SetText(value);
                 }
         public int STATUS { 
-            get => throw new NotImplementedException(); 
-            set => throw new NotImplementedException(); }
+            get => _status; 
+            set => _status=value; }
         public byte ISACTIVE { 
             get => chkInActive.Checked?(byte)0:(byte)1; 
             set => chkInActive.Checked= value == 1 ?false:true; 
@@ -55,5 +60,22 @@ namespace ESProMeter.Views.Activies
             set => _updatedAt=value; 
         }
         #endregion
+
+        private void btnSaveAndNew_Click(object sender, EventArgs e)
+        {
+            if (this.IsValid(txtActionName))
+            {
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                this.DialogResult = DialogResult.None;
+            }
+        }
+
+        private void mbtCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

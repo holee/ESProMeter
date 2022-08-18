@@ -10,6 +10,30 @@ namespace ESProMeter.Extensions
 {
     public static class FormExtension
     {
+
+        private static bool HasChildFormOpen(Form form,Form mainFrm)
+        {
+            if (mainFrm.MdiChildren.Any(frm => frm.Name == form.Name))
+            {
+                return true;
+            }
+            return false;
+        }
+        public static void OpenChildForm(this Form form,Form child,Form mainFrm)
+        { 
+            if (!HasChildFormOpen(child, mainFrm))
+            {
+                child.MdiParent = mainFrm;
+                child.StartPosition = FormStartPosition.CenterParent;
+                child.Show();
+            }
+            else
+            {
+                return;
+            }
+
+        }
+
         public static void SetDoubleBuffer(Control dtg, bool DoubleBuffered)
         {
             typeof(Control).InvokeMember("DoubleBuffered",
@@ -347,15 +371,13 @@ namespace ESProMeter.Extensions
         
         public static void UseDataTableAsGridView(this DataTable source, DataGridView grid)
         {
+            ((DataTable)grid.DataSource)?.Rows.Clear();
             if (source != null)
             {
                 if (source.Rows.Count > 0)
                 {
-                    if (grid.Rows.Count > 0)
-                    {
-                        ((DataTable)grid.DataSource).Rows.Clear();
-                    }
                     grid.DataSource = source;
+                    //grid.DataMember
                 }
             }
            

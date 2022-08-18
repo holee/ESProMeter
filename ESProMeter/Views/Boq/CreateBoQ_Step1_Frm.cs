@@ -222,8 +222,6 @@ namespace ESProMeter.Views.Boq
                 }
             };
         }
-
-
         private bool HasChildFormOpen(Form form)
         {
             if (MdiChildren.Any(frm => frm.Name == form.Name))
@@ -232,7 +230,6 @@ namespace ESProMeter.Views.Boq
             }
             return false;
         }
-
         private void CanOpenForm(Form form)
         {
             if (!HasChildFormOpen(form))

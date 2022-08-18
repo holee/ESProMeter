@@ -66,7 +66,6 @@ namespace ESProMeter.Repository
             return id > 0;
 
         }
-
         public bool BoqUpdate(ITBOQ boq)
         {
             var id = AppService.SqlGetInstance
@@ -94,7 +93,17 @@ namespace ESProMeter.Repository
             return id > 0;
 
         }
+        public bool BoqDelete(long boq_id)
+        {
+            var id = AppService.SqlGetInstance
+                        .UseProcedure("[TBOQ_sp_DELETE]")
+                            .Delete<dynamic>(new
+                            {
+                                @BOQID=boq_id
+                            });
+            return id > 0;
 
+        }
         /// <summary>
         /// GET BY BOQ
         /// </summary>

@@ -154,31 +154,17 @@ namespace ESProMeter.Repository
         /// </summary>
         /// <param name="isActive"></param>
         /// <param name="status"></param>
-        /// <param name="tblBoq"></param>
+        /// <param name="boqLines"></param>
         /// <returns></returns>
 
-        public void GetBoqListInfoByBoqId(long boqId,
-            out DataTable tblBoq, out DataTable tblQuote, out DataTable tblActivity)
+        public void GetBoqListInfoByBoqId(long boqId,out DataTable boqLines)
         {
             AppService.SqlGetInstance
                 .UseProcedure("BOQLine_Sp_SELECT")
                 .SelectAsTable(new 
                 {
                     BOQID = boqId
-                }, out tblBoq);
-            DataUtility.GetInstance
-                .UseProcedure("QUOTE_sp_SELECT")
-                .SelectAsTable(new
-                {
-                    BOQID = boqId
-                }, out tblQuote);
-            DataUtility.GetInstance
-                .UseProcedure("ACTIVITY_sp_SELECT_BOQID")
-                .SelectAsTable(new
-                {
-                    BOQID = boqId
-                }, out tblActivity);
-
+                }, out boqLines);
         }
 
        

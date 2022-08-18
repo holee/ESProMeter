@@ -27,6 +27,8 @@ namespace ESProMeter.Views.Items
 		private void tslNewClick(object sender, EventArgs e)
 		{
             AddItemFrm form = new AddItemFrm();
+            form.WindowState = FormWindowState.Normal;
+            form.StartPosition = FormStartPosition.WindowsDefaultLocation;
             form.ActionStatus = ActionStatus.New;
             if (form.ShowDialog() == DialogResult.OK)
             {

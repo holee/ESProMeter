@@ -124,13 +124,13 @@ namespace ESProMeter.Views.Sites
             // checkInactive
             // 
             this.checkInactive.AutoSize = true;
-            this.checkInactive.Location = new System.Drawing.Point(545, 25);
+            this.checkInactive.Location = new System.Drawing.Point(335, 27);
             this.checkInactive.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.checkInactive.Name = "checkInactive";
             this.checkInactive.Size = new System.Drawing.Size(100, 19);
             this.checkInactive.TabIndex = 6;
             this.checkInactive.Text = "Site is inactive";
-            this.checkInactive.UseVisualStyleBackColor = true;
+            this.checkInactive.UseVisualStyleBackColor = false;
             // 
             // textDescription
             // 
@@ -231,10 +231,11 @@ namespace ESProMeter.Views.Sites
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox2.Size = new System.Drawing.Size(518, 189);
+            this.groupBox2.Size = new System.Drawing.Size(656, 189);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "ADDRESS INFORMATION";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // longAddrRefId
             // 
@@ -248,25 +249,25 @@ namespace ESProMeter.Views.Sites
             // 
             // textCountry
             // 
-            this.textCountry.Location = new System.Drawing.Point(148, 159);
+            this.textCountry.Location = new System.Drawing.Point(102, 159);
             this.textCountry.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textCountry.Name = "textCountry";
-            this.textCountry.Size = new System.Drawing.Size(361, 23);
+            this.textCountry.Size = new System.Drawing.Size(543, 23);
             this.textCountry.TabIndex = 5;
             // 
             // textCity
             // 
-            this.textCity.Location = new System.Drawing.Point(148, 126);
+            this.textCity.Location = new System.Drawing.Point(102, 126);
             this.textCity.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textCity.Name = "textCity";
-            this.textCity.Size = new System.Drawing.Size(361, 23);
+            this.textCity.Size = new System.Drawing.Size(543, 23);
             this.textCity.TabIndex = 4;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(79, 162);
+            this.label3.Location = new System.Drawing.Point(33, 162);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 15);
@@ -277,7 +278,7 @@ namespace ESProMeter.Views.Sites
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(48, 129);
+            this.label2.Location = new System.Drawing.Point(2, 129);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(92, 15);
@@ -286,18 +287,18 @@ namespace ESProMeter.Views.Sites
             // 
             // textAddress
             // 
-            this.textAddress.Location = new System.Drawing.Point(148, 29);
+            this.textAddress.Location = new System.Drawing.Point(102, 29);
             this.textAddress.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textAddress.Multiline = true;
             this.textAddress.Name = "textAddress";
-            this.textAddress.Size = new System.Drawing.Size(361, 84);
+            this.textAddress.Size = new System.Drawing.Size(543, 84);
             this.textAddress.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(84, 29);
+            this.label1.Location = new System.Drawing.Point(38, 29);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 15);
@@ -308,18 +309,17 @@ namespace ESProMeter.Views.Sites
             // 
             this.materialButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialButton2.ForeColor = System.Drawing.Color.White;
-            this.materialButton2.IconChar = FontAwesome.Sharp.MaterialIcons.CloseCircle;
+            this.materialButton2.IconChar = FontAwesome.Sharp.MaterialIcons.Close;
             this.materialButton2.IconColor = System.Drawing.Color.White;
             this.materialButton2.IconSize = 32;
             this.materialButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.materialButton2.Location = new System.Drawing.Point(544, 410);
+            this.materialButton2.Location = new System.Drawing.Point(589, 410);
             this.materialButton2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.materialButton2.Name = "materialButton2";
-            this.materialButton2.Size = new System.Drawing.Size(126, 33);
+            this.materialButton2.Size = new System.Drawing.Size(70, 33);
             this.materialButton2.TabIndex = 8;
             this.materialButton2.Text = "Close";
             this.materialButton2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.materialButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.materialButton2.UseVisualStyleBackColor = false;
             this.materialButton2.Click += new System.EventHandler(this.btnCloseClick);
             // 
@@ -328,18 +328,17 @@ namespace ESProMeter.Views.Sites
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(70)))), ((int)(((byte)(118)))));
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.IconChar = FontAwesome.Sharp.MaterialIcons.PenPlus;
+            this.btnSave.IconChar = FontAwesome.Sharp.MaterialIcons.Floppy;
             this.btnSave.IconColor = System.Drawing.Color.White;
             this.btnSave.IconSize = 27;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(410, 410);
+            this.btnSave.Location = new System.Drawing.Point(509, 410);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(126, 33);
+            this.btnSave.Size = new System.Drawing.Size(72, 33);
             this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 

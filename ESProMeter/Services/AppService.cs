@@ -182,5 +182,31 @@ namespace ESProMeter.Services
                 return boqRepository;
             }
         }
+
+        private static ActivityRepository activityRepository;
+        public static ActivityRepository GetActivityInstance
+        {
+            get
+            {
+                if (activityRepository == null)
+                {
+                    activityRepository = new ActivityRepository();
+                }
+                return activityRepository;
+            }
+        }
+
+        private static QuoteRepository quoteRepository;
+        public static QuoteRepository GetQuoteInstance
+        {
+            get
+            {
+                if (quoteRepository == null)
+                {
+                    quoteRepository = new QuoteRepository();
+                }
+                return quoteRepository;
+            }
+        }
     }
 }

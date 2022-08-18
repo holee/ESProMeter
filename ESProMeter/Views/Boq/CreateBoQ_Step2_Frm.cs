@@ -3,10 +3,9 @@ using ESProMeter.Extensions;
 using ESProMeter.IViews;
 using ESProMeter.Models;
 using System;
-using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-
+using static ESProMeter.Extensions.FormExtension;
 namespace ESProMeter.Views.Boq
 {
     public partial class CreateBoQ_Step2_Frm : Form, ITBOQ
@@ -220,9 +219,10 @@ namespace ESProMeter.Views.Boq
         public CreateBoQ_Step2_Frm(long id,Enums.ActionType type)
         {
             InitializeComponent();
+            SetDoubleBuffer(dgvBoqList, true);
             this.FillCustomerCmb(cboCustomerName);
-            this.FillSitesCmb(cboSite);
             this.BoqGetById(id, this);
+            this.FillSitesCmbByCustomer(this.CUSTOMERID, cboSite);
             switch (type)
             {
                 case Enums.ActionType.EDIT:
@@ -253,7 +253,6 @@ namespace ESProMeter.Views.Boq
                     }
                 }
             };
-
             switch (type)
             {
                 case Enums.ActionType.CREATE:
@@ -275,6 +274,9 @@ namespace ESProMeter.Views.Boq
                 default:
                     break;
             }
+        
+        
+        
         }
         /// <summary>
         /// Key Press event
@@ -315,18 +317,7 @@ namespace ESProMeter.Views.Boq
             txtTermsCondition.Height = 127;
             txtTermsCondition.Top = this.Height - 153;
         }
-        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (dgvBoqList.Columns[e.ColumnIndex].Name == "BOQITEMQTY" 
-                || dgvBoqList.Columns[e.ColumnIndex].Name == "uom")
-            {
-                if (e.Value == null)
-                {
-                    dgvBoqList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.DarkGray;
-                    dgvBoqList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
-                }
-            }
-        }
+    
         private void txtItemBoqSearch_KeyUp(object sender, KeyEventArgs e)
         {
             var searchText = ((TextBox)sender).Text.Trim();
@@ -339,6 +330,40 @@ namespace ESProMeter.Views.Boq
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// 
+        private void dgvBoqListCellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            foreach (DataGridViewRow item in dgvBoqList.Rows)
+            {
+                if (item.GetValue<string>("ITEMNAME").Equals(string.Empty) || item.GetValue<string>("ITEMNAME").Equals("Section"))
+                {
+                    item.Cells["ACTION"].Value = "Edit";
+                    item.DefaultCellStyle.BackColor = Color.Teal;
+                    item.DefaultCellStyle.ForeColor = Color.White;
+                }
+                else
+                {
+                    item.Cells["ACTION"].Value = "Details";
+                }
+                
+            }
+        }
+
+        private void dgvBoqList_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvBoqList?.SelectedRows.Count > 0)
+            {
+                var selectedRow = dgvBoqList.SelectedRows[0];
+
+                if (selectedRow.Cells["itemname"].Value.Equals("Section") ||
+                    selectedRow.Cells["itemname"].Value.Equals(string.Empty))
+                {
+                    dgvBoqList.Rows[e.RowIndex].Cells["BOQITEMQTY"].ReadOnly = true;
+                    dgvBoqList.Rows[e.RowIndex].Cells["UOM"].ReadOnly = true;
+                }
+            }
+
+        }
         private void dgvItem_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvItem.SelectedRows.Count > 0)
@@ -359,10 +384,11 @@ namespace ESProMeter.Views.Boq
                 }
                 else
                 {
-                    var index = dgvBoqList.SelectedRows[0].Index;
+                    var index = dgvBoqList.SelectedRows[0].Index+1;
                     dgvBoqList.Rows.Insert(index, null, _boqId, _id, _itemName, _description, Utility.NumberString(1, "N2"), _uom, _uomId, 
                         null, _boqcost,0, this.LOSSOFEFFECIENCYRATE, this.OPERATIONRATE,
                            this.OVERHEADRATE, this.SAFETYRATE, this.TRANSPORTATIONRATE, this.MARGINRATE, this.INFlATIONRATE);
+                    dgvBoqList.Rows[index].Selected = true;
                 }
             }
             if (toggle)
@@ -372,7 +398,7 @@ namespace ESProMeter.Views.Boq
                 toggle = false;
                 materialButton3.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronUpBox;
             }
-            dgvBoqList.ClearSelection();
+            //dgvBoqList.ClearSelection();
         }
         private void dataGridView1_MouseMove(object sender, MouseEventArgs e)
         {
@@ -503,13 +529,18 @@ namespace ESProMeter.Views.Boq
         }
         private void dgvBoqList_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-
             for (int i = 0; i < dgvBoqList.RowCount; i++)
             {
-
                 dgvBoqList.SetText(i, "LineSeq", i + 1);
             }
 
+        }
+        private void dgvBoqList_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            for (int i = 0; i < dgvBoqList.RowCount; i++)
+            {
+                dgvBoqList.SetText(i, "LineSeq", i + 1);
+            }
         }
         private void dgvBoqList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -608,13 +639,6 @@ namespace ESProMeter.Views.Boq
                 this.cboCustomerName.SelectedValue = id;
             }
         }
-        private void BoqCreate(object sender, EventArgs e) 
-        {
-            //this.BoqLineCreate(dgvBoqList);
-            //this.BoqUpdate(this);
-            //this.ClearForm();
-            //this.Close();
-        }
 
         private void BoqCreateOrUpdateThenClose(object sender, EventArgs e,Enums.ActionType type)
         {
@@ -670,6 +694,7 @@ namespace ESProMeter.Views.Boq
             this.Close();
         }
 
+        int sectionIndex = 1;
         private void btnAddSection_Click(object sender, EventArgs e)
         {
             if (toggle)
@@ -685,12 +710,14 @@ namespace ESProMeter.Views.Boq
             {
                 if (dgvBoqList.SelectedRows.Count == 0)
                 {
-                    dgvBoqList.Rows.Add(null, _boqId, 1, null, form.SectionText);
+                    dgvBoqList.Rows.Add(sectionIndex, _boqId, sectionIndex, "Section", form.SectionText);
+                    sectionIndex++;
                 }
                 else
                 {
                     var index = dgvBoqList.SelectedRows[0].Index;
-                    dgvBoqList.Rows.Insert(index + 1, null, _boqId, index, null, form.SectionText);
+                    dgvBoqList.Rows.Insert(index + 1, sectionIndex, _boqId, sectionIndex, "Section", form.SectionText);
+                    sectionIndex++;
                 }
 
                 dgvBoqList.ClearSelection();
@@ -702,7 +729,7 @@ namespace ESProMeter.Views.Boq
 
         }
 
-       
+        
     }
 }
 

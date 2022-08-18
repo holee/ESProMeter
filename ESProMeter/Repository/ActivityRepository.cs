@@ -1,7 +1,9 @@
 ﻿using ESProMeter.IVews;
+using ESProMeter.Models;
 using ESProMeter.Services;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,6 +53,20 @@ namespace ESProMeter.Repository
                                         model.ID,
                                     }) > 0;
         }
+
+
+        public void ActivityGetByBoqID(long boqId,out DataTable table)
+        {
+            AppService.SqlGetInstance
+                            .UseProcedure("ACTIVITY_sp_SELECT_BOQID")
+                                .SelectAsTable(new
+                                    {
+                                        BOQID = boqId
+                                }, out table);
+        }
+
+
+
 
     }
 }

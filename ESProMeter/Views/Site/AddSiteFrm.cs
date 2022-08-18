@@ -80,7 +80,7 @@ namespace ESProMeter.Views.Sites
 		{
 			InitializeComponent();
             btnSave.Text = "Save";
-            this.checkInactive.Enabled = false;
+            //this.checkInactive.Enabled = false;
             this.FillCustomerCmb();
            
         }
@@ -188,6 +188,11 @@ namespace ESProMeter.Views.Sites
         private void cmbCustomerID_MouseLeave(object sender, EventArgs e)
         {
             
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

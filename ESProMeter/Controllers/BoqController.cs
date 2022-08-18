@@ -26,6 +26,10 @@ namespace ESProMeter.Controllers
         {
             return AppService.GetBoqInstance.BoqUpdate(data);
         }
+        public static bool BoqDelete(this Form form,long boq_id)
+        {
+            return AppService.GetBoqInstance.BoqDelete(boq_id);
+        }
         public static bool BoqUpdate(this Form form, ITBOQ data)
         {
             return AppService.GetBoqInstance.BoqUpdate(data);

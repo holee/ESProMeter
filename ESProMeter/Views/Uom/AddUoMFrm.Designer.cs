@@ -89,14 +89,14 @@ namespace ESProMeter.Views.UnitOfMeasures
             // 
             this.mbtCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.mbtCancel.ForeColor = System.Drawing.Color.White;
-            this.mbtCancel.IconChar = FontAwesome.Sharp.MaterialIcons.CloseCircle;
+            this.mbtCancel.IconChar = FontAwesome.Sharp.MaterialIcons.Close;
             this.mbtCancel.IconColor = System.Drawing.Color.White;
-            this.mbtCancel.IconSize = 32;
+            this.mbtCancel.IconSize = 22;
             this.mbtCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mbtCancel.Location = new System.Drawing.Point(390, 114);
+            this.mbtCancel.Location = new System.Drawing.Point(399, 120);
             this.mbtCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.mbtCancel.Name = "mbtCancel";
-            this.mbtCancel.Size = new System.Drawing.Size(99, 42);
+            this.mbtCancel.Size = new System.Drawing.Size(76, 37);
             this.mbtCancel.TabIndex = 5;
             this.mbtCancel.Text = "Cancel";
             this.mbtCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -109,18 +109,17 @@ namespace ESProMeter.Views.UnitOfMeasures
             this.mbtSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(70)))), ((int)(((byte)(118)))));
             this.mbtSave.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.mbtSave.ForeColor = System.Drawing.Color.White;
-            this.mbtSave.IconChar = FontAwesome.Sharp.MaterialIcons.PenPlus;
+            this.mbtSave.IconChar = FontAwesome.Sharp.MaterialIcons.Floppy;
             this.mbtSave.IconColor = System.Drawing.Color.White;
-            this.mbtSave.IconSize = 27;
+            this.mbtSave.IconSize = 22;
             this.mbtSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.mbtSave.Location = new System.Drawing.Point(274, 113);
+            this.mbtSave.Location = new System.Drawing.Point(311, 119);
             this.mbtSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.mbtSave.Name = "mbtSave";
-            this.mbtSave.Size = new System.Drawing.Size(108, 42);
+            this.mbtSave.Size = new System.Drawing.Size(80, 37);
             this.mbtSave.TabIndex = 4;
             this.mbtSave.Text = "Save";
             this.mbtSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.mbtSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.mbtSave.UseVisualStyleBackColor = false;
             this.mbtSave.Click += new System.EventHandler(this.mbtSave_Click);
             // 
@@ -214,7 +213,7 @@ namespace ESProMeter.Views.UnitOfMeasures
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(503, 160);
+            this.ClientSize = new System.Drawing.Size(493, 160);
             this.Controls.Add(this.lblEditSequense);
             this.Controls.Add(this.lblUomID);
             this.Controls.Add(this.label5);

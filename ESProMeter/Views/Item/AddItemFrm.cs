@@ -152,7 +152,7 @@ namespace ESProMeter.Views.Items
 
             }else if (tabControl1.SelectedIndex == 1)
             {
-                this.SearchByItemType(searchText, "Machinary");
+                this.SearchByItemType(searchText, "Machinery");
             }
             else if (tabControl1.SelectedIndex == 2)
             {
@@ -177,8 +177,8 @@ namespace ESProMeter.Views.Items
             this.Controls.RemoveByKey(groupBoq.Name);
             this.Height = 300;
             this.textCost.Enabled = true;
-            this.btnSave.Location = new Point(460, 220);
-            this.materialButton2.Location = new Point(585, 220);
+            this.btnSave.Location = new Point(479, 224);
+            this.materialButton2.Location = new Point(559, 224);
         }
         private void ShowBoqForm()
         {
@@ -186,8 +186,8 @@ namespace ESProMeter.Views.Items
             this.Controls.Add(this.groupBoq);
             this.Height = 594;
             this.textCost.Enabled = false;
-            this.btnSave.Location = new Point(460, 498);
-            this.materialButton2.Location = new Point(585, 498);
+            this.btnSave.Location = new Point(475, 511);
+            this.materialButton2.Location = new Point(555, 511);
         }
         private void AddItemFrm_Load(object sender, EventArgs e)
         {
@@ -278,8 +278,9 @@ namespace ESProMeter.Views.Items
             {
                 pnlSearch.BackColor = Color.Transparent;
                 pnlSearch.BorderStyle = BorderStyle.None;
+                //pnlSearch.PointToClient
                 pnlSearch.Height = 200;
-                pnlSearch.Location = new Point(btndropDown.Location.X + btndropDown.Width - pnlSearch.Width, btndropDown.Location.Y + btndropDown.Height);
+                pnlSearch.PointToClient(new Point(btndropDown.Location.X + btndropDown.Width - pnlSearch.Width, btndropDown.Location.Y + 100));
                 pnlSearch.BringToFront();
                 pnlSearch.Show();
                 toggle = true;
@@ -291,7 +292,7 @@ namespace ESProMeter.Views.Items
                 }
                 else if (tabControl1.SelectedIndex == 1)
                 {
-                    this.GetItemsWithoutBoq(dgvItem,"Machinery", "ID", "ItemName", "ItemType", "Uom", "UomID", "Cost");
+                    this.GetItemsWithoutBoq(dgvItem, "Machinery", "ID", "ItemName", "ItemType", "Uom", "UomID", "Cost");
                 }
                 else if (tabControl1.SelectedIndex == 2)
                 {
@@ -317,6 +318,7 @@ namespace ESProMeter.Views.Items
                 textBox1.Text = "";
                 toggle = false;
                 btndropDown.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronUpBox;
+                this.tabControl1.Enabled = true;
             }
         }
         private void btnUomCreate_Click(object sender, EventArgs e)
@@ -388,6 +390,7 @@ namespace ESProMeter.Views.Items
                             Utility.NumberString(1, "N2"), sesquence);
                     dgvMaterial.DataSource = materialTable;
                 }
+                tabControl1.Enabled = true;
                 sesquence++;
             }
             //------------------------------------
@@ -396,6 +399,7 @@ namespace ESProMeter.Views.Items
             pnlSearch.SendToBack();
             textBox1.Text = "";
             btndropDown.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronUpBox;
+            
         }
         private void dgvMaterial_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -496,7 +500,7 @@ namespace ESProMeter.Views.Items
 
         private void btndropDown_Click(object sender, EventArgs e)
         {
-
+            this.tabControl1.Enabled = false;
         }
     }
 }
