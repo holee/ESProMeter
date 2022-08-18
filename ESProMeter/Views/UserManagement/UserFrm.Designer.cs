@@ -33,6 +33,9 @@ namespace ESProMeter.Views.UserManagement
 			this.mbtClose = new FontAwesome.Sharp.Material.MaterialButton();
 			this.mbtHelp = new FontAwesome.Sharp.Material.MaterialButton();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.chkIsInActive = new System.Windows.Forms.CheckBox();
+			this.lblEditSequense = new System.Windows.Forms.Label();
+			this.lblID = new System.Windows.Forms.Label();
 			this.txtConfirm = new System.Windows.Forms.TextBox();
 			this.txtPassword = new System.Windows.Forms.TextBox();
 			this.txtUserName = new System.Windows.Forms.TextBox();
@@ -76,6 +79,7 @@ namespace ESProMeter.Views.UserManagement
 			this.mbtSave.TabIndex = 10;
 			this.mbtSave.Text = "Save";
 			this.mbtSave.UseVisualStyleBackColor = false;
+			this.mbtSave.Click += new System.EventHandler(this.mbtSave_Click);
 			// 
 			// mbtClose
 			// 
@@ -113,6 +117,9 @@ namespace ESProMeter.Views.UserManagement
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.chkIsInActive);
+			this.groupBox1.Controls.Add(this.lblEditSequense);
+			this.groupBox1.Controls.Add(this.lblID);
 			this.groupBox1.Controls.Add(this.txtConfirm);
 			this.groupBox1.Controls.Add(this.txtPassword);
 			this.groupBox1.Controls.Add(this.txtUserName);
@@ -130,6 +137,36 @@ namespace ESProMeter.Views.UserManagement
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "USER INFORMATION";
 			// 
+			// chkIsInActive
+			// 
+			this.chkIsInActive.AutoSize = true;
+			this.chkIsInActive.Location = new System.Drawing.Point(443, 33);
+			this.chkIsInActive.Name = "chkIsInActive";
+			this.chkIsInActive.Size = new System.Drawing.Size(104, 19);
+			this.chkIsInActive.TabIndex = 7;
+			this.chkIsInActive.Text = "User is inactive";
+			this.chkIsInActive.UseVisualStyleBackColor = true;
+			// 
+			// lblEditSequense
+			// 
+			this.lblEditSequense.AutoSize = true;
+			this.lblEditSequense.Location = new System.Drawing.Point(443, 94);
+			this.lblEditSequense.Name = "lblEditSequense";
+			this.lblEditSequense.Size = new System.Drawing.Size(13, 15);
+			this.lblEditSequense.TabIndex = 6;
+			this.lblEditSequense.Text = "0";
+			this.lblEditSequense.Visible = false;
+			// 
+			// lblID
+			// 
+			this.lblID.AutoSize = true;
+			this.lblID.Location = new System.Drawing.Point(408, 94);
+			this.lblID.Name = "lblID";
+			this.lblID.Size = new System.Drawing.Size(13, 15);
+			this.lblID.TabIndex = 6;
+			this.lblID.Text = "0";
+			this.lblID.Visible = false;
+			// 
 			// txtConfirm
 			// 
 			this.txtConfirm.Location = new System.Drawing.Point(122, 94);
@@ -137,6 +174,7 @@ namespace ESProMeter.Views.UserManagement
 			this.txtConfirm.PasswordChar = '*';
 			this.txtConfirm.Size = new System.Drawing.Size(280, 23);
 			this.txtConfirm.TabIndex = 2;
+			this.txtConfirm.TextChanged += new System.EventHandler(this.txtConfirm_TextChanged);
 			// 
 			// txtPassword
 			// 
@@ -162,7 +200,7 @@ namespace ESProMeter.Views.UserManagement
 			this.mbtAddNewEmployee.IconChar = FontAwesome.Sharp.MaterialIcons.None;
 			this.mbtAddNewEmployee.IconColor = System.Drawing.Color.White;
 			this.mbtAddNewEmployee.IconSize = 1;
-			this.mbtAddNewEmployee.Location = new System.Drawing.Point(596, 58);
+			this.mbtAddNewEmployee.Location = new System.Drawing.Point(597, 94);
 			this.mbtAddNewEmployee.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.mbtAddNewEmployee.Name = "mbtAddNewEmployee";
 			this.mbtAddNewEmployee.Size = new System.Drawing.Size(119, 23);
@@ -179,7 +217,7 @@ namespace ESProMeter.Views.UserManagement
 			this.mbtViewDetails.IconChar = FontAwesome.Sharp.MaterialIcons.None;
 			this.mbtViewDetails.IconColor = System.Drawing.Color.White;
 			this.mbtViewDetails.IconSize = 1;
-			this.mbtViewDetails.Location = new System.Drawing.Point(723, 58);
+			this.mbtViewDetails.Location = new System.Drawing.Point(724, 94);
 			this.mbtViewDetails.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.mbtViewDetails.Name = "mbtViewDetails";
 			this.mbtViewDetails.Size = new System.Drawing.Size(119, 23);
@@ -192,7 +230,7 @@ namespace ESProMeter.Views.UserManagement
 			this.cboEmployeeName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cboEmployeeName.Enabled = false;
 			this.cboEmployeeName.FormattingEnabled = true;
-			this.cboEmployeeName.Location = new System.Drawing.Point(562, 29);
+			this.cboEmployeeName.Location = new System.Drawing.Point(563, 65);
 			this.cboEmployeeName.Name = "cboEmployeeName";
 			this.cboEmployeeName.Size = new System.Drawing.Size(280, 23);
 			this.cboEmployeeName.TabIndex = 3;
@@ -219,7 +257,7 @@ namespace ESProMeter.Views.UserManagement
 			// 
 			this.label4.AutoSize = true;
 			this.label4.Enabled = false;
-			this.label4.Location = new System.Drawing.Point(442, 32);
+			this.label4.Location = new System.Drawing.Point(443, 68);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(114, 15);
 			this.label4.TabIndex = 0;
@@ -406,5 +444,8 @@ namespace ESProMeter.Views.UserManagement
 		private FontAwesome.Sharp.Material.MaterialButton mbtRemoveRole;
 		private System.Windows.Forms.DataGridViewTextBoxColumn assignedroleid;
 		private System.Windows.Forms.DataGridViewTextBoxColumn assignedrole;
+		private System.Windows.Forms.Label lblID;
+		private System.Windows.Forms.Label lblEditSequense;
+		private System.Windows.Forms.CheckBox chkIsInActive;
 	}
 }

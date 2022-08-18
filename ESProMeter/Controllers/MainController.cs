@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ESProMeter.Extensions;
+using ESProMeter.Services;
 
 namespace ESProMeter.Controllers
 {
@@ -12,8 +13,13 @@ namespace ESProMeter.Controllers
 	{
 		public static void AccessableRole(bool EnableRole)
 		{
-			//Show split container
-			
+			//Application alive timer
+			MainFrm.MainF.tmrAlive.Enabled = EnableRole;
+			MainFrm.MainF.tmrAlive.Interval = EnableRole? 60000:0;
+			if (EnableRole) { MainFrm.MainF.tmrAlive.Start(); } else { MainFrm.MainF.tmrAlive.Stop(); }
+
+			//Show panel menu
+			MainFrm.MainF.panelMenu.Visible = EnableRole;
 
 			//Main form menu
 			//File
@@ -51,5 +57,18 @@ namespace ESProMeter.Controllers
 			AccessableRole(false);
 			MainFrm.FSNF.Show();
 		}
+
+		public static bool CreateCompanyFileBackup(this Form form)
+		{
+			return AppService.GetCompanyInstance.CreateCompanyFileBackup(Properties.Settings.Default.database, @"D:\Backup.esp");
+		}
+
+
+		public static bool RestoreCompanyFile(this Form form)
+		{
+			return AppService.GetCompanyInstance.RestoreCompanyFile("Test1", @"D:\Backup.esp");
+		}
+		
+
 	}
 }

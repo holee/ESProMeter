@@ -29,6 +29,13 @@ namespace ESProMeter.Views.UserManagement
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.dtgRolePermission = new System.Windows.Forms.DataGridView();
 			this.permissionid = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,9 +48,6 @@ namespace ESProMeter.Views.UserManagement
 			this.mbtEdit = new FontAwesome.Sharp.Material.MaterialButton();
 			this.mbtDelete = new FontAwesome.Sharp.Material.MaterialButton();
 			this.dtgUserList = new System.Windows.Forms.DataGridView();
-			this.userid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.user = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dtgRolePermission)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dtgAssignedRoleList)).BeginInit();
@@ -75,10 +79,26 @@ namespace ESProMeter.Views.UserManagement
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.dtgRolePermission.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dtgRolePermission.BackgroundColor = System.Drawing.Color.White;
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dtgRolePermission.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.dtgRolePermission.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dtgRolePermission.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.permissionid,
             this.permission});
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.dtgRolePermission.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dtgRolePermission.Enabled = false;
 			this.dtgRolePermission.Location = new System.Drawing.Point(283, 22);
 			this.dtgRolePermission.Name = "dtgRolePermission";
@@ -111,10 +131,26 @@ namespace ESProMeter.Views.UserManagement
             | System.Windows.Forms.AnchorStyles.Left)));
 			this.dtgAssignedRoleList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dtgAssignedRoleList.BackgroundColor = System.Drawing.Color.White;
+			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dtgAssignedRoleList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
 			this.dtgAssignedRoleList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dtgAssignedRoleList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.roleid,
             this.role});
+			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.dtgAssignedRoleList.DefaultCellStyle = dataGridViewCellStyle4;
 			this.dtgAssignedRoleList.Enabled = false;
 			this.dtgAssignedRoleList.Location = new System.Drawing.Point(6, 22);
 			this.dtgAssignedRoleList.Name = "dtgAssignedRoleList";
@@ -209,50 +245,52 @@ namespace ESProMeter.Views.UserManagement
 			this.mbtDelete.TabIndex = 28;
 			this.mbtDelete.Text = "Delete";
 			this.mbtDelete.UseVisualStyleBackColor = false;
+			this.mbtDelete.Click += new System.EventHandler(this.mbtDelete_Click);
 			// 
 			// dtgUserList
 			// 
 			this.dtgUserList.AllowUserToAddRows = false;
 			this.dtgUserList.AllowUserToDeleteRows = false;
+			this.dtgUserList.AllowUserToResizeColumns = false;
+			this.dtgUserList.AllowUserToResizeRows = false;
 			this.dtgUserList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.dtgUserList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dtgUserList.BackgroundColor = System.Drawing.Color.White;
+			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dtgUserList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
 			this.dtgUserList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dtgUserList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.userid,
-            this.user,
-            this.status});
+			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.dtgUserList.DefaultCellStyle = dataGridViewCellStyle6;
 			this.dtgUserList.Location = new System.Drawing.Point(6, 22);
 			this.dtgUserList.Name = "dtgUserList";
 			this.dtgUserList.ReadOnly = true;
+			dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dtgUserList.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
 			this.dtgUserList.RowHeadersVisible = false;
 			this.dtgUserList.RowTemplate.Height = 25;
+			this.dtgUserList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dtgUserList.Size = new System.Drawing.Size(394, 412);
 			this.dtgUserList.TabIndex = 1;
-			// 
-			// userid
-			// 
-			this.userid.HeaderText = "USERID";
-			this.userid.Name = "userid";
-			this.userid.ReadOnly = true;
-			this.userid.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-			this.userid.Visible = false;
-			// 
-			// user
-			// 
-			this.user.FillWeight = 70F;
-			this.user.HeaderText = "USER";
-			this.user.Name = "user";
-			this.user.ReadOnly = true;
-			// 
-			// status
-			// 
-			this.status.FillWeight = 30F;
-			this.status.HeaderText = "STATUS";
-			this.status.Name = "status";
-			this.status.ReadOnly = true;
 			// 
 			// UserManagementFrm
 			// 
@@ -262,7 +300,7 @@ namespace ESProMeter.Views.UserManagement
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
 			this.Name = "UserManagementFrm";
-			this.Text = "UserManagementFrm";
+			this.Text = "User Management";
 			this.groupBox1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dtgRolePermission)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dtgAssignedRoleList)).EndInit();
@@ -286,8 +324,5 @@ namespace ESProMeter.Views.UserManagement
 		private System.Windows.Forms.DataGridViewTextBoxColumn permission;
 		private System.Windows.Forms.DataGridViewTextBoxColumn roleid;
 		private System.Windows.Forms.DataGridViewTextBoxColumn role;
-		private System.Windows.Forms.DataGridViewTextBoxColumn userid;
-		private System.Windows.Forms.DataGridViewTextBoxColumn user;
-		private System.Windows.Forms.DataGridViewTextBoxColumn status;
 	}
 }

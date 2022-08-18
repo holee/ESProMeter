@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ESProMeter.IVews;
+using ESProMeter.Views.UserManagement;
+using ESProMeter.Services;
 
 
 namespace ESProMeter.Controllers
@@ -47,5 +49,42 @@ namespace ESProMeter.Controllers
 			}
 
 		}
+
+		public static bool CreateNewUser(this Form form, IUser user)
+		{
+			return AppService.GetUserInstance.Register(user);
+		}
+
+		public static bool ChangePassword(this Form form, IChangePassword  cPwd)
+		{
+			if (AppService.GetUserInstance.ChangePassword(cPwd))
+			{
+				MessageBox.Show("Your password has successfully changed.", "Change Password");
+				return true;
+			}
+			return false;
+		}
+
+		public static void showUserList(this Form form, DataGridView dtg,  byte includeinactive)
+		{
+			if (AppService.GetUserInstance.GetAllUserList(includeinactive, out var table))
+			{
+				//table.DefaultView.Sort = $"ITEMTYPE,ITEMNAME {orderBy}";
+				dtg.DataSource = table;
+				for (int i = 0; i < dtg.Columns.Count;i++)
+				{
+					dtg.Columns[i].Visible = false;
+					if (dtg.Columns[i].Name == "USERID" || dtg.Columns[i].Name =="LOGSTATE")
+					{
+						dtg.Columns[i].Visible = true;
+					}
+				}
+			}
+		}
+
+		//public static bool DeleteUser(this Form form, int uid)
+		//{
+
+		//}
 	}
 }

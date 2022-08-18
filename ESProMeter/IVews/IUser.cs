@@ -12,8 +12,8 @@ namespace ESProMeter.IVews
         public string UserId { get; set; }
         public string Password { get; set; }
         public int EditSequense { get; set; }
-        public bool IsActive { get; set; }
-        public bool IsSysAdmin { get; set; }
+        public byte IsActive { get; set; }
+        public byte IsSysAdmin { get; set; }
         public DateTime CreatedTime { get; set; }
         public DateTime ModifiedTime { get; set; }
     }
