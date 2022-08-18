@@ -21,11 +21,11 @@ namespace ESProMeter.Views.UserManagement
 
 		private void mbtNew_Click(object sender, EventArgs e)
 		{
-			Form form = new Views.UserManagement.UserFrm();
+			Views.UserManagement.UserFrm form = new Views.UserManagement.UserFrm();
 			form.Text = "Create New User";
 			if (form.ShowDialog() == DialogResult.OK)
 			{
-
+				this.CreateNewUser(form);
 				showActivedUserList();
 			}
 		}
@@ -44,6 +44,11 @@ namespace ESProMeter.Views.UserManagement
 		private void showActivedUserList()
 		{
 			this.showUserList(dtgUserList, 1);
+		}
+
+		private void mbtDelete_Click(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

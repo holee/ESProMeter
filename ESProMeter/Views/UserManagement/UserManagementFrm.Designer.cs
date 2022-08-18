@@ -245,6 +245,7 @@ namespace ESProMeter.Views.UserManagement
 			this.mbtDelete.TabIndex = 28;
 			this.mbtDelete.Text = "Delete";
 			this.mbtDelete.UseVisualStyleBackColor = false;
+			this.mbtDelete.Click += new System.EventHandler(this.mbtDelete_Click);
 			// 
 			// dtgUserList
 			// 
@@ -287,6 +288,7 @@ namespace ESProMeter.Views.UserManagement
 			this.dtgUserList.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
 			this.dtgUserList.RowHeadersVisible = false;
 			this.dtgUserList.RowTemplate.Height = 25;
+			this.dtgUserList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dtgUserList.Size = new System.Drawing.Size(394, 412);
 			this.dtgUserList.TabIndex = 1;
 			// 

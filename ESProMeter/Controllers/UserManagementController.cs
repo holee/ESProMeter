@@ -50,6 +50,11 @@ namespace ESProMeter.Controllers
 
 		}
 
+		public static bool CreateNewUser(this Form form, IUser user)
+		{
+			return AppService.GetUserInstance.Register(user);
+		}
+
 		public static bool ChangePassword(this Form form, IChangePassword  cPwd)
 		{
 			if (AppService.GetUserInstance.ChangePassword(cPwd))
@@ -68,14 +73,18 @@ namespace ESProMeter.Controllers
 				dtg.DataSource = table;
 				for (int i = 0; i < dtg.Columns.Count;i++)
 				{
-					if (dtg.Columns[i].Name != "USERID")
+					dtg.Columns[i].Visible = false;
+					if (dtg.Columns[i].Name == "USERID" || dtg.Columns[i].Name =="LOGSTATE")
 					{
-						dtg.Columns[i].Visible = false;
+						dtg.Columns[i].Visible = true;
 					}
 				}
 			}
 		}
 
+		//public static bool DeleteUser(this Form form, int uid)
+		//{
 
+		//}
 	}
 }

@@ -77,5 +77,10 @@ namespace ESProMeter.Views.UserManagement
 			//if valid and accepted for add
 			DialogResult = DialogResult.OK;
 		}
+
+		private void txtConfirm_TextChanged(object sender, EventArgs e)
+		{
+			
+		}
 	}
 }

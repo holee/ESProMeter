@@ -59,18 +59,29 @@ namespace ESProMeter.Repository
             return false;
         }
         public bool Register(IUser user)
-        {
-                return DataUtility.GetInstance
+        {       
+            return AppService.SqlGetInstance
+            //return DataUtility.GetInstance
                             .UseProcedure("USER_sp_Register")
                             .InsertOrUpdate<dynamic>(new
                             {
                                 username = user.UserId,
                                 password =SecurityService.TextEncrypt(user.Password),
                                 isActive = user.IsActive,
+                                NameRefId=0,
                                 isSysAdmin = user.IsSysAdmin,
                             }) > 0;
         }
 
+        //public bool Delete(int uid)
+        //{
+        //    //return AppService.SqlGetInstance
+        //    //    .UseProcedure()
+        //    //    .Delete<dynamic>(new
+        //    //    {
+
+        //    //    }
+        //}
 
         public bool ChangePassword(IChangePassword pwd)
         {

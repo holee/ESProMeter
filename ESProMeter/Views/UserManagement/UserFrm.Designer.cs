@@ -174,6 +174,7 @@ namespace ESProMeter.Views.UserManagement
 			this.txtConfirm.PasswordChar = '*';
 			this.txtConfirm.Size = new System.Drawing.Size(280, 23);
 			this.txtConfirm.TabIndex = 2;
+			this.txtConfirm.TextChanged += new System.EventHandler(this.txtConfirm_TextChanged);
 			// 
 			// txtPassword
 			// 
