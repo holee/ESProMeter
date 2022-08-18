@@ -48,6 +48,7 @@ namespace ESProMeter.Views.FileAndLogin
 		{
 			if (this.GrantUserAccess(this))
 			{
+				this.userLoggedIn(Properties.Settings.Default.curLoggedUID);
 				this.memorizeUserCredential();
 			}
 			else

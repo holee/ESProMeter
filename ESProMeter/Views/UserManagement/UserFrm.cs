@@ -7,19 +7,75 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ESProMeter.IVews;
+using ESProMeter.Extensions;
 
 namespace ESProMeter.Views.UserManagement
 {
-	public partial class UserFrm : Form
+	public partial class UserFrm : Form, IUser
 	{
 		public UserFrm()
 		{
 			InitializeComponent();
 		}
+		#region Fields
+		private byte _isSysAdmin = 0;
+		private DateTime _createdAt = DateTime.Now;
+		private DateTime _updatedAt = DateTime.Now;
+		#endregion
+		#region Properties
+		int IUser.Id
+		{
+			get => lblID.AsNumber<int>();
+			set => lblID.SetText(value);
+		}
+		string IUser.UserId 
+		{
+			get => txtUserName.Text.Trim();
+			set => txtUserName.SetText(value);
+		}
+		string IUser.Password 
+		{
+			get => txtPassword.Text;
+			set => txtPassword.SetText(value); 
+		}
+
+		int IUser.EditSequense 
+		{
+			get => lblEditSequense.AsNumber<int>();
+			set => lblEditSequense.SetText(value); 
+		}
+		byte IUser.IsActive 
+		{
+			get => chkIsInActive.Checked ? (byte)0 : (byte)1;
+			set => chkIsInActive.Checked = value == 0 ? true : false;
+		}
+		byte IUser.IsSysAdmin 
+		{
+			get => _isSysAdmin;
+			set => _isSysAdmin = value;
+		}
+		DateTime IUser.CreatedTime 
+		{
+			get => _createdAt;
+			set => _createdAt = value;
+		}
+		DateTime IUser.ModifiedTime 
+		{
+			get => _updatedAt;
+			set => _updatedAt = value;
+		}
+		#endregion
 
 		private void mbtClose_Click(object sender, EventArgs e)
 		{
-			this.Close();
+			DialogResult = DialogResult.Cancel;
+		}
+
+		private void mbtSave_Click(object sender, EventArgs e)
+		{
+			//if valid and accepted for add
+			DialogResult = DialogResult.OK;
 		}
 	}
 }

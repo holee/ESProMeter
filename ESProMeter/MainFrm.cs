@@ -137,27 +137,24 @@ namespace ESProMeter
 
 		private void changeMyPasswordToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-            Form form = new Views.UserManagement.ChangePasswordFrm();
+            Views.UserManagement.ChangePasswordFrm form = new Views.UserManagement.ChangePasswordFrm();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 //Change the password
+                this.ChangePassword(form);
             }
 		}
 
 		private void userManagementToolStripMenuItem_Click(object sender, EventArgs e)
 		{
             Form form = new Views.UserManagement.UserManagementFrm();
-            form.TopLevel = false;
-            form.TopMost = true;
-            form.FormBorderStyle = FormBorderStyle.None;
             form.WindowState = FormWindowState.Maximized;
-    
-            form.Show();
-            form.Dock = DockStyle.Fill;
+            CanOpenForm(form);
         }
 
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
 		{
+            this.userLogStateUpdate(Properties.Settings.Default.curLoggedUID, 1);
             Application.Exit();
 		}
 
@@ -295,5 +292,52 @@ namespace ESProMeter
             formSiteList.WindowState = FormWindowState.Maximized;
             CanOpenForm(formSiteList);
         }
-    }
+
+		private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
+		{
+            exitToolStripMenuItem_Click(sender, e);
+		}
+
+		private void tmrAlive_Tick(object sender, EventArgs e)
+		{
+            this.userLogStateUpdate(Properties.Settings.Default.curLoggedUID, 0);
+        }
+
+		private void buttonClose_Click(object sender, EventArgs e)
+		{
+            exitToolStripMenuItem_Click(sender, e);
+        }
+
+		private void buttonCustomer_Click(object sender, EventArgs e)
+		{
+            customerListToolStripMenuItem_Click(sender, e);
+		}
+
+		private void buttonItems_Click(object sender, EventArgs e)
+		{
+            itemListToolStripMenuItem_Click(sender, e);
+		}
+
+		private void buttonBOQ_Click(object sender, EventArgs e)
+		{
+            bToolStripMenuItem_Click(sender, e);
+
+        }
+
+        private void backupCompanyFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Backup for testonly
+            if (this.CreateCompanyFileBackup())
+            {
+                MessageBox.Show("Backup completed.", "Backup company file");
+            }
+            
+		}
+
+		private void toolStripMenuItem8_Click(object sender, EventArgs e)
+		{
+            //Test only; Need to create a dialog for selecting backup file and retore to db name
+            //this.RestoreCompanyFile();
+		}
+	}
 }

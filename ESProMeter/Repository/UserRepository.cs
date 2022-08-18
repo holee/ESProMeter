@@ -13,6 +13,7 @@ namespace ESProMeter.Repository
                        .UseProcedure("USER_sp_LOGIN")
                        .FindOne(new { UID = username}, out DataRow row))
             {
+                Properties.Settings.Default.curLoggedUID = row.GetValue<int>("ID");
                 return SecurityService.Verify(password, row.GetValue<string>("PASSWORD"));
             }
             return false;
@@ -71,11 +72,42 @@ namespace ESProMeter.Repository
         }
 
 
+        public bool ChangePassword(IChangePassword pwd)
+        {
+            return AppService.SqlGetInstance
+                .UseProcedure("USERPASSWORD_sp_UPDATE")
+                .InsertOrUpdate(new
+                {
+                    username = Properties.Settings.Default.ULOGID,
+                    oldPassword = SecurityService.TextEncrypt(pwd.oldPassword),
+                    newPassword = SecurityService.TextEncrypt(pwd.newPassword)
+                }) >0;
+        }
 
+        public bool GetAllUserList(byte includeInactive, out DataTable table)
+        {
+            return AppService.SqlGetInstance
+                .UseProcedure("USERLIST_sp_SELECT")
+                .SelectAsTable<dynamic>(new
+                {
+                    @isAct = includeInactive
+                }, out table);
+        }
 
+        public bool userLoggedIn(int uID)
+        {
+            return AppService.SqlGetInstance
+                .UseProcedure("USERLOGIN_sp_INSERT")
+                .InsertOrUpdate(new { UID = uID })>0;
+        }
 
-
-
+        public bool userLoggedStateChange(int uID, byte logState)
+        {
+            return AppService.SqlGetInstance
+                .UseProcedure("USERLOGIN_sp_UPDATE")
+                .InsertOrUpdate(new { UID = uID,
+                logout = logState}) > 0;
+        }
 
 
 

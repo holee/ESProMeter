@@ -155,7 +155,28 @@ namespace ESProMeter.Repository
             }
         }
 
+        public bool CreateCompanyFileBackup(string dbName, string fileName)
+        {
+            return AppService.SqlGetInstance
+                .UseProcedure("COMPANYFILE_sp_BACKUP")
+                .InsertOrUpdate<dynamic>(new
+                {
+                    @dbName = dbName,
+                    @fileName = fileName
+                }) > 0;
 
+        }
+
+        public bool RestoreCompanyFile(string dbName, string fileName)
+        {
+            return AppService.SqlGetInstance
+                .UseProcedure("COMPANYFILE_sp_RESTORE")
+                .InsertOrUpdate<dynamic>(new
+                {
+                    @dbName = dbName,
+                    @fileName = fileName
+                }) > 0;
+        }
     }
 }
 

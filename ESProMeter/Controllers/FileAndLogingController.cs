@@ -135,5 +135,15 @@ namespace ESProMeter.Controllers
 			}
 			catch (Exception ex) { return false; }
 		}
+
+		public static bool userLoggedIn(this Form form, int uID)
+		{
+			return AppService.GetUserInstance.userLoggedIn(uID);
+		}
+
+		public static bool userLogStateUpdate(this Form form, int uID, byte logState)
+		{
+			return AppService.GetUserInstance.userLoggedStateChange(uID, logState);
+		}
 	}
 }

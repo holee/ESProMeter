@@ -24,16 +24,16 @@ namespace ESProMeter.Models
             get;
             set;
         }
-        public bool IsActive
+        public byte IsActive
         {
             get;
             set;
-        } = true;
-        public bool IsSysAdmin
+        } = 1;
+        public byte IsSysAdmin
         {
             get;
             set;
-        }
+        } =0;
         public DateTime CreatedTime
         {
             get;
