@@ -89,7 +89,7 @@ namespace ESProMeter.Views.Boq
         }
         public long SITEID
         {
-            get => cboSite.AsNumber<long>();
+            get => cboSite.AsNumber<long>(true);
             set => cboSite.SelectedValue = value;
         }
         public long DIVID
@@ -253,22 +253,44 @@ namespace ESProMeter.Views.Boq
                     }
                 }
             };
+            this.cboSite.LostFocus += (s, e) =>
+            {
+                if (cboSite.SelectedValue == null && cboSite.Text.Length > 0)
+                {
+                    if (MessageBox.Show(@"there is not any Site in system,\n Do you want to add new.", "Bill Of Qauntity", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        Sites.AddSiteFrm form = new Sites.AddSiteFrm();
+                        if (cboCustomerName.SelectedValue != null)
+                        {
+                            form.SITENAME = cboSite.Text;
+                            form.CUSTOMERID = cboCustomerName.AsNumber<long>(true);
+                            if (this.SiteCreateNewOrUpdate(form, out var id))
+                            {
+                                this.FillSitesCmbByCustomer(cboCustomerName.AsNumber<long>(true), cboSite);
+                                this.cboSite.SelectedValue = id;
+                            }
+                        }
+
+                    }
+                    else return;
+                }
+            };
             switch (type)
             {
                 case Enums.ActionType.CREATE:
                     btnSaveAndClose.Click += (s, e)=>{
-                        BoqCreateOrUpdateThenClose(s, e, type);
+                        BoqLineCreateOrUpdateThenClose(s, e, type);
                     };
                     btnSaveAndNew.Click += (s, e) => {
-                        BoqCreateOrUpdateThenNew(s, e, type);
+                        BoqLineCreateOrUpdateThenNew(s, e, type);
                     };
                     break;
                 case Enums.ActionType.EDIT:
                     btnSaveAndClose.Click += (s, e) => {
-                        BoqCreateOrUpdateThenClose(s, e, type);
+                        BoqLineCreateOrUpdateThenClose(s, e, type);
                     };
                     btnSaveAndNew.Click += (s, e) => {
-                        BoqCreateOrUpdateThenNew(s, e, type);
+                        BoqLineCreateOrUpdateThenNew(s, e, type);
                     };
                     break;
                 default:
@@ -308,14 +330,15 @@ namespace ESProMeter.Views.Boq
         private void txtTermsCondition_Leave(object sender, EventArgs e)
         {
             txtTermsCondition.Height = 23;
-            txtTermsCondition.Top = this.Height - 49;
+            txtTermsCondition.Location=new Point(label4.Location.X + label4.Width + 10,label4.Location.Y-3);
         }
 
         private void txtTermsCondition_Enter(object sender, EventArgs e)
         {
             txtTermsCondition.BringToFront();
-            txtTermsCondition.Height = 127;
-            txtTermsCondition.Top = this.Height - 153;
+            txtTermsCondition.Multiline = true;
+            txtTermsCondition.Height = 200;
+            txtTermsCondition.Top = label4.Top - 180;
         }
     
         private void txtItemBoqSearch_KeyUp(object sender, KeyEventArgs e)
@@ -335,10 +358,10 @@ namespace ESProMeter.Views.Boq
         {
             foreach (DataGridViewRow item in dgvBoqList.Rows)
             {
-                if (item.GetValue<string>("ITEMNAME").Equals(string.Empty) || item.GetValue<string>("ITEMNAME").Equals("Section"))
+                if (item.GetText("UOM").Equals(string.Empty))
                 {
-                    item.DefaultCellStyle.BackColor = Color.Teal;
-                    item.DefaultCellStyle.ForeColor = Color.White;
+                    item.DefaultCellStyle.BackColor = Color.Yellow;
+                    item.DefaultCellStyle.ForeColor = Color.Black;
                 }
             }
         }
@@ -593,6 +616,7 @@ namespace ESProMeter.Views.Boq
             }
         }
         private void dgvBoqList_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        
         {
             if (dgvBoqList.Columns[dgvBoqList.CurrentCell.ColumnIndex].Name == "BOQITEMQTY"
                 && dgvBoqList.Columns[dgvBoqList.CurrentCell.ColumnIndex] is DataGridViewTextBoxColumn)
@@ -634,10 +658,11 @@ namespace ESProMeter.Views.Boq
             }
         }
 
-        private void BoqCreateOrUpdateThenClose(object sender, EventArgs e,Enums.ActionType type)
+        private void BoqLineCreateOrUpdateThenClose(object sender, EventArgs e,Enums.ActionType type)
         {
             try
             {
+                this.BoqUpdate(this);
                 this.BoqLineCreateOrUpdate(dgvBoqList, type);
                 this.Close();
             }
@@ -647,10 +672,11 @@ namespace ESProMeter.Views.Boq
             }
            
         }
-        private void BoqCreateOrUpdateThenNew(object sender, EventArgs e, Enums.ActionType type)
+        private void BoqLineCreateOrUpdateThenNew(object sender, EventArgs e, Enums.ActionType type)
         {
             try
             {
+                this.BoqUpdate(this);
                 this.BoqLineCreateOrUpdate(dgvBoqList, type);
                 dgvBoqList.Rows?.Clear();
             }
@@ -704,13 +730,13 @@ namespace ESProMeter.Views.Boq
             {
                 if (dgvBoqList.SelectedRows.Count == 0)
                 {
-                    dgvBoqList.Rows.Add(sectionIndex, _boqId, sectionIndex, "Section", form.SectionText);
+                    dgvBoqList.Rows.Add(sectionIndex, _boqId, sectionIndex,form.NameText, form.DescriptionText);
                     sectionIndex++;
                 }
                 else
                 {
                     var index = dgvBoqList.SelectedRows[0].Index;
-                    dgvBoqList.Rows.Insert(index + 1, sectionIndex, _boqId, sectionIndex, "Section", form.SectionText);
+                    dgvBoqList.Rows.Insert(index + 1, sectionIndex, _boqId, sectionIndex, form.NameText, form.DescriptionText);
                     sectionIndex++;
                 }
 
@@ -723,7 +749,14 @@ namespace ESProMeter.Views.Boq
 
         }
 
-        
+        private void CreateBoQ_Step2_Frm_Load(object sender, EventArgs e)
+        {
+            this.dgvBoqList.ClearSelection();
+            this.dgvBoqList.CurrentCell = null;
+            
+        }
+
+       
     }
 }
 

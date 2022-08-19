@@ -4,7 +4,6 @@ using ESProMeter.IViews;
 using System;
 using System.Linq;
 using System.Windows.Forms;
-
 namespace ESProMeter.Views.Boq
 {
     public partial class CreateBoQ_Step1_Frm : Form, ITBOQ
@@ -347,7 +346,7 @@ namespace ESProMeter.Views.Boq
                 {
                     CreateBoQ_Step2_Frm form = new CreateBoQ_Step2_Frm(id,Enums.ActionType.CREATE);
                     form.WindowState = FormWindowState.Maximized;
-                    CanOpenForm(form);
+                    form.ShowDialog();
                     this.Close();
                 }
             }

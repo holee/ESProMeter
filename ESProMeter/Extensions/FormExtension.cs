@@ -11,15 +11,15 @@ namespace ESProMeter.Extensions
     public static class FormExtension
     {
 
-        private static bool HasChildFormOpen(Form form,Form mainFrm)
+        private static bool HasChildFormOpen(Form child, Form mainFrm)
         {
-            if (mainFrm.MdiChildren.Any(frm => frm.Name == form.Name))
+            if (mainFrm.MdiChildren.Any(frm => frm.Name == child.Name))
             {
                 return true;
             }
             return false;
         }
-        public static void OpenChildForm(this Form form,Form child,Form mainFrm)
+        public static void OpenChildForm(Form child, Form mainFrm)
         { 
             if (!HasChildFormOpen(child, mainFrm))
             {
@@ -33,7 +33,20 @@ namespace ESProMeter.Extensions
             }
 
         }
+        public static void OpenChildForm(this Form form,Form child, Form mainFrm)
+        {
+            if (!HasChildFormOpen(child, mainFrm))
+            {
+                child.MdiParent = mainFrm;
+                child.StartPosition = FormStartPosition.CenterParent;
+                child.Show();
+            }
+            else
+            {
+                return;
+            }
 
+        }
         public static void SetDoubleBuffer(Control dtg, bool DoubleBuffered)
         {
             typeof(Control).InvokeMember("DoubleBuffered",

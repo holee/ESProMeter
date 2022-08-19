@@ -208,5 +208,18 @@ namespace ESProMeter.Services
                 return quoteRepository;
             }
         }
+
+        private static ReportRepository reportRepository;
+        public static ReportRepository GetReportInstance
+        {
+            get
+            {
+                if (reportRepository == null)
+                {
+                    reportRepository = new ReportRepository();
+                }
+                return reportRepository;
+            }
+        }
     }
 }

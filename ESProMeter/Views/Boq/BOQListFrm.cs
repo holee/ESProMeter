@@ -3,10 +3,9 @@ using ESProMeter.Extensions;
 using ESProMeter.Services;
 using ESProMeter.Views.Activies;
 using System;
-using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-
+using static ESProMeter.Extensions.FormExtension;
 namespace ESProMeter.Views.Boq
 {
     public partial class BOQListFrm : Form
@@ -14,41 +13,41 @@ namespace ESProMeter.Views.Boq
 		public BOQListFrm()
 		{
 			InitializeComponent();
-			menuStrip5.Cursor = Cursors.Default;
-			tab.Cursor = Cursors.Default;
-			dtgBOQLine.Cursor = Cursors.Default;
-			dtgBOQList.Cursor = Cursors.Default;
-			ShowCustomersWith();
-
+			this.ShowCustomersWith(1);
+			this.dtgBOQList.SelectionChanged += dtgBOQListSelectionChanged;
+			this.dtgBOQList.DataBindingComplete += dtgDataBindingComplete;
+			this.dtgBOQLine.DataBindingComplete += dtgDataBindingComplete;
+			this.dtgActivities.DataBindingComplete += dtgDataBindingComplete;
+			this.dtgQuotes.DataBindingComplete += dtgDataBindingComplete;
         }
-        private void dtgBOQList_SelectionChanged(object sender, EventArgs e)
+        private void dtgBOQListSelectionChanged(object sender, EventArgs e)
         {
 
-			if (dtgBOQList.SelectedRows.Count >0)
-			{
-				var selectedRow = dtgBOQList.SelectedRows[0];
-				if (selectedRow != null)
-				{
-					var id = selectedRow.GetValue<long>("ID");
+            if (dtgBOQList.SelectedRows.Count > 0)
+            {
+                var selectedRow = dtgBOQList.SelectedRows[0];
+                if (selectedRow != null)
+                {
+                    var id = selectedRow.GetValue<long>("ID");
                     txtCustomerName.SetText(selectedRow.GetValue<string>("Column2"));
-					txtDate.SetText(selectedRow.GetValue<string>("Column3"));
-					txtTitle.SetText(selectedRow.GetValue<string>("BOQTITLE"));
-					txtSite.SetText(selectedRow.GetValue<string>("SITENAME"));
-					txtValidDate.SetText(selectedRow.GetValue<string>("VALIDDATE"));
-					txtReferenceNo.SetText(selectedRow.GetValue<string>("REFNUMBER"));
-					AppService.GetBoqItemLineInstance.GetBoqListInfoByBoqId(id,out var tblBoqLine);
-					tblBoqLine.UseDataTableAsGridView(dtgBOQLine);
-					AppService.GetActivityInstance.ActivityGetByBoqID(id, out var tableActivity);
-					tableActivity.UseDataTableAsGridView(dtgActivities);
-					AppService.GetQuoteInstance.QuoteGetByBoq(id, out var tableQuotes);
-					tableQuotes.UseDataTableAsGridView(dtgQuotes);
-				}
-			}
-		}
-		private void toolStripButton1_Click(object sender, EventArgs e)
+                    txtDate.SetText(selectedRow.GetValue<string>("Column3"));
+                    txtTitle.SetText(selectedRow.GetValue<string>("BOQTITLE"));
+                    txtSite.SetText(selectedRow.GetText("SITENAME"));
+                    txtValidDate.SetText(selectedRow.GetValue<string>("VALIDDATE"));
+                    txtReferenceNo.SetText(selectedRow.GetValue<string>("REFNUMBER"));
+                    AppService.GetBoqItemLineInstance.GetBoqListInfoByBoqId(id, out var tblBoqLine);
+                    tblBoqLine.UseDataTableAsGridView(dtgBOQLine);
+                    AppService.GetActivityInstance.ActivityGetByBoqID(id, out var tableActivity);
+                    tableActivity.UseDataTableAsGridView(dtgActivities);
+                    AppService.GetQuoteInstance.QuoteGetByBoq(id, out var tableQuotes);
+                    tableQuotes.UseDataTableAsGridView(dtgQuotes);
+                }
+            }
+        }
+        private void toolStripButton1_Click(object sender, EventArgs e)
 		{
-            Form form = new Views.Boq.CreateBoQ_Step1_Frm();
-            form.ShowDialog();
+            CreateBoQ_Step1_Frm form = new Views.Boq.CreateBoQ_Step1_Frm();
+            form.ShowDialog(this);
         }
 
 		private void toolStripButton2_Click(object sender, EventArgs e)
@@ -58,28 +57,12 @@ namespace ESProMeter.Views.Boq
                 var selectedRow = dtgBOQList.SelectedRows[0];
                 var id = selectedRow.GetValue<long>("ID");
                 CreateBoQ_Step2_Frm form = new CreateBoQ_Step2_Frm(id, Enums.ActionType.EDIT);
-				//form.Show();
-				this.OpenChildForm(form,MainFrm.ActiveForm);
+				OpenChildForm(form,MainFrm.ActiveForm);
             }
         }
 		void ShowCustomersWith(int status=1)
 		{
-			((DataTable)dtgBOQList.DataSource)?.Rows.Clear();
-			if (chkIncludeClosedBOQ.Checked)
-			{
-                if (AppService.GetBoqItemLineInstance.GetBoqList(1, status, out var table))
-                {
-                    dtgBOQList.DataSource = table;
-                }
-            }
-			else
-			{
-                if (AppService.GetBoqItemLineInstance.GetBoqList(0, status, out var table))
-                {
-                    dtgBOQList.DataSource = table;
-                }
-            }
-            
+            this.BoqListGet(status);
         }
 
 
@@ -129,12 +112,29 @@ namespace ESProMeter.Views.Boq
 		{
 			foreach (DataGridViewRow item in dtgBOQLine.Rows)
 			{
-				if (item.GetValue<string>("ITEMNAME").Equals(string.Empty))
+				if (item.GetText("Column1").Equals(string.Empty))
 				{
-					item.DefaultCellStyle.BackColor = Color.Teal;
+					item.DefaultCellStyle.BackColor = Color.YellowGreen;
                     item.DefaultCellStyle.ForeColor = Color.White;
                 }
 			}
         }
+
+		private void dtgDataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+		{
+			((DataGridView)sender).ClearSelection();
+            ((DataGridView)sender).CurrentCell = null;
+		}
+
+		private void toolStripButton5_Click(object sender, EventArgs e)
+		{
+			if (dtgBOQList.SelectedRows.Count > 0)
+			{
+				var selectedRow = dtgBOQList.SelectedRows[0];
+				var boq_id = selectedRow.GetValue<long>("ID");
+				Views.ReportFrm.RptBOQLineFrm formRpt = new ReportFrm.RptBOQLineFrm(boq_id);
+				formRpt.Show();
+			}
+		}
 	}
 }

@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="Reports\Report1.rdlc" />
+    <None Remove="Reports\RptBOQLine.rdlc" />
     <None Remove="test.xlsx" />
   </ItemGroup>
 
@@ -30,6 +31,9 @@
     <EmbeddedResource Include="Excels\test.xlsx">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RptBOQLine.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -45,10 +49,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Data\Book.Designer.cs">
+    <Compile Update="Data\ESPRO.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>Book.xsd</DependentUpon>
+      <DependentUpon>ESPRO.xsd</DependentUpon>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -66,9 +70,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Data\Book.xsd">
+    <None Update="Data\ESPRO.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Book.Designer.cs</LastGenOutput>
+      <LastGenOutput>ESPRO.Designer.cs</LastGenOutput>
     </None>
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

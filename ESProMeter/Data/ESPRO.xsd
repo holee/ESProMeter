@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ESPRO" targetNamespace="http://tempuri.org/ESPRO.xsd" xmlns:mstns="http://tempuri.org/ESPRO.xsd" xmlns="http://tempuri.org/ESPRO.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ESPRO" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="ESPRO" msprop:Generator_DataSetName="ESPRO">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TBOQLINE" msprop:Generator_RowEvHandlerName="TBOQLINERowChangeEventHandler" msprop:Generator_RowDeletedName="TBOQLINERowDeleted" msprop:Generator_RowDeletingName="TBOQLINERowDeleting" msprop:Generator_RowEvArgName="TBOQLINERowChangeEvent" msprop:Generator_TablePropName="TBOQLINE" msprop:Generator_RowChangedName="TBOQLINERowChanged" msprop:Generator_RowChangingName="TBOQLINERowChanging" msprop:Generator_TableClassName="TBOQLINEDataTable" msprop:Generator_RowClassName="TBOQLINERow" msprop:Generator_TableVarName="tableTBOQLINE" msprop:Generator_UserTableName="TBOQLINE">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NO" msprop:Generator_ColumnPropNameInRow="NO" msprop:Generator_ColumnPropNameInTable="NOColumn" msprop:Generator_ColumnVarNameInTable="columnNO" msprop:Generator_UserColumnName="NO" type="xs:string" minOccurs="0" />
+              <xs:element name="DESCRIPTION" msprop:Generator_ColumnPropNameInRow="DESCRIPTION" msprop:Generator_ColumnPropNameInTable="DESCRIPTIONColumn" msprop:Generator_ColumnVarNameInTable="columnDESCRIPTION" msprop:Generator_UserColumnName="DESCRIPTION" type="xs:string" minOccurs="0" />
+              <xs:element name="UNIT" msprop:Generator_ColumnPropNameInRow="UNIT" msprop:Generator_ColumnPropNameInTable="UNITColumn" msprop:Generator_ColumnVarNameInTable="columnUNIT" msprop:Generator_UserColumnName="UNIT" type="xs:string" minOccurs="0" />
+              <xs:element name="QAUNTITY" msprop:Generator_ColumnPropNameInRow="QAUNTITY" msprop:Generator_ColumnPropNameInTable="QAUNTITYColumn" msprop:Generator_ColumnVarNameInTable="columnQAUNTITY" msprop:Generator_UserColumnName="QAUNTITY" type="xs:decimal" minOccurs="0" />
+              <xs:element name="REMARKS" msprop:Generator_ColumnPropNameInRow="REMARKS" msprop:Generator_ColumnPropNameInTable="REMARKSColumn" msprop:Generator_ColumnVarNameInTable="columnREMARKS" msprop:Generator_UserColumnName="REMARKS" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

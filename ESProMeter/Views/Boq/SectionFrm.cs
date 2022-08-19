@@ -13,7 +13,12 @@ namespace ESProMeter.Views.Boq
 {
     public partial class SectionFrm : Form
     {
-        public string SectionText
+        public string NameText
+        {
+            get { return lblName.Text.Trim(); }
+            set { lblName.SetText(value); }
+        }
+        public string DescriptionText
         {
             get { return txtBoqSection.Text.Trim(); }
             set { txtBoqSection.SetText(value); }
@@ -26,7 +31,14 @@ namespace ESProMeter.Views.Boq
 
         private void mbtNext_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+            if (this.IsValid(lblName, txtBoqSection))
+            {
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                this.DialogResult = DialogResult.None;
+            }
         }
 
         private void materialButton1_Click(object sender, EventArgs e)

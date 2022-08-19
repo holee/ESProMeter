@@ -15,6 +15,12 @@ namespace ESProMeter.Repository
                                    BOQID = boqId
                                }, out table);
         }
+
+
+        public void QuoteCreate()
+        {
+
+        }
         
     }
 }

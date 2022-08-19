@@ -9,7 +9,7 @@ namespace ESProMeter.Services
     {
         public static void GenerateReport(ReportViewer report, Panel container, string path, DataSet dataSources)
         {
-            ReportDataSource dataSource = new ReportDataSource("StudentData", dataSources.Tables[0]);
+            ReportDataSource dataSource = new ReportDataSource("ESPRO", dataSources.Tables[0]);
             report.ProcessingMode = ProcessingMode.Local;
             report.LocalReport.ReportEmbeddedResource = path;
             report.LocalReport.DataSources.Clear();
@@ -20,9 +20,21 @@ namespace ESProMeter.Services
             container.Controls.Add(report);
         }
 
+        public static void GenerateReport(ReportViewer report, Panel container, string path, DataTable dataSources)
+        {
+            ReportDataSource dataSource = new ReportDataSource("ESPRO", dataSources);
+            report.ProcessingMode = ProcessingMode.Local;
+            report.LocalReport.ReportEmbeddedResource = path;
+            report.LocalReport.DataSources.Clear();
+            report.LocalReport.DataSources.Add(dataSource);
+            report.LocalReport.Refresh();
+            report.RefreshReport();
+            report.Dock = DockStyle.Fill;
+            container.Controls.Add(report);
+        }
         public static void GenerateReport(ReportViewer report, Panel container, string path, DataTable dataSources, Dictionary<string, string> paras)
         {
-            ReportDataSource dataSource = new ReportDataSource("StudentData", dataSources);
+            ReportDataSource dataSource = new ReportDataSource("ESPRO", dataSources);
             report.ProcessingMode = ProcessingMode.Local;
             report.LocalReport.ReportEmbeddedResource = path;
             report.LocalReport.DataSources.Clear();

@@ -33,17 +33,20 @@ namespace ESProMeter.Views.Boq
 		private void InitializeComponent()
 		{
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateBoQ_Step2_Frm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateBoQ_Step2_Frm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.mbtAddSite = new FontAwesome.Sharp.Material.MaterialButton();
             this.mbtAddCustomer = new FontAwesome.Sharp.Material.MaterialButton();
@@ -60,7 +63,6 @@ namespace ESProMeter.Views.Boq
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtTermsCondition = new System.Windows.Forms.TextBox();
             this.dgvBoqList = new System.Windows.Forms.DataGridView();
             this.NO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BOQID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -117,6 +119,7 @@ namespace ESProMeter.Views.Boq
             this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dataGridViewButtonColumn2 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.lblEDSEQ = new System.Windows.Forms.Label();
+            this.txtTermsCondition = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBoqList)).BeginInit();
             this.pnlSearch.SuspendLayout();
@@ -294,22 +297,13 @@ namespace ESProMeter.Views.Boq
             this.label4.TabIndex = 35;
             this.label4.Text = "TERMS && CONDITION";
             // 
-            // txtTermsCondition
-            // 
-            this.txtTermsCondition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtTermsCondition.Location = new System.Drawing.Point(140, 415);
-            this.txtTermsCondition.Multiline = true;
-            this.txtTermsCondition.Name = "txtTermsCondition";
-            this.txtTermsCondition.Size = new System.Drawing.Size(454, 23);
-            this.txtTermsCondition.TabIndex = 32;
-            this.txtTermsCondition.Enter += new System.EventHandler(this.txtTermsCondition_Enter);
-            this.txtTermsCondition.Leave += new System.EventHandler(this.txtTermsCondition_Leave);
-            // 
             // dgvBoqList
             // 
             this.dgvBoqList.AllowDrop = true;
             this.dgvBoqList.AllowUserToAddRows = false;
             this.dgvBoqList.AllowUserToDeleteRows = false;
+            this.dgvBoqList.AllowUserToResizeColumns = false;
+            this.dgvBoqList.AllowUserToResizeRows = false;
             this.dgvBoqList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -344,12 +338,29 @@ namespace ESProMeter.Views.Boq
             this.INFlATIONRATE1,
             this.ACTION,
             this.REMOVE});
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvBoqList.DefaultCellStyle = dataGridViewCellStyle7;
             this.dgvBoqList.EnableHeadersVisualStyles = false;
             this.dgvBoqList.Location = new System.Drawing.Point(12, 112);
             this.dgvBoqList.MultiSelect = false;
             this.dgvBoqList.Name = "dgvBoqList";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.ButtonFace;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBoqList.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvBoqList.RowHeadersVisible = false;
             this.dgvBoqList.RowTemplate.Height = 32;
+            this.dgvBoqList.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvBoqList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvBoqList.Size = new System.Drawing.Size(1118, 298);
             this.dgvBoqList.TabIndex = 37;
@@ -440,6 +451,7 @@ namespace ESProMeter.Views.Boq
             this.uom.FillWeight = 7F;
             this.uom.HeaderText = "UOM";
             this.uom.Name = "uom";
+            this.uom.ReadOnly = true;
             this.uom.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.uom.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.uom.Width = 60;
@@ -475,6 +487,8 @@ namespace ESProMeter.Views.Boq
             // 
             this.LineSeq.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.LineSeq.DataPropertyName = "LineSeq";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.LineSeq.DefaultCellStyle = dataGridViewCellStyle4;
             this.LineSeq.HeaderText = "ORDER";
             this.LineSeq.Name = "LineSeq";
             this.LineSeq.ReadOnly = true;
@@ -547,11 +561,11 @@ namespace ESProMeter.Views.Boq
             // ACTION
             // 
             this.ACTION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Red;
-            dataGridViewCellStyle4.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle4.NullValue")));
-            this.ACTION.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle5.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle5.NullValue")));
+            this.ACTION.DefaultCellStyle = dataGridViewCellStyle5;
             this.ACTION.FillWeight = 8F;
             this.ACTION.HeaderText = "ACTION";
             this.ACTION.Image = ((System.Drawing.Image)(resources.GetObject("ACTION.Image")));
@@ -562,10 +576,10 @@ namespace ESProMeter.Views.Boq
             // REMOVE
             // 
             this.REMOVE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Red;
-            this.REMOVE.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Red;
+            this.REMOVE.DefaultCellStyle = dataGridViewCellStyle6;
             this.REMOVE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.REMOVE.HeaderText = "REMOVE";
             this.REMOVE.Name = "REMOVE";
@@ -754,14 +768,14 @@ namespace ESProMeter.Views.Boq
             this.dgvItem.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvItem.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvItem.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvItem.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvItem.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ItemID,
@@ -857,10 +871,10 @@ namespace ESProMeter.Views.Boq
             // Column1
             // 
             this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle10;
             this.Column1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Column1.HeaderText = "Action";
             this.Column1.Name = "Column1";
@@ -877,14 +891,14 @@ namespace ESProMeter.Views.Boq
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.ColumnHeadersVisible = false;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -915,8 +929,8 @@ namespace ESProMeter.Views.Boq
             // 
             // dataGridViewTextBoxColumn1
             // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridViewTextBoxColumn1.FillWeight = 5F;
             this.dataGridViewTextBoxColumn1.HeaderText = "NO";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
@@ -964,8 +978,8 @@ namespace ESProMeter.Views.Boq
             // 
             // dataGridViewTextBoxColumn6
             // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridViewTextBoxColumn6.FillWeight = 8F;
             this.dataGridViewTextBoxColumn6.HeaderText = "QUANTITY";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
@@ -1026,10 +1040,10 @@ namespace ESProMeter.Views.Boq
             // dataGridViewButtonColumn1
             // 
             this.dataGridViewButtonColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Red;
-            this.dataGridViewButtonColumn1.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Red;
+            this.dataGridViewButtonColumn1.DefaultCellStyle = dataGridViewCellStyle14;
             this.dataGridViewButtonColumn1.FillWeight = 8F;
             this.dataGridViewButtonColumn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.dataGridViewButtonColumn1.HeaderText = "ACTION";
@@ -1058,6 +1072,16 @@ namespace ESProMeter.Views.Boq
             this.lblEDSEQ.Size = new System.Drawing.Size(13, 15);
             this.lblEDSEQ.TabIndex = 43;
             this.lblEDSEQ.Text = "0";
+            // 
+            // txtTermsCondition
+            // 
+            this.txtTermsCondition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtTermsCondition.Location = new System.Drawing.Point(140, 415);
+            this.txtTermsCondition.Name = "txtTermsCondition";
+            this.txtTermsCondition.Size = new System.Drawing.Size(508, 23);
+            this.txtTermsCondition.TabIndex = 44;
+            this.txtTermsCondition.Enter += new System.EventHandler(this.txtTermsCondition_Enter);
+            this.txtTermsCondition.Leave += new System.EventHandler(this.txtTermsCondition_Leave);
             // 
             // CreateBoQ_Step2_Frm
             // 
@@ -1088,6 +1112,7 @@ namespace ESProMeter.Views.Boq
             this.Controls.Add(this.dataGridView1);
             this.Name = "CreateBoQ_Step2_Frm";
             this.Text = "Create New Bill of Quantity";
+            this.Load += new System.EventHandler(this.CreateBoQ_Step2_Frm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBoqList)).EndInit();
@@ -1121,7 +1146,6 @@ namespace ESProMeter.Views.Boq
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.TextBox txtTermsCondition;
 		private System.Windows.Forms.DataGridView dgvBoqList;
 		private FontAwesome.Sharp.Material.MaterialButton btnSaveAndNew;
 		private FontAwesome.Sharp.Material.MaterialButton mbtCancel;
@@ -1158,6 +1182,7 @@ namespace ESProMeter.Views.Boq
         private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lblEDSEQ;
+        private TextBox txtTermsCondition;
         private DataGridViewTextBoxColumn NO;
         private DataGridViewTextBoxColumn BOQID;
         private DataGridViewTextBoxColumn BOQITEMID;

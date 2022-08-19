@@ -30,6 +30,11 @@ namespace ESProMeter.Views.Boq
 		private void InitializeComponent()
 		{
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BOQListFrm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tab = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dtgQuotes = new System.Windows.Forms.DataGridView();
@@ -48,9 +53,13 @@ namespace ESProMeter.Views.Boq
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dtgBOQList = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SITENAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.cboFieldName = new System.Windows.Forms.ComboBox();
-            this.dtgBOQList = new System.Windows.Forms.DataGridView();
             this.chkIncludeClosedBOQ = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -58,6 +67,13 @@ namespace ESProMeter.Views.Boq
             this.panel5 = new System.Windows.Forms.Panel();
             this.txtReferenceNo = new System.Windows.Forms.TextBox();
             this.dtgBOQLine = new System.Windows.Forms.DataGridView();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip5 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
@@ -84,9 +100,6 @@ namespace ESProMeter.Views.Boq
             this.txtDate = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgQuotes)).BeginInit();
@@ -295,12 +308,13 @@ namespace ESProMeter.Views.Boq
             this.toolStripButton5.Name = "toolStripButton5";
             this.toolStripButton5.Size = new System.Drawing.Size(67, 30);
             this.toolStripButton5.Text = "Reports";
+            this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.dtgBOQList);
             this.panel1.Controls.Add(this.txtSearch);
             this.panel1.Controls.Add(this.cboFieldName);
-            this.panel1.Controls.Add(this.dtgBOQList);
             this.panel1.Controls.Add(this.chkIncludeClosedBOQ);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -308,6 +322,98 @@ namespace ESProMeter.Views.Boq
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(327, 626);
             this.panel1.TabIndex = 4;
+            // 
+            // dtgBOQList
+            // 
+            this.dtgBOQList.AllowUserToAddRows = false;
+            this.dtgBOQList.AllowUserToDeleteRows = false;
+            this.dtgBOQList.AllowUserToResizeColumns = false;
+            this.dtgBOQList.AllowUserToResizeRows = false;
+            this.dtgBOQList.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgBOQList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dtgBOQList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dtgBOQList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID,
+            this.Column2,
+            this.Column3,
+            this.SITENAME});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgBOQList.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dtgBOQList.EnableHeadersVisualStyles = false;
+            this.dtgBOQList.Location = new System.Drawing.Point(9, 71);
+            this.dtgBOQList.Name = "dtgBOQList";
+            this.dtgBOQList.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgBOQList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dtgBOQList.RowHeadersVisible = false;
+            this.dtgBOQList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dtgBOQList.RowTemplate.Height = 25;
+            this.dtgBOQList.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgBOQList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dtgBOQList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtgBOQList.Size = new System.Drawing.Size(314, 543);
+            this.dtgBOQList.TabIndex = 10;
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.MinimumWidth = 2;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ID.Visible = false;
+            this.ID.Width = 2;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column2.DataPropertyName = "CUSTOMERNAME";
+            this.Column2.FillWeight = 1F;
+            this.Column2.HeaderText = "CUSTOMER";
+            this.Column2.MinimumWidth = 100;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "BOQDATE";
+            this.Column3.HeaderText = "DATE";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // SITENAME
+            // 
+            this.SITENAME.DataPropertyName = "SITENAME";
+            this.SITENAME.HeaderText = "SITE NAME";
+            this.SITENAME.Name = "SITENAME";
+            this.SITENAME.ReadOnly = true;
+            this.SITENAME.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.SITENAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // txtSearch
             // 
@@ -325,33 +431,6 @@ namespace ESProMeter.Views.Boq
             this.cboFieldName.Name = "cboFieldName";
             this.cboFieldName.Size = new System.Drawing.Size(127, 23);
             this.cboFieldName.TabIndex = 6;
-            // 
-            // dtgBOQList
-            // 
-            this.dtgBOQList.AllowUserToAddRows = false;
-            this.dtgBOQList.AllowUserToDeleteRows = false;
-            this.dtgBOQList.AllowUserToResizeColumns = false;
-            this.dtgBOQList.AllowUserToResizeRows = false;
-            this.dtgBOQList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtgBOQList.BackgroundColor = System.Drawing.Color.White;
-            this.dtgBOQList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dtgBOQList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
-            this.Column2,
-            this.Column3});
-            this.dtgBOQList.EnableHeadersVisualStyles = false;
-            this.dtgBOQList.Location = new System.Drawing.Point(3, 71);
-            this.dtgBOQList.Name = "dtgBOQList";
-            this.dtgBOQList.RowHeadersVisible = false;
-            this.dtgBOQList.RowTemplate.Height = 25;
-            this.dtgBOQList.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgBOQList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dtgBOQList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgBOQList.Size = new System.Drawing.Size(320, 978);
-            this.dtgBOQList.TabIndex = 2;
-            this.dtgBOQList.SelectionChanged += new System.EventHandler(this.dtgBOQList_SelectionChanged);
             // 
             // chkIncludeClosedBOQ
             // 
@@ -431,22 +510,106 @@ namespace ESProMeter.Views.Boq
             // 
             this.dtgBOQLine.AllowUserToAddRows = false;
             this.dtgBOQLine.AllowUserToDeleteRows = false;
+            this.dtgBOQLine.AllowUserToResizeColumns = false;
+            this.dtgBOQLine.AllowUserToResizeRows = false;
             this.dtgBOQLine.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtgBOQLine.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgBOQLine.BackgroundColor = System.Drawing.Color.White;
+            this.dtgBOQLine.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dtgBOQLine.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgBOQLine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dtgBOQLine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dtgBOQLine.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column9,
+            this.Column1,
+            this.Column4,
+            this.Column5,
+            this.Column6,
+            this.Column7,
+            this.Column8});
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgBOQLine.DefaultCellStyle = dataGridViewCellStyle5;
             this.dtgBOQLine.EnableHeadersVisualStyles = false;
             this.dtgBOQLine.Location = new System.Drawing.Point(5, 71);
             this.dtgBOQLine.MultiSelect = false;
             this.dtgBOQLine.Name = "dtgBOQLine";
+            this.dtgBOQLine.ReadOnly = true;
             this.dtgBOQLine.RowHeadersVisible = false;
             this.dtgBOQLine.RowTemplate.Height = 25;
             this.dtgBOQLine.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgBOQLine.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgBOQLine.Size = new System.Drawing.Size(907, 258);
             this.dtgBOQLine.TabIndex = 3;
             this.dtgBOQLine.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dtgBOQLine_CellFormatting);
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "NO";
+            this.Column9.HeaderText = "NO";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            this.Column9.Width = 60;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "ITEMNAME";
+            this.Column1.HeaderText = "ITEMNAME";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column4.DataPropertyName = "BOQITEMDESC";
+            this.Column4.HeaderText = "DESCRIPTION";
+            this.Column4.MinimumWidth = 100;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "UOMNAME";
+            this.Column5.HeaderText = "UOM";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "BOQITEMQTY";
+            this.Column6.HeaderText = "QAUNTITY";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column7.DataPropertyName = "REMARKS";
+            this.Column7.HeaderText = "REMARK";
+            this.Column7.MinimumWidth = 50;
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "BOQID";
+            this.Column8.HeaderText = "BOQID";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.Visible = false;
             // 
             // menuStrip5
             // 
@@ -481,64 +644,64 @@ namespace ESProMeter.Views.Boq
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem4.Text = "BOQ";
             // 
             // detailsBOQToolStripMenuItem
             // 
             this.detailsBOQToolStripMenuItem.Name = "detailsBOQToolStripMenuItem";
-            this.detailsBOQToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.detailsBOQToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.detailsBOQToolStripMenuItem.Text = "Details BOQ";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // ecoMaterialToolStripMenuItem1
             // 
             this.ecoMaterialToolStripMenuItem1.Name = "ecoMaterialToolStripMenuItem1";
-            this.ecoMaterialToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.ecoMaterialToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.ecoMaterialToolStripMenuItem1.Text = "Eco Material";
             // 
             // ecoLabourToolStripMenuItem1
             // 
             this.ecoLabourToolStripMenuItem1.Name = "ecoLabourToolStripMenuItem1";
-            this.ecoLabourToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.ecoLabourToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.ecoLabourToolStripMenuItem1.Text = "Eco Labour";
             // 
             // ecoMachineryToolStripMenuItem
             // 
             this.ecoMachineryToolStripMenuItem.Name = "ecoMachineryToolStripMenuItem";
-            this.ecoMachineryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ecoMachineryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ecoMachineryToolStripMenuItem.Text = "Eco Machinery";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
             // 
             // projectCostToolStripMenuItem1
             // 
             this.projectCostToolStripMenuItem1.Name = "projectCostToolStripMenuItem1";
-            this.projectCostToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.projectCostToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.projectCostToolStripMenuItem1.Text = "Project Cost";
             // 
             // economicToolStripMenuItem1
             // 
             this.economicToolStripMenuItem1.Name = "economicToolStripMenuItem1";
-            this.economicToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.economicToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.economicToolStripMenuItem1.Text = "Economic";
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(177, 6);
             // 
             // finalQuoteToolStripMenuItem
             // 
             this.finalQuoteToolStripMenuItem.Name = "finalQuoteToolStripMenuItem";
-            this.finalQuoteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.finalQuoteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.finalQuoteToolStripMenuItem.Text = "Final Quote";
             // 
             // exportToExcelToolStripMenuItem
@@ -662,30 +825,6 @@ namespace ESProMeter.Views.Boq
             this.panel4.Size = new System.Drawing.Size(910, 258);
             this.panel4.TabIndex = 16;
             // 
-            // ID
-            // 
-            this.ID.DataPropertyName = "ID";
-            this.ID.HeaderText = "ID";
-            this.ID.MinimumWidth = 2;
-            this.ID.Name = "ID";
-            this.ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ID.Visible = false;
-            this.ID.Width = 2;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "CUSTOMERNAME";
-            this.Column2.HeaderText = "CUSTOMER";
-            this.Column2.Name = "Column2";
-            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "BOQDATE";
-            this.Column3.HeaderText = "DATE";
-            this.Column3.Name = "Column3";
-            this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
             // BOQListFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -734,7 +873,6 @@ namespace ESProMeter.Views.Boq
         private System.Windows.Forms.DataGridView dtgQuotes;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox cboFieldName;
-        private System.Windows.Forms.DataGridView dtgBOQList;
         private System.Windows.Forms.CheckBox chkIncludeClosedBOQ;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
@@ -776,8 +914,17 @@ namespace ESProMeter.Views.Boq
         private System.Windows.Forms.ToolStripButton toolStripButton6;
         private System.Windows.Forms.ToolStripButton toolStripButton7;
         private System.Windows.Forms.ToolStripButton toolStripButton8;
+        private System.Windows.Forms.DataGridView dtgBOQList;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SITENAME;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
     }
 }

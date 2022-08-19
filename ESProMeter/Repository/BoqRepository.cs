@@ -75,6 +75,7 @@ namespace ESProMeter.Repository
                                 boq.ID,
                                 boq.BOQTITLE,
                                 boq.BOQDESC,
+                                boq.EDSEQ,
                                 boq.CUSTOMERID,
                                 boq.BOQDATE,
                                 boq.VALIDDATE,
