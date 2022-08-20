@@ -43,6 +43,7 @@ namespace ESProMeter
         public MainFrm()
         {
             InitializeComponent();
+            Properties.Settings.Default.curLoggedUID = 0;
             MainF = this;
         }
 
@@ -154,6 +155,7 @@ namespace ESProMeter
 
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
 		{
+            if (Properties.Settings.Default.curLoggedUID == 0) { Application.Exit(); return; }
             this.userLogStateUpdate(Properties.Settings.Default.curLoggedUID, 1);
             Application.Exit();
 		}

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ESProMeter.Controllers;
+using ESProMeter.Extensions;
 
 namespace ESProMeter.Views.UserManagement
 {
@@ -32,7 +33,7 @@ namespace ESProMeter.Views.UserManagement
 
 		private void mbtEdit_Click(object sender, EventArgs e)
 		{
-			Form form = new Views.UserManagement.UserFrm();
+			Views.UserManagement.UserFrm form = new Views.UserManagement.UserFrm();
 			form.Text = "Edit User";
 			if (form.ShowDialog() == DialogResult.OK)
 			{
@@ -48,7 +49,16 @@ namespace ESProMeter.Views.UserManagement
 
 		private void mbtDelete_Click(object sender, EventArgs e)
 		{
-
+			var selRow = dtgUserList.SelectedRows[0];
+			if (selRow.GetValue<string>("LOGSTATE").ToUpper() == "LOGGED ON")
+			{
+				MessageBox.Show("You cannot delete a user while it is logged on", "Delete User");
+			}
+			else
+			{
+				this.DeleteUser(selRow.GetValue<int>("ID"));
+				this.showUserList(dtgUserList, 1);
+			}
 		}
 	}
 }

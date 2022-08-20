@@ -73,17 +73,17 @@ namespace ESProMeter.Repository
                             }) > 0;
         }
 
-        //public bool Delete(int uid)
-        //{
-        //    //return AppService.SqlGetInstance
-        //    //    .UseProcedure()
-        //    //    .Delete<dynamic>(new
-        //    //    {
+        public bool Delete(int uid)
+        {
+            return AppService.SqlGetInstance
+                .UseProcedure("USER_sp_DELETE")
+                .Delete<dynamic>(new 
+                { 
+                    @uid = uid 
+                }) > 0;
+		}
 
-        //    //    }
-        //}
-
-        public bool ChangePassword(IChangePassword pwd)
+		public bool ChangePassword(IChangePassword pwd)
         {
             return AppService.SqlGetInstance
                 .UseProcedure("USERPASSWORD_sp_UPDATE")

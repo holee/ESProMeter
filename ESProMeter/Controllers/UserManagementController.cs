@@ -82,9 +82,9 @@ namespace ESProMeter.Controllers
 			}
 		}
 
-		//public static bool DeleteUser(this Form form, int uid)
-		//{
-
-		//}
+		public static bool DeleteUser(this Form form, int uid)
+		{
+			return AppService.GetUserInstance.Delete(uid);
+		}
 	}
 }
