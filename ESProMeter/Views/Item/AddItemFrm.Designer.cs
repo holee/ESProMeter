@@ -437,10 +437,10 @@ namespace ESProMeter.Views.Items
             this.btnSave.IconColor = System.Drawing.Color.White;
             this.btnSave.IconSize = 20;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(475, 511);
+            this.btnSave.Location = new System.Drawing.Point(468, 511);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(79, 32);
+            this.btnSave.Size = new System.Drawing.Size(86, 32);
             this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

@@ -9,6 +9,7 @@ using System.Linq;
 using FontAwesome.Sharp;
 using ESProMeter.Properties;
 using ESProMeter.Views.Boq;
+using ESProMeter.Extensions;
 
 namespace ESProMeter
 {
@@ -176,7 +177,8 @@ namespace ESProMeter
 		private void billOfQuantityListToolStripMenuItem_Click(object sender, EventArgs e)
 		{
             Form form = new Views.Boq.CreateBoQ_Step1_Frm();
-            CanOpenForm(form);
+            form.WindowState = FormWindowState.Normal;
+            this.OpenChildForm(form,this);
 		}
 
 		private void toolStripMenuItem4_Click(object sender, EventArgs e)
@@ -292,7 +294,7 @@ namespace ESProMeter
         {
             Views.Sites.SiteFrm formSiteList = new Views.Sites.SiteFrm();
             formSiteList.WindowState = FormWindowState.Maximized;
-            CanOpenForm(formSiteList);
+            this.OpenChildForm(formSiteList,this);
         }
 
 		private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)

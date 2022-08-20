@@ -10,7 +10,10 @@
 
   <ItemGroup>
     <None Remove="Reports\Report1.rdlc" />
-    <None Remove="Reports\RptBOQLine.rdlc" />
+    <None Remove="Reports\RptBOQ.rdlc" />
+    <None Remove="Reports\RptEchoMaterial.rdlc" />
+    <None Remove="Reports\RptLabour.rdlc" />
+    <None Remove="Reports\RptMachanery.rdlc" />
     <None Remove="test.xlsx" />
   </ItemGroup>
 
@@ -31,7 +34,16 @@
     <EmbeddedResource Include="Excels\test.xlsx">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RptBOQLine.rdlc">
+    <EmbeddedResource Include="Reports\RptLabour.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RptMachanery.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RptEchoMaterial.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RptBOQ.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
