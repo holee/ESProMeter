@@ -10,9 +10,27 @@ namespace ESProMeter.Views.Customers
         public CustomerCenterFrm()
         {
             InitializeComponent();
-            dgvCustomer.ClearSelection();
+            //dgvCustomer.SelectionChanged -= CustomerSelectionChanged;
+            //dgvCustomer.SelectionChanged += CustomerSelectionChanged;
         }
+        private void CustomerSelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvCustomer.SelectedRows.Count > 0)
+            {
+                var row = dgvCustomer.SelectedRows[0];
+                var id = row.GetValue<long>("ID");
+                CustomerDetailFrm form = new CustomerDetailFrm();
+                form.TopLevel = false;
+                form.TopMost = true;
+                form.FormBorderStyle = FormBorderStyle.None;
+                this.GetCustomerDetails(form, id);
+                this.GetCustomerWithBoq(this.dtgBOQList, id);
+                this.pnlDetails.Controls?.Clear();
+                this.pnlDetails.Controls.Add(form);
+                form.Show();
 
+            }
+        }
         private void tlsNew_Click(object sender, EventArgs e)
         {
             CustomerCreateFrm frm = new CustomerCreateFrm();
@@ -56,8 +74,16 @@ namespace ESProMeter.Views.Customers
 
         private void CustomerCenterFrm_Load(object sender, EventArgs e)
         {
-            this.ShowCustomerCenter();
-            dgvCustomer.ClearSelection();
+            dgvCustomer.SelectionChanged -= CustomerSelectionChanged;
+            try
+            {
+                this.ShowCustomerCenter();
+            }finally
+            {
+                dgvCustomer.SelectionChanged += CustomerSelectionChanged;
+            }
+           
+            
         }
 
         private void tlsCustomerEdit_Click(object sender, EventArgs e)
@@ -115,24 +141,7 @@ namespace ESProMeter.Views.Customers
             //this.ShowCustomerCenter(textSearch.Text.Trim());
         }
 
-        private void gridCustomer_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dgvCustomer.SelectedRows.Count > 0)
-            {
-                var row = dgvCustomer.SelectedRows[0];
-                var id = row.GetValue<long>("ID");
-                CustomerDetailFrm form = new CustomerDetailFrm();
-                form.TopLevel = false;
-                form.TopMost = true;
-                form.FormBorderStyle = FormBorderStyle.None;
-                this.GetCustomerDetails(form, id);
-                this.GetCustomerWithBoq(this.dtgBOQList, id);
-                this.pnlDetails.Controls?.Clear();
-                this.pnlDetails.Controls.Add(form);
-                form.Show();
-
-            }
-        }
+        
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
@@ -143,6 +152,13 @@ namespace ESProMeter.Views.Customers
                 Views.Boq.CreateBoQ_Step1_Frm form = new Boq.CreateBoQ_Step1_Frm(cust_id);
                 CanOpenForm(form);
             }
+        }
+
+        private void dgvCustomer_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvCustomer.ClearSelection();
+            dgvCustomer.CurrentCell = null;
+  
         }
     }
 }

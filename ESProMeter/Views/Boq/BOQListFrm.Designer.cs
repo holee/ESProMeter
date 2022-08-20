@@ -366,7 +366,7 @@ namespace ESProMeter.Views.Boq
             this.dtgBOQList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dtgBOQList.RowHeadersVisible = false;
             this.dtgBOQList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dtgBOQList.RowTemplate.Height = 25;
+            this.dtgBOQList.RowTemplate.Height = 30;
             this.dtgBOQList.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dtgBOQList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dtgBOQList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -549,7 +549,7 @@ namespace ESProMeter.Views.Boq
             this.dtgBOQLine.Name = "dtgBOQLine";
             this.dtgBOQLine.ReadOnly = true;
             this.dtgBOQLine.RowHeadersVisible = false;
-            this.dtgBOQLine.RowTemplate.Height = 25;
+            this.dtgBOQLine.RowTemplate.Height = 30;
             this.dtgBOQLine.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dtgBOQLine.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgBOQLine.Size = new System.Drawing.Size(907, 258);
@@ -644,64 +644,64 @@ namespace ESProMeter.Views.Boq
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem4.Text = "BOQ";
             // 
             // detailsBOQToolStripMenuItem
             // 
             this.detailsBOQToolStripMenuItem.Name = "detailsBOQToolStripMenuItem";
-            this.detailsBOQToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.detailsBOQToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.detailsBOQToolStripMenuItem.Text = "Details BOQ";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // ecoMaterialToolStripMenuItem1
             // 
             this.ecoMaterialToolStripMenuItem1.Name = "ecoMaterialToolStripMenuItem1";
-            this.ecoMaterialToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.ecoMaterialToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.ecoMaterialToolStripMenuItem1.Text = "Eco Material";
             // 
             // ecoLabourToolStripMenuItem1
             // 
             this.ecoLabourToolStripMenuItem1.Name = "ecoLabourToolStripMenuItem1";
-            this.ecoLabourToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.ecoLabourToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.ecoLabourToolStripMenuItem1.Text = "Eco Labour";
             // 
             // ecoMachineryToolStripMenuItem
             // 
             this.ecoMachineryToolStripMenuItem.Name = "ecoMachineryToolStripMenuItem";
-            this.ecoMachineryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ecoMachineryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ecoMachineryToolStripMenuItem.Text = "Eco Machinery";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(149, 6);
             // 
             // projectCostToolStripMenuItem1
             // 
             this.projectCostToolStripMenuItem1.Name = "projectCostToolStripMenuItem1";
-            this.projectCostToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.projectCostToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.projectCostToolStripMenuItem1.Text = "Project Cost";
             // 
             // economicToolStripMenuItem1
             // 
             this.economicToolStripMenuItem1.Name = "economicToolStripMenuItem1";
-            this.economicToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.economicToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.economicToolStripMenuItem1.Text = "Economic";
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(149, 6);
             // 
             // finalQuoteToolStripMenuItem
             // 
             this.finalQuoteToolStripMenuItem.Name = "finalQuoteToolStripMenuItem";
-            this.finalQuoteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.finalQuoteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.finalQuoteToolStripMenuItem.Text = "Final Quote";
             // 
             // exportToExcelToolStripMenuItem

@@ -99,6 +99,19 @@ namespace ESProMeter.Views.Items
             groupBoq.MouseDown += GroupBoq_MouseDown;
             GENERAL.MouseDown += GroupBoq_MouseDown;
             groupBox2.MouseDown += GroupBoq_MouseDown;
+            textCost.LostFocus += TextCost_LostFocus;
+            textCost.GotFocus += TextCost_GotFocus;
+        }
+
+        private void TextCost_GotFocus(object sender, EventArgs e)
+        {
+            ((TextBox)sender)?.BeginInvoke(new Action(((TextBox)sender).SelectAll));
+        }
+
+        private void TextCost_LostFocus(object sender, EventArgs e)
+        {
+            var textValue = ((TextBox)sender).AsNumber<decimal>();
+            textCost.SetText(Utility.NumberString(textValue));
         }
 
         private void GroupBoq_MouseDown(object sender, MouseEventArgs e)
@@ -119,6 +132,8 @@ namespace ESProMeter.Views.Items
             groupBoq.MouseDown += GroupBoq_MouseDown;
             GENERAL.MouseDown += GroupBoq_MouseDown;
             groupBox2.MouseDown += GroupBoq_MouseDown;
+            textCost.LostFocus += TextCost_LostFocus;
+            textCost.GotFocus += TextCost_GotFocus;
             this.ShowItemType(this.cmbType);
             this.ShowUom(this.cmbUom);
             if (Id == 0)
@@ -329,7 +344,6 @@ namespace ESProMeter.Views.Items
                 {
                     this.GetItemsWithoutBoq(dgvItem,"Material", "ID", "ItemName", "ItemType", "Uom", "UomID", "Cost");
                 }
-                
                 dgvBoq.SendToBack();
             }
             else
@@ -339,6 +353,7 @@ namespace ESProMeter.Views.Items
                 toggle = false;
                 btndropDown.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronUpBox;
             }
+            this.tabControl1.Enabled = true;
         }
         private void AddItemFrm_MouseClick(object sender, MouseEventArgs e)
         {
