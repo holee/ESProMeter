@@ -28,19 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtOperation = new System.Windows.Forms.TextBox();
             this.txtLoseEffecency = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -49,6 +49,15 @@
             this.label12 = new System.Windows.Forms.Label();
             this.txtSubtotalLabour = new System.Windows.Forms.TextBox();
             this.dgvLabor = new System.Windows.Forms.DataGridView();
+            this.laborBOQItemLineRefID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.laborBOQItemLineQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ButtonColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labourSubtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.laborUomRefID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label11 = new System.Windows.Forms.Label();
             this.txtSubtotalMachinery = new System.Windows.Forms.TextBox();
@@ -114,16 +123,10 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txtBoqCOST = new System.Windows.Forms.TextBox();
             this.txtsalePrice = new System.Windows.Forms.TextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.laborBOQItemLineRefID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.laborBOQItemLineQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ButtonColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.labourSubtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.laborUomRefID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -134,6 +137,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterial)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtOperation
@@ -142,6 +146,7 @@
             this.txtOperation.Name = "txtOperation";
             this.txtOperation.Size = new System.Drawing.Size(111, 23);
             this.txtOperation.TabIndex = 34;
+            this.txtOperation.Text = "0";
             // 
             // txtLoseEffecency
             // 
@@ -149,6 +154,7 @@
             this.txtLoseEffecency.Name = "txtLoseEffecency";
             this.txtLoseEffecency.Size = new System.Drawing.Size(111, 23);
             this.txtLoseEffecency.TabIndex = 31;
+            this.txtLoseEffecency.Text = "0";
             // 
             // groupBox2
             // 
@@ -221,14 +227,14 @@
             this.dgvLabor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvLabor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvLabor.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle27;
             this.dgvLabor.ColumnHeadersHeight = 25;
             this.dgvLabor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvLabor.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -241,14 +247,14 @@
             this.labourSubtotal,
             this.laborUomRefID,
             this.dataGridViewTextBoxColumn3});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvLabor.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle30.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvLabor.DefaultCellStyle = dataGridViewCellStyle30;
             this.dgvLabor.EnableHeadersVisualStyles = false;
             this.dgvLabor.Location = new System.Drawing.Point(4, 3);
             this.dgvLabor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -263,6 +269,99 @@
             this.dgvLabor.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLabor_CellEndEdit);
             this.dgvLabor.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvLabor_DataBindingComplete);
             this.dgvLabor.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvLabor_EditingControlShowing);
+            // 
+            // laborBOQItemLineRefID
+            // 
+            this.laborBOQItemLineRefID.DataPropertyName = "BOQITEMLINEID";
+            this.laborBOQItemLineRefID.HeaderText = "ItemID";
+            this.laborBOQItemLineRefID.MinimumWidth = 2;
+            this.laborBOQItemLineRefID.Name = "laborBOQItemLineRefID";
+            this.laborBOQItemLineRefID.ReadOnly = true;
+            this.laborBOQItemLineRefID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.laborBOQItemLineRefID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.laborBOQItemLineRefID.Width = 2;
+            // 
+            // dataGridViewComboBoxColumn1
+            // 
+            this.dataGridViewComboBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewComboBoxColumn1.DataPropertyName = "BOQITEMITEMLINENAME";
+            this.dataGridViewComboBoxColumn1.HeaderText = "Item Name";
+            this.dataGridViewComboBoxColumn1.MinimumWidth = 100;
+            this.dataGridViewComboBoxColumn1.Name = "dataGridViewComboBoxColumn1";
+            this.dataGridViewComboBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewComboBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "BOQITEMITEMLINETYPE";
+            this.dataGridViewTextBoxColumn1.HeaderText = "ItemType";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "UOM";
+            this.dataGridViewTextBoxColumn2.HeaderText = "UOM";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // laborBOQItemLineQty
+            // 
+            this.laborBOQItemLineQty.DataPropertyName = "BOQITEMLINEQTY";
+            this.laborBOQItemLineQty.HeaderText = "Quantity";
+            this.laborBOQItemLineQty.Name = "laborBOQItemLineQty";
+            this.laborBOQItemLineQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.laborBOQItemLineQty.Width = 80;
+            // 
+            // ButtonColumn1
+            // 
+            this.ButtonColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ButtonColumn1.DataPropertyName = "COST";
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle28.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            this.ButtonColumn1.DefaultCellStyle = dataGridViewCellStyle28;
+            this.ButtonColumn1.HeaderText = "Unit Cost";
+            this.ButtonColumn1.Name = "ButtonColumn1";
+            this.ButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ButtonColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // labourSubtotal
+            // 
+            this.labourSubtotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.labourSubtotal.DataPropertyName = "SUBCOST";
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.labourSubtotal.DefaultCellStyle = dataGridViewCellStyle29;
+            this.labourSubtotal.HeaderText = "Sub Total";
+            this.labourSubtotal.Name = "labourSubtotal";
+            this.labourSubtotal.ReadOnly = true;
+            this.labourSubtotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // laborUomRefID
+            // 
+            this.laborUomRefID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.laborUomRefID.DataPropertyName = "BOQITEMLINEUOMID";
+            this.laborUomRefID.HeaderText = "UomID";
+            this.laborUomRefID.MinimumWidth = 2;
+            this.laborUomRefID.Name = "laborUomRefID";
+            this.laborUomRefID.ReadOnly = true;
+            this.laborUomRefID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.laborUomRefID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.laborUomRefID.Width = 2;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "BOQITEMLINESEQ";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Order";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn3.Visible = false;
+            this.dataGridViewTextBoxColumn3.Width = 60;
             // 
             // tabPage2
             // 
@@ -306,14 +405,14 @@
             this.dgvMachinary.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMachinary.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle31.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle31.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle31.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMachinary.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle31;
             this.dgvMachinary.ColumnHeadersHeight = 25;
             this.dgvMachinary.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvMachinary.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -326,14 +425,14 @@
             this.machinerySubtotal,
             this.dataGridViewTextBoxColumn28,
             this.Column10});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvMachinary.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle34.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle34.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle34.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            dataGridViewCellStyle34.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvMachinary.DefaultCellStyle = dataGridViewCellStyle34;
             this.dgvMachinary.EnableHeadersVisualStyles = false;
             this.dgvMachinary.Location = new System.Drawing.Point(4, 3);
             this.dgvMachinary.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -388,9 +487,9 @@
             // machineryCost
             // 
             this.machineryCost.DataPropertyName = "COST";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.machineryCost.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle32.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.machineryCost.DefaultCellStyle = dataGridViewCellStyle32;
             this.machineryCost.HeaderText = "Unit Cost";
             this.machineryCost.Name = "machineryCost";
             this.machineryCost.ReadOnly = true;
@@ -400,8 +499,8 @@
             // machinerySubtotal
             // 
             this.machinerySubtotal.DataPropertyName = "SUBCOST";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.machinerySubtotal.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.machinerySubtotal.DefaultCellStyle = dataGridViewCellStyle33;
             this.machinerySubtotal.HeaderText = "Sub Total";
             this.machinerySubtotal.Name = "machinerySubtotal";
             this.machinerySubtotal.ReadOnly = true;
@@ -451,14 +550,14 @@
             this.dgvMaterial.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle35.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle35.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle35.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMaterial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle35;
             this.dgvMaterial.ColumnHeadersHeight = 25;
             this.dgvMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvMaterial.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -471,14 +570,14 @@
             this.materialSubtotal,
             this.dataGridViewTextBoxColumn34,
             this.Column9});
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvMaterial.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle39.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle39.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle39.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle39.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvMaterial.DefaultCellStyle = dataGridViewCellStyle39;
             this.dgvMaterial.EnableHeadersVisualStyles = false;
             this.dgvMaterial.Location = new System.Drawing.Point(4, 3);
             this.dgvMaterial.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -530,8 +629,8 @@
             // materialQty
             // 
             this.materialQty.DataPropertyName = "BOQITEMLINEQTY";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.materialQty.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.materialQty.DefaultCellStyle = dataGridViewCellStyle36;
             this.materialQty.HeaderText = "Quantity";
             this.materialQty.Name = "materialQty";
             this.materialQty.Width = 80;
@@ -539,8 +638,8 @@
             // materialCost
             // 
             this.materialCost.DataPropertyName = "COST";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.materialCost.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.materialCost.DefaultCellStyle = dataGridViewCellStyle37;
             this.materialCost.HeaderText = "Unit Cost";
             this.materialCost.Name = "materialCost";
             this.materialCost.ReadOnly = true;
@@ -549,8 +648,8 @@
             // materialSubtotal
             // 
             this.materialSubtotal.DataPropertyName = "SUBCOST";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.materialSubtotal.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.materialSubtotal.DefaultCellStyle = dataGridViewCellStyle38;
             this.materialSubtotal.HeaderText = "Sub Total";
             this.materialSubtotal.Name = "materialSubtotal";
             this.materialSubtotal.ReadOnly = true;
@@ -623,12 +722,12 @@
             this.groupBox1.Controls.Add(this.txtOperationValue);
             this.groupBox1.Controls.Add(this.txtOverhead);
             this.groupBox1.Controls.Add(this.txtOperation);
-            this.groupBox1.Location = new System.Drawing.Point(26, 42);
+            this.groupBox1.Location = new System.Drawing.Point(26, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(420, 195);
             this.groupBox1.TabIndex = 42;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "BOQ ADDITIONAL COST DEFAULT SETTINGS";
+            this.groupBox1.Text = "BOQ ADDITIONAL COST SETTINGS";
             // 
             // textBox12
             // 
@@ -647,6 +746,7 @@
             this.txtLoseEfficency.ReadOnly = true;
             this.txtLoseEfficency.Size = new System.Drawing.Size(118, 23);
             this.txtLoseEfficency.TabIndex = 31;
+            this.txtLoseEfficency.Text = "0";
             // 
             // label8
             // 
@@ -729,6 +829,7 @@
             this.txtAdditionalSubTotal.ReadOnly = true;
             this.txtAdditionalSubTotal.Size = new System.Drawing.Size(178, 23);
             this.txtAdditionalSubTotal.TabIndex = 34;
+            this.txtAdditionalSubTotal.Text = "0";
             // 
             // txtTransportationValue
             // 
@@ -737,6 +838,7 @@
             this.txtTransportationValue.ReadOnly = true;
             this.txtTransportationValue.Size = new System.Drawing.Size(118, 23);
             this.txtTransportationValue.TabIndex = 34;
+            this.txtTransportationValue.Text = "0";
             // 
             // txtTransportation
             // 
@@ -744,6 +846,7 @@
             this.txtTransportation.Name = "txtTransportation";
             this.txtTransportation.Size = new System.Drawing.Size(111, 23);
             this.txtTransportation.TabIndex = 34;
+            this.txtTransportation.Text = "0";
             // 
             // textBox7
             // 
@@ -762,6 +865,7 @@
             this.txtSaftyValue.ReadOnly = true;
             this.txtSaftyValue.Size = new System.Drawing.Size(118, 23);
             this.txtSaftyValue.TabIndex = 34;
+            this.txtSaftyValue.Text = "0";
             // 
             // txtSafty
             // 
@@ -769,6 +873,7 @@
             this.txtSafty.Name = "txtSafty";
             this.txtSafty.Size = new System.Drawing.Size(111, 23);
             this.txtSafty.TabIndex = 34;
+            this.txtSafty.Text = "0";
             // 
             // textBox6
             // 
@@ -787,6 +892,7 @@
             this.txtOverheadValue.ReadOnly = true;
             this.txtOverheadValue.Size = new System.Drawing.Size(118, 23);
             this.txtOverheadValue.TabIndex = 34;
+            this.txtOverheadValue.Text = "0";
             // 
             // txtOperationValue
             // 
@@ -795,6 +901,7 @@
             this.txtOperationValue.ReadOnly = true;
             this.txtOperationValue.Size = new System.Drawing.Size(118, 23);
             this.txtOperationValue.TabIndex = 34;
+            this.txtOperationValue.Text = "0";
             // 
             // txtOverhead
             // 
@@ -802,6 +909,7 @@
             this.txtOverhead.Name = "txtOverhead";
             this.txtOverhead.Size = new System.Drawing.Size(111, 23);
             this.txtOverhead.TabIndex = 34;
+            this.txtOverhead.Text = "0";
             // 
             // textBox11
             // 
@@ -819,6 +927,7 @@
             this.txtInflation.Name = "txtInflation";
             this.txtInflation.Size = new System.Drawing.Size(111, 23);
             this.txtInflation.TabIndex = 34;
+            this.txtInflation.Text = "0";
             // 
             // textBox10
             // 
@@ -854,6 +963,7 @@
             this.txtMargin.Name = "txtMargin";
             this.txtMargin.Size = new System.Drawing.Size(111, 23);
             this.txtMargin.TabIndex = 34;
+            this.txtMargin.Text = "0";
             // 
             // mbtNext
             // 
@@ -907,9 +1017,9 @@
             this.groupBox3.Controls.Add(this.txtInflation);
             this.groupBox3.Controls.Add(this.textBox10);
             this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.groupBox3.Location = new System.Drawing.Point(26, 254);
+            this.groupBox3.Location = new System.Drawing.Point(27, 208);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(420, 141);
+            this.groupBox3.Size = new System.Drawing.Size(420, 113);
             this.groupBox3.TabIndex = 42;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "MARGIN AND INFLATION";
@@ -938,6 +1048,7 @@
             this.txtSubtotalMagrinAndInflation.ReadOnly = true;
             this.txtSubtotalMagrinAndInflation.Size = new System.Drawing.Size(172, 23);
             this.txtSubtotalMagrinAndInflation.TabIndex = 34;
+            this.txtSubtotalMagrinAndInflation.Text = "0";
             // 
             // txtInflationValue
             // 
@@ -950,7 +1061,7 @@
             // lblBoqID
             // 
             this.lblBoqID.AutoSize = true;
-            this.lblBoqID.Location = new System.Drawing.Point(239, 401);
+            this.lblBoqID.Location = new System.Drawing.Point(433, 401);
             this.lblBoqID.Name = "lblBoqID";
             this.lblBoqID.Size = new System.Drawing.Size(13, 15);
             this.lblBoqID.TabIndex = 38;
@@ -959,7 +1070,7 @@
             // lblBoqItemID
             // 
             this.lblBoqItemID.AutoSize = true;
-            this.lblBoqItemID.Location = new System.Drawing.Point(380, 401);
+            this.lblBoqItemID.Location = new System.Drawing.Point(452, 399);
             this.lblBoqItemID.Name = "lblBoqItemID";
             this.lblBoqItemID.Size = new System.Drawing.Size(13, 15);
             this.lblBoqItemID.TabIndex = 38;
@@ -968,131 +1079,72 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(35, 12);
+            this.label13.Location = new System.Drawing.Point(9, 19);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(64, 15);
+            this.label13.Size = new System.Drawing.Size(93, 15);
             this.label13.TabIndex = 38;
-            this.label13.Text = "BOQ COST";
+            this.label13.Text = "BOQ ITEM COST";
             // 
             // txtBoqCOST
             // 
-            this.txtBoqCOST.Location = new System.Drawing.Point(120, 9);
+            this.txtBoqCOST.Location = new System.Drawing.Point(120, 13);
             this.txtBoqCOST.Name = "txtBoqCOST";
             this.txtBoqCOST.ReadOnly = true;
-            this.txtBoqCOST.Size = new System.Drawing.Size(116, 23);
+            this.txtBoqCOST.Size = new System.Drawing.Size(295, 23);
             this.txtBoqCOST.TabIndex = 31;
             this.txtBoqCOST.Text = "0";
             // 
             // txtsalePrice
             // 
-            this.txtsalePrice.Location = new System.Drawing.Point(324, 9);
+            this.txtsalePrice.Location = new System.Drawing.Point(119, 39);
             this.txtsalePrice.Name = "txtsalePrice";
             this.txtsalePrice.ReadOnly = true;
-            this.txtsalePrice.Size = new System.Drawing.Size(116, 23);
+            this.txtsalePrice.Size = new System.Drawing.Size(296, 23);
             this.txtsalePrice.TabIndex = 31;
             this.txtsalePrice.Text = "0";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label15);
+            this.groupBox4.Controls.Add(this.textBox4);
+            this.groupBox4.Controls.Add(this.txtsalePrice);
+            this.groupBox4.Controls.Add(this.txtBoqCOST);
+            this.groupBox4.Controls.Add(this.label14);
+            this.groupBox4.Controls.Add(this.label13);
+            this.groupBox4.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.groupBox4.Location = new System.Drawing.Point(26, 327);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(420, 68);
+            this.groupBox4.TabIndex = 42;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "OTHERS";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(184, 84);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(55, 15);
+            this.label15.TabIndex = 38;
+            this.label15.Text = "Sub Total";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(242, 80);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(172, 23);
+            this.textBox4.TabIndex = 34;
+            this.textBox4.Text = "0";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(252, 13);
+            this.label14.Location = new System.Drawing.Point(9, 42);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(57, 15);
+            this.label14.Size = new System.Drawing.Size(67, 15);
             this.label14.TabIndex = 38;
-            this.label14.Text = "Sale Price";
-            // 
-            // laborBOQItemLineRefID
-            // 
-            this.laborBOQItemLineRefID.DataPropertyName = "BOQITEMLINEID";
-            this.laborBOQItemLineRefID.HeaderText = "ItemID";
-            this.laborBOQItemLineRefID.MinimumWidth = 2;
-            this.laborBOQItemLineRefID.Name = "laborBOQItemLineRefID";
-            this.laborBOQItemLineRefID.ReadOnly = true;
-            this.laborBOQItemLineRefID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.laborBOQItemLineRefID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.laborBOQItemLineRefID.Width = 2;
-            // 
-            // dataGridViewComboBoxColumn1
-            // 
-            this.dataGridViewComboBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewComboBoxColumn1.DataPropertyName = "BOQITEMITEMLINENAME";
-            this.dataGridViewComboBoxColumn1.HeaderText = "Item Name";
-            this.dataGridViewComboBoxColumn1.MinimumWidth = 100;
-            this.dataGridViewComboBoxColumn1.Name = "dataGridViewComboBoxColumn1";
-            this.dataGridViewComboBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewComboBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "BOQITEMITEMLINETYPE";
-            this.dataGridViewTextBoxColumn1.HeaderText = "ItemType";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "UOM";
-            this.dataGridViewTextBoxColumn2.HeaderText = "UOM";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // laborBOQItemLineQty
-            // 
-            this.laborBOQItemLineQty.DataPropertyName = "BOQITEMLINEQTY";
-            this.laborBOQItemLineQty.HeaderText = "Quantity";
-            this.laborBOQItemLineQty.Name = "laborBOQItemLineQty";
-            this.laborBOQItemLineQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.laborBOQItemLineQty.Width = 80;
-            // 
-            // ButtonColumn1
-            // 
-            this.ButtonColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ButtonColumn1.DataPropertyName = "COST";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            this.ButtonColumn1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ButtonColumn1.HeaderText = "Unit Cost";
-            this.ButtonColumn1.Name = "ButtonColumn1";
-            this.ButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ButtonColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // labourSubtotal
-            // 
-            this.labourSubtotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.labourSubtotal.DataPropertyName = "SUBCOST";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.labourSubtotal.DefaultCellStyle = dataGridViewCellStyle3;
-            this.labourSubtotal.HeaderText = "Sub Total";
-            this.labourSubtotal.Name = "labourSubtotal";
-            this.labourSubtotal.ReadOnly = true;
-            this.labourSubtotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // laborUomRefID
-            // 
-            this.laborUomRefID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.laborUomRefID.DataPropertyName = "BOQITEMLINEUOMID";
-            this.laborUomRefID.HeaderText = "UomID";
-            this.laborUomRefID.MinimumWidth = 2;
-            this.laborUomRefID.Name = "laborUomRefID";
-            this.laborUomRefID.ReadOnly = true;
-            this.laborUomRefID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.laborUomRefID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.laborUomRefID.Width = 2;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "BOQITEMLINESEQ";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Order";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn3.Visible = false;
-            this.dataGridViewTextBoxColumn3.Width = 60;
+            this.label14.Text = "SALE PRICE";
             // 
             // BOQLINEFrm
             // 
@@ -1100,13 +1152,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1168, 445);
             this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.txtsalePrice);
-            this.Controls.Add(this.txtBoqCOST);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblBoqID);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label13);
             this.Controls.Add(this.lblBoqItemID);
             this.Controls.Add(this.mbtNext);
             this.Controls.Add(this.mbtCancel);
@@ -1128,6 +1177,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1189,7 +1240,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtBoqCOST;
         private System.Windows.Forms.TextBox txtsalePrice;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn23;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewComboBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
@@ -1217,5 +1267,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn labourSubtotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn laborUomRefID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label14;
     }
 }
