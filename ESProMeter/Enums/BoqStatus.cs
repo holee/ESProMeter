@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ESProMeter.Enums
+﻿namespace ESProMeter.Enums
 {
     public enum BoqStatus
     {
-        Cancelled,
-        Closed,
-        Open
+        Cancelled=1,
+        Closed=2,
+        Open=3
     }
 
     public enum QuoteStatus
     {
-        Cancelled,
-        Closed,
-        Proposed,
-        New
+        Cancelled=1,
+        Closed=2,
+        Proposed=3,
+        New=4
     }
 
 }
