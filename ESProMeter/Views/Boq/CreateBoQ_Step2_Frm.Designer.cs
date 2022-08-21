@@ -307,7 +307,7 @@ namespace ESProMeter.Views.Boq
             this.dgvBoqList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvBoqList.BackgroundColor = System.Drawing.Color.White;
+            this.dgvBoqList.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -316,6 +316,7 @@ namespace ESProMeter.Views.Boq
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvBoqList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvBoqList.ColumnHeadersHeight = 30;
             this.dgvBoqList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvBoqList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NO,
@@ -339,10 +340,10 @@ namespace ESProMeter.Views.Boq
             this.ACTION,
             this.REMOVE});
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.Desktop;
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvBoqList.DefaultCellStyle = dataGridViewCellStyle7;
@@ -371,6 +372,8 @@ namespace ESProMeter.Views.Boq
             this.dgvBoqList.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvBoqList_CellMouseDown);
             this.dgvBoqList.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvBoqList_EditingControlShowing);
             this.dgvBoqList.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvBoqList_RowsAdded);
+            this.dgvBoqList.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvBoqList_RowsRemoved);
+            this.dgvBoqList.SelectionChanged += new System.EventHandler(this.dgvBoqList_SelectionChanged);
             this.dgvBoqList.DragDrop += new System.Windows.Forms.DragEventHandler(this.dataGridView1_DragDrop);
             this.dgvBoqList.DragOver += new System.Windows.Forms.DragEventHandler(this.dataGridView1_DragOver);
             this.dgvBoqList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDown);
@@ -387,6 +390,7 @@ namespace ESProMeter.Views.Boq
             this.NO.Name = "NO";
             this.NO.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.NO.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.NO.Width = 70;
             // 
             // BOQID
             // 

@@ -1,6 +1,8 @@
-﻿using ESProMeter.Extensions;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using ESProMeter.Extensions;
 using ESProMeter.IVews;
 using ESProMeter.IViews;
+using ESProMeter.Models;
 using ESProMeter.Services;
 using System;
 using System.Data;
@@ -143,6 +145,17 @@ namespace ESProMeter.Repository
                 boq.TRANSPORTATIONRATE = row.GetValue<decimal>("TRANSPORTATIONRATE");
             }
         }
+
+        public bool BoqGetById(long id,out TBOQ boq)
+        {
+            return AppService.SqlGetInstance
+                            .UseProcedure("[BOQ_sp_SELECT_BY_ID]")
+                                .FindOne<dynamic, TBOQ>(new
+                                {
+                                    @ID = id
+                                }, out boq);
+            
+        }
         public bool BoqGetAll(byte isActive, int status, out DataTable table)
         {
             return AppService.SqlGetInstance
@@ -216,7 +229,18 @@ namespace ESProMeter.Repository
                             .UseProcedure("[SETTING_sp_SELECT]")
                                 .SelectAsTable<dynamic>(null,out table);
         }
-    
+
+        public void GetAdditinalCost(long boqId,long boqItemId,out ADDITIONALCOST model)
+        {
+            model = new();
+            AppService.SqlGetInstance
+                            .UseProcedure("TBOQLINE_sp_ADDITIONALCOST")
+                                .FindOne<dynamic, ADDITIONALCOST>(new
+                                {
+                                    @BODREFID= boqId,
+                                    @BOQITEMRefID= boqItemId
+                                }, out model);
+        }
     }
 }
 

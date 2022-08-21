@@ -1,20 +1,26 @@
 ﻿using ESProMeter.IVews;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace ESProMeter.Models
 {
-    public class ADDITIONALCOST:IADDITIONALCOST
+    public class ADDITIONALCOST:IADDITIONALCOSTRATE,IADDITIONALCOST
     {
-        public decimal LOSSOFEFFECIENCYRATE { get; set; }
-        public decimal OPERATIONRATE { get; set; }
-        public decimal OVERHEADRATE { get; set; }
-        public decimal SAFETYRATE { get; set; }
-        public decimal TRANSPORTATIONRATE { get; set; }
-        public decimal MARGINRATE { get; set; }
-        public decimal INFlATIONRATE { get; set; }
+        public decimal? LOSSOFEFFECIENCYRATE { get; set; } = 0M;
+        public decimal? OPERATIONRATE { get; set; } = 0M;
+        public decimal? OVERHEADRATE { get; set; } = 0M;
+        public decimal? SAFETYRATE { get; set; } = 0M;
+        public decimal? TRANSPORTATIONRATE { get; set; } = 0M;
+        public decimal? MARGINRATE { get; set; } = 0M;
+        public decimal? INFlATIONRATE { get; set; } = 0M;
+        public decimal? LOSSOFEFFECIENCY { get; set; } = 0M;
+        public decimal? OPERATION { get; set; } = 0M;
+        public decimal? OVERHEAD { get; set; } = 0M;
+        public decimal? SAFETY { get; set; } = 0M;
+        public decimal? TRANSPORTATION { get; set; } = 0M;
+        public decimal? MARGIN { get; set; } = 0M;
+        public decimal? INFlATION { get; set; } = 0M;
+        public decimal? TOTALADDITIONALCOST { get; set; } = 0M;
+        public decimal? TOTALMARINANDINFLATION { get; set; } = 0M;
+        public decimal? SUBTOTAL { get; set; } = 0M;
+        public decimal? SALEPRICE { get; set; } = 0M;
+        public decimal? BOQCOST { get; set; } = 0M;
     }
 }

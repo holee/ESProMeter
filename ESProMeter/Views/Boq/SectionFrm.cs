@@ -15,8 +15,8 @@ namespace ESProMeter.Views.Boq
     {
         public string NameText
         {
-            get { return lblName.Text.Trim(); }
-            set { lblName.SetText(value); }
+            get { return txtName.Text.Trim(); }
+            set { txtName.SetText(value); }
         }
         public string DescriptionText
         {

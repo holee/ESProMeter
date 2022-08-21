@@ -51,6 +51,7 @@ namespace ESProMeter.Controllers
                 constainer.DataSource = table;
                 constainer.DisplayMember = "SITENAME";
                 constainer.ValueMember = "ID";
+                constainer.SelectedIndex = -1;
             }
         }
         public static void SiteCreateNewOrUpdate(this Form form,ITSite site,ITAddressInfo tAddress, ActionType actionType=ActionType.CREATE)

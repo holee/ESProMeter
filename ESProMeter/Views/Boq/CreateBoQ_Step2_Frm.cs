@@ -2,6 +2,7 @@
 using ESProMeter.Extensions;
 using ESProMeter.IViews;
 using ESProMeter.Models;
+using ESProMeter.Services;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -173,56 +174,81 @@ namespace ESProMeter.Views.Boq
         public CreateBoQ_Step2_Frm()
         {
             InitializeComponent();
-            this.cboCustomerName.LostFocus += (s, e) =>
-            {
-                if (cboCustomerName.SelectedValue == null && cboCustomerName.Text.Length > 0)
-                {
-                    if (MessageBox.Show(@"there is not any customer in system,\n Do you to add new one?", "Bill Of Qauntity", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        Views.Customers.CustomerCreateFrm form = new Views.Customers.CustomerCreateFrm();
-                        form.NAME = cboCustomerName.Text;
-                        if (this.CustomerCreate(form, out var id))
-                        {
-                            this.FillCustomerCmb(cboCustomerName);
-                            this.cboCustomerName.SelectedValue = id;
-                        }
-                        else
-                        {
-                            this.FillCustomerCmb(cboCustomerName);
-                        }
-                    }
-                }
-            };
-            this.cboSite.LostFocus += (s, e) =>
-            {
-                if (cboSite.SelectedValue == null && cboSite.Text.Length > 0)
-                {
-                    if (MessageBox.Show(@"there is not any Site in system,\n Do you want to add new.", "Bill Of Qauntity", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        Sites.AddSiteFrm form = new Sites.AddSiteFrm();
-                        if (cboCustomerName.SelectedValue != null)
-                        {
-                            form.SITENAME = cboSite.Text;
-                            form.CUSTOMERID = cboCustomerName.AsNumber<long>(true);
-                            if (this.SiteCreateNewOrUpdate(form, out var id))
-                            {
-                                this.FillSitesCmbByCustomer(cboCustomerName.AsNumber<long>(true), cboSite);
-                                this.cboSite.SelectedValue = id;
-                            }
-                        }
+            //this.cboCustomerName.LostFocus += (s, e) =>
+            //{
+            //    if (cboCustomerName.SelectedValue == null && cboCustomerName.Text.Length > 0)
+            //    {
+            //        if (MessageBox.Show(@"there is not any customer in system,\n Do you to add new one?", "Bill Of Qauntity", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            //        {
+            //            Views.Customers.CustomerCreateFrm form = new Views.Customers.CustomerCreateFrm();
+            //            form.NAME = cboCustomerName.Text;
+            //            if (this.CustomerCreate(form, out var id))
+            //            {
+            //                this.FillCustomerCmb(cboCustomerName);
+            //                this.cboCustomerName.SelectedValue = id;
+            //            }
+            //            else
+            //            {
+            //                this.FillCustomerCmb(cboCustomerName);
+            //            }
+            //        }
+            //    }
+            //};
+            //this.cboSite.LostFocus += (s, e) =>
+            //{
+            //    if (cboSite.SelectedValue == null && cboSite.Text.Length > 0)
+            //    {
+            //        if (MessageBox.Show(@"there is not any Site in system,\n Do you want to add new.", "Bill Of Qauntity", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            //        {
+            //            Sites.AddSiteFrm form = new Sites.AddSiteFrm();
+            //            if (cboCustomerName.SelectedValue != null)
+            //            {
+            //                form.SITENAME = cboSite.Text;
+            //                form.CUSTOMERID = cboCustomerName.AsNumber<long>(true);
+            //                if (this.SiteCreateNewOrUpdate(form, out var id))
+            //                {
+            //                    this.FillSitesCmbByCustomer(cboCustomerName.AsNumber<long>(true), cboSite);
+            //                    this.cboSite.SelectedValue = id;
+            //                }
+            //            }
 
-                    }
-                    else return;
-                }
-            };
+            //        }
+            //        else return;
+            //    }
+            //};
         }
         public CreateBoQ_Step2_Frm(long id,Enums.ActionType type)
         {
             InitializeComponent();
             SetDoubleBuffer(dgvBoqList, true);
             this.FillCustomerCmb(cboCustomerName);
-            this.BoqGetById(id, this);
-            this.FillSitesCmbByCustomer(this.CUSTOMERID, cboSite);
+            if(this.BoqGetById(id,out var boq)){
+                this.ID = id;
+                this.BOQDESC = boq.BOQDESC;
+                this.BOQTITLE = boq.BOQTITLE;
+                this.BOQDATE = boq.BOQDATE;
+                this.VALIDDATE = boq.VALIDDATE;
+                this.EDSEQ = boq.EDSEQ;
+                this.UID = boq.UID;
+                this.STATUS = boq.STATUS;
+                this.SITEID = boq.SITEID;
+                this.CUSTOMERID = boq.CUSTOMERID;
+                this.BOQDESC = boq.BOQDESC;
+                this.MDT = boq.MDT;
+                this.CDT = boq.CDT;
+                this.TERMSCONDITION = boq.TERMSCONDITION;
+                this.REFNUMBER = boq.REFNUMBER;
+                this.ISACTIVE = boq.ISACTIVE;
+                this.LOSSOFEFFECIENCYRATE = boq.LOSSOFEFFECIENCYRATE;
+                this.OPERATIONRATE = boq.OPERATIONRATE;
+                this.OVERHEADRATE = boq.OVERHEADRATE;
+                this.SAFETYRATE = boq.SAFETYRATE;
+                this.MARGINRATE = boq.MARGINRATE;
+                this.INFlATIONRATE = boq.INFlATIONRATE;
+                this.TRANSPORTATIONRATE = boq.TRANSPORTATIONRATE;
+                this.FillSitesCmbByCustomer(boq.CUSTOMERID, cboSite);
+                this.cboSite.SelectedValue = boq.SITEID;
+            }
             switch (type)
             {
                 case Enums.ActionType.EDIT:
@@ -365,7 +391,6 @@ namespace ESProMeter.Views.Boq
                 }
             }
         }
-
         private void dgvBoqList_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvBoqList?.SelectedRows.Count > 0)
@@ -565,21 +590,13 @@ namespace ESProMeter.Views.Boq
                 && dgvBoqList.Columns[e.ColumnIndex] is DataGridViewImageColumn)
             {
                 var selectedRow = dgvBoqList.SelectedRows[0];
-                var selectedText = selectedRow.GetText("ITEMNAME");
+                var selectedText = selectedRow.GetText("UOM");
                 if (selectedText != string.Empty)
                 {
-                    var additionalCost = new ADDITIONALCOST
-                    {
-                        LOSSOFEFFECIENCYRATE= dgvBoqList.GetValue<decimal>(e.RowIndex, "LOSSEFFECENCYRATE1"),
-                        OPERATIONRATE = dgvBoqList.GetValue<decimal>(e.RowIndex, "OPERATIONRATE1"),
-                        OVERHEADRATE = dgvBoqList.GetValue<decimal>(e.RowIndex, "OVERHEADRATE1"),
-                        TRANSPORTATIONRATE = dgvBoqList.GetValue<decimal>(e.RowIndex, "TRANSPORTATIONRATE1"),
-                        MARGINRATE = dgvBoqList.GetValue<decimal>(e.RowIndex, "MARGINRATE1"),
-                        INFlATIONRATE = dgvBoqList.GetValue<decimal>(e.RowIndex, "INFlATIONRATE1"),
-                        SAFETYRATE = dgvBoqList.GetValue<decimal>(e.RowIndex, "SAFETYRATE1"),
-                    };
-                    var bod_id = dgvBoqList.GetValue<long>(e.RowIndex, "BOQITEMID");
-                    BOQLINEFrm form = new BOQLINEFrm(bod_id, additionalCost);
+                    var boq_id = selectedRow.GetValue<long>("BOQID");
+                    var boq_itemId= selectedRow.GetValue<long>("BOQITEMID");
+                    AppService.GetBoqInstance.GetAdditinalCost(boq_id, boq_itemId, out var additionalCost);
+                    BOQLINEFrm form = new BOQLINEFrm(boq_id,boq_itemId, additionalCost);
                     if (form.ShowDialog() == DialogResult.OK)
                     {
                         dgvBoqList.SetText(e.RowIndex, "LOSSEFFECENCYRATE1", form.LOSSOFEFFECIENCYRATE);
@@ -589,6 +606,23 @@ namespace ESProMeter.Views.Boq
                         dgvBoqList.SetText(e.RowIndex, "MARGINRATE1", form.MARGINRATE);
                         dgvBoqList.SetText(e.RowIndex, "INFlATIONRATE1", form.INFlATIONRATE);
                         dgvBoqList.SetText(e.RowIndex, "SAFETYRATE1", form.SAFETYRATE);
+                    }
+                }
+                else
+                {
+                    var sectionName = selectedRow.GetText("ITEMNAME");
+                    var description= selectedRow.GetText("BOQITEMDESC");
+                    var index = selectedRow.Index;
+                    SectionFrm form = new SectionFrm();
+                    form.NameText = sectionName;
+                    form.DescriptionText = description;
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {
+                        if (dgvBoqList.SelectedRows.Count > 0)
+                        {
+                            dgvBoqList.SetText(index, "ITEMNAME", form.NameText);
+                            dgvBoqList.SetText(index, "BOQITEMDESC",form.DescriptionText);
+                        }
                     }
                 }
             }
@@ -657,7 +691,6 @@ namespace ESProMeter.Views.Boq
                 this.cboCustomerName.SelectedValue = id;
             }
         }
-
         private void BoqLineCreateOrUpdateThenClose(object sender, EventArgs e,Enums.ActionType type)
         {
             try
@@ -708,7 +741,6 @@ namespace ESProMeter.Views.Boq
                 materialButton3.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronUpBox;
             }
         }
-
         private void mbtCancel_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -743,12 +775,10 @@ namespace ESProMeter.Views.Boq
                 dgvBoqList.ClearSelection();
             }
         }
-
         private void materialButton3_Click(object sender, EventArgs e)
         {
 
         }
-
         private void CreateBoQ_Step2_Frm_Load(object sender, EventArgs e)
         {
             this.dgvBoqList.ClearSelection();
@@ -756,114 +786,17 @@ namespace ESProMeter.Views.Boq
             
         }
 
-       
+        private void dgvBoqList_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvBoqList.SelectedRows.Count > 0)
+            {
+                var selectedRow = dgvBoqList.SelectedRows[0];
+                if (selectedRow.GetValue<string>("UOM") == string.Empty)
+                {
+                    dgvBoqList.Rows[dgvBoqList.CurrentRow.Index].DefaultCellStyle.SelectionBackColor = Color.Yellow;
+                }
+            }
+        }
     }
 }
 
-//int dragRow = -1;
-//Label dragLabel = null;
-//private void dataGridView1_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
-//{
-//    if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
-//    dragRow = e.RowIndex;
-//    if (dragLabel == null) dragLabel = new Label();
-//    dragLabel.Text = dataGridView1[e.ColumnIndex, e.RowIndex].Value.ToString();
-//    dragLabel.Parent = dataGridView1;
-//    dragLabel.Location = e.Location;
-//}
-
-//private void dataGridView1_MouseMove(object sender, MouseEventArgs e)
-//{
-//    if (e.Button == MouseButtons.Left && dragLabel != null)
-//    {
-//        dragLabel.Location = e.Location;
-//        dataGridView1.ClearSelection();
-//    }
-//}
-//private void dataGridView1_MouseUp(object sender, MouseEventArgs e)
-//{
-//    var hit = dataGridView1.HitTest(e.X, e.Y);
-//    int dropRow = -1;
-//    if (hit.Type != DataGridViewHitTestType.None)
-//    {
-//        dropRow = hit.RowIndex;
-//        if (dragRow >= 0)
-//        {
-//            int tgtRow = dropRow + (dragRow > dropRow ? 1 : 0);
-//            if (tgtRow != dragRow)
-//            {
-//                DataGridViewRow row = dataGridView1.Rows[dragRow];
-//                dataGridView1.Rows.Remove(row);
-//                dataGridView1.Rows.Insert(tgtRow, row);
-
-//                dataGridView1.ClearSelection();
-//                row.Selected = true;
-//            }
-//        }
-//    }
-//    else { dataGridView1.Rows[dragRow].Selected = true; }
-
-//    if (dragLabel != null)
-//    {
-//        dragLabel.Dispose();
-//        dragLabel = null;
-//    }
-//}
-
-//if (tgtRow != dragRow)
-//{
-//    DataRow dtRow = DT.Rows[dragRow];
-//    DataRow newRow = DT.NewRow();
-//    newRow.ItemArray = DT.Rows[dragRow].ItemArray; // we need to clone the values
-
-//    DT.Rows.Remove(dtRow);
-//    DT.Rows.InsertAt(newRow, tgtRow);
-//    dataGridView1.Refresh();
-//    dataGridView1.Rows[tgtRow].Selected = true;
-//}
-
-
-//this.dgvBoqList.Cursor = Cursors.Default;
-//var hit = dgvBoqList.HitTest(e.X, e.Y);
-//int dropRow = -1;
-//if (hit.Type != DataGridViewHitTestType.None)
-//{
-//    //dropRow = hit.RowIndex;
-//    //if (dragRow >= 0)
-//    //{
-//    //    int tgtRow = dropRow + (dragRow > dropRow ? 1 : 0);
-//    //    if (tgtRow != dragRow)
-//    //    {
-//    //        DataGridViewRow row = dgvBoqList.Rows[dragRow];
-//    //        dgvBoqList.Rows.Remove(row);
-//    //        dgvBoqList.Rows.Insert(tgtRow, row);
-//    //        dgvBoqList.ClearSelection();
-//    //        row.Selected = true;
-//    //    }
-//    //}
-//}
-//else { 
-//    //dgvBoqList.Rows[dragRow].Selected = true; 
-//}
-//for (int x = 0; x < dgvBoqList.Rows.Count - 1;x++) {
-//    if (dgvBoqList.Rows[x].Cells["uom"].Value == null)
-//    {
-//        ((DataGridViewButtonColumn)dgvBoqList.Columns["ACTION"]).UseColumnTextForButtonValue = true;
-//        ((DataGridViewButtonColumn)dgvBoqList.Columns["ACTION"]).Text = "Edit";
-//    }
-//    else
-//    {
-//        ((DataGridViewButtonColumn)dgvBoqList.Columns["ACTION"]).UseColumnTextForButtonValue = true;
-//        ((DataGridViewButtonColumn)dgvBoqList.Columns["ACTION"]).Text = "Detail";
-//    } 
-//}
-//if (dgvBoqList.Columns[e.ColumnIndex].Name == "uom")
-//{
-//    if (e.Value == null)
-//    {
-//        if (dgvBoqList.Columns[e.ColumnIndex].Name == "ACTION")
-//        {
-//            e.Value = "Edit";
-//        }
-//    }
-//}

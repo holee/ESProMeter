@@ -122,9 +122,18 @@ namespace ESProMeter.Controllers
         {
             if (AppService.GetItemInstance.GetBoqItemWithItemLineById(itemId,out var labour, out var machinery, out var material))
             {
-                form.AsControl<DataGridView>("dgvLabor").DataSource = labour.WithColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ");
-                form.AsControl<DataGridView>("dgvMachinary").DataSource = machinery.WithColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ");
-                form.AsControl<DataGridView>("dgvMaterial").DataSource = material.WithColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ");
+                form.AsControl<DataGridView>("dgvLabor").DataSource = labour.WithColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ","COST","SUBCOST");
+                form.AsControl<DataGridView>("dgvMachinary").DataSource = machinery.WithColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ", "COST", "SUBCOST");
+                form.AsControl<DataGridView>("dgvMaterial").DataSource = material.WithColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ", "COST", "SUBCOST");
+            }
+        }
+        public static void GetItemForUpdate(this Form form,long boq_id,long itemId)
+        {
+            if (AppService.GetItemInstance.GetBoqItemWithItemLineById(itemId, out var labour, out var machinery, out var material))
+            {
+                form.AsControl<DataGridView>("dgvLabor").DataSource = labour.WithColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ", "COST", "SUBCOST");
+                form.AsControl<DataGridView>("dgvMachinary").DataSource = machinery.WithColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ", "COST", "SUBCOST");
+                form.AsControl<DataGridView>("dgvMaterial").DataSource = material.WithColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ", "COST", "SUBCOST");
             }
         }
         public static void ShowItemType(this Form form, ComboBox storage)

@@ -4,6 +4,34 @@ namespace ESProMeter.Models
 {
     public class TBOQ : ITBOQ
     {
+		
+		//public TBOQ(ITBOQ boq)
+		//{
+		//	ID = boq;
+		//	CDT = boq;
+		//	MDT = boq;
+		//	EDSEQ = boq;
+		//	REFNUMBER = boq;
+		//	BOQTITLE = boq;
+		//	BOQDESC = boq;
+		//	CUSTOMERID = boq;
+		//	BOQDATE = boq;
+		//	VALIDDATE = boq;
+		//	ISACTIVE = boq;
+		//	SITEID = boq;
+		//	DIVID = boq;
+		//	TERMSCONDITION = boq;
+		//	STATUS = boq;
+		//	UID = boq;
+		//	LOSSOFEFFECIENCYRATE = boq;
+		//	OPERATIONRATE = boq;
+		//	OVERHEADRATE = boq;
+		//	SAFETYRATE = boq;
+		//	TRANSPORTATIONRATE = boq;
+		//	MARGINRATE = boq;
+		//	INFlATIONRATE = boq;
+		//}
+
 		public long ID { get; set; }
 		public DateTime CDT { get; set; }
 		public DateTime MDT { get; set; }

@@ -1,5 +1,7 @@
-﻿using ESProMeter.Extensions;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using ESProMeter.Extensions;
 using ESProMeter.IViews;
+using ESProMeter.Models;
 using ESProMeter.Services;
 using ESProMeter.Views.Boq;
 using System.Data;
@@ -82,9 +84,13 @@ namespace ESProMeter.Controllers
             table.UseDataTableAsGridView(container);
         }
 
-        public static void BoqGetById(this Form form, long id, CreateBoQ_Step2_Frm boqForm)
+        public static void BoqGetById(this Form form, long id,CreateBoQ_Step2_Frm boqForm)
         {
             AppService.GetBoqInstance.BoqGetById(id, boqForm);
+        }
+        public static bool BoqGetById(this Form form, long id, out TBOQ boq)
+        {
+            return AppService.GetBoqInstance.BoqGetById(id, out boq);
         }
         public static void BoqLineGetById(this Form form, long id, DataGridView container)
         {

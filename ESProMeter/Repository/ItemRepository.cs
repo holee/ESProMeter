@@ -335,7 +335,24 @@ namespace ESProMeter.Repository
 
         }
 
+        public void GetBoqItemLineByItemID(long boq_id,long itemID, string ItemTypeName, out DataTable table)
+        {
+            try
+            {
+                table = AppService.SqlGetInstance.UseProcedure("BOQITEMLINE_sp_SELECT_BY_ID")
+                        .SelectAsTable<dynamic>(new
+                        {
+                            @BOQID= boq_id,
+                            @BOQITEMID = itemID,
+                            @ITEMTYPE = ItemTypeName
+                        });
+            }
+            catch
+            {
+                throw;
+            }
 
+        }
         public bool MakeInActiveOrActive(long id,byte isActive) 
         {
             var count = AppService.SqlGetInstance.UseProcedure("[ITEM_sp_ISACTIVE]")
