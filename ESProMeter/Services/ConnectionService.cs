@@ -12,7 +12,7 @@ namespace ESProMeter.Services
 {
     public class ConnectionService
     {
-        private static IDbConnection? _connection = null;
+        private static IDbConnection _connection = null;
 
         public static IDbConnection Connection
         {

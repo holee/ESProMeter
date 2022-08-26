@@ -313,10 +313,10 @@ namespace ESProMeter.Views.Sites
             this.materialButton2.IconColor = System.Drawing.Color.White;
             this.materialButton2.IconSize = 32;
             this.materialButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.materialButton2.Location = new System.Drawing.Point(589, 410);
+            this.materialButton2.Location = new System.Drawing.Point(582, 410);
             this.materialButton2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.materialButton2.Name = "materialButton2";
-            this.materialButton2.Size = new System.Drawing.Size(70, 33);
+            this.materialButton2.Size = new System.Drawing.Size(77, 33);
             this.materialButton2.TabIndex = 8;
             this.materialButton2.Text = "Close";
             this.materialButton2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -332,10 +332,10 @@ namespace ESProMeter.Views.Sites
             this.btnSave.IconColor = System.Drawing.Color.White;
             this.btnSave.IconSize = 27;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(509, 410);
+            this.btnSave.Location = new System.Drawing.Point(497, 410);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(72, 33);
+            this.btnSave.Size = new System.Drawing.Size(84, 33);
             this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

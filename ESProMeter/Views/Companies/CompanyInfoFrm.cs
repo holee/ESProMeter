@@ -150,5 +150,16 @@ namespace ESProMeter.Views.Companies
         {
             this.Close();
         }
+
+        private void pictureBox1_DoubleClick(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.InitialDirectory = "";
+            dialog.Filter = "All Files(*.*)|*.*|Image Files(*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox1.Image =Image.FromFile(dialog.FileName);
+            }
+        }
     }
 }

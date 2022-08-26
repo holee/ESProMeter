@@ -120,11 +120,9 @@ namespace ESProMeter.Controllers
         }
         public static void GetItemForUpdate(this Form form,long itemId)
         {
-            if (AppService.GetItemInstance.GetBoqItemWithItemLineById(itemId,out var labour, out var machinery, out var material))
+            if (AppService.GetItemInstance.GetBoqItemWithItemLineById(itemId,out var labour))
             {
-                form.AsControl<DataGridView>("dgvLabor").DataSource = labour.WithColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ","COST","SUBCOST");
-                form.AsControl<DataGridView>("dgvMachinary").DataSource = machinery.WithColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ", "COST", "SUBCOST");
-                form.AsControl<DataGridView>("dgvMaterial").DataSource = material.WithColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ", "COST", "SUBCOST");
+                form.AsControl<DataGridView>("dgvBoqItemLine").DataSource = labour.WithColumn("BOQITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ", "COST", "SUBCOST");
             }
         }
         public static void GetItemForUpdate(this Form form,long boq_id,long itemId)

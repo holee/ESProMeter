@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CompanyInfoFrm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.rbtLegalInformation = new System.Windows.Forms.RadioButton();
@@ -35,6 +36,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lblCompanyID = new System.Windows.Forms.Label();
             this.txtProvince = new System.Windows.Forms.TextBox();
             this.txtCompanyName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -56,6 +58,7 @@
             this.lblcomEditSequese = new System.Windows.Forms.Label();
             this.lblContactAddressId = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.txtLoginPath = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.txtAltLegalCompanyName = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -72,8 +75,6 @@
             this.btnClose = new FontAwesome.Sharp.Material.MaterialButton();
             this.btnSave = new FontAwesome.Sharp.Material.MaterialButton();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.lblCompanyID = new System.Windows.Forms.Label();
-            this.txtLoginPath = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -188,6 +189,15 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(587, 385);
             this.tabPage1.TabIndex = 0;
+            // 
+            // lblCompanyID
+            // 
+            this.lblCompanyID.AutoSize = true;
+            this.lblCompanyID.Location = new System.Drawing.Point(43, 75);
+            this.lblCompanyID.Name = "lblCompanyID";
+            this.lblCompanyID.Size = new System.Drawing.Size(16, 17);
+            this.lblCompanyID.TabIndex = 19;
+            this.lblCompanyID.Text = "0";
             // 
             // txtProvince
             // 
@@ -382,11 +392,23 @@
             // pictureBox1
             // 
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Location = new System.Drawing.Point(432, 38);
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(424, 37);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(149, 147);
+            this.pictureBox1.Size = new System.Drawing.Size(158, 178);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.DoubleClick += new System.EventHandler(this.pictureBox1_DoubleClick);
+            // 
+            // txtLoginPath
+            // 
+            this.txtLoginPath.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtLoginPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLoginPath.Location = new System.Drawing.Point(444, 47);
+            this.txtLoginPath.Name = "txtLoginPath";
+            this.txtLoginPath.Size = new System.Drawing.Size(118, 23);
+            this.txtLoginPath.TabIndex = 20;
             // 
             // tabPage2
             // 
@@ -562,24 +584,6 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(591, 417);
             this.panel4.TabIndex = 7;
-            // 
-            // lblCompanyID
-            // 
-            this.lblCompanyID.AutoSize = true;
-            this.lblCompanyID.Location = new System.Drawing.Point(43, 75);
-            this.lblCompanyID.Name = "lblCompanyID";
-            this.lblCompanyID.Size = new System.Drawing.Size(16, 17);
-            this.lblCompanyID.TabIndex = 19;
-            this.lblCompanyID.Text = "0";
-            // 
-            // txtLoginPath
-            // 
-            this.txtLoginPath.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtLoginPath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtLoginPath.Location = new System.Drawing.Point(444, 47);
-            this.txtLoginPath.Name = "txtLoginPath";
-            this.txtLoginPath.Size = new System.Drawing.Size(118, 23);
-            this.txtLoginPath.TabIndex = 20;
             // 
             // CompanyInfoFrm
             // 

@@ -343,5 +343,11 @@ namespace ESProMeter
             //Test only; Need to create a dialog for selecting backup file and retore to db name
             //this.RestoreCompanyFile();
 		}
-	}
+
+        private void dbBackupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Views.DbTools.Form1 form = new Views.DbTools.Form1();
+            form.ShowDialog();
+        }
+    }
 }

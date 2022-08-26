@@ -128,6 +128,21 @@ namespace ESProMeter.Repository
             }
                
         }
+        public bool GetBoqItemWithItemLineById(long itemId, out DataTable table)
+        {
+            table = new();
+            try
+            {
+                AppService.GetItemInstance.GetBoqItemLineByItemID(itemId,null, out table);
+                return true;
+            }
+            catch
+            {
+                return false;
+                throw;
+            }
+
+        }
         /// <summary>
         /// Create Items and update
         /// </summary>

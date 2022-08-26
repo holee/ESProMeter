@@ -32,6 +32,7 @@ namespace ESProMeter.Views.Sites
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SiteFrm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbNewSite = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -43,7 +44,6 @@ namespace ESProMeter.Views.Sites
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tlsRows = new System.Windows.Forms.ToolStripComboBox();
             this.siteDataGrid = new System.Windows.Forms.DataGridView();
-            this.chkInlcudeInActive = new System.Windows.Forms.CheckBox();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,6 +54,7 @@ namespace ESProMeter.Views.Sites
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkInlcudeInActive = new System.Windows.Forms.CheckBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.siteDataGrid)).BeginInit();
             this.SuspendLayout();
@@ -174,11 +175,12 @@ namespace ESProMeter.Views.Sites
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.Desktop;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.siteDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.siteDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.siteDataGrid.ColumnHeadersHeight = 30;
+            this.siteDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.siteDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
             this.Column2,
@@ -190,36 +192,34 @@ namespace ESProMeter.Views.Sites
             this.Column8,
             this.Column9,
             this.Column10});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.siteDataGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            this.siteDataGrid.EnableHeadersVisualStyles = false;
             this.siteDataGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.siteDataGrid.Location = new System.Drawing.Point(0, 64);
             this.siteDataGrid.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.siteDataGrid.Name = "siteDataGrid";
             this.siteDataGrid.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.siteDataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.siteDataGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.siteDataGrid.RowHeadersVisible = false;
+            this.siteDataGrid.RowTemplate.Height = 30;
             this.siteDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.siteDataGrid.Size = new System.Drawing.Size(1342, 652);
             this.siteDataGrid.TabIndex = 12;
             this.siteDataGrid.SelectionChanged += new System.EventHandler(this.SiteGridSelectionChanged);
-            // 
-            // chkInlcudeInActive
-            // 
-            this.chkInlcudeInActive.AutoSize = true;
-            this.chkInlcudeInActive.Location = new System.Drawing.Point(3, 43);
-            this.chkInlcudeInActive.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.chkInlcudeInActive.Name = "chkInlcudeInActive";
-            this.chkInlcudeInActive.Size = new System.Drawing.Size(109, 19);
-            this.chkInlcudeInActive.TabIndex = 13;
-            this.chkInlcudeInActive.Text = "Include Inactive";
-            this.chkInlcudeInActive.UseVisualStyleBackColor = true;
-            this.chkInlcudeInActive.CheckedChanged += new System.EventHandler(this.chkInlcudeInActive_CheckedChanged);
             // 
             // ID
             // 
@@ -235,13 +235,13 @@ namespace ESProMeter.Views.Sites
             // 
             // Column2
             // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column2.DataPropertyName = "SITENAME";
             this.Column2.HeaderText = "Site Name";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column2.Width = 200;
             // 
             // Column3
             // 
@@ -255,13 +255,13 @@ namespace ESProMeter.Views.Sites
             // 
             // Column4
             // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column4.DataPropertyName = "ADDRESS";
             this.Column4.HeaderText = "Address";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column4.Width = 150;
             // 
             // Column5
             // 
@@ -316,6 +316,18 @@ namespace ESProMeter.Views.Sites
             this.Column10.Name = "Column10";
             this.Column10.ReadOnly = true;
             this.Column10.Visible = false;
+            // 
+            // chkInlcudeInActive
+            // 
+            this.chkInlcudeInActive.AutoSize = true;
+            this.chkInlcudeInActive.Location = new System.Drawing.Point(3, 43);
+            this.chkInlcudeInActive.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.chkInlcudeInActive.Name = "chkInlcudeInActive";
+            this.chkInlcudeInActive.Size = new System.Drawing.Size(109, 19);
+            this.chkInlcudeInActive.TabIndex = 13;
+            this.chkInlcudeInActive.Text = "Include Inactive";
+            this.chkInlcudeInActive.UseVisualStyleBackColor = true;
+            this.chkInlcudeInActive.CheckedChanged += new System.EventHandler(this.chkInlcudeInActive_CheckedChanged);
             // 
             // SiteFrm
             // 

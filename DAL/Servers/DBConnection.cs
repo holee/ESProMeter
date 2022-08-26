@@ -16,6 +16,7 @@ namespace DAL.Servers
         private string? _database;
         private string? _user;
         private string? _password;
+        private bool _auth=false;
         private static ServerConfiguration? _configuration=null;
         private static LocalConfiguration? _localConfiguration=null;
         private SqlConnection? _connection=null;
@@ -111,7 +112,7 @@ namespace DAL.Servers
             return this;
         }
 
-        public string? GetConnectionString()
+        public string GetConnectionString()
         {
             try
             {
