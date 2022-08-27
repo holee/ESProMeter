@@ -72,6 +72,28 @@ namespace ESProMeter.Controllers
 			}
 		}
 
+		public static bool SetServerConnectionInformation(this Form form,INCConnection server)
+		{
+
+			try
+			{
+				UserSession.clearSession();
+				//AppService.SqlGetInstance.CloseConnection();
+
+				UserSession.CompanyName = string.Empty;
+				UserSession.ServerName = server.serverName;
+				UserSession.DatabaseName = server.dbName;
+				UserSession.UserName = server.login;
+				UserSession.Password = server.pwd;
+				
+				return true;
+			}
+			catch (Exception ex)
+			{
+				throw new Exception(ex.Message);
+			}
+		}
+
 		public static bool openCompanyFileConnection(this Form form)
 		{
 			
@@ -79,6 +101,18 @@ namespace ESProMeter.Controllers
 			{
 				return ServerRegistration.TestConnection(UserSession.ServerName, UserSession.DatabaseName, UserSession.UserName, UserSession.Password);
 			} 
+			catch (Exception ex)
+			{
+				throw new Exception(ex.Message);
+			}
+		}
+
+		public static bool testCompanyFileConnection(this Form form, INCConnection server)
+		{
+			try
+			{
+				return ServerRegistration.TestConnection(server.serverName, server.dbName, server.login, server.pwd);
+			}
 			catch (Exception ex)
 			{
 				throw new Exception(ex.Message);

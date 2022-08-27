@@ -7,5 +7,14 @@
         public static string DatabaseName { get; set; } = string.Empty;
         public static string UserName { get; set; } = string.Empty;
         public static string Password { get; set; } = string.Empty;
+
+        public static void clearSession()
+        {
+            CompanyName = string.Empty;
+            ServerName = string.Empty;
+            DatabaseName = string.Empty;
+            UserName = string.Empty;
+            Password = string.Empty;
+        }
     }
 }

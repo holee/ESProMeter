@@ -105,6 +105,37 @@ namespace ESProMeter.Repository
                 }, out table);
         }
 
+        public void GetUserInformForUpdate(IUser user, int id)
+        {
+            try
+            {
+                if (AppService.SqlGetInstance.UseProcedure("USERINFO_sp_SELECT").FindOne<dynamic>(new { @uid = id }, out var row))
+                {
+                    user.Id = row.GetValue<int>("ID");
+                    user.UserId = row.GetValue<string>("USERID");
+                    user.EditSequense = row.GetValue<int>("EDSEQ");
+                    user.IsActive = row.GetValue<byte>("ISACTIVE");
+                    user.IsSysAdmin = row.GetValue<byte>("ISSYSADM");
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        public void Update(IUser user)
+        {
+            AppService.SqlGetInstance.UseProcedure("USER_sp_UPDATE")
+                .InsertOrUpdate<dynamic>(new
+                {
+                    @uid = user.Id,
+                    @username = user.UserId,
+                    @password = SecurityService.TextEncrypt(user.Password),
+                    @isActive = user.IsActive,
+                    @nameRefId = 0
+                });
+        }
+
         public bool userLoggedIn(int uID)
         {
             return AppService.SqlGetInstance

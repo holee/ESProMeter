@@ -155,6 +155,19 @@ namespace ESProMeter.Repository
             }
         }
 
+        public (string cn,string lcn) ShowCompanyInformation()
+        {
+            if (AppService.SqlGetInstance
+                            .UseProcedure("[CompanyWithAddress_sp_SELECT]")
+                                .FindOne<dynamic>(null, out var row))
+            {
+                var cn = row.GetValue<string>("CompanyName");
+                var lcn = row.GetValue<string>("LegalCompanyName");
+                return (cn, lcn);
+            }
+            return(null, null);
+        }
+        
         public bool CreateCompanyFileBackup(string dbName, string fileName)
         {
             return AppService.SqlGetInstance

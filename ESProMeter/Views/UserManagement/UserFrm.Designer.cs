@@ -155,7 +155,6 @@ namespace ESProMeter.Views.UserManagement
 			this.lblEditSequense.Size = new System.Drawing.Size(13, 15);
 			this.lblEditSequense.TabIndex = 6;
 			this.lblEditSequense.Text = "0";
-			this.lblEditSequense.Visible = false;
 			// 
 			// lblID
 			// 
@@ -165,7 +164,6 @@ namespace ESProMeter.Views.UserManagement
 			this.lblID.Size = new System.Drawing.Size(13, 15);
 			this.lblID.TabIndex = 6;
 			this.lblID.Text = "0";
-			this.lblID.Visible = false;
 			// 
 			// txtConfirm
 			// 

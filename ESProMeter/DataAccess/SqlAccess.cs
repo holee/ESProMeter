@@ -26,19 +26,40 @@ namespace ESProMeter.DataAccess
         /// <param name="sqlString"></param>
         public SqlAccess(string sqlString)
         {
-            this._connectionString = sqlString;
-            _connection=new SqlConnection(_connectionString);
+            if (this._connection != null)
+            {
+                _connection = null;
+                _connection = new SqlConnection(sqlString);
+            }
+            else
+            {
+                _connection = new SqlConnection(sqlString);
+            }
         }
+
         public ISqlAccess CreateConnection(string connectionstring)
         {
             this._connectionString = connectionstring;
-            _connection=new SqlConnection(this._connectionString);
+            if (this._connection != null)
+            {
+                _connection = null;
+                _connection = new SqlConnection(this._connectionString);
+            }
+            else
+            {
+                _connection = new SqlConnection(this._connectionString);
+            }
+            
             return this;
         }
         public void CloseConnection()
         {
-            _connection?.Close();
+            if(_connection.State==ConnectionState.Open)
+            {
+                _connection?.Close();
+            }
         }
+
         /// <summary>
         /// Transaction
         /// </summary>
