@@ -79,7 +79,6 @@ namespace ESProMeter.Controllers
 			{
 				UserSession.clearSession();
 				//AppService.SqlGetInstance.CloseConnection();
-
 				UserSession.CompanyName = string.Empty;
 				UserSession.ServerName = server.serverName;
 				UserSession.DatabaseName = server.dbName;

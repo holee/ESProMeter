@@ -16,7 +16,7 @@ namespace ESProMeter.Controllers
 		{
 			//Application alive timer
 			MainFrm.MainF.tmrAlive.Enabled = EnableRole;
-			MainFrm.MainF.tmrAlive.Interval = EnableRole? 60000:0;
+			MainFrm.MainF.tmrAlive.Interval = EnableRole?60000:0;
 			if (EnableRole) { MainFrm.MainF.tmrAlive.Start(); } else { MainFrm.MainF.tmrAlive.Stop(); }
 
 			//Show panel menu

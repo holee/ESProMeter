@@ -116,21 +116,25 @@ namespace DAL.Servers
         {
             try
             {
-                if (isLocalDb)
-                {
-                    return _localConfiguration?.GetConnectionString;
-                }
+                 if (_configuration == null)
+                        _configuration = new ServerConfiguration(_server, _user, _database, _password);
                 else
                 {
-                    if (_configuration == null)
-                        _configuration = new ServerConfiguration(_server, _user, _database, _password);
-                    return _configuration.GetConnectionString;
-                }
+                    _configuration =null;
+                    _configuration = new ServerConfiguration(_server, _user, _database, _password);
+                }    
+                return _configuration.GetConnectionString;
+                
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
         }
+
+
+
+
+
     }
 }
