@@ -148,7 +148,6 @@ namespace ESProMeter.Views.FileAndLogin
 			// mbtConnectToExistingCompanyFile
 			// 
 			this.mbtConnectToExistingCompanyFile.BackColor = System.Drawing.Color.Transparent;
-			this.mbtConnectToExistingCompanyFile.Enabled = false;
 			this.mbtConnectToExistingCompanyFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.mbtConnectToExistingCompanyFile.ForeColor = System.Drawing.Color.Black;
 			this.mbtConnectToExistingCompanyFile.IconChar = FontAwesome.Sharp.MaterialIcons.None;
@@ -161,6 +160,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.mbtConnectToExistingCompanyFile.TabIndex = 25;
 			this.mbtConnectToExistingCompanyFile.Text = "Connect to Existing Company File";
 			this.mbtConnectToExistingCompanyFile.UseVisualStyleBackColor = false;
+			this.mbtConnectToExistingCompanyFile.Click += new System.EventHandler(this.mbtConnectToExistingCompanyFile_Click);
 			// 
 			// mbtRestoreCompanyFile
 			// 

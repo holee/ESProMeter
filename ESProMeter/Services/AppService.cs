@@ -13,6 +13,11 @@ namespace ESProMeter.Services
                 {
                     sqlAccess = new SqlAccess(ConnectionService.ConnectionString());
                 }
+                else
+                {
+                    sqlAccess = null;
+                    sqlAccess = new SqlAccess(ConnectionService.ConnectionString());
+                }
                 return sqlAccess;
             }
 

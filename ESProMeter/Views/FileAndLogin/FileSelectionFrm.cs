@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using ESProMeter.Controllers;
 using ESProMeter.Services;
 using ESProMeter.Sessions;
+using ESProMeter.Views.FileAndLogin;
 
 
 namespace ESProMeter.Views.FileAndLogin
@@ -60,6 +61,18 @@ namespace ESProMeter.Views.FileAndLogin
 		private void FileSelectionFrm_Load(object sender, EventArgs e)
 		{
 			this.loadActivedCompanyList();
+		}
+
+		private void mbtConnectToExistingCompanyFile_Click(object sender, EventArgs e)
+		{
+			ConnectNewCompanyFileFrm form = new ConnectNewCompanyFileFrm();
+			if (form.ShowDialog() == DialogResult.OK)
+			{
+				//Reload company list and select the new company connection
+				this.loadActivedCompanyList();
+				//Open the company file for login
+
+			}
 		}
 	}
 }

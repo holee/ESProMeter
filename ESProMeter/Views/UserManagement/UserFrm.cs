@@ -9,21 +9,32 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ESProMeter.IVews;
 using ESProMeter.Extensions;
+using ESProMeter.Services;
 
 namespace ESProMeter.Views.UserManagement
 {
 	public partial class UserFrm : Form, IUser
 	{
-		public UserFrm()
-		{
-			InitializeComponent();
-		}
+
 		#region Fields
 		private byte _isSysAdmin = 0;
 		private DateTime _createdAt = DateTime.Now;
 		private DateTime _updatedAt = DateTime.Now;
 		#endregion
 		#region Properties
+
+		public UserFrm()
+		{
+			InitializeComponent();
+		}
+
+		public UserFrm(int id)
+		{
+			InitializeComponent();
+			this.Text = "Edit User";
+			AppService.GetUserInstance.GetUserInformForUpdate(this, id);
+		}
+
 		int IUser.Id
 		{
 			get => lblID.AsNumber<int>();

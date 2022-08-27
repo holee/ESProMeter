@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ESProMeter.Controllers;
 using ESProMeter.Extensions;
+using ESProMeter.Services;
 
 namespace ESProMeter.Views.UserManagement
 {
@@ -33,11 +34,11 @@ namespace ESProMeter.Views.UserManagement
 
 		private void mbtEdit_Click(object sender, EventArgs e)
 		{
-			Views.UserManagement.UserFrm form = new Views.UserManagement.UserFrm();
-			form.Text = "Edit User";
+			var selRow = dtgUserList.SelectedRows[0];
+			Views.UserManagement.UserFrm form = new Views.UserManagement.UserFrm(selRow.GetValue<int>("ID"));
 			if (form.ShowDialog() == DialogResult.OK)
 			{
-
+				AppService.GetUserInstance.Update(form);
 				showActivedUserList();
 			}
 		}
@@ -56,8 +57,11 @@ namespace ESProMeter.Views.UserManagement
 			}
 			else
 			{
-				this.DeleteUser(selRow.GetValue<int>("ID"));
-				this.showUserList(dtgUserList, 1);
+				if (MessageBox.Show("Delete user will not be recover, would you like to continue?", "Delete User", MessageBoxButtons.YesNo) == DialogResult.Yes)
+				{
+					this.DeleteUser(selRow.GetValue<int>("ID"));
+					this.showUserList(dtgUserList, 1);
+				}
 			}
 		}
 	}

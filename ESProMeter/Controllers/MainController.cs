@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ESProMeter.Extensions;
 using ESProMeter.Services;
+using ESProMeter.Sessions;
 
 namespace ESProMeter.Controllers
 {
@@ -52,7 +53,8 @@ namespace ESProMeter.Controllers
 			//Close all actived form
 
 			//Close company connection
-
+			UserSession.clearSession();
+			
 			//Open file selection form
 			AccessableRole(false);
 			MainFrm.FSNF.Show();
