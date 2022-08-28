@@ -14,9 +14,13 @@ namespace ESProMeter.Controllers
 	{
 		public static void AccessableRole(bool EnableRole)
 		{
+			//Main form text
+			
+			MainFrm.MainF.Text = EnableRole?"ES-Pro Metré" + " - " + UserSession.CompanyName: "ES-Pro Metré";
+
 			//Application alive timer
+			MainFrm.MainF.tmrAlive.Interval =  60000;
 			MainFrm.MainF.tmrAlive.Enabled = EnableRole;
-			MainFrm.MainF.tmrAlive.Interval = EnableRole?60000:0;
 			if (EnableRole) { MainFrm.MainF.tmrAlive.Start(); } else { MainFrm.MainF.tmrAlive.Stop(); }
 
 			//Show panel menu
@@ -54,15 +58,25 @@ namespace ESProMeter.Controllers
 
 			//Close company connection
 			UserSession.clearSession();
-			
+			Properties.Settings.Default.curLoggedUID = 0;
+
 			//Open file selection form
 			AccessableRole(false);
 			MainFrm.FSNF.Show();
 		}
 
-		public static bool CreateCompanyFileBackup(this Form form)
+		public static bool CreateCompanyFileBackup(this Form form,string filename)
 		{
-			return AppService.GetCompanyInstance.CreateCompanyFileBackup(Properties.Settings.Default.database, @"D:\Backup.esp");
+			try
+			{
+				AppService.GetCompanyInstance.CreateCompanyFileBackup(UserSession.DatabaseName, filename);
+				return true;
+			}
+			catch(Exception ex)
+			{
+				MessageBox.Show(ex.ToString());
+				return false; 
+			}
 		}
 
 

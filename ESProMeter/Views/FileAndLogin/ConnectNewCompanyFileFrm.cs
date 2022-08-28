@@ -16,6 +16,8 @@ namespace ESProMeter.Views.FileAndLogin
 {
 	public partial class ConnectNewCompanyFileFrm : Form, INCConnection
 	{
+		bool connectionAvailable;
+
 		string INCConnection.serverName 
 		{
 			get => txtServer.Text.Trim();
@@ -55,17 +57,24 @@ namespace ESProMeter.Views.FileAndLogin
 
 		private void mbtConnect_Click(object sender, EventArgs e)
 		{
-			SysDbUtility.GetInstance.InsertCompanyDbInfo(this);
-			DialogResult = DialogResult.OK;
+			if (connectionAvailable)
+			{
+				SysDbUtility.GetInstance.InsertCompanyDbInfo(this);
+				DialogResult = DialogResult.OK;
+			} else 
+			{
+				MessageBox.Show("You cannot create new connection to this company file, it may not available or has already connected to the application.", "New Company File Connection");
+			}
 		}
 
 		private void mbtTestCnn_Click(object sender, EventArgs e)
 		{
 			this.Cursor = Cursors.WaitCursor;
+			connectionAvailable = false;
 			lblMsg.Visible = false;
 			if (this.testCompanyFileConnection(this))
 			{
-				
+
 				this.SetServerConnectionInformation(this);
 
 				txtCompanyName.SetText(AppService.GetCompanyInstance.ShowCompanyInformation().cn);
@@ -75,6 +84,14 @@ namespace ESProMeter.Views.FileAndLogin
 				{
 					lblMsg.Visible = true;
 				}
+				else
+				{
+					connectionAvailable = true;
+				}
+			}
+			else
+			{
+				MessageBox.Show("The company file you are trying to connect may not available, please check connection information and try again.", "New Company File Connection");
 			}
 			this.Cursor = Cursors.Default;
 		}

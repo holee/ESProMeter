@@ -61,6 +61,8 @@ namespace ESProMeter.Views.FileAndLogin
 			// 
 			this.dtgCompanyList.AllowUserToAddRows = false;
 			this.dtgCompanyList.AllowUserToDeleteRows = false;
+			this.dtgCompanyList.AllowUserToResizeColumns = false;
+			this.dtgCompanyList.AllowUserToResizeRows = false;
 			this.dtgCompanyList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dtgCompanyList.BackgroundColor = System.Drawing.Color.Snow;
 			this.dtgCompanyList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
