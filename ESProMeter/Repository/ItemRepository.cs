@@ -201,6 +201,9 @@ namespace ESProMeter.Repository
                 AppService.SqlGetInstance.UseProcedure("SP_BoqItemLineInert")
                         .InsertFromTable(new { BoqItemLine = table.AsTableValuedParameter("udt_BoqItemLine_Insert") });
 
+
+
+
                 AppService.SqlGetInstance.ComitTransaction();
             }
             catch

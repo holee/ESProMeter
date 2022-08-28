@@ -566,10 +566,13 @@ namespace ESProMeter.Views.Items
             this.DoubleBuffered = true;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "ItemListFrm";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Item List";
             this.Load += new System.EventHandler(this.ItemListFrm_Load);
+            this.SizeChanged += new System.EventHandler(this.ItemListFrm_SizeChanged);
             this.tlDelete.ResumeLayout(false);
             this.tlDelete.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataItemList)).EndInit();

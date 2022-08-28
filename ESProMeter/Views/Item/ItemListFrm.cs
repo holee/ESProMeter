@@ -291,6 +291,20 @@ namespace ESProMeter.Views.Items
         {
             ShowAllItems();
         }
+
+        
+
+        private void ItemListFrm_SizeChanged(object sender, EventArgs e)
+        {
+            //if (this.WindowState == FormWindowState.Maximized)
+            //{
+            //    this.ControlBox = false;
+            //}
+            //else
+            //{
+            //    this.ControlBox = true;
+            //}
+        }
     }
 }
 
