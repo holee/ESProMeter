@@ -131,7 +131,7 @@ namespace ESProMeter.Views.UnitOfMeasures
 			// excelToolStripMenuItem
 			// 
 			this.excelToolStripMenuItem.Name = "excelToolStripMenuItem";
-			this.excelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.excelToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
 			this.excelToolStripMenuItem.Text = "Excel";
 			this.excelToolStripMenuItem.Click += new System.EventHandler(this.excelToolStripMenuItem_Click);
 			// 
@@ -163,7 +163,7 @@ namespace ESProMeter.Views.UnitOfMeasures
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.dataUom.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-			this.dataUom.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+			this.dataUom.BackgroundColor = System.Drawing.Color.White;
 			this.dataUom.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;

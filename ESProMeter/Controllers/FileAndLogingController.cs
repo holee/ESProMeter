@@ -36,12 +36,11 @@ namespace ESProMeter.Controllers
 
 		public static bool loadActivedCompanyList(this Form form)
 		{
+			form.AsDataGrid("dtgCompanyList").Rows.Clear();
 			if (SysDbUtility.GetInstance.GetCompanies(out DataTable dtCompList))
 			{
 				if (dtCompList.Rows.Count > 0)
 				{
-					form.AsDataGrid("dtgCompanyList").Rows.Clear();
-
 					foreach (DataRow dR in dtCompList.Rows)
 					{
 						form.AsDataGrid("dtgCompanyList").Rows.Add(dR.ItemArray);
@@ -50,6 +49,27 @@ namespace ESProMeter.Controllers
 				}
 			}
 			return false;
+		}
+
+		public static bool DisconnectCompanyFromList(this Form form)
+		{
+			try
+			{
+				var row = form.AsDataGrid("dtgCompanyList").SelectedRows[0];
+				INCConnection server = new Views.FileAndLogin.ConnectNewCompanyFileFrm();
+				server.comName = row.GetValue<string>("companyName");
+				server.serverName = row.GetValue<string>("serverName");
+				server.dbName = row.GetValue<string>("DBName");
+				server.login = row.GetValue<string>("UName");
+				server.pwd = row.GetValue<string>("Password");
+
+				SysDbUtility.GetInstance.DeleteCompanies(server);
+				return true;
+			}
+			catch 
+			{
+				return false; 
+			}
 		}
 
 		public static bool SetServerConnectionInformation(this Form form)

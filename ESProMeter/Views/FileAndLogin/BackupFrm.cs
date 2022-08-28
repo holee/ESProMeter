@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ESProMeter.Extensions;
 using ESProMeter.IVews;
+using ESProMeter.Sessions;
 
 namespace ESProMeter.Views.FileAndLogin
 {
@@ -23,7 +24,7 @@ namespace ESProMeter.Views.FileAndLogin
 		{
 			InitializeComponent();
 			txtFilePath.SetText(Properties.Settings.Default.backupPath);
-			txtFileName.SetText("Backup" + " " + DateTime.Now.ToString("ddMMMyyyy hhmmss") + ".ESP");
+			txtFileName.SetText(UserSession.CompanyName + "-Backup" + " " + DateTime.Now.ToString("ddMMMyyyy hhmmss") + ".ESP");
 		}
 
 		private void mbtCancel_Click(object sender, EventArgs e)

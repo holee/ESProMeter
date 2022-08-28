@@ -5,7 +5,8 @@ using ESProMeter.Controllers;
 using ESProMeter.Services;
 using ESProMeter.Sessions;
 using ESProMeter.Views.FileAndLogin;
-
+using ESProMeter.IVews;
+using ESProMeter.Extensions;
 
 namespace ESProMeter.Views.FileAndLogin
 {
@@ -63,7 +64,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.loadActivedCompanyList();
 		}
 
-		private void mbtConnectToExistingCompanyFile_Click(object sender, EventArgs e)
+		public void mbtConnectToExistingCompanyFile_Click(object sender, EventArgs e)
 		{
 			ConnectNewCompanyFileFrm form = new ConnectNewCompanyFileFrm();
 			if (form.ShowDialog() == DialogResult.OK)
@@ -73,6 +74,13 @@ namespace ESProMeter.Views.FileAndLogin
 				//Open the company file for login
 
 			}
+		}
+
+		private void mbtDisconnect_Click(object sender, EventArgs e)
+		{
+			if (dtgCompanyList.Rows.Count <= 0) { return; }
+			this.DisconnectCompanyFromList();
+			this.loadActivedCompanyList();
 		}
 	}
 }

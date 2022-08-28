@@ -69,6 +69,11 @@ namespace ESProMeter.Views.FileAndLogin
 
 		private void mbtTestCnn_Click(object sender, EventArgs e)
 		{
+			if (!this.IsValid(txtServer, txtDBName, txtLoginName, txtPassword))
+			{
+				return;
+			}
+
 			this.Cursor = Cursors.WaitCursor;
 			connectionAvailable = false;
 			lblMsg.Visible = false;

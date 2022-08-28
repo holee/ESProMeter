@@ -360,6 +360,7 @@ namespace ESProMeter
                 if (this.CreateCompanyFileBackup(filename))
                 {
                     Properties.Settings.Default.backupPath = form.path;
+                    Properties.Settings.Default.Save();
                     MessageBox.Show("Backup completed.", "Backup File");
                 }
             }
@@ -376,5 +377,11 @@ namespace ESProMeter
             Views.DbTools.Form1 form = new Views.DbTools.Form1();
             form.ShowDialog();
         }
-    }
+
+		private void connectToExistingCompanyFileToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+            FSNF.mbtConnectToExistingCompanyFile_Click(sender, e);
+
+        }
+	}
 }

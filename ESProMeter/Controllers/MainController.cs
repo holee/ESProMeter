@@ -28,12 +28,12 @@ namespace ESProMeter.Controllers
 
 			//Main form menu
 			//File
-			MainFrm.MainF.toolStripMenuItem7.Enabled = !EnableRole;
+			//MainFrm.MainF.toolStripMenuItem7.Enabled = !EnableRole;
 			MainFrm.MainF.openCompanyFileToolStripMenuItem.Enabled = !EnableRole;
 			MainFrm.MainF.connectToExistingCompanyFileToolStripMenuItem.Enabled = !EnableRole;
 			MainFrm.MainF.closeCompanyToolStripMenuItem.Enabled = EnableRole;
 			MainFrm.MainF.backupCompanyFileToolStripMenuItem.Enabled = EnableRole;
-			MainFrm.MainF.toolStripMenuItem8.Enabled = !EnableRole;
+			//MainFrm.MainF.toolStripMenuItem8.Enabled = !EnableRole;
 
 			//List
 			MainFrm.MainF.listToolStripMenuItem.Enabled = EnableRole;
