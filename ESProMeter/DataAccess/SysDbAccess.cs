@@ -35,6 +35,25 @@ namespace ESProMeter.DataAccess
             }
         }
 
+        public bool DeleteCompanies(INCConnection server)
+        {
+            
+            using (SqliteConnection con = GetInstance.GetConnection())
+            {
+                con.Open();
+                using SqliteCommand command = con.CreateCommand();
+                var sql = "DELETE FROM TCOMP WHERE  CompanyName=@0 and ServerName=@1 and DBName=@2 and UName = @3 and Password=@4";
+                command.CommandText = sql;
+                command.Parameters.AddWithValue("@0", server.comName);
+                command.Parameters.AddWithValue("@1", server.serverName);
+                command.Parameters.AddWithValue("@2", server.dbName);
+                command.Parameters.AddWithValue("@3", server.login);
+                command.Parameters.AddWithValue("@4", server.pwd);
+                var result = command.ExecuteNonQuery();
+                return result > 0;
+            }
+        }
+
         public bool InsertCompanyDbInfo(INCConnection server)  
         {
             using (SqliteConnection con = GetInstance.GetConnection())

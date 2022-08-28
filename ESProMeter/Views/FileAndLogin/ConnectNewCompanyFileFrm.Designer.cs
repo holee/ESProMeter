@@ -77,7 +77,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.mbtClose.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.mbtClose.Name = "mbtClose";
 			this.mbtClose.Size = new System.Drawing.Size(126, 30);
-			this.mbtClose.TabIndex = 27;
+			this.mbtClose.TabIndex = 8;
 			this.mbtClose.Text = "Close";
 			this.mbtClose.UseVisualStyleBackColor = false;
 			this.mbtClose.Click += new System.EventHandler(this.mbtClose_Click);
@@ -94,7 +94,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.mbtHelp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.mbtHelp.Name = "mbtHelp";
 			this.mbtHelp.Size = new System.Drawing.Size(126, 30);
-			this.mbtHelp.TabIndex = 28;
+			this.mbtHelp.TabIndex = 9;
 			this.mbtHelp.Text = "Help";
 			this.mbtHelp.UseVisualStyleBackColor = false;
 			// 
@@ -104,7 +104,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.txtCompanyName.Name = "txtCompanyName";
 			this.txtCompanyName.ReadOnly = true;
 			this.txtCompanyName.Size = new System.Drawing.Size(389, 23);
-			this.txtCompanyName.TabIndex = 1;
+			this.txtCompanyName.TabIndex = 5;
 			// 
 			// groupBox1
 			// 
@@ -126,7 +126,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.txtLegalCompanyName.Name = "txtLegalCompanyName";
 			this.txtLegalCompanyName.ReadOnly = true;
 			this.txtLegalCompanyName.Size = new System.Drawing.Size(389, 23);
-			this.txtLegalCompanyName.TabIndex = 1;
+			this.txtLegalCompanyName.TabIndex = 6;
 			// 
 			// label7
 			// 
@@ -188,7 +188,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.mbtTestCnn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.mbtTestCnn.Name = "mbtTestCnn";
 			this.mbtTestCnn.Size = new System.Drawing.Size(159, 30);
-			this.mbtTestCnn.TabIndex = 33;
+			this.mbtTestCnn.TabIndex = 4;
 			this.mbtTestCnn.Text = "Test Connection";
 			this.mbtTestCnn.UseVisualStyleBackColor = false;
 			this.mbtTestCnn.Click += new System.EventHandler(this.mbtTestCnn_Click);
@@ -199,14 +199,14 @@ namespace ESProMeter.Views.FileAndLogin
 			this.txtPassword.Name = "txtPassword";
 			this.txtPassword.PasswordChar = '*';
 			this.txtPassword.Size = new System.Drawing.Size(263, 23);
-			this.txtPassword.TabIndex = 30;
+			this.txtPassword.TabIndex = 3;
 			// 
 			// txtLoginName
 			// 
 			this.txtLoginName.Location = new System.Drawing.Point(137, 94);
 			this.txtLoginName.Name = "txtLoginName";
 			this.txtLoginName.Size = new System.Drawing.Size(263, 23);
-			this.txtLoginName.TabIndex = 31;
+			this.txtLoginName.TabIndex = 2;
 			// 
 			// lblMsg
 			// 
@@ -233,14 +233,14 @@ namespace ESProMeter.Views.FileAndLogin
 			this.txtDBName.Location = new System.Drawing.Point(139, 61);
 			this.txtDBName.Name = "txtDBName";
 			this.txtDBName.Size = new System.Drawing.Size(261, 23);
-			this.txtDBName.TabIndex = 32;
+			this.txtDBName.TabIndex = 1;
 			// 
 			// txtServer
 			// 
 			this.txtServer.Location = new System.Drawing.Point(139, 28);
 			this.txtServer.Name = "txtServer";
 			this.txtServer.Size = new System.Drawing.Size(429, 23);
-			this.txtServer.TabIndex = 32;
+			this.txtServer.TabIndex = 0;
 			// 
 			// label8
 			// 
@@ -284,7 +284,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.mbtConnect.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.mbtConnect.Name = "mbtConnect";
 			this.mbtConnect.Size = new System.Drawing.Size(126, 30);
-			this.mbtConnect.TabIndex = 34;
+			this.mbtConnect.TabIndex = 7;
 			this.mbtConnect.Text = "Connect";
 			this.mbtConnect.UseVisualStyleBackColor = false;
 			this.mbtConnect.Click += new System.EventHandler(this.mbtConnect_Click);

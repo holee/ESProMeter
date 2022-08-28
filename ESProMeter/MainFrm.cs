@@ -10,6 +10,7 @@ using FontAwesome.Sharp;
 using ESProMeter.Properties;
 using ESProMeter.Views.Boq;
 using ESProMeter.Extensions;
+using System.IO;
 
 namespace ESProMeter
 {
@@ -331,11 +332,38 @@ namespace ESProMeter
         private void backupCompanyFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Backup for testonly
-            if (this.CreateCompanyFileBackup())
+            Views.FileAndLogin.BackupFrm form =new Views.FileAndLogin.BackupFrm();
+            if (form.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("Backup completed.", "Backup company file");
+                
+                string filename = form.path.Trim() + @"\" + form.name.Trim();
+                //Check if it is existing
+                if (File.Exists(filename))
+                {
+                    if (form.overwrite==1)
+                    {
+                        File.Delete(filename);
+                    }
+                }
+                else
+                {
+                    if (File.Exists(filename))
+                    {
+                        if (MessageBox.Show("Backup file is already exist, would you like to overwrite it?", "Backup File", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            File.Delete(filename);
+                        }
+                        else { return; }
+                    }
+                }
+
+                if (this.CreateCompanyFileBackup(filename))
+                {
+                    Properties.Settings.Default.backupPath = form.path;
+                    Properties.Settings.Default.Save();
+                    MessageBox.Show("Backup completed.", "Backup File");
+                }
             }
-            
 		}
 
 		private void toolStripMenuItem8_Click(object sender, EventArgs e)
@@ -349,5 +377,11 @@ namespace ESProMeter
             Views.DbTools.Form1 form = new Views.DbTools.Form1();
             form.ShowDialog();
         }
-    }
+
+		private void connectToExistingCompanyFileToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+            FSNF.mbtConnectToExistingCompanyFile_Click(sender, e);
+
+        }
+	}
 }

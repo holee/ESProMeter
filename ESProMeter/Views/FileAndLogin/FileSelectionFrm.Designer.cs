@@ -45,6 +45,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.mbtHelp = new FontAwesome.Sharp.Material.MaterialButton();
 			this.mbtClose = new FontAwesome.Sharp.Material.MaterialButton();
 			this.mbtOpen = new FontAwesome.Sharp.Material.MaterialButton();
+			this.mbtDisconnect = new FontAwesome.Sharp.Material.MaterialButton();
 			((System.ComponentModel.ISupportInitialize)(this.dtgCompanyList)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -61,6 +62,8 @@ namespace ESProMeter.Views.FileAndLogin
 			// 
 			this.dtgCompanyList.AllowUserToAddRows = false;
 			this.dtgCompanyList.AllowUserToDeleteRows = false;
+			this.dtgCompanyList.AllowUserToResizeColumns = false;
+			this.dtgCompanyList.AllowUserToResizeRows = false;
 			this.dtgCompanyList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dtgCompanyList.BackgroundColor = System.Drawing.Color.Snow;
 			this.dtgCompanyList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -204,7 +207,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.mbtHelp.IconChar = FontAwesome.Sharp.MaterialIcons.None;
 			this.mbtHelp.IconColor = System.Drawing.Color.White;
 			this.mbtHelp.IconSize = 1;
-			this.mbtHelp.Location = new System.Drawing.Point(611, 86);
+			this.mbtHelp.Location = new System.Drawing.Point(611, 116);
 			this.mbtHelp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.mbtHelp.Name = "mbtHelp";
 			this.mbtHelp.Size = new System.Drawing.Size(126, 30);
@@ -220,7 +223,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.mbtClose.IconChar = FontAwesome.Sharp.MaterialIcons.None;
 			this.mbtClose.IconColor = System.Drawing.Color.White;
 			this.mbtClose.IconSize = 1;
-			this.mbtClose.Location = new System.Drawing.Point(611, 57);
+			this.mbtClose.Location = new System.Drawing.Point(611, 56);
 			this.mbtClose.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.mbtClose.Name = "mbtClose";
 			this.mbtClose.Size = new System.Drawing.Size(126, 30);
@@ -240,7 +243,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.mbtOpen.IconChar = FontAwesome.Sharp.MaterialIcons.None;
 			this.mbtOpen.IconColor = System.Drawing.Color.White;
 			this.mbtOpen.IconSize = 1;
-			this.mbtOpen.Location = new System.Drawing.Point(611, 27);
+			this.mbtOpen.Location = new System.Drawing.Point(611, 26);
 			this.mbtOpen.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.mbtOpen.Name = "mbtOpen";
 			this.mbtOpen.Size = new System.Drawing.Size(126, 30);
@@ -248,6 +251,23 @@ namespace ESProMeter.Views.FileAndLogin
 			this.mbtOpen.Text = "Open";
 			this.mbtOpen.UseVisualStyleBackColor = false;
 			this.mbtOpen.Click += new System.EventHandler(this.mbtOpen_Click);
+			// 
+			// mbtDisconnect
+			// 
+			this.mbtDisconnect.BackColor = System.Drawing.Color.Transparent;
+			this.mbtDisconnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.mbtDisconnect.ForeColor = System.Drawing.Color.Black;
+			this.mbtDisconnect.IconChar = FontAwesome.Sharp.MaterialIcons.None;
+			this.mbtDisconnect.IconColor = System.Drawing.Color.White;
+			this.mbtDisconnect.IconSize = 1;
+			this.mbtDisconnect.Location = new System.Drawing.Point(611, 86);
+			this.mbtDisconnect.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.mbtDisconnect.Name = "mbtDisconnect";
+			this.mbtDisconnect.Size = new System.Drawing.Size(126, 30);
+			this.mbtDisconnect.TabIndex = 25;
+			this.mbtDisconnect.Text = "Disconnect";
+			this.mbtDisconnect.UseVisualStyleBackColor = false;
+			this.mbtDisconnect.Click += new System.EventHandler(this.mbtDisconnect_Click);
 			// 
 			// FileSelectionFrm
 			// 
@@ -259,6 +279,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.Controls.Add(this.mbtRestoreCompanyFile);
 			this.Controls.Add(this.mbtOpen);
 			this.Controls.Add(this.mbtClose);
+			this.Controls.Add(this.mbtDisconnect);
 			this.Controls.Add(this.mbtHelp);
 			this.Controls.Add(this.mbtCreateNewCompanyFile);
 			this.Controls.Add(this.mbtConnectToExistingCompanyFile);
@@ -279,7 +300,6 @@ namespace ESProMeter.Views.FileAndLogin
 
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.DataGridView dtgCompanyList;
-		private FontAwesome.Sharp.Material.MaterialButton mbtConnectToExistingCompanyFile;
 		private FontAwesome.Sharp.Material.MaterialButton mbtRestoreCompanyFile;
 		private FontAwesome.Sharp.Material.MaterialButton mbtCreateNewCompanyFile;
 		private FontAwesome.Sharp.Material.MaterialButton mbtHelp;
@@ -293,5 +313,7 @@ namespace ESProMeter.Views.FileAndLogin
 		private System.Windows.Forms.DataGridViewTextBoxColumn Password;
 		private System.Windows.Forms.DataGridViewTextBoxColumn isActive;
 		private FontAwesome.Sharp.Material.MaterialButton mbtOpen;
+		public FontAwesome.Sharp.Material.MaterialButton mbtConnectToExistingCompanyFile;
+		private FontAwesome.Sharp.Material.MaterialButton mbtDisconnect;
 	}
 }
