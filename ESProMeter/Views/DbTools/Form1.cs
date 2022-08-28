@@ -33,9 +33,11 @@ namespace ESProMeter.Views.DbTools
         {
             var bk = new SqlUtility();
             DacServices srv = new DacServices("Data Source=.;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;");
-            srv.ProgressChanged += (s, e) =>
+            srv.Message += (s, e) =>
             {
-                listBox1.Items.Add(e.Message);
+              
+                System.Threading.Thread.Sleep(500);
+                listBox1.Items.Add(e.Message.Message);
             };
             bk.DeployDatabase(srv,textBox1.Text, textBox2.Text);
         }
