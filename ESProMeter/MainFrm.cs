@@ -209,7 +209,7 @@ namespace ESProMeter
 		private void closeCompanyToolStripMenuItem_Click(object sender, EventArgs e)
 		{
             //Close the company connection and start company file selection again.
-            MainController.closeCompanyFile();
+            this.closeCompanyFile();
 		}
 
         private void siteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -383,5 +383,6 @@ namespace ESProMeter
             FSNF.mbtConnectToExistingCompanyFile_Click(sender, e);
 
         }
+
 	}
 }

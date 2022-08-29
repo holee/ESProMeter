@@ -318,7 +318,16 @@ namespace ESProMeter.Repository
                         .Delete<dynamic>(new { @itemID = itemId })>0;
         }
 
-     public bool GetBoqItemLineByItemID(long itemID,out DataTable table)
+        public bool ItemIsInUsed(long itemId)
+        {
+            var count = AppService.SqlGetInstance.UseSql("SELECT COUNT(*) FROM [dbo].[TBOQITEMLINE] WHERE BOQITEMLINEID=@ID;")
+                    .Count<int, dynamic>(new { @ID = itemId });
+            var count1 = AppService.SqlGetInstance.UseSql("SELECT COUNT(*) FROM [dbo].[TBOQLINE] WHERE BOQITEMID=@ID;")
+                    .Count<int, dynamic>(new { @ID = itemId });
+            return (count + count1) > 0;
+        }
+
+        public bool GetBoqItemLineByItemID(long itemID,out DataTable table)
         {
             try
             {
@@ -334,6 +343,8 @@ namespace ESProMeter.Repository
             }
 
         }
+
+       
 
         public void GetBoqItemLineByItemID(long itemID,string ItemTypeName, out DataTable table)
         {

@@ -285,6 +285,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.Controls.Add(this.mbtConnectToExistingCompanyFile);
 			this.Controls.Add(this.dtgCompanyList);
 			this.Controls.Add(this.label1);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "FileSelectionFrm";
