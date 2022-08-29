@@ -12,6 +12,7 @@ namespace ESProMeter.Views.UnitOfMeasures
 		public UoMFrm()
 		{
 			InitializeComponent();
+			this.dataUom.AutoGenerateColumns = false;
 			tlsSelectedRow.SelectedIndex = 0;
 			FormExtension.SetDoubleBuffer(dataUom, true);
 			ShowUom();
