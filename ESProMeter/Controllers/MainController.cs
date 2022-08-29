@@ -52,9 +52,15 @@ namespace ESProMeter.Controllers
 			//Help
 		}
 
-		public static void closeCompanyFile()
+		public static void closeCompanyFile(this Form form)
 		{
 			//Close all actived form
+
+			foreach (Form frm in form.MdiChildren)
+				if (frm != MainFrm.FSNF)
+				{
+					frm.Dispose();
+				}
 
 			//Close company connection
 			UserSession.clearSession();
@@ -62,6 +68,7 @@ namespace ESProMeter.Controllers
 
 			//Open file selection form
 			AccessableRole(false);
+			MainFrm.FSNF.StartPosition = FormStartPosition.CenterScreen;
 			MainFrm.FSNF.Show();
 		}
 

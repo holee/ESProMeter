@@ -226,7 +226,15 @@ namespace ESProMeter.Controllers
         {
             try
             {
-                return AppService.GetItemInstance.DeleteItemWithBoq(id);
+                if (!AppService.GetItemInstance.ItemIsInUsed(id))
+                {
+                    return AppService.GetItemInstance.DeleteItemWithBoq(id);
+                }
+                else 
+                {
+                    MessageBox.Show("You cannot delete this item while it is in used.","Delete Item");
+                    return false; 
+                }
             }
             catch (System.Exception)
             {
