@@ -3,6 +3,7 @@ using ESProMeter.Enums;
 using ESProMeter.Extensions;
 using Microsoft.Office.Interop.Excel;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 using static ESProMeter.Extensions.FormExtension;
 namespace ESProMeter.Views.Items
@@ -17,7 +18,6 @@ namespace ESProMeter.Views.Items
             SetDoubleBuffer(dataItemList, true);
             dataItemList.ClearSelection();
 			this.cmbPage.SelectedIndex = 0;
-            this.cmbFieldName.SelectedIndex = 0;
             this.cbmSortType.SelectedIndex = 0;
         }
 
@@ -48,17 +48,17 @@ namespace ESProMeter.Views.Items
             }
         }
 
-        private void ShowAllItems()
+        private void ShowAllItems(string itemName=null)
         {
             var orderType = cbmSortType.Text.Length==0?"ASC": cbmSortType.Text;
             var page = cmbPage.AsNumber<int>()==0?50: cmbPage.AsNumber<int>();
             if (checkBox1.Checked)
             {
-                this.ShowItemList(this.dataItemList, 0, page,orderType);
+                this.ShowItemList(itemName,this.dataItemList, 0, page,orderType);
             }
             else
             {
-                this.ShowItemList(this.dataItemList, 1, page, orderType);
+                this.ShowItemList(itemName,this.dataItemList, 1, page, orderType);
             }
         }
         private void tlCreateACopy_Click(object sender, EventArgs e)
@@ -210,50 +210,13 @@ namespace ESProMeter.Views.Items
 
         private void textSearch_KeyUp(object sender, KeyEventArgs e)
         {
-
-            //this.SearchItemList(this.dataItemList,((TextBox)sender).Text);
-            //var textField = string.IsNullOrEmpty(cmbFieldName.Text.Trim()) ? "Name" : cmbFieldName.Text.Trim();
-            //if (string.IsNullOrEmpty(textField))
-            //{
-            //    var rows = this.AsControl<ComboBox>("cmdNumberRows").AsNumber<int>();
-            //    var sortBy = string.IsNullOrEmpty(this.AsControl<ComboBox>("cmbSortBy").Text) ? "Name" : this.AsControl<ComboBox>("cmbSortBy").Text;
-            //    this.ShowItemList(rows, sortBy);
-            //    return;
-            //}
-            //if (textField == "Cost" || textField == "Price")
-            //{
-            //    var textValue = textSearch.GetVale<decimal>();
-            //    if (this.SearchByFieldName(textField, textValue, out DataTable table))
-            //    {
-            //        table.AsDataGrid(this.dataItemList);
-            //        return;
-            //    }
-            //    else
-            //    {
-            //        ((DataTable)dataItemList.DataSource).Rows.Clear();
-            //    }
-            //}
-            //else
-            //{
-            //    var textValue = textSearch.GetVale<string>();
-            //    if (this.SearchByFieldName(textField, textValue, out DataTable table))
-            //    {
-            //        table.AsDataGrid(this.dataItemList);
-            //        return;
-            //    }
-            //    else
-            //    {
-            //        var rows = this.AsControl<ComboBox>("cmdNumberRows").AsNumber<int>();
-            //        var sortBy = string.IsNullOrEmpty(this.AsControl<ComboBox>("cmbSortBy").Text) ? "Name" : this.AsControl<ComboBox>("cmbSortBy").Text;
-            //        this.ShowItemList(rows, sortBy);
-            //        return;
-            //    }
-            //}
+            var searchText= ((System.Windows.Forms.TextBox)sender).Text;
+            ShowAllItems(searchText);
         }
 
         private void cmbSortBySelectedIndexChanged(object sender, EventArgs e)
         {
-            ShowAllItems();
+            ShowAllItems(textSearch.Text.Trim());
         }
 
         private void cmbPage_SelectedIndexChanged(object sender, EventArgs e)
@@ -304,6 +267,21 @@ namespace ESProMeter.Views.Items
             //{
             //    this.ControlBox = true;
             //}
+        }
+
+        private void dataItemList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                if (dataItemList.Columns[e.ColumnIndex].Name== "Column5")
+                {
+                    if(e.Value != null)
+                    {
+                        e.CellStyle.Format = "N2";
+                        e.CellStyle.ForeColor = Color.Red;
+                    }
+                }
+            }
         }
     }
 }

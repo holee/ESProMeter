@@ -43,7 +43,6 @@ namespace ESProMeter.Views.Items
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.excelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textSearch = new System.Windows.Forms.TextBox();
-            this.cmbFieldName = new System.Windows.Forms.ComboBox();
             this.dataItemList = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,7 +57,6 @@ namespace ESProMeter.Views.Items
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.cmbPage = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -180,23 +178,9 @@ namespace ESProMeter.Views.Items
             this.textSearch.Location = new System.Drawing.Point(64, 48);
             this.textSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textSearch.Name = "textSearch";
-            this.textSearch.Size = new System.Drawing.Size(205, 23);
+            this.textSearch.Size = new System.Drawing.Size(429, 23);
             this.textSearch.TabIndex = 1;
             this.textSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textSearch_KeyUp);
-            // 
-            // cmbFieldName
-            // 
-            this.cmbFieldName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbFieldName.FormattingEnabled = true;
-            this.cmbFieldName.Items.AddRange(new object[] {
-            "ItemName",
-            "Uom",
-            "Cost"});
-            this.cmbFieldName.Location = new System.Drawing.Point(321, 49);
-            this.cmbFieldName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cmbFieldName.Name = "cmbFieldName";
-            this.cmbFieldName.Size = new System.Drawing.Size(140, 23);
-            this.cmbFieldName.TabIndex = 2;
             // 
             // dataItemList
             // 
@@ -244,6 +228,7 @@ namespace ESProMeter.Views.Items
             this.dataItemList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataItemList.Size = new System.Drawing.Size(921, 402);
             this.dataItemList.TabIndex = 3;
+            this.dataItemList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataItemList_CellFormatting);
             this.dataItemList.SelectionChanged += new System.EventHandler(this.dataItemList_SelectionChanged);
             // 
             // ID
@@ -372,16 +357,6 @@ namespace ESProMeter.Views.Items
             this.label1.Size = new System.Drawing.Size(42, 15);
             this.label1.TabIndex = 4;
             this.label1.Text = "Search";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(280, 53);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 15);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Field";
             // 
             // cmbPage
             // 
@@ -555,12 +530,10 @@ namespace ESProMeter.Views.Items
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataItemList);
             this.Controls.Add(this.cmbPage);
             this.Controls.Add(this.cbmSortType);
-            this.Controls.Add(this.cmbFieldName);
             this.Controls.Add(this.textSearch);
             this.Controls.Add(this.tlDelete);
             this.DoubleBuffered = true;
@@ -590,10 +563,8 @@ namespace ESProMeter.Views.Items
 		private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
 		private System.Windows.Forms.ToolStripMenuItem excelToolStripMenuItem;
 		private System.Windows.Forms.TextBox textSearch;
-		private System.Windows.Forms.ComboBox cmbFieldName;
 		private System.Windows.Forms.DataGridView dataItemList;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;

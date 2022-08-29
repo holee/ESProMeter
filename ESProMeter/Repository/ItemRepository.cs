@@ -35,6 +35,17 @@ namespace ESProMeter.Repository
 
                }, out table);
         }
+        public bool GetAllItems(string itemName,byte isActive, int page, out DataTable table)
+        {
+            return AppService.SqlGetInstance.UseProcedure("[ITEM_sp_SELECT_BY_PAGE]")
+               .SelectAsTable<dynamic>(new
+               {
+                   @searchText=itemName,
+                   @ISACTIVE = isActive,
+                   @PAGE = page
+
+               }, out table);
+        }
         public bool GetItemWithoutBoq(byte isActive,string itemType, out DataTable table)  
         {
             return AppService.SqlGetInstance.UseProcedure("[ITEM_sp_SELECT_ITEMWITHOUTBOQ]")
