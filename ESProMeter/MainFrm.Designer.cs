@@ -490,6 +490,7 @@
 			this.buttonSetting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.buttonSetting.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.buttonSetting.UseVisualStyleBackColor = true;
+			this.buttonSetting.Click += new System.EventHandler(this.buttonSetting_Click);
 			// 
 			// buttonBOQ
 			// 

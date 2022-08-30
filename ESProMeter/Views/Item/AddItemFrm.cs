@@ -209,10 +209,10 @@ namespace ESProMeter.Views.Items
         {
             this.groupBoq.Visible = false;
             this.Controls.RemoveByKey(groupBoq.Name);
-            this.Height = 300;
+            this.Height = 310;
             this.textCost.Enabled = true;
-            this.btnSave.Location = new Point(479, 224);
-            this.materialButton2.Location = new Point(559, 224);
+            //this.btnSave.Location = new Point(479, 224);
+            //this.materialButton2.Location = new Point(518, 511);
         }
         private void ShowBoqForm()
         {
@@ -220,8 +220,8 @@ namespace ESProMeter.Views.Items
             this.Controls.Add(this.groupBoq);
             this.Height = 594;
             this.textCost.Enabled = false;
-            this.btnSave.Location = new Point(475, 511);
-            this.materialButton2.Location = new Point(555, 511);
+            //this.btnSave.Location = new Point(382, 511);
+            //this.materialButton2.Location = new Point(555, 511);
         }
         private void AddItemFrm_Load(object sender, EventArgs e)
         {

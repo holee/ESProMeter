@@ -797,6 +797,8 @@ namespace ESProMeter.Views.Boq
                 }
             }
         }
-    }
+
+		
+	}
 }
 

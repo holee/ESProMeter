@@ -66,7 +66,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.mbtCancel.Location = new System.Drawing.Point(211, 166);
 			this.mbtCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.mbtCancel.Name = "mbtCancel";
-			this.mbtCancel.Size = new System.Drawing.Size(126, 33);
+			this.mbtCancel.Size = new System.Drawing.Size(126, 32);
 			this.mbtCancel.TabIndex = 4;
 			this.mbtCancel.Text = "CANCEL";
 			this.mbtCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -86,7 +86,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.mbtOK.Location = new System.Drawing.Point(79, 166);
 			this.mbtOK.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.mbtOK.Name = "mbtOK";
-			this.mbtOK.Size = new System.Drawing.Size(126, 33);
+			this.mbtOK.Size = new System.Drawing.Size(126, 32);
 			this.mbtOK.TabIndex = 3;
 			this.mbtOK.Text = "OK";
 			this.mbtOK.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -105,7 +105,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.mbtHelp.Location = new System.Drawing.Point(345, 166);
 			this.mbtHelp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.mbtHelp.Name = "mbtHelp";
-			this.mbtHelp.Size = new System.Drawing.Size(126, 33);
+			this.mbtHelp.Size = new System.Drawing.Size(126, 32);
 			this.mbtHelp.TabIndex = 5;
 			this.mbtHelp.Text = "HELP";
 			this.mbtHelp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
