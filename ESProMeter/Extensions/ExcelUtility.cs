@@ -108,8 +108,7 @@ namespace ESProMeter.Extensions
             }
 
         }
-
-        public static void Export(this DataTable data, string fileName,int row,int column)
+        public static void Export(this DataTable data, string fileName,int row=1,int col=1)
         {
             Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
             xlApp.Workbooks.Open(fileName);
@@ -118,19 +117,19 @@ namespace ESProMeter.Extensions
                 //create columns header
                 for (int k = 0; k < data.Columns.Count; k++)
                 {
-                    xlApp.Cells[row, k + 1].Value = data.Columns[k].ColumnName;
-                    xlApp.Cells[row, 1 + k].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlDash;
-                    xlApp.Cells[row, 1 + k].Interior.Color = Color.Yellow;
-                    xlApp.Cells[row, 1 + k].Borders.Weight = 2d;
+                    xlApp.Cells[row, col + 1 + k ].Value = data.Columns[k].ColumnName;
+                    xlApp.Cells[row, col + 1 + k].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlDash;
+                    xlApp.Cells[row, col + 1 + k].Interior.Color = Color.Yellow;
+                    xlApp.Cells[row, col + 1 + k].Borders.Weight = 2d;
                 }
                 //insert data to excel
                 for (int i = 0; i < data.Rows.Count; i++)
                 {
                     for (int k = 0; k < data.Columns.Count; k++)
                     {
-                        xlApp.Cells[row + 1 + i, 1 + k].Value = data.Rows[i][k];
-                        xlApp.Cells[row + 1 + i, 1 + k].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-                        xlApp.Cells[row + 1 + i, 1 + k].Borders.Weight = 2d;
+                        xlApp.Cells[row + 1 + i,col + 1 + k].Value = data.Rows[i][k];
+                        xlApp.Cells[row + 1 + i,col + 1 + k].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                        xlApp.Cells[row + 1 + i,col + 1 + k].Borders.Weight = 2d;
                     }
 
                 }
