@@ -283,6 +283,12 @@ namespace ESProMeter.Views.Items
                 }
             }
         }
+
+        private void excelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Views.Item.ItemExportFrm form = new Item.ItemExportFrm();
+            form.ShowDialog();
+        }
     }
 }
 

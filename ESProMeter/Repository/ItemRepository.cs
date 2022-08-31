@@ -4,6 +4,7 @@ using System.Data;
 using System.Windows.Forms;
 using Dapper;
 using ESProMeter.Extensions;
+using ESProMeter.Models;
 
 namespace ESProMeter.Repository
 {
@@ -46,7 +47,7 @@ namespace ESProMeter.Repository
 
                }, out table);
         }
-        public bool GetItemWithoutBoq(byte isActive,string itemType, out DataTable table)  
+        public bool GetItemsWithoutBoq(byte isActive,string itemType, out DataTable table)  
         {
             return AppService.SqlGetInstance.UseProcedure("[ITEM_sp_SELECT_ITEMWITHOUTBOQ]")
                .SelectAsTable<dynamic>(new
@@ -55,8 +56,7 @@ namespace ESProMeter.Repository
                    @ITEMTYPE=itemType
                }, out table);
         }
-
-        public bool GetItemWithoutBoqByName(byte isActive,string itemName,string itemType, out DataTable table)
+        public bool GetItemeWithoutBoqByName(byte isActive,string itemName,string itemType, out DataTable table)
         {
             return AppService.SqlGetInstance.UseProcedure("[ITEM_sp_SELECT_ITEMWITHOUTBOQ_BY_NAME]")
                .SelectAsTable<dynamic>(new
@@ -66,7 +66,6 @@ namespace ESProMeter.Repository
                    @ISACTIVE = isActive
                }, out table);
         }
-
         public bool GetBoqItems(byte isActive, string itemName, out DataTable table)
         {
             return AppService.SqlGetInstance.UseProcedure("[ITEM_sp_SELECT_BOQITEM]")
@@ -77,6 +76,14 @@ namespace ESProMeter.Repository
                }, out table);
         }
 
+        public bool GetBoqItemById(long Id)
+        {
+            return AppService.SqlGetInstance.UseProcedure("[ITEM_sp_SELECT_BOQITEM_ID]")
+               .FindOne<dynamic,VBOQITEM>(new
+               {
+                   @ID=Id
+               },out var boqItem);
+        }
         public bool GetItemsType(out DataTable table)
         {
             return AppService.SqlGetInstance.UseProcedure("[ITEMTYPE_SP_SELECT]")
@@ -111,15 +118,13 @@ namespace ESProMeter.Repository
                 item.ISACTIVE = row.GetValue<byte>("IsActive");
                 item.UOMID = row.GetValue<long>("UomID");
                 item.ITEMTYPE = row.GetValue<string>("ItemType");
-                AppService.GetItemInstance.GetBoqItemLineByItemID(itemId, "labour", out labour);
-                AppService.GetItemInstance.GetBoqItemLineByItemID(itemId, "machinery", out machinery);
-                AppService.GetItemInstance.GetBoqItemLineByItemID(itemId, "material", out material);
+                AppService.GetItemInstance.BoqItemLineGetByItemID(itemId, "labour", out labour);
+                AppService.GetItemInstance.BoqItemLineGetByItemID(itemId, "machinery", out machinery);
+                AppService.GetItemInstance.BoqItemLineGetByItemID(itemId, "material", out material);
                 return true;
             };
             return false;
         }
-
-
         public bool GetBoqItemWithItemLineById(long itemId,out DataTable labour, out DataTable machinery, out DataTable material)
         {
             labour = new();
@@ -127,9 +132,9 @@ namespace ESProMeter.Repository
             material = new();
             try
             {
-                AppService.GetItemInstance.GetBoqItemLineByItemID(itemId, "labour", out labour);
-                AppService.GetItemInstance.GetBoqItemLineByItemID(itemId, "machinery", out machinery);
-                AppService.GetItemInstance.GetBoqItemLineByItemID(itemId, "material", out material);
+                AppService.GetItemInstance.BoqItemLineGetByItemID(itemId, "labour", out labour);
+                AppService.GetItemInstance.BoqItemLineGetByItemID(itemId, "machinery", out machinery);
+                AppService.GetItemInstance.BoqItemLineGetByItemID(itemId, "material", out material);
                 return true;
             }
             catch
@@ -144,7 +149,7 @@ namespace ESProMeter.Repository
             table = new();
             try
             {
-                AppService.GetItemInstance.GetBoqItemLineByItemID(itemId,null, out table);
+                AppService.GetItemInstance.BoqItemLineGetByItemID(itemId,null, out table);
                 return true;
             }
             catch
@@ -211,11 +216,37 @@ namespace ESProMeter.Repository
                 var table = ToTable(grid, id);
                 AppService.SqlGetInstance.UseProcedure("SP_BoqItemLineInert")
                         .InsertFromTable(new { BoqItemLine = table.AsTableValuedParameter("udt_BoqItemLine_Insert") });
-
-
-
-
                 AppService.SqlGetInstance.ComitTransaction();
+            }
+            catch
+            {
+                AppService.SqlGetInstance.RollbackTransaction();
+                throw;
+            }
+
+        }
+        public (bool,long) BoqCreateItemLineGetId(ITItem item, DataGridView grid)
+        {
+            try
+            {
+                AppService.SqlGetInstance.StartTransaction();
+                //create new item
+                var id = AppService.SqlGetInstance.UseProcedure("ITEM_INSERT")
+                        .InsertGetId<long, dynamic>(new
+                        {
+                            item.ITEMNAME,
+                            item.DESCRIPTION,
+                            item.ITEMTYPE,
+                            item.UOMID,
+                            item.COST,
+                            item.ISRATE
+                        });
+                //create boq item line
+                var table = ToTable(grid, id);
+                AppService.SqlGetInstance.UseProcedure("SP_BoqItemLineInert")
+                        .InsertFromTable(new { BoqItemLine = table.AsTableValuedParameter("udt_BoqItemLine_Insert") });
+                AppService.SqlGetInstance.ComitTransaction();
+                return (id > 0, id);
             }
             catch
             {
@@ -287,8 +318,6 @@ namespace ESProMeter.Repository
             }
 
         }
-
-
         public void BoqUpdateItemLine(ITItem item, DataTable grid)
         {
             try
@@ -328,7 +357,6 @@ namespace ESProMeter.Repository
             return AppService.SqlGetInstance.UseProcedure("ITEM_sp_DELETE")
                         .Delete<dynamic>(new { @itemID = itemId })>0;
         }
-
         public bool ItemIsInUsed(long itemId)
         {
             var count = AppService.SqlGetInstance.UseSql("SELECT COUNT(*) FROM [dbo].[TBOQITEMLINE] WHERE BOQITEMLINEID=@ID;")
@@ -337,8 +365,7 @@ namespace ESProMeter.Repository
                     .Count<int, dynamic>(new { @ID = itemId });
             return (count + count1) > 0;
         }
-
-        public bool GetBoqItemLineByItemID(long itemID,out DataTable table)
+        public bool BoqItemLineGetByItemID(long itemID,out DataTable table)
         {
             try
             {
@@ -354,10 +381,7 @@ namespace ESProMeter.Repository
             }
 
         }
-
-       
-
-        public void GetBoqItemLineByItemID(long itemID,string ItemTypeName, out DataTable table)
+        public void BoqItemLineGetByItemID(long itemID,string ItemTypeName, out DataTable table)
         {
             try
             {
@@ -374,8 +398,7 @@ namespace ESProMeter.Repository
             }
 
         }
-
-        public void GetBoqItemLineByItemID(long boq_id,long itemID, string ItemTypeName, out DataTable table)
+        public void BoqItemLineGetByItemID(long boq_id,long itemID, string ItemTypeName, out DataTable table)
         {
             try
             {

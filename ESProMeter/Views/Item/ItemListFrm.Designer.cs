@@ -53,6 +53,7 @@ namespace ESProMeter.Views.Items
             this.Active = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -170,8 +171,9 @@ namespace ESProMeter.Views.Items
             // excelToolStripMenuItem
             // 
             this.excelToolStripMenuItem.Name = "excelToolStripMenuItem";
-            this.excelToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
+            this.excelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.excelToolStripMenuItem.Text = "Excel";
+            this.excelToolStripMenuItem.Click += new System.EventHandler(this.excelToolStripMenuItem_Click);
             // 
             // textSearch
             // 
@@ -212,12 +214,13 @@ namespace ESProMeter.Views.Items
             this.Active,
             this.Column8,
             this.Column9,
+            this.Column1,
             this.Column10,
             this.Column11,
             this.Column13});
             this.dataItemList.EnableHeadersVisualStyles = false;
             this.dataItemList.GridColor = System.Drawing.Color.IndianRed;
-            this.dataItemList.Location = new System.Drawing.Point(14, 104);
+            this.dataItemList.Location = new System.Drawing.Point(13, 79);
             this.dataItemList.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dataItemList.MultiSelect = false;
             this.dataItemList.Name = "dataItemList";
@@ -226,7 +229,7 @@ namespace ESProMeter.Views.Items
             this.dataItemList.RowTemplate.Height = 25;
             this.dataItemList.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataItemList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataItemList.Size = new System.Drawing.Size(921, 402);
+            this.dataItemList.Size = new System.Drawing.Size(922, 427);
             this.dataItemList.TabIndex = 3;
             this.dataItemList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataItemList_CellFormatting);
             this.dataItemList.SelectionChanged += new System.EventHandler(this.dataItemList_SelectionChanged);
@@ -240,6 +243,7 @@ namespace ESProMeter.Views.Items
             this.ID.ReadOnly = true;
             this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ID.Visible = false;
             this.ID.Width = 2;
             // 
             // Column2
@@ -270,13 +274,14 @@ namespace ESProMeter.Views.Items
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
             this.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column7.Visible = false;
             this.Column7.Width = 91;
             // 
             // Column4
             // 
             this.Column4.DataPropertyName = "Uom";
             this.Column4.FillWeight = 68.39866F;
-            this.Column4.HeaderText = "Sub Uom Type";
+            this.Column4.HeaderText = "Uom";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -305,22 +310,30 @@ namespace ESProMeter.Views.Items
             // 
             // Column8
             // 
+            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column8.DataPropertyName = "Description";
             this.Column8.FillWeight = 108.7606F;
             this.Column8.HeaderText = "Description";
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
             this.Column8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column8.Width = 350;
             // 
             // Column9
             // 
-            this.Column9.DataPropertyName = "EditSequense";
+            this.Column9.DataPropertyName = "EDSEQ";
             this.Column9.HeaderText = "EditSequense";
             this.Column9.Name = "Column9";
             this.Column9.ReadOnly = true;
             this.Column9.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Column9.Visible = false;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "ISRATE";
+            this.Column1.HeaderText = "RATE";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Visible = false;
             // 
             // Column10
             // 
@@ -360,6 +373,7 @@ namespace ESProMeter.Views.Items
             // 
             // cmbPage
             // 
+            this.cmbPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbPage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPage.FormattingEnabled = true;
             this.cmbPage.Items.AddRange(new object[] {
@@ -368,7 +382,7 @@ namespace ESProMeter.Views.Items
             "200",
             "500",
             "1000"});
-            this.cmbPage.Location = new System.Drawing.Point(884, 50);
+            this.cmbPage.Location = new System.Drawing.Point(888, 50);
             this.cmbPage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbPage.Name = "cmbPage";
             this.cmbPage.Size = new System.Drawing.Size(51, 23);
@@ -377,6 +391,7 @@ namespace ESProMeter.Views.Items
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.Location = new System.Drawing.Point(788, 53);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
@@ -494,7 +509,7 @@ namespace ESProMeter.Views.Items
             this.cbmSortType.Items.AddRange(new object[] {
             "ASC",
             "DESC"});
-            this.cbmSortType.Location = new System.Drawing.Point(708, 51);
+            this.cbmSortType.Location = new System.Drawing.Point(569, 48);
             this.cbmSortType.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbmSortType.Name = "cbmSortType";
             this.cbmSortType.Size = new System.Drawing.Size(72, 23);
@@ -504,17 +519,17 @@ namespace ESProMeter.Views.Items
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(647, 55);
+            this.label5.Location = new System.Drawing.Point(536, 52);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 15);
+            this.label5.Size = new System.Drawing.Size(28, 15);
             this.label5.TabIndex = 6;
-            this.label5.Text = "Order By";
+            this.label5.Text = "Sort";
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(14, 79);
+            this.checkBox1.Location = new System.Drawing.Point(659, 51);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(109, 19);
             this.checkBox1.TabIndex = 7;
@@ -537,7 +552,6 @@ namespace ESProMeter.Views.Items
             this.Controls.Add(this.textSearch);
             this.Controls.Add(this.tlDelete);
             this.DoubleBuffered = true;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "ItemListFrm";
             this.ShowInTaskbar = false;
@@ -594,6 +608,7 @@ namespace ESProMeter.Views.Items
         private System.Windows.Forms.DataGridViewCheckBoxColumn Active;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column13;

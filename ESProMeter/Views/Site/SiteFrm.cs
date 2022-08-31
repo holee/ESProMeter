@@ -162,7 +162,7 @@ namespace ESProMeter.Views.Sites
             {
 				System.IO.File.Create(path);
             }
-			data.Print(path,10);
+			//data.Print(path,10);
 
 		}
 	}

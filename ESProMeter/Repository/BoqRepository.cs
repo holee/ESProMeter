@@ -145,7 +145,6 @@ namespace ESProMeter.Repository
                 boq.TRANSPORTATIONRATE = row.GetValue<decimal>("TRANSPORTATIONRATE");
             }
         }
-
         public bool BoqGetById(long id,out TBOQ boq)
         {
             return AppService.SqlGetInstance
@@ -166,7 +165,6 @@ namespace ESProMeter.Repository
                                     STATUS = status,
                                 }, out table);
         }
-
         public void BoqGetByCustomer(long id,out DataTable table)
         {
             AppService.SqlGetInstance
@@ -179,7 +177,6 @@ namespace ESProMeter.Repository
                                 }, out table);
           
         }
-
         public void BoqGetByCustomer(long id,int active,DateTime start,DateTime end, out DataTable table)
         {
             AppService.SqlGetInstance
@@ -205,7 +202,6 @@ namespace ESProMeter.Repository
                         .UseProcedure("[TBOQLINE_sp_INSERT]")
                             .InsertFromTable("TBOQLINE", model, "TBOQLINE_udt_INSERT");
         }
-
         public void BoqLineUpdate(DataTable model) 
         {
             AppService.SqlGetInstance
@@ -221,15 +217,12 @@ namespace ESProMeter.Repository
                                     @BODREFID = id
                                 }, out table);
         }
-
-
         public void GetAdditinalCost(out DataTable table)
         {
             AppService.SqlGetInstance
                             .UseProcedure("[SETTING_sp_SELECT]")
                                 .SelectAsTable<dynamic>(null,out table);
         }
-
         public void GetAdditinalCost(long boqId,long boqItemId,out ADDITIONALCOST model)
         {
             model = new();

@@ -19,7 +19,6 @@ namespace ESProMeter.Services
             report.Dock = DockStyle.Fill;
             container.Controls.Add(report);
         }
-
         public static void GenerateReport(ReportViewer report, Panel container, string path, DataTable dataSources)
         {
             ReportDataSource dataSource = new ReportDataSource("ESPRO", dataSources);

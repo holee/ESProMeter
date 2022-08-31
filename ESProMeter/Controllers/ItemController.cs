@@ -35,14 +35,14 @@ namespace ESProMeter.Controllers
         }
         public static void GetItemsWithoutBoq(this Form form, DataGridView grid,string itemType, params string[] columns) 
         {
-            if (AppService.GetItemInstance.GetItemWithoutBoq(1, itemType, out var table))
+            if (AppService.GetItemInstance.GetItemsWithoutBoq(1, itemType, out var table))
             {
                 table.WithColumn(columns).UseDataTableAsGridView(grid);
             }
         }
         public static void GetItemsWithoutBoqByName(this Form form,string itemName,string itemType, DataGridView grid, params string[] columns)
         {
-            if (AppService.GetItemInstance.GetItemWithoutBoqByName(1,itemName, itemType, out var table))
+            if (AppService.GetItemInstance.GetItemeWithoutBoqByName(1,itemName, itemType, out var table))
             {
                 table.WithColumn(columns).UseDataTableAsGridView(grid);
             }
