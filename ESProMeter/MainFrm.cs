@@ -106,7 +106,7 @@ namespace ESProMeter
 
         private void button1_MouseClick(object sender, MouseEventArgs e)
         {
-            Views.Setting.Form1 frm = new Views.Setting.Form1();
+            Views.Setting.SettingFrm frm = new Views.Setting.SettingFrm();
             frm.TopLevel = false;
             frm.TopMost = true;
             //frm.FormBorderStyle = FormBorderStyle.None;
@@ -384,5 +384,10 @@ namespace ESProMeter
 
         }
 
+		private void buttonSetting_Click(object sender, EventArgs e)
+		{
+            Form form = new Views.Setting.SettingFrm();
+            form.ShowDialog();
+        }
 	}
 }

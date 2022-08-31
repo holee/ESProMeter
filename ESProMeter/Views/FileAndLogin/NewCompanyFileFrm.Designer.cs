@@ -49,7 +49,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.mbtOK.Location = new System.Drawing.Point(773, 465);
 			this.mbtOK.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.mbtOK.Name = "mbtOK";
-			this.mbtOK.Size = new System.Drawing.Size(126, 33);
+			this.mbtOK.Size = new System.Drawing.Size(126, 30);
 			this.mbtOK.TabIndex = 24;
 			this.mbtOK.Text = "NEXT";
 			this.mbtOK.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -67,7 +67,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.materialButton1.Location = new System.Drawing.Point(639, 465);
 			this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.materialButton1.Name = "materialButton1";
-			this.materialButton1.Size = new System.Drawing.Size(126, 33);
+			this.materialButton1.Size = new System.Drawing.Size(126, 30);
 			this.materialButton1.TabIndex = 24;
 			this.materialButton1.Text = "BACK";
 			this.materialButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -99,7 +99,7 @@ namespace ESProMeter.Views.FileAndLogin
 			this.tabPage2.Location = new System.Drawing.Point(4, 24);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(779, 341);
+			this.tabPage2.Size = new System.Drawing.Size(891, 395);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "tabPage2";
 			this.tabPage2.UseVisualStyleBackColor = true;

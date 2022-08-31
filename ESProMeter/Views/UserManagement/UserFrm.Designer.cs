@@ -155,6 +155,7 @@ namespace ESProMeter.Views.UserManagement
 			this.lblEditSequense.Size = new System.Drawing.Size(13, 15);
 			this.lblEditSequense.TabIndex = 6;
 			this.lblEditSequense.Text = "0";
+			this.lblEditSequense.Visible = false;
 			// 
 			// lblID
 			// 
@@ -164,6 +165,7 @@ namespace ESProMeter.Views.UserManagement
 			this.lblID.Size = new System.Drawing.Size(13, 15);
 			this.lblID.TabIndex = 6;
 			this.lblID.Text = "0";
+			this.lblID.Visible = false;
 			// 
 			// txtConfirm
 			// 
@@ -198,10 +200,10 @@ namespace ESProMeter.Views.UserManagement
 			this.mbtAddNewEmployee.IconChar = FontAwesome.Sharp.MaterialIcons.None;
 			this.mbtAddNewEmployee.IconColor = System.Drawing.Color.White;
 			this.mbtAddNewEmployee.IconSize = 1;
-			this.mbtAddNewEmployee.Location = new System.Drawing.Point(597, 94);
+			this.mbtAddNewEmployee.Location = new System.Drawing.Point(583, 94);
 			this.mbtAddNewEmployee.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.mbtAddNewEmployee.Name = "mbtAddNewEmployee";
-			this.mbtAddNewEmployee.Size = new System.Drawing.Size(119, 23);
+			this.mbtAddNewEmployee.Size = new System.Drawing.Size(126, 30);
 			this.mbtAddNewEmployee.TabIndex = 4;
 			this.mbtAddNewEmployee.Text = "Add New Employee";
 			this.mbtAddNewEmployee.UseVisualStyleBackColor = false;
@@ -215,10 +217,10 @@ namespace ESProMeter.Views.UserManagement
 			this.mbtViewDetails.IconChar = FontAwesome.Sharp.MaterialIcons.None;
 			this.mbtViewDetails.IconColor = System.Drawing.Color.White;
 			this.mbtViewDetails.IconSize = 1;
-			this.mbtViewDetails.Location = new System.Drawing.Point(724, 94);
+			this.mbtViewDetails.Location = new System.Drawing.Point(717, 94);
 			this.mbtViewDetails.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.mbtViewDetails.Name = "mbtViewDetails";
-			this.mbtViewDetails.Size = new System.Drawing.Size(119, 23);
+			this.mbtViewDetails.Size = new System.Drawing.Size(126, 30);
 			this.mbtViewDetails.TabIndex = 5;
 			this.mbtViewDetails.Text = "View Details";
 			this.mbtViewDetails.UseVisualStyleBackColor = false;

@@ -1,5 +1,4 @@
 ﻿using ESProMeter.Controllers;
-using ESProMeter.Enums;
 using ESProMeter.Extensions;
 using ESProMeter.IViews;
 using ESProMeter.Models;
@@ -799,24 +798,7 @@ namespace ESProMeter.Views.Boq
             }
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (toggle)
-            {
-                pnlSearch.SendToBack();
-                pnlSearch.Hide();
-                toggle = false;
-                materialButton3.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronUpBox;
-            }
-            //Add new BOQ Item
-            //Set item type as 'Bill of Quanity' then show form
-            Views.Items.AddItemFrm form = new Views.Items.AddItemFrm(0, Enums.ItemsType.Boq, Enums.ActionType.CREATE);
-            //form.cmbType.text = 'Bill of Quantity';
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                this.ItemCreate(form, ItemsType.Boq);
-            }
-        }
-    }
+		
+	}
 }
 

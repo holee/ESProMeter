@@ -152,5 +152,6 @@ namespace ESProMeter.Views.Customers
             toolTip1.SetToolTip(this.textMiddleName, "Middle Name");
             toolTip1.SetToolTip(this.textLastName, "Last Name");
 		}
+
 	}
 }

@@ -114,7 +114,7 @@ namespace ESProMeter.Views.UserManagement
 			this.mbtSave.IconChar = FontAwesome.Sharp.MaterialIcons.None;
 			this.mbtSave.IconColor = System.Drawing.Color.White;
 			this.mbtSave.IconSize = 1;
-			this.mbtSave.Location = new System.Drawing.Point(163, 220);
+			this.mbtSave.Location = new System.Drawing.Point(163, 217);
 			this.mbtSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.mbtSave.Name = "mbtSave";
 			this.mbtSave.Size = new System.Drawing.Size(126, 30);
@@ -132,7 +132,7 @@ namespace ESProMeter.Views.UserManagement
 			this.mbtCancel.IconChar = FontAwesome.Sharp.MaterialIcons.None;
 			this.mbtCancel.IconColor = System.Drawing.Color.White;
 			this.mbtCancel.IconSize = 1;
-			this.mbtCancel.Location = new System.Drawing.Point(297, 220);
+			this.mbtCancel.Location = new System.Drawing.Point(297, 217);
 			this.mbtCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.mbtCancel.Name = "mbtCancel";
 			this.mbtCancel.Size = new System.Drawing.Size(126, 30);

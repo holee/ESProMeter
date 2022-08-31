@@ -92,5 +92,10 @@ namespace ESProMeter.Views.UnitOfMeasures
                 this.DialogResult = DialogResult.None;
             }
         }
-    }
+
+		private void AddUoMFrm_Load(object sender, EventArgs e)
+		{
+
+		}
+	}
 }

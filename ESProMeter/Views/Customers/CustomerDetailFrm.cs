@@ -21,6 +21,7 @@ namespace ESProMeter.Views.Customers
         private string _firstName=string.Empty;
         private string _lastName = string.Empty;
         private long _addressId = 0;
+        private string _address = string.Empty;
         private string _salutation = string.Empty;
         private string _middleName = string.Empty;
         private string _fax;
@@ -32,8 +33,8 @@ namespace ESProMeter.Views.Customers
         #region properties
         public string ADDRESS
         {
-            get => txtAddress.Text.Trim();
-            set => txtAddress.SetText(value);
+            get => _address;
+            set => _address =value;
         }
         public string PROVINCE
         {
@@ -144,6 +145,14 @@ namespace ESProMeter.Views.Customers
         public DateTime MDT { get => _updatedAt; set => _updatedAt = DateTime.UtcNow; }
         public string NAME { get => txtName.Text.Trim(); set => txtName.SetText(value); }
 
-        #endregion
-    }
+		#endregion
+
+		private void CustomerDetailFrm_Load(object sender, EventArgs e)
+		{
+            txtContactFullName.SetText(_salutation + " " + _firstName + " " + _lastName);
+
+            txtFullAddress.SetText(_address + System.Environment.NewLine + _country + System.Environment.NewLine + _province);
+		}
+
+	}
 }
