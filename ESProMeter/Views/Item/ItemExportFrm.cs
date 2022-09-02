@@ -50,8 +50,8 @@ namespace ESProMeter.Views.Item
             {
                 AppService.SqlGetInstance.UseProcedure("ITEM_sp_SELECT_Export")
                            .SelectAsTable<dynamic>(null, out var table);
-                table.Export(textBox1.Text);
-               // System.Threading.Tasks.Task.Delay(500).Wait();
+                table.Export(textBox1.Text,1,1);
+                System.Threading.Tasks.Task.Delay(1000).Wait();
             });
             this.pictureBox1.Visible = false;
 
