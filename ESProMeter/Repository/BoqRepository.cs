@@ -234,6 +234,18 @@ namespace ESProMeter.Repository
                                     @BOQITEMRefID= boqItemId
                                 }, out model);
         }
+        public void GetAdditinalCost(long boqId, out ADDITIONALCOST model)
+        {
+            model = new();
+            AppService.SqlGetInstance
+                            .UseSql(@"SELECT [LOSSOFEFFECIENCYRATE],[OPERATIONRATE],
+                                        [OVERHEADRATE],[SAFETYRATE],[TRANSPORTATIONRATE],
+                                        [MARGINRATE],[INFlATIONRATE] FROM TBOQ WHERE ID=@ID")
+                                .FindOne<dynamic, ADDITIONALCOST>(new
+                                {
+                                    @ID = boqId,
+                                }, out model);
+        }
     }
 }
 

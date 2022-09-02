@@ -630,6 +630,7 @@ namespace ESProMeter.Views.Boq
             this.btnSaveAndClose.TabIndex = 38;
             this.btnSaveAndClose.Text = "Save && Close";
             this.btnSaveAndClose.UseVisualStyleBackColor = false;
+            this.btnSaveAndClose.Click += new System.EventHandler(this.btnSaveAndClose_Click);
             // 
             // lblID
             // 

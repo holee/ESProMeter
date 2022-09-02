@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
             this.dgvBoqItemLine = new System.Windows.Forms.DataGridView();
@@ -44,7 +44,7 @@
             this.labourSubtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.laborUomRefID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtSubtotalLabour = new System.Windows.Forms.TextBox();
+            this.txtSubtotalBoqItem = new System.Windows.Forms.TextBox();
             this.mbtNext = new FontAwesome.Sharp.Material.MaterialButton();
             this.mbtCancel = new FontAwesome.Sharp.Material.MaterialButton();
             this.lblBoqID = new System.Windows.Forms.Label();
@@ -69,7 +69,7 @@
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
-            this.txtLoseEfficency = new System.Windows.Forms.TextBox();
+            this.txtLoseEfficencyValue = new System.Windows.Forms.TextBox();
             this.txtLoseEffecency = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -104,7 +104,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.dgvBoqItemLine);
-            this.groupBox2.Controls.Add(this.txtSubtotalLabour);
+            this.groupBox2.Controls.Add(this.txtSubtotalBoqItem);
             this.groupBox2.Location = new System.Drawing.Point(12, 13);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(718, 383);
@@ -131,14 +131,14 @@
             this.dgvBoqItemLine.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBoqItemLine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBoqItemLine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvBoqItemLine.ColumnHeadersHeight = 25;
             this.dgvBoqItemLine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvBoqItemLine.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -151,14 +151,14 @@
             this.labourSubtotal,
             this.laborUomRefID,
             this.dataGridViewTextBoxColumn3});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvBoqItemLine.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvBoqItemLine.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvBoqItemLine.EnableHeadersVisualStyles = false;
             this.dgvBoqItemLine.Location = new System.Drawing.Point(13, 26);
             this.dgvBoqItemLine.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -221,12 +221,12 @@
             // 
             this.ButtonColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.ButtonColumn1.DataPropertyName = "COST";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            this.ButtonColumn1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            this.ButtonColumn1.DefaultCellStyle = dataGridViewCellStyle6;
             this.ButtonColumn1.HeaderText = "Unit Cost";
             this.ButtonColumn1.Name = "ButtonColumn1";
             this.ButtonColumn1.ReadOnly = true;
@@ -237,8 +237,8 @@
             // 
             this.labourSubtotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.labourSubtotal.DataPropertyName = "SUBCOST";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.labourSubtotal.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.labourSubtotal.DefaultCellStyle = dataGridViewCellStyle7;
             this.labourSubtotal.HeaderText = "Sub Total";
             this.labourSubtotal.Name = "labourSubtotal";
             this.labourSubtotal.ReadOnly = true;
@@ -268,16 +268,16 @@
             this.dataGridViewTextBoxColumn3.Visible = false;
             this.dataGridViewTextBoxColumn3.Width = 60;
             // 
-            // txtSubtotalLabour
+            // txtSubtotalBoqItem
             // 
-            this.txtSubtotalLabour.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSubtotalLabour.Location = new System.Drawing.Point(492, 354);
-            this.txtSubtotalLabour.Name = "txtSubtotalLabour";
-            this.txtSubtotalLabour.ReadOnly = true;
-            this.txtSubtotalLabour.Size = new System.Drawing.Size(220, 23);
-            this.txtSubtotalLabour.TabIndex = 35;
-            this.txtSubtotalLabour.Text = "0";
-            this.txtSubtotalLabour.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSubtotalBoqItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSubtotalBoqItem.Location = new System.Drawing.Point(492, 354);
+            this.txtSubtotalBoqItem.Name = "txtSubtotalBoqItem";
+            this.txtSubtotalBoqItem.ReadOnly = true;
+            this.txtSubtotalBoqItem.Size = new System.Drawing.Size(220, 23);
+            this.txtSubtotalBoqItem.TabIndex = 35;
+            this.txtSubtotalBoqItem.Text = "0";
+            this.txtSubtotalBoqItem.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // mbtNext
             // 
@@ -527,7 +527,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.textBox12);
-            this.groupBox1.Controls.Add(this.txtLoseEfficency);
+            this.groupBox1.Controls.Add(this.txtLoseEfficencyValue);
             this.groupBox1.Controls.Add(this.txtLoseEffecency);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label4);
@@ -565,15 +565,15 @@
             this.textBox12.Text = "%";
             this.textBox12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // txtLoseEfficency
+            // txtLoseEfficencyValue
             // 
-            this.txtLoseEfficency.Location = new System.Drawing.Point(296, 21);
-            this.txtLoseEfficency.Name = "txtLoseEfficency";
-            this.txtLoseEfficency.ReadOnly = true;
-            this.txtLoseEfficency.Size = new System.Drawing.Size(118, 23);
-            this.txtLoseEfficency.TabIndex = 31;
-            this.txtLoseEfficency.Text = "0";
-            this.txtLoseEfficency.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtLoseEfficencyValue.Location = new System.Drawing.Point(296, 21);
+            this.txtLoseEfficencyValue.Name = "txtLoseEfficencyValue";
+            this.txtLoseEfficencyValue.ReadOnly = true;
+            this.txtLoseEfficencyValue.Size = new System.Drawing.Size(118, 23);
+            this.txtLoseEfficencyValue.TabIndex = 31;
+            this.txtLoseEfficencyValue.Text = "0";
+            this.txtLoseEfficencyValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtLoseEffecency
             // 
@@ -802,7 +802,7 @@
         private System.Windows.Forms.Label lblBoqItemID;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridView dgvBoqItemLine;
-        private System.Windows.Forms.TextBox txtSubtotalLabour;
+        private System.Windows.Forms.TextBox txtSubtotalBoqItem;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox textBox4;
@@ -823,7 +823,7 @@
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.TextBox txtLoseEfficency;
+        private System.Windows.Forms.TextBox txtLoseEfficencyValue;
         private System.Windows.Forms.TextBox txtLoseEffecency;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label4;

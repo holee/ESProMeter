@@ -175,48 +175,6 @@ namespace ESProMeter.Views.Boq
         public CreateBoQ_Step2_Frm()
         {
             InitializeComponent();
-            //this.cboCustomerName.LostFocus += (s, e) =>
-            //{
-            //    if (cboCustomerName.SelectedValue == null && cboCustomerName.Text.Length > 0)
-            //    {
-            //        if (MessageBox.Show(@"there is not any customer in system,\n Do you to add new one?", "Bill Of Qauntity", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            //        {
-            //            Views.Customers.CustomerCreateFrm form = new Views.Customers.CustomerCreateFrm();
-            //            form.NAME = cboCustomerName.Text;
-            //            if (this.CustomerCreate(form, out var id))
-            //            {
-            //                this.FillCustomerCmb(cboCustomerName);
-            //                this.cboCustomerName.SelectedValue = id;
-            //            }
-            //            else
-            //            {
-            //                this.FillCustomerCmb(cboCustomerName);
-            //            }
-            //        }
-            //    }
-            //};
-            //this.cboSite.LostFocus += (s, e) =>
-            //{
-            //    if (cboSite.SelectedValue == null && cboSite.Text.Length > 0)
-            //    {
-            //        if (MessageBox.Show(@"there is not any Site in system,\n Do you want to add new.", "Bill Of Qauntity", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            //        {
-            //            Sites.AddSiteFrm form = new Sites.AddSiteFrm();
-            //            if (cboCustomerName.SelectedValue != null)
-            //            {
-            //                form.SITENAME = cboSite.Text;
-            //                form.CUSTOMERID = cboCustomerName.AsNumber<long>(true);
-            //                if (this.SiteCreateNewOrUpdate(form, out var id))
-            //                {
-            //                    this.FillSitesCmbByCustomer(cboCustomerName.AsNumber<long>(true), cboSite);
-            //                    this.cboSite.SelectedValue = id;
-            //                }
-            //            }
-
-            //        }
-            //        else return;
-            //    }
-            //};
         }
         public CreateBoQ_Step2_Frm(long id, Enums.ActionType type)
         {
@@ -735,6 +693,7 @@ namespace ESProMeter.Views.Boq
                 pnlSearch.Location = new Point(materialButton3.Location.X - (pnlSearch.Width - materialButton3.Width), materialButton3.Location.Y + materialButton3.Height);
                 pnlSearch.BringToFront();
                 pnlSearch.Show();
+                txtItemBoqSearch.Focus();
                 toggle = true;
                 this.GetBoqItems(dgvItem, null, "ID", "ItemName", "Description", "ItemType", "Uom", "UomID", "BOQCOST");
                 materialButton3.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronDownBox;
@@ -837,6 +796,11 @@ namespace ESProMeter.Views.Boq
                     materialButton3.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronUpBox;
                 }
             }
+        }
+
+        private void btnSaveAndClose_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

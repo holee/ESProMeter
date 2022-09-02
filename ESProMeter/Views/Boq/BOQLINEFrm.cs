@@ -3,6 +3,7 @@ using ESProMeter.Controllers;
 using ESProMeter.Extensions;
 using ESProMeter.IVews;
 using ESProMeter.Models;
+using ESProMeter.Services;
 using System;
 using System.Windows.Forms;
 
@@ -16,23 +17,57 @@ namespace ESProMeter.Views.Boq
             lblBoqID.SetText(boq_id);
             lblBoqItemID.SetText(itemId);
             this.GetItemForUpdate(itemId);
-            this.LOSSOFEFFECIENCYRATE = aCost?.LOSSOFEFFECIENCYRATE;
-            this.OPERATIONRATE = aCost?.OPERATIONRATE;
-            this.OVERHEADRATE = aCost?.OVERHEADRATE;
-            this.TRANSPORTATIONRATE = aCost?.TRANSPORTATIONRATE;
-            this.SAFETYRATE = aCost?.SAFETYRATE;
-            this.MARGINRATE = aCost?.MARGINRATE;
-            this.INFlATIONRATE = aCost?.INFlATIONRATE;
-            this.LOSSOFEFFECIENCY = aCost?.LOSSOFEFFECIENCY;
-            this.OPERATION = aCost?.OPERATION;
-            this.OVERHEAD= aCost?.OVERHEAD;
-            this.TRANSPORTATION = aCost?.TRANSPORTATION;
-            this.SAFETY = aCost?.SAFETY;
-            this.MARGIN = aCost?.MARGIN;
-            this.INFlATION = aCost?.INFlATION;
-            this.TOTALADDITIONALCOST = aCost?.TOTALADDITIONALCOST;
-            this.TOTALMARINANDINFLATION = aCost?.TOTALMARINANDINFLATION;
-            this.BOQCOST = aCost?.BOQCOST;
+            if (aCost == null)
+            {
+                AppService.GetBoqInstance.GetAdditinalCost(boq_id, out aCost);
+                txtBoqCOST.SetText(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"));
+                txtSubtotalBoqItem.SetText(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"));
+                this.LOSSOFEFFECIENCYRATE = aCost?.LOSSOFEFFECIENCYRATE;
+                this.OPERATIONRATE = aCost?.OPERATIONRATE;
+                this.OVERHEADRATE = aCost?.OVERHEADRATE;
+                this.TRANSPORTATIONRATE = aCost?.TRANSPORTATIONRATE;
+                this.SAFETYRATE = aCost?.SAFETYRATE;
+                this.MARGINRATE = aCost?.MARGINRATE;
+                this.INFlATIONRATE = aCost?.INFlATIONRATE;
+                ///Assign Additinal cost value
+                this.LOSSOFEFFECIENCY = aCost?.LOSSOFEFFECIENCY>0?aCost?.LOSSOFEFFECIENCY:(txtSubtotalBoqItem.AsNumber<decimal>() * (aCost.LOSSOFEFFECIENCYRATE /100));
+                this.OPERATION = aCost?.OPERATION > 0 ? aCost?.OPERATION : (txtSubtotalBoqItem.AsNumber<decimal>() * (aCost.OPERATIONRATE / 100)); ;
+                this.OVERHEAD = aCost?.OVERHEAD > 0 ? aCost?.OVERHEAD : (txtSubtotalBoqItem.AsNumber<decimal>() * (aCost.OVERHEADRATE / 100)); ;
+                this.TRANSPORTATION = aCost?.TRANSPORTATION > 0 ? aCost?.TRANSPORTATION : (txtSubtotalBoqItem.AsNumber<decimal>() * (aCost.TRANSPORTATIONRATE / 100)); ;
+                this.SAFETY = ((txtSubtotalBoqItem.AsNumber<decimal>() + (aCost.LOSSOFEFFECIENCY + aCost.OPERATION + aCost.OVERHEAD + aCost.SAFETY + aCost.TRANSPORTATION) )  * (aCost.SAFETYRATE / 100)); 
+                this.MARGIN = CalculateInflation(this.INFlATIONRATE.Value, (this.LOSSOFEFFECIENCY.Value + this.OPERATION.Value + this.OVERHEAD.Value + this.TRANSPORTATION.Value + this.SAFETY.Value));
+                this.INFlATION =CalculateInflation(this.INFlATIONRATE.Value ,(this.LOSSOFEFFECIENCY.Value + this.OPERATION.Value + this.OVERHEAD.Value + this.TRANSPORTATION.Value + this.SAFETY.Value)) ;
+                ////Assign Total Additional Cost
+                this.TOTALADDITIONALCOST = aCost?.TOTALADDITIONALCOST;
+                this.TOTALMARINANDINFLATION = aCost?.TOTALMARINANDINFLATION;
+                //this.BOQCOST = aCost?.BOQCOST;
+                //UpdateAdditionCost();
+                UpdateMarginAndInflation();
+            }
+            else
+            {
+                txtBoqCOST.SetText(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"));
+                txtSubtotalBoqItem.SetText(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"));
+                this.LOSSOFEFFECIENCYRATE = aCost?.LOSSOFEFFECIENCYRATE;
+                this.OPERATIONRATE = aCost?.OPERATIONRATE;
+                this.OVERHEADRATE = aCost?.OVERHEADRATE;
+                this.TRANSPORTATIONRATE = aCost?.TRANSPORTATIONRATE;
+                this.SAFETYRATE = aCost?.SAFETYRATE;
+                this.MARGINRATE = aCost?.MARGINRATE;
+                this.INFlATIONRATE = aCost?.INFlATIONRATE;
+                ///Assign Additinal cost value
+                this.LOSSOFEFFECIENCY = aCost?.LOSSOFEFFECIENCY;
+                this.OPERATION = aCost?.OPERATION;
+                this.OVERHEAD = aCost?.OVERHEAD;
+                this.TRANSPORTATION = aCost?.TRANSPORTATION;
+                this.SAFETY = aCost?.SAFETY;
+                this.MARGIN = aCost?.MARGIN;
+                this.INFlATION = aCost?.INFlATION;
+                ////Assign Total Additional Cost
+                this.TOTALADDITIONALCOST = aCost?.TOTALADDITIONALCOST;
+                this.TOTALMARINANDINFLATION = aCost?.TOTALMARINANDINFLATION;
+                this.BOQCOST = aCost?.BOQCOST;
+            }
             ////
             txtLoseEffecency.LostFocus -= TxtLostFocus;
             txtOperation.LostFocus -= TxtLostFocus;
@@ -72,7 +107,14 @@ namespace ESProMeter.Views.Boq
             txtSafty.KeyUp += TxtSafty_KeyUp; ;
             txtMargin.KeyUp += TxtMargin_KeyUp; ;
             txtInflation.KeyUp += TxtInflation_KeyUp; ;
-            txtTransportation.KeyUp += TxtTransportation_KeyUp; ;
+            txtTransportation.KeyUp += TxtTransportation_KeyUp;
+
+            ////
+            ///
+            UpdateAdditionCost();
+            UpdateMarginAndInflation();
+            UpdateSalePrice();
+
         }
 
         private void TxtTransportation_KeyUp(object sender, KeyEventArgs e)
@@ -88,8 +130,8 @@ namespace ESProMeter.Views.Boq
         private void TxtInflation_KeyUp(object sender, KeyEventArgs e)
         {
             var textValue = ((TextBox)sender).AsNumber<decimal>();
-            var inflation = (textValue * txtBoqCOST.AsNumber<decimal>() / 100);
-            txtInflationValue.SetText(Utility.NumberString(inflation));
+            var inflation = ((textValue / 100) * (txtBoqCOST.AsNumber<decimal>() + txtAdditionalSubTotal.AsNumber<decimal>()));
+            txtInflationValue.SetText(Utility.NumberString(inflation,"N3"));
             UpdateAdditionCost();
             UpdateMarginAndInflation();
             UpdateSalePrice();
@@ -98,7 +140,7 @@ namespace ESProMeter.Views.Boq
         private void TxtMargin_KeyUp(object sender, KeyEventArgs e)
         {
             var textValue = ((TextBox)sender).AsNumber<decimal>();
-            var margin = (textValue * txtBoqCOST.AsNumber<decimal>() / 100);
+            var margin = ((textValue / 100) * (txtBoqCOST.AsNumber<decimal>() + txtAdditionalSubTotal.AsNumber<decimal>()));
             txtMarginValue.SetText(Utility.NumberString(margin));
             UpdateAdditionCost();
             UpdateMarginAndInflation();
@@ -139,7 +181,7 @@ namespace ESProMeter.Views.Boq
         {
             var textValue = ((TextBox)sender).AsNumber<decimal>();
             var loe = (textValue * txtBoqCOST.AsNumber<decimal>() /100);
-            txtLoseEfficency.SetText(Utility.NumberString(loe));
+            txtLoseEfficencyValue.SetText(Utility.NumberString(loe));
             UpdateAdditionCost();
             UpdateMarginAndInflation();
             UpdateSalePrice();
@@ -167,13 +209,13 @@ namespace ESProMeter.Views.Boq
         void UpdateAdditionCost()
         {
             var totalAdditionalCost = 0M;
-            var loe = txtLoseEfficency.AsNumber<decimal>();
+            var loe = txtLoseEfficencyValue.AsNumber<decimal>();
             var operate = txtOperationValue.AsNumber<decimal>();
             var overhead = txtOverheadValue.AsNumber<decimal>();
             var transportation = txtTransportationValue.AsNumber<decimal>(); 
             var satfy = txtSaftyValue.AsNumber<decimal>();
             totalAdditionalCost = (loe + operate + overhead + transportation + satfy);
-            txtAdditionalSubTotal.SetText(Utility.NumberString(totalAdditionalCost));
+            txtAdditionalSubTotal.SetText(Utility.NumberString(totalAdditionalCost, "N3"));
         }
         void UpdateMarginAndInflation()
         {
@@ -181,9 +223,17 @@ namespace ESProMeter.Views.Boq
             var margin = txtMarginValue.AsNumber<decimal>();
             var inflation = txtInflationValue.AsNumber<decimal>();
             totalCost = (margin + inflation);
-            txtSubtotalMagrinAndInflation.SetText(Utility.NumberString(totalCost));
+            txtSubtotalMagrinAndInflation.SetText(Utility.NumberString(totalCost,"N3"));
         }
 
+        decimal CalculateMargin(decimal rate,decimal price) 
+        {
+            return (rate / 100) * price;
+        }
+        decimal CalculateInflation(decimal rate, decimal price) 
+        {
+            return (rate / 100) * price;
+        }
         void UpdateSalePrice()
         {
             var totalCost = 0M;
@@ -191,88 +241,99 @@ namespace ESProMeter.Views.Boq
             var marginAndInflation = txtSubtotalMagrinAndInflation.AsNumber<decimal>();
             var boqCost = txtBoqCOST.AsNumber<decimal>();
             totalCost = (additionalCost + marginAndInflation + boqCost);
-            txtsalePrice.SetText(Utility.NumberString(totalCost));
+            txtsalePrice.SetText(Utility.NumberString(totalCost, "N3"));
         }
 
         void UpdateBoqCost() 
         {
             var totalCost = 0M;
-            var labour = txtSubtotalLabour.AsNumber<decimal>();
+            var labour = txtSubtotalBoqItem.AsNumber<decimal>();
             var material = txtAdditionalSubTotal.AsNumber<decimal>();
             var machinery = txtSubtotalMagrinAndInflation.AsNumber<decimal>();
             totalCost = (labour + material + machinery);
-            txtBoqCOST.SetText(Utility.NumberString(totalCost));
+            txtBoqCOST.SetText(Utility.NumberString(totalCost, "N3"));
         }
         #region properties
         public decimal? LOSSOFEFFECIENCYRATE 
         { 
             get => txtLoseEffecency.AsNumber<decimal>(); 
-            set => txtLoseEffecency.SetText(value); 
+            set => txtLoseEffecency.SetText(Utility.NumberString(value,"N3")); 
         }
         public decimal? OPERATIONRATE 
         { get => txtOperation.AsNumber<decimal>(); 
-            set => txtOperation.SetText(value); 
+            set => txtOperation.SetText(Utility.NumberString(value, "N3")); 
         }
         public decimal? OVERHEADRATE 
         { get => txtOverhead.AsNumber<decimal>(); 
-            set => txtOverhead.SetText(value); 
+            set => txtOverhead.SetText(Utility.NumberString(value, "N3")); 
         }
         public decimal? SAFETYRATE 
         { get => txtSafty.AsNumber<decimal>(); 
-            set => txtSafty.SetText(value); 
+            set => txtSafty.SetText(Utility.NumberString(value, "N3")); 
         }
         public decimal? TRANSPORTATIONRATE 
         { get => txtTransportation.AsNumber<decimal>(); 
-            set => txtTransportation.SetText(value); 
+            set => txtTransportation.SetText(Utility.NumberString(value, "N3")); 
         }
         public decimal? MARGINRATE 
         { get => txtMargin.AsNumber<decimal>(); 
-            set => txtMargin.SetText(value); 
+            set => txtMargin.SetText(Utility.NumberString(value, "N3")); 
         }
         public decimal? INFlATIONRATE 
         { 
             get => txtInflation.AsNumber<decimal>(); 
-            set => txtInflation.SetText(value); 
+            set => txtInflation.SetText(Utility.NumberString(value, "N3")); 
         }
         public decimal? LOSSOFEFFECIENCY { 
-            get => txtLoseEfficency.AsNumber<decimal>();
-            set => txtLoseEfficency.SetText(value);
+            get => txtLoseEfficencyValue.AsNumber<decimal>();
+            set => txtLoseEfficencyValue.SetText(Utility.NumberString(value, "N3"));
         }
         public decimal? OPERATION { 
             get => txtOperationValue.AsNumber<decimal>(); 
-            set => txtOperationValue.SetText(value); 
+            set => txtOperationValue.SetText(Utility.NumberString(value, "N3")); 
         }
         public decimal? OVERHEAD { 
             get => txtOverheadValue.AsNumber<decimal>(); 
-            set => txtOverheadValue.SetText(value); 
+            set => txtOverheadValue.SetText(Utility.NumberString(value, "N3")); 
         }
         public decimal? SAFETY { 
             get => txtSaftyValue.AsNumber<decimal>(); 
-            set => txtSaftyValue.SetText(value); 
+            set => txtSaftyValue.SetText(Utility.NumberString(value, "N3")); 
         }
         public decimal? TRANSPORTATION { 
             get => txtTransportationValue.AsNumber<decimal>(); 
-            set => txtTransportationValue.SetText(value); 
+            set => txtTransportationValue.SetText(Utility.NumberString(value, "N3")); 
         }
         public decimal? MARGIN { 
             get => txtMarginValue.AsNumber<decimal>(); 
-            set => txtMarginValue.SetText(value); 
+            set => txtMarginValue.SetText(Utility.NumberString(value, "N3")); 
         }
         public decimal? INFlATION { 
             get => txtInflationValue.AsNumber<decimal>(); 
-            set => txtInflationValue.SetText(value); 
+            set => txtInflationValue.SetText(Utility.NumberString(value, "N3")); 
         }
         public decimal? TOTALADDITIONALCOST { 
             get=>txtAdditionalSubTotal.AsNumber<decimal>(); 
-            set=>txtAdditionalSubTotal.SetText(value); }
+            set=>txtAdditionalSubTotal.SetText(Utility.NumberString(value, "N3")); }
         public decimal? TOTALMARINANDINFLATION { 
             get=>txtSubtotalMagrinAndInflation.AsNumber<decimal>(); 
-            set=>txtSubtotalMagrinAndInflation.SetText(value); }
+            set=>txtSubtotalMagrinAndInflation.SetText(Utility.NumberString(value, "N3")); }
         public decimal? BOQCOST { 
             get=>txtBoqCOST.AsNumber<decimal>(); 
-            set=>txtBoqCOST.SetText(value); 
+            set=>txtBoqCOST.SetText(Utility.NumberString(value, "N3")); 
         }
         #endregion
+        
+        
+        private void CalculateAdditionalCost()
+        {
+            txtLoseEfficencyValue.SetText(Utility.NumberString(txtBoqCOST.AsNumber<decimal>() * (txtLoseEffecency.AsNumber<decimal>()/100),"N3"));
+            txtOperationValue.SetText(Utility.NumberString(txtBoqCOST.AsNumber<decimal>() * (txtOperation.AsNumber<decimal>() / 100),"N3"));
+            txtOverheadValue.SetText(Utility.NumberString(txtBoqCOST.AsNumber<decimal>() * (txtOverhead.AsNumber<decimal>() / 100),"N3"));
+            txtSaftyValue.SetText(Utility.NumberString(txtBoqCOST.AsNumber<decimal>() * (txtSafty.AsNumber<decimal>() / 100),"N3"));
+            txtTransportationValue.SetText(Utility.NumberString(txtBoqCOST.AsNumber<decimal>() * (txtTransportation.AsNumber<decimal>() / 100),"N3"));
+
+        }
         private void mbtCancel_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -296,9 +357,7 @@ namespace ESProMeter.Views.Boq
         }
         private void BOQLINEFrm_Load(object sender, EventArgs e)
         {
-            txtSubtotalLabour.SetText(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"));
-            txtBoqCOST.SetText(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"));
-            UpdateSalePrice();
+            
         }
 
         private void dgvBoqItemLine_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

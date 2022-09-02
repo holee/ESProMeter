@@ -1,4 +1,5 @@
-﻿using ESProMeter.Controllers;
+﻿using DocumentFormat.OpenXml.Drawing.Charts;
+using ESProMeter.Controllers;
 using ESProMeter.Extensions;
 using ESProMeter.Services;
 using ESProMeter.Views.Activies;
@@ -99,6 +100,10 @@ namespace ESProMeter.Views.Boq
 					if (this.BoqDelete(boq_id))
 					{
 						dtgBOQList?.Rows.Remove(selectedRow);
+						if (dtgBOQList.SelectedRows.Count == 0)
+						{
+							((System.Data.DataTable)dtgBOQLine.DataSource)?.Rows.Clear();
+						}
 					}
 				}
 				else

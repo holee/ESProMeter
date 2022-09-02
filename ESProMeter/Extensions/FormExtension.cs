@@ -13,11 +13,20 @@ namespace ESProMeter.Extensions
 
         private static bool HasChildFormOpen(Form child, Form mainFrm)
         {
-            if (mainFrm.MdiChildren.Any(frm => frm.Name == child.Name))
+            try
             {
-                return true;
+                if (mainFrm.MdiChildren.Any(frm => frm.Name == child.Name))
+                {
+                    return true;
+                }
+                return false;
             }
-            return false;
+            catch
+            {
+                return false;
+            }
+            
+            
         }
         public static void OpenChildForm(Form child, Form mainFrm)
         { 

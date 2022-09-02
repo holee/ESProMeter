@@ -75,7 +75,6 @@ namespace ESProMeter.Repository
                    @ITEMNAME = itemName
                }, out table);
         }
-
         public bool GetBoqItemById(long Id,out VBOQITEM item)
         {
             return AppService.SqlGetInstance.UseProcedure("[ITEM_sp_SELECT_BOQITEM_ID]")
