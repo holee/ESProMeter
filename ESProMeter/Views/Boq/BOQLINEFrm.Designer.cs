@@ -170,6 +170,7 @@
             this.dgvBoqItemLine.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvBoqItemLine.Size = new System.Drawing.Size(698, 322);
             this.dgvBoqItemLine.TabIndex = 1;
+            this.dgvBoqItemLine.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvBoqItemLine_CellFormatting);
             // 
             // laborBOQItemLineRefID
             // 

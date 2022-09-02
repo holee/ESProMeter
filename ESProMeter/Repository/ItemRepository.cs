@@ -76,13 +76,14 @@ namespace ESProMeter.Repository
                }, out table);
         }
 
-        public bool GetBoqItemById(long Id)
+        public bool GetBoqItemById(long Id,out VBOQITEM item)
         {
             return AppService.SqlGetInstance.UseProcedure("[ITEM_sp_SELECT_BOQITEM_ID]")
                .FindOne<dynamic,VBOQITEM>(new
                {
+                   @ISACTIVE=1,
                    @ID=Id
-               },out var boqItem);
+               },out item);
         }
         public bool GetItemsType(out DataTable table)
         {
@@ -225,7 +226,7 @@ namespace ESProMeter.Repository
             }
 
         }
-        public (bool,long) BoqCreateItemLineGetId(ITItem item, DataGridView grid)
+        public (bool success,long id) BoqCreateItemLineGetId(ITItem item, DataGridView grid)
         {
             try
             {

@@ -1,4 +1,5 @@
 ﻿using ESProMeter.Controllers;
+using ESProMeter.Enums;
 using ESProMeter.Extensions;
 using ESProMeter.IViews;
 using ESProMeter.Models;
@@ -20,7 +21,7 @@ namespace ESProMeter.Views.Boq
         private int _status = 1;
         private long _uid = 0;
         private bool toggle = false;
-        DataGridView dragGrid=null;
+        DataGridView dragGrid = null;
         private Rectangle dragBoxFromMouseDown;
         private int rowIndexFromMouseDown;
         private int rowIndexOfItemUnderMouseToDrop;
@@ -217,12 +218,13 @@ namespace ESProMeter.Views.Boq
             //    }
             //};
         }
-        public CreateBoQ_Step2_Frm(long id,Enums.ActionType type)
+        public CreateBoQ_Step2_Frm(long id, Enums.ActionType type)
         {
             InitializeComponent();
             SetDoubleBuffer(dgvBoqList, true);
             this.FillCustomerCmb(cboCustomerName);
-            if(this.BoqGetById(id,out var boq)){
+            if (this.BoqGetById(id, out var boq))
+            {
                 this.ID = id;
                 this.BOQDESC = boq.BOQDESC;
                 this.BOQTITLE = boq.BOQTITLE;
@@ -304,27 +306,31 @@ namespace ESProMeter.Views.Boq
             switch (type)
             {
                 case Enums.ActionType.CREATE:
-                    btnSaveAndClose.Click += (s, e)=>{
+                    btnSaveAndClose.Click += (s, e) =>
+                    {
                         BoqLineCreateOrUpdateThenClose(s, e, type);
                     };
-                    btnSaveAndNew.Click += (s, e) => {
+                    btnSaveAndNew.Click += (s, e) =>
+                    {
                         BoqLineCreateOrUpdateThenNew(s, e, type);
                     };
                     break;
                 case Enums.ActionType.EDIT:
-                    btnSaveAndClose.Click += (s, e) => {
+                    btnSaveAndClose.Click += (s, e) =>
+                    {
                         BoqLineCreateOrUpdateThenClose(s, e, type);
                     };
-                    btnSaveAndNew.Click += (s, e) => {
+                    btnSaveAndNew.Click += (s, e) =>
+                    {
                         BoqLineCreateOrUpdateThenNew(s, e, type);
                     };
                     break;
                 default:
                     break;
             }
-        
-        
-        
+
+
+
         }
         /// <summary>
         /// Key Press event
@@ -356,7 +362,7 @@ namespace ESProMeter.Views.Boq
         private void txtTermsCondition_Leave(object sender, EventArgs e)
         {
             txtTermsCondition.Height = 23;
-            txtTermsCondition.Location=new Point(label4.Location.X + label4.Width + 10,label4.Location.Y-3);
+            txtTermsCondition.Location = new Point(label4.Location.X + label4.Width + 10, label4.Location.Y - 3);
         }
 
         private void txtTermsCondition_Enter(object sender, EventArgs e)
@@ -366,7 +372,7 @@ namespace ESProMeter.Views.Boq
             txtTermsCondition.Height = 200;
             txtTermsCondition.Top = label4.Top - 180;
         }
-    
+
         private void txtItemBoqSearch_KeyUp(object sender, KeyEventArgs e)
         {
             var searchText = ((TextBox)sender).Text.Trim();
@@ -384,7 +390,7 @@ namespace ESProMeter.Views.Boq
         {
             foreach (DataGridViewRow item in dgvBoqList.Rows)
             {
-                if (item.GetText("UOM").Equals(string.Empty))
+                if (item.GetText("BOQITEMQTY").Equals(string.Empty))
                 {
                     item.DefaultCellStyle.BackColor = Color.Yellow;
                     item.DefaultCellStyle.ForeColor = Color.Black;
@@ -397,7 +403,7 @@ namespace ESProMeter.Views.Boq
             {
                 var selectedRow = dgvBoqList.SelectedRows[0];
                 var selectedText = selectedRow.GetText("ITEMNAME");
-                if (selectedText.Equals("Section") || selectedText==string.Empty)
+                if (selectedText.Equals("Section") || selectedText == string.Empty)
                 {
                     dgvBoqList.Rows[e.RowIndex].Cells["BOQITEMQTY"].ReadOnly = true;
                     dgvBoqList.Rows[e.RowIndex].Cells["UOM"].ReadOnly = true;
@@ -419,15 +425,15 @@ namespace ESProMeter.Views.Boq
                 var _boqcost = selectedRow.GetValue<decimal>("Column2");
                 if (dgvBoqList.SelectedRows.Count == 0)
                 {
-                    dgvBoqList.Rows.Add(null, _boqId, _id, _itemName, _description, Utility.NumberString(1, "N2"), 
-                        _uom, _uomId, null, _boqcost,0, this.LOSSOFEFFECIENCYRATE,this.OPERATIONRATE,
-                           this.OVERHEADRATE,this.SAFETYRATE,this.TRANSPORTATIONRATE,this.MARGINRATE,this.INFlATIONRATE);
+                    dgvBoqList.Rows.Add(null, _boqId, _id, _itemName, _description, Utility.NumberString(1, "N2"),
+                        _uom, _uomId, null, _boqcost, 0, this.LOSSOFEFFECIENCYRATE, this.OPERATIONRATE,
+                           this.OVERHEADRATE, this.SAFETYRATE, this.TRANSPORTATIONRATE, this.MARGINRATE, this.INFlATIONRATE);
                 }
                 else
                 {
-                    var index = dgvBoqList.SelectedRows[0].Index+1;
-                    dgvBoqList.Rows.Insert(index, null, _boqId, _id, _itemName, _description, Utility.NumberString(1, "N2"), _uom, _uomId, 
-                        null, _boqcost,0, this.LOSSOFEFFECIENCYRATE, this.OPERATIONRATE,
+                    var index = dgvBoqList.SelectedRows[0].Index + 1;
+                    dgvBoqList.Rows.Insert(index, null, _boqId, _id, _itemName, _description, Utility.NumberString(1, "N2"), _uom, _uomId,
+                        null, _boqcost, 0, this.LOSSOFEFFECIENCYRATE, this.OPERATIONRATE,
                            this.OVERHEADRATE, this.SAFETYRATE, this.TRANSPORTATIONRATE, this.MARGINRATE, this.INFlATIONRATE);
                     dgvBoqList.Rows[index].Selected = true;
                 }
@@ -446,8 +452,8 @@ namespace ESProMeter.Views.Boq
             if (dgvBoqList.SelectedRows.Count <= 0) return;
             if ((e.Button & MouseButtons.Left) == MouseButtons.Left)
             {
-                 //dataGridView1.Parent = dgvBoqList;
-                 //dataGridView1.Location =new Point(e.Location.X +50,e.Location.Y);
+                //dataGridView1.Parent = dgvBoqList;
+                //dataGridView1.Location =new Point(e.Location.X +50,e.Location.Y);
                 // If the mouse moves outside the rectangle, start the drag.
                 if (dragBoxFromMouseDown != Rectangle.Empty &&
                 !dragBoxFromMouseDown.Contains(e.X, e.Y))
@@ -462,7 +468,7 @@ namespace ESProMeter.Views.Boq
         private void dataGridView1_MouseDown(object sender, MouseEventArgs e)
         {
             if (dgvBoqList.SelectedRows.Count <= 0) return;
-            
+
             // Get the index of the item the mouse is below.
             //this.dgvBoqList.Cursor = Cursors.SizeAll;
             rowIndexFromMouseDown = dgvBoqList.HitTest(e.X, e.Y).RowIndex;
@@ -530,7 +536,7 @@ namespace ESProMeter.Views.Boq
         private void dgvBoqList_MouseUp(object sender, MouseEventArgs e)
         {
             if (dgvBoqList.SelectedRows.Count <= 0) return;
-            if(dragGrid != null)
+            if (dragGrid != null)
             {
                 dragGrid.Dispose();
                 dragGrid = null;
@@ -566,7 +572,7 @@ namespace ESProMeter.Views.Boq
             //    dragGrid.Parent = dgvBoqList;
             ////dragGrid.Location = e.Location;
             //    dragGrid.Location =new Point(dgvBoqList.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex,true).Location.X+100, dgvBoqList.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true).Location.Y);
-            
+
         }
         private void dgvBoqList_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
@@ -594,9 +600,9 @@ namespace ESProMeter.Views.Boq
                 if (selectedText != string.Empty)
                 {
                     var boq_id = selectedRow.GetValue<long>("BOQID");
-                    var boq_itemId= selectedRow.GetValue<long>("BOQITEMID");
+                    var boq_itemId = selectedRow.GetValue<long>("BOQITEMID");
                     AppService.GetBoqInstance.GetAdditinalCost(boq_id, boq_itemId, out var additionalCost);
-                    BOQLINEFrm form = new BOQLINEFrm(boq_id,boq_itemId, additionalCost);
+                    BOQLINEFrm form = new BOQLINEFrm(boq_id, boq_itemId, additionalCost);
                     if (form.ShowDialog() == DialogResult.OK)
                     {
                         dgvBoqList.SetText(e.RowIndex, "LOSSEFFECENCYRATE1", form.LOSSOFEFFECIENCYRATE);
@@ -611,17 +617,17 @@ namespace ESProMeter.Views.Boq
                 else
                 {
                     var sectionName = selectedRow.GetText("ITEMNAME");
-                    var description= selectedRow.GetText("BOQITEMDESC");
+                    var description = selectedRow.GetText("BOQITEMDESC");
                     var index = selectedRow.Index;
                     SectionFrm form = new SectionFrm();
                     form.NameText = sectionName;
-                    form.DescriptionText = description.Split(":").Length>1? description.Split(":")[1]: description;
+                    form.DescriptionText = description.Split(":").Length > 1 ? description.Split(":")[1] : description;
                     if (form.ShowDialog() == DialogResult.OK)
                     {
                         if (dgvBoqList.SelectedRows.Count > 0)
                         {
                             dgvBoqList.SetText(index, "ITEMNAME", form.NameText);
-                            dgvBoqList.SetText(index, "BOQITEMDESC",form.ToString());
+                            dgvBoqList.SetText(index, "BOQITEMDESC", form.ToString());
                         }
                     }
                 }
@@ -650,7 +656,7 @@ namespace ESProMeter.Views.Boq
             }
         }
         private void dgvBoqList_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        
+
         {
             if (dgvBoqList.Columns[dgvBoqList.CurrentCell.ColumnIndex].Name == "BOQITEMQTY"
                 && dgvBoqList.Columns[dgvBoqList.CurrentCell.ColumnIndex] is DataGridViewTextBoxColumn)
@@ -691,7 +697,7 @@ namespace ESProMeter.Views.Boq
                 this.cboCustomerName.SelectedValue = id;
             }
         }
-        private void BoqLineCreateOrUpdateThenClose(object sender, EventArgs e,Enums.ActionType type)
+        private void BoqLineCreateOrUpdateThenClose(object sender, EventArgs e, Enums.ActionType type)
         {
             try
             {
@@ -703,7 +709,7 @@ namespace ESProMeter.Views.Boq
             {
                 MessageBox.Show(ex.Message, "Bill Of Qauntity");
             }
-           
+
         }
         private void BoqLineCreateOrUpdateThenNew(object sender, EventArgs e, Enums.ActionType type)
         {
@@ -717,7 +723,7 @@ namespace ESProMeter.Views.Boq
             {
                 MessageBox.Show(ex.Message, "Bill Of Qauntity");
             }
-            
+
         }
         private void materialButton3_MouseClick(object sender, MouseEventArgs e)
         {
@@ -730,7 +736,7 @@ namespace ESProMeter.Views.Boq
                 pnlSearch.BringToFront();
                 pnlSearch.Show();
                 toggle = true;
-                this.GetBoqItems(dgvItem, null, "ID", "ItemName", "Description", "ItemType", "Uom", "UomID","BOQCOST");
+                this.GetBoqItems(dgvItem, null, "ID", "ItemName", "Description", "ItemType", "Uom", "UomID", "BOQCOST");
                 materialButton3.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronDownBox;
             }
             else
@@ -762,7 +768,7 @@ namespace ESProMeter.Views.Boq
             {
                 if (dgvBoqList.SelectedRows.Count == 0)
                 {
-                    dgvBoqList.Rows.Add(sectionIndex, _boqId, sectionIndex,form.NameText, form.ToString());
+                    dgvBoqList.Rows.Add(sectionIndex, _boqId, sectionIndex, form.NameText, form.ToString());
                     sectionIndex++;
                 }
                 else
@@ -783,7 +789,7 @@ namespace ESProMeter.Views.Boq
         {
             this.dgvBoqList.ClearSelection();
             this.dgvBoqList.CurrentCell = null;
-            
+
         }
 
         private void dgvBoqList_SelectionChanged(object sender, EventArgs e)
@@ -798,7 +804,40 @@ namespace ESProMeter.Views.Boq
             }
         }
 
-		
-	}
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Views.Items.AddItemFrm form = new Views.Items.AddItemFrm(0, Enums.ItemsType.Boq, Enums.ActionType.CREATE);
+            //form.cmbType.text = 'Bill of Quantity';
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                var item = this.BoqItemCreate(form);
+                if (item != null)
+                {
+                    var _boqId = lblID.AsNumber<long>();
+                    if (dgvBoqList.SelectedRows.Count == 0)
+                    {
+                        dgvBoqList.Rows.Add(null, _boqId, item.ID, item.ITEMNAME, item.DESCRIPTION, Utility.NumberString(1, "N2"),
+                            item.UOM, item.UOMID, null, item.BOGCOST, 0, this.LOSSOFEFFECIENCYRATE, this.OPERATIONRATE,
+                               this.OVERHEADRATE, this.SAFETYRATE, this.TRANSPORTATIONRATE, this.MARGINRATE, this.INFlATIONRATE);
+                    }
+                    else
+                    {
+                        var index = dgvBoqList.SelectedRows[0].Index + 1;
+                        dgvBoqList.Rows.Insert(index, null, _boqId, item.ID, item.ITEMNAME, item.DESCRIPTION, Utility.NumberString(1, "N2"), item.UOM, item.UOMID,
+                            null, item.BOGCOST, 0, this.LOSSOFEFFECIENCYRATE, this.OPERATIONRATE,
+                               this.OVERHEADRATE, this.SAFETYRATE, this.TRANSPORTATIONRATE, this.MARGINRATE, this.INFlATIONRATE);
+                        dgvBoqList.Rows[index].Selected = true;
+                    }
+                }
+                if (toggle)
+                {
+                    pnlSearch.SendToBack();
+                    pnlSearch.Hide();
+                    toggle = false;
+                    materialButton3.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronUpBox;
+                }
+            }
+        }
+    }
 }
 

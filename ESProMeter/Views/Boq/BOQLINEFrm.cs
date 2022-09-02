@@ -301,7 +301,23 @@ namespace ESProMeter.Views.Boq
             UpdateSalePrice();
         }
 
-        
+        private void dgvBoqItemLine_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvBoqItemLine.Columns[e.ColumnIndex].Name == "labourSubtotal")
+            {
+                if(e.Value != null)
+                {
+                    e.CellStyle.Format = "N2";
+                }
+            }
+            if (dgvBoqItemLine.Columns[e.ColumnIndex].Name == "buttoncolumn1")
+            {
+                if (e.Value != null)
+                {
+                    e.CellStyle.Format = "N2";
+                }
+            }
+        }
     }
 }
 

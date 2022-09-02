@@ -4,6 +4,7 @@ using ESProMeter.Services;
 using ESProMeter.Views.Items;
 using ESProMeter.Enums;
 using System.Data;
+using ESProMeter.Models;
 
 namespace ESProMeter.Controllers
 {
@@ -53,6 +54,11 @@ namespace ESProMeter.Controllers
             {
                 table.WithColumn(columns).UseDataTableAsGridView(grid);
             }
+        }
+        public static void GetBoqItemById(this Form form,long boqId,ref VBOQITEM item)
+        {
+            item = new();
+            AppService.GetItemInstance.GetBoqItemById(boqId,out item);
         }
         public static void ShowItemList(this Form form, DataGridView grid,byte isActive)
         {
@@ -182,6 +188,18 @@ namespace ESProMeter.Controllers
                 default:
                     break;
             }    
+        }
+        public static VBOQITEM BoqItemCreate(this Form form,AddItemFrm itemFrm)
+        {
+            var item = new VBOQITEM();
+            var constainer = itemFrm.AsControl<DataGridView>("dgvBoq");
+            var result=AppService.GetItemInstance.BoqCreateItemLineGetId(itemFrm, constainer);
+            if (result.success)
+            {
+                AppService.GetItemInstance
+                            .GetBoqItemById(result.id,out item);
+            }
+            return item;
         }
         public static void ItemCreate(this Form form, AddItemFrm itemFrm,DataTable table, ItemsType itemType)
         {
