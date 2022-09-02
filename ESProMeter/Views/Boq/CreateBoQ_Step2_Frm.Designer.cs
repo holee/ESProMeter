@@ -425,13 +425,14 @@ namespace ESProMeter.Views.Boq
             this.itemname.ReadOnly = true;
             this.itemname.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.itemname.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.itemname.Visible = false;
             // 
             // BOQITEMDESC
             // 
             this.BOQITEMDESC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.BOQITEMDESC.DataPropertyName = "BOQITEMDESC";
             this.BOQITEMDESC.FillWeight = 25F;
-            this.BOQITEMDESC.HeaderText = "BOQ ITEMLINE DESCRIPTION";
+            this.BOQITEMDESC.HeaderText = "DESCRIPTION";
             this.BOQITEMDESC.Name = "BOQITEMDESC";
             this.BOQITEMDESC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 

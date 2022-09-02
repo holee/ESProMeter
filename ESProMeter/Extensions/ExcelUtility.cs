@@ -108,7 +108,31 @@ namespace ESProMeter.Extensions
             }
 
         }
-        public static void Export(this DataTable data, string fileName,int row=1,int col=1)
+        public static void Export1(this DataTable data,string file)
+        {
+            Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
+            xlApp.Workbooks.Open(file);
+
+            try
+            {
+                foreach (DataRow row in data.Rows)
+                {
+                    xlApp.Range["A2","B2"].Value = row.ItemArray;
+                }
+                xlApp.Columns.AutoFit();
+                xlApp.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                releaseObject(xlApp);
+            }
+
+        }
+        public static void Export(this DataTable data, string fileName,int row,int col=1)
         {
             Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
             xlApp.Workbooks.Open(fileName);
@@ -133,6 +157,7 @@ namespace ESProMeter.Extensions
                     }
 
                 }
+                
                 xlApp.Columns.AutoFit();
                 xlApp.Visible = true;
             }
@@ -146,10 +171,8 @@ namespace ESProMeter.Extensions
             }
 
         }
-        public static void Exprot(this DataTable data, string fileName,int row)
+        public static void Export2(this DataTable data, string fileName)
         {
-            //Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
-            //xlApp.Workbooks.Open(fileName);
             try
             {
                 XLWorkbook wb = new XLWorkbook();

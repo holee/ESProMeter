@@ -615,13 +615,13 @@ namespace ESProMeter.Views.Boq
                     var index = selectedRow.Index;
                     SectionFrm form = new SectionFrm();
                     form.NameText = sectionName;
-                    form.DescriptionText = description;
+                    form.DescriptionText = description.Split(":").Length>1? description.Split(":")[1]: description;
                     if (form.ShowDialog() == DialogResult.OK)
                     {
                         if (dgvBoqList.SelectedRows.Count > 0)
                         {
                             dgvBoqList.SetText(index, "ITEMNAME", form.NameText);
-                            dgvBoqList.SetText(index, "BOQITEMDESC",form.DescriptionText);
+                            dgvBoqList.SetText(index, "BOQITEMDESC",form.ToString());
                         }
                     }
                 }
@@ -762,13 +762,13 @@ namespace ESProMeter.Views.Boq
             {
                 if (dgvBoqList.SelectedRows.Count == 0)
                 {
-                    dgvBoqList.Rows.Add(sectionIndex, _boqId, sectionIndex,form.NameText, form.DescriptionText);
+                    dgvBoqList.Rows.Add(sectionIndex, _boqId, sectionIndex,form.NameText, form.ToString());
                     sectionIndex++;
                 }
                 else
                 {
                     var index = dgvBoqList.SelectedRows[0].Index;
-                    dgvBoqList.Rows.Insert(index + 1, sectionIndex, _boqId, sectionIndex, form.NameText, form.DescriptionText);
+                    dgvBoqList.Rows.Insert(index + 1, sectionIndex, _boqId, sectionIndex, form.NameText, form.ToString());
                     sectionIndex++;
                 }
 

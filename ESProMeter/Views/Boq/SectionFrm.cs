@@ -24,6 +24,10 @@ namespace ESProMeter.Views.Boq
             set { txtBoqSection.SetText(value); }
         }
 
+        public override string ToString()
+        {
+            return $"{NameText}:{DescriptionText}";
+        }
         public SectionFrm()
         {
             InitializeComponent();
