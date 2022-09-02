@@ -148,6 +148,7 @@ namespace ESProMeter.Views.Items
 			this.lblItemID = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
+			this.mbtSaveNew = new FontAwesome.Sharp.Material.MaterialButton();
 			this.GENERAL.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvBoq)).BeginInit();
 			this.groupBox2.SuspendLayout();
@@ -252,6 +253,7 @@ namespace ESProMeter.Views.Items
 			this.textCost.Tag = "Cost";
 			this.textCost.Text = "0";
 			this.textCost.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.textCost.Leave += new System.EventHandler(this.textCost_Leave);
 			// 
 			// label5
 			// 
@@ -414,7 +416,7 @@ namespace ESProMeter.Views.Items
 			this.materialButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.materialButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.materialButton2.ForeColor = System.Drawing.Color.White;
-			this.materialButton2.IconChar = FontAwesome.Sharp.MaterialIcons.Close;
+			this.materialButton2.IconChar = FontAwesome.Sharp.MaterialIcons.None;
 			this.materialButton2.IconColor = System.Drawing.Color.White;
 			this.materialButton2.IconSize = 22;
 			this.materialButton2.Location = new System.Drawing.Point(518, 514);
@@ -434,7 +436,7 @@ namespace ESProMeter.Views.Items
 			this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
 			this.btnSave.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.btnSave.ForeColor = System.Drawing.Color.White;
-			this.btnSave.IconChar = FontAwesome.Sharp.MaterialIcons.Floppy;
+			this.btnSave.IconChar = FontAwesome.Sharp.MaterialIcons.None;
 			this.btnSave.IconColor = System.Drawing.Color.White;
 			this.btnSave.IconSize = 20;
 			this.btnSave.Location = new System.Drawing.Point(382, 514);
@@ -442,7 +444,7 @@ namespace ESProMeter.Views.Items
 			this.btnSave.Name = "btnSave";
 			this.btnSave.Size = new System.Drawing.Size(126, 30);
 			this.btnSave.TabIndex = 7;
-			this.btnSave.Text = "Save";
+			this.btnSave.Text = "Save && Close";
 			this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnSave.UseVisualStyleBackColor = false;
@@ -1363,11 +1365,32 @@ namespace ESProMeter.Views.Items
 			this.label6.TabIndex = 15;
 			this.label6.Text = "*";
 			// 
+			// mbtSaveNew
+			// 
+			this.mbtSaveNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.mbtSaveNew.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
+			this.mbtSaveNew.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.mbtSaveNew.ForeColor = System.Drawing.Color.White;
+			this.mbtSaveNew.IconChar = FontAwesome.Sharp.MaterialIcons.None;
+			this.mbtSaveNew.IconColor = System.Drawing.Color.White;
+			this.mbtSaveNew.IconSize = 20;
+			this.mbtSaveNew.Location = new System.Drawing.Point(248, 514);
+			this.mbtSaveNew.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.mbtSaveNew.Name = "mbtSaveNew";
+			this.mbtSaveNew.Size = new System.Drawing.Size(126, 30);
+			this.mbtSaveNew.TabIndex = 31;
+			this.mbtSaveNew.Text = "Save && New";
+			this.mbtSaveNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.mbtSaveNew.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.mbtSaveNew.UseVisualStyleBackColor = false;
+			this.mbtSaveNew.Click += new System.EventHandler(this.mbtSaveNew_Click);
+			// 
 			// AddItemFrm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(654, 551);
+			this.Controls.Add(this.mbtSaveNew);
 			this.Controls.Add(this.GENERAL);
 			this.Controls.Add(this.btnSave);
 			this.Controls.Add(this.lblItemID);
@@ -1525,5 +1548,6 @@ namespace ESProMeter.Views.Items
         private System.Windows.Forms.DataGridViewButtonColumn ButtonColumn3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
-    }
+		private FontAwesome.Sharp.Material.MaterialButton mbtSaveNew;
+	}
 }

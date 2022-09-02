@@ -30,11 +30,11 @@ namespace ESProMeter.Views.Items
             
             if (form.ShowDialog() == DialogResult.OK)
             {
-                if (this.IsItemExist(form.ITEMNAME))
-                {
-                    MessageBox.Show("This Item already exist in database.", "Add New Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
+                //if (this.IsItemExist(form.ITEMNAME))
+                //{
+                //    MessageBox.Show("This Item already exist in database.", "Add New Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //    return;
+                //}
 
                 if (form.ItemTypes == ItemsType.Item)
                 {
