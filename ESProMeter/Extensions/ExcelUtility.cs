@@ -115,24 +115,33 @@ namespace ESProMeter.Extensions
             try
             {
                 //create columns header
-                for (int k = 0; k < data.Columns.Count; k++)
+                int k;
+                for (k=0; k < data.Columns.Count; k++)
                 {
                     xlApp.Cells[row, col + 1 + k ].Value = data.Columns[k].ColumnName;
-                    xlApp.Cells[row, col + 1 + k].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlDash;
-                    xlApp.Cells[row, col + 1 + k].Interior.Color = Color.Yellow;
-                    xlApp.Cells[row, col + 1 + k].Borders.Weight = 2d;
+                    //xlApp.Cells[row, col + 1 + k].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlDash;
+                    //xlApp.Cells[row, col + 1 + k].Interior.Color = Color.Yellow;
+                    //xlApp.Cells[row, col + 1 + k].Interior.Color = Color.Yellow;
                 }
+
+                //xlApp.Range[xlApp.Cells[row, col+1], xlApp.Cells[row, col+k]].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlDash;
+                //xlApp.Range[xlApp.Cells[row, col + 1], xlApp.Cells[row, col + k]].Interior.Color = Color.Yellow;
+                //xlApp.Range[xlApp.Cells[row, col + 1], xlApp.Cells[row, col + k]].Interior.Color = Color.Yellow;
                 //insert data to excel
-                for (int i = 0; i < data.Rows.Count; i++)
+                int i;
+                for (i = 0; i < data.Rows.Count; i++)
                 {
-                    for (int k = 0; k < data.Columns.Count; k++)
+                    for (k = 0; k < data.Columns.Count; k++)
                     {
                         xlApp.Cells[row + 1 + i,col + 1 + k].Value = data.Rows[i][k];
-                        xlApp.Cells[row + 1 + i,col + 1 + k].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-                        xlApp.Cells[row + 1 + i,col + 1 + k].Borders.Weight = 2d;
+                        //xlApp.Cells[row + 1 + i,col + 1 + k].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                        //xlApp.Cells[row + 1 + i,col + 1 + k].Borders.Weight = 2d;
                     }
 
                 }
+                //xlApp.Range[xlApp.Cells[row + 1, col + 1], xlApp.Cells[row + i, col + k]].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                //xlApp.Range[xlApp.Cells[row + 1, col + 1], xlApp.Cells[row + i, col + k]].Borders.Weight = 2d;
+
                 xlApp.Columns.AutoFit();
                 xlApp.Visible = true;
             }
