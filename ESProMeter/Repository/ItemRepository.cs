@@ -26,24 +26,25 @@ namespace ESProMeter.Repository
                    @ISACTIVE=isActive
                }, out table);
         }
-        public bool GetAllItems(byte isActive,int page, out DataTable table)
+        public bool GetAllItems(byte isActive,int page,string sort, out DataTable table)
         {
             return AppService.SqlGetInstance.UseProcedure("[ITEM_sp_SELECT_BY_PAGE]")
                .SelectAsTable<dynamic>(new
                {
                    @ISACTIVE = isActive,
-                   @PAGE=page
-
+                   @PAGE=page,
+                   @SORT=sort
                }, out table);
         }
-        public bool GetAllItems(string itemName,byte isActive, int page, out DataTable table)
+        public bool GetAllItems(string itemName,byte isActive, int page,string sort, out DataTable table)
         {
             return AppService.SqlGetInstance.UseProcedure("[ITEM_sp_SELECT_BY_PAGE]")
                .SelectAsTable<dynamic>(new
                {
                    @searchText=itemName,
                    @ISACTIVE = isActive,
-                   @PAGE = page
+                   @PAGE = page,
+                   @SORT=sort
 
                }, out table);
         }

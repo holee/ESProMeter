@@ -50,7 +50,7 @@ namespace ESProMeter.Views.Items
 
         private void ShowAllItems(string itemName=null)
         {
-            var orderType = cbmSortType.Text.Length==0?"ASC": cbmSortType.Text;
+            var orderType = cbmSortType.Text.Length==0?"ASC":cbmSortType.Text;
             var page = cmbPage.AsNumber<int>()==0?50: cmbPage.AsNumber<int>();
             if (checkBox1.Checked)
             {

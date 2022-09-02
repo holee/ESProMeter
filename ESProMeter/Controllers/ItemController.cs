@@ -17,7 +17,7 @@ namespace ESProMeter.Controllers
         /// <param name="grid"></param>
         /// <param name="page"></param>
         /// <param name="columns"></param>
-        public static void GetItemsWithBoq(this Form form, DataGridView grid,int page=10,params string[] columns)
+        public static void GetItemsWithBoq(this Form form, DataGridView grid,int page,string sort,params string[] columns)
         {
             if (page <= 0)
             {
@@ -28,7 +28,7 @@ namespace ESProMeter.Controllers
             }
             else
             {
-                if (AppService.GetItemInstance.GetAllItems(1,page, out var table))
+                if (AppService.GetItemInstance.GetAllItems(1,page,sort, out var table))
                 {
                     table.WithColumn(columns).UseDataTableAsGridView(grid);
                 }
@@ -73,9 +73,9 @@ namespace ESProMeter.Controllers
             return AppService.GetItemInstance.MakeInActiveOrActive(id, i);
         }
         public static void ShowItemList(this Form form, DataGridView grid, byte isActive,
-            int page,string fieldName="ItemName",string orderBy="ASC")
+            int page,string fieldName="ItemName",string orderBy="asc")
         {
-            if (AppService.GetItemInstance.GetAllItems(isActive,page, out var table))
+            if (AppService.GetItemInstance.GetAllItems(isActive,page,orderBy, out var table))
             {
                 table.DefaultView.Sort = $"{fieldName} {orderBy}";
                 grid.DataSource = table;
@@ -85,9 +85,8 @@ namespace ESProMeter.Controllers
         public static void ShowItemList(this Form form, DataGridView grid, byte isActive,
            int page, string orderBy = "ASC")
         {
-            if (AppService.GetItemInstance.GetAllItems(isActive, page, out var table))
+            if (AppService.GetItemInstance.GetAllItems(isActive, page,orderBy, out var table))
             {
-                table.DefaultView.Sort = $"ITEMTYPE,ITEMNAME {orderBy}";
                 grid.DataSource = table;
             }
 
@@ -95,9 +94,8 @@ namespace ESProMeter.Controllers
         public static void ShowItemList(this Form form,string itemName, DataGridView grid, byte isActive=1,
             int page=50, string orderBy = "ASC")
         {
-            if (AppService.GetItemInstance.GetAllItems(itemName,isActive, page, out var table))
+            if (AppService.GetItemInstance.GetAllItems(itemName,isActive, page,orderBy, out var table))
             {
-                table.DefaultView.Sort = $"ITEMTYPE,ITEMNAME {orderBy}";
                 grid.DataSource = table;
             }
 
