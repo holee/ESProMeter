@@ -148,9 +148,9 @@ namespace ESProMeter.Extensions
                     //xlApp.Cells[row, col + 1 + k].Interior.Color = Color.Yellow;
                 }
 
-                //xlApp.Range[xlApp.Cells[row, col+1], xlApp.Cells[row, col+k]].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlDash;
-                //xlApp.Range[xlApp.Cells[row, col + 1], xlApp.Cells[row, col + k]].Interior.Color = Color.Yellow;
-                //xlApp.Range[xlApp.Cells[row, col + 1], xlApp.Cells[row, col + k]].Interior.Color = Color.Yellow;
+                xlApp.Range[xlApp.Cells[row, col+1], xlApp.Cells[row, col+k]].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlDash;
+                xlApp.Range[xlApp.Cells[row, col + 1], xlApp.Cells[row, col + k]].Interior.Color = Color.Yellow;
+                xlApp.Range[xlApp.Cells[row, col + 1], xlApp.Cells[row, col + k]].Interior.Color = Color.Yellow;
                 //insert data to excel
                 int i;
                 for (i = 0; i < data.Rows.Count; i++)
@@ -163,8 +163,8 @@ namespace ESProMeter.Extensions
                     }
 
                 }
-                //xlApp.Range[xlApp.Cells[row + 1, col + 1], xlApp.Cells[row + i, col + k]].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-                //xlApp.Range[xlApp.Cells[row + 1, col + 1], xlApp.Cells[row + i, col + k]].Borders.Weight = 2d;
+                xlApp.Range[xlApp.Cells[row + 1, col + 1], xlApp.Cells[row + i, col + k]].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                xlApp.Range[xlApp.Cells[row + 1, col + 1], xlApp.Cells[row + i, col + k]].Borders.Weight = 2d;
 
                 xlApp.Columns.AutoFit();
                 xlApp.Visible = true;

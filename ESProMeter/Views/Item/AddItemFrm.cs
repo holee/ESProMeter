@@ -92,7 +92,8 @@ namespace ESProMeter.Views.Items
             CreateTable(ref materialTable);
             CreateTable(ref machinaryTable);
             CreateTable(ref boqTable);
-            btnSave.Text = "Save";
+            btnSave.Text = "Save && Close";
+            mbtSaveNew.Visible = true;
             pnlSearch.SendToBack();
             pnlSearch.Hide();
 
@@ -144,7 +145,7 @@ namespace ESProMeter.Views.Items
                 CreateTable(ref boqTable);
                 cmbType.SelectedIndex = 3;
                 cmbType.Enabled = false;
-                btnSave.Text = "Save";
+                btnSave.Text = "Save && Close";
                 cmbType.Enabled = false;
                 pnlSearch.SendToBack();
                 pnlSearch.Hide();
@@ -158,11 +159,13 @@ namespace ESProMeter.Views.Items
                         CreateTempTable();
                         cmbType.Enabled = false;
                         btnSave.Text = "Update";
+                        mbtSaveNew.Visible = false;
                         break;
                     case ActionType.CreateACopy:
                         CreateTempTable();
                         cmbType.Enabled = false;
-                        btnSave.Text = "Save";
+                        btnSave.Text = "Save && Close";
+                        textName.Text = "Copy " + textName.Text;
                         break;
                     default:
                         break;
@@ -273,38 +276,81 @@ namespace ESProMeter.Views.Items
             }
             return false;
         }
+
         private void materialButton1_Click(object sender, EventArgs e)
         {
-
-            if (cmbType.Text=="BillOfQuantity")
+            textCost_Leave(sender, e);
+            if (this.IsValid(textName, textDescription))
             {
-                if (this.IsValid(textName, textDescription))
+                if (this.IsItemExist(textName.Text))
                 {
-                    labourTable.Merge(machinaryTable);
-                    materialTable.Merge(labourTable);
-                    boqTable.Merge(materialTable);
-                    dgvBoq.DataSource = boqTable;
-                    this.DialogResult = DialogResult.OK;
+                    MessageBox.Show("This Item already exist in database.", "Add New Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.None;
                 }
                 else
                 {
-                    MessageBox.Show("Please fill(*) all required fields.", "Add New Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.DialogResult = DialogResult.None;
+                    if (cmbType.Text == "BillOfQuantity")
+                    {
+                        labourTable.Merge(machinaryTable);
+                        materialTable.Merge(labourTable);
+                        boqTable.Merge(materialTable);
+                        dgvBoq.DataSource = boqTable;
+                        this.DialogResult = DialogResult.OK;
+                    }
+                    else
+                    {
+                        this.DialogResult = DialogResult.OK;
+                    }
                 }
             }
             else
             {
-                if (this.IsValid(textName, textDescription, textCost))
-                {
-                    this.DialogResult = DialogResult.OK;
-                }
-                else
-                {
-                    MessageBox.Show("Please fill required fields.", "Add New Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.DialogResult = DialogResult.None;
-                }
-            }
-            
+                MessageBox.Show("Please fill(*) all required fields.", "Add New Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.None;
+             }
+
+
+
+            //if (cmbType.Text=="BillOfQuantity")
+            //{
+            //    if (this.IsValid(textName, textDescription))
+            //    {
+
+            //        if (this.IsItemExist(textName.Text))
+            //        {
+            //            MessageBox.Show("This Item already exist in database.", "Add New Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //            this.DialogResult = DialogResult.None;
+            //        }
+            //        labourTable.Merge(machinaryTable);
+            //        materialTable.Merge(labourTable);
+            //        boqTable.Merge(materialTable);
+            //        dgvBoq.DataSource = boqTable;
+            //        this.DialogResult = DialogResult.OK;
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Please fill(*) all required fields.", "Add New Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        this.DialogResult = DialogResult.None;
+            //    }
+            //}
+            //else
+            //{
+            //    if (this.IsValid(textName, textDescription, textCost))
+            //    {
+            //        if (this.IsItemExist(textName.Text))
+            //        {
+            //            MessageBox.Show("This Item already exist in database.", "Add New Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //            this.DialogResult = DialogResult.None;
+            //        }
+            //        this.DialogResult = DialogResult.OK;
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Please fill required fields.", "Add New Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        this.DialogResult = DialogResult.None;
+            //    }
+            //}
+
 
         }
         private void dgvBoq_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -549,7 +595,64 @@ namespace ESProMeter.Views.Items
             this.tabControl1.Enabled = false;
         }
 
-    }
+		private void textCost_Leave(object sender, EventArgs e)
+		{
+            if (textCost.Text == "") { textCost.Text = "0.00"; }
+		}
+
+		private void mbtSaveNew_Click(object sender, EventArgs e)
+		{
+            textCost_Leave(sender, e);
+            if (this.IsValid(textName, textDescription))
+            {
+                if (this.IsItemExist(textName.Text))
+                {
+                    MessageBox.Show("This Item already exist in database.", "Add New Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.None;
+                }
+                else
+                {
+                    if (cmbType.Text == "BillOfQuantity")
+                    {
+                        labourTable.Merge(machinaryTable);
+                        materialTable.Merge(labourTable);
+                        boqTable.Merge(materialTable);
+                        dgvBoq.DataSource = boqTable;
+                        this.ItemCreate(this, ItemsType.Boq);
+                    }
+                    else
+                    {
+                        this.ItemCreate(this, ItemsType.Item);
+                    }
+
+                    ClearNew();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please fill(*) all required fields.", "Add New Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.None;
+            }
+        }
+
+        private void ClearNew()
+        {
+            textName.Text = "";
+            textDescription.Text = "";
+            textCost.Text = "0.00";
+
+            lblItemID.Text = "0";
+            lblEditSequence.Text = "0";
+
+            if (ItemTypes == ItemsType.Boq)
+            {
+                ((System.Data.DataTable)dgvLabor.DataSource)?.Rows.Clear();
+                ((System.Data.DataTable)dgvMachinary.DataSource)?.Rows.Clear();
+                ((System.Data.DataTable)dgvMaterial.DataSource)?.Rows.Clear();
+                ((System.Data.DataTable)dgvBoq.DataSource)?.Rows.Clear();
+            }
+        }
+	}
 }
 
 
