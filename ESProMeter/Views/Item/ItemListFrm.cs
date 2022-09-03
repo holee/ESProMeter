@@ -1,4 +1,5 @@
-﻿using ESProMeter.Controllers;
+﻿using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using ESProMeter.Controllers;
 using ESProMeter.Enums;
 using ESProMeter.Extensions;
 using Microsoft.Office.Interop.Excel;
@@ -27,7 +28,6 @@ namespace ESProMeter.Views.Items
             form.WindowState = FormWindowState.Normal;
             form.StartPosition = FormStartPosition.WindowsDefaultLocation;
             form.ActionStatus = ActionStatus.New;
-            
             if (form.ShowDialog() == DialogResult.OK)
             {
                 if (form.ItemTypes == ItemsType.Item)
@@ -83,7 +83,7 @@ namespace ESProMeter.Views.Items
                         this.ShowItemList(dataItemList,1);
                     }
                 }
-
+                ShowAllItems(textSearch.Text.Trim());
             }
         }
         private void tlsEdit_Click(object sender, EventArgs e)
@@ -109,7 +109,7 @@ namespace ESProMeter.Views.Items
                             else
                             {
                                 this.ItemUpdate(form, ItemsType.Boq);
-                                this.ShowItemList(this.dataItemList, 1);
+                                ShowAllItems(textSearch.Text.Trim());
                             }
                         }
                     }
@@ -120,7 +120,7 @@ namespace ESProMeter.Views.Items
                         if (form.ShowDialog() == DialogResult.OK)
                         {
                             this.ItemUpdate(form, ItemsType.Item);
-                            this.ShowItemList(this.dataItemList,1);
+                            ShowAllItems(textSearch.Text.Trim());
                         }
 
                     }
@@ -240,6 +240,12 @@ namespace ESProMeter.Views.Items
         private void excelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Views.Item.ItemExportFrm form = new Item.ItemExportFrm();
+            form.ShowDialog();
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            Views.Item.ListImportFrm form = new Item.ListImportFrm();
             form.ShowDialog();
         }
     }

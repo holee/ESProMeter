@@ -177,6 +177,11 @@ namespace ESProMeter.Repository
                         item.ISRATE
                     });
         }
+        public void ItemImport(DataTable table)
+        {
+            AppService.SqlGetInstance.UseProcedure("ITEM_sp_Import")
+                    .InsertFromTable("@udtItemNew", table, "udt_Item_Import");
+        }
         public  void ItemUpdate(ITItem item)
         {
             AppService.SqlGetInstance.UseProcedure("ITEM_UPDATE_SP")
@@ -501,5 +506,26 @@ namespace ESProMeter.Repository
 
 
 
+        private DataTable ToTable(DataGridView view)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("itemName", typeof(string));
+            table.Columns.Add("itemType", typeof(string));
+            table.Columns.Add("uomID", typeof(long));
+            table.Columns.Add("cost", typeof(decimal));
+            table.Columns.Add("itemDesc", typeof(string));
+            foreach (DataGridViewRow row in view.Rows)
+            {
+                if (row.IsNewRow) break;
+                DataRow dRow = table.NewRow();
+                dRow["itemName"] = row.Cells["itemName"].Value; ;
+                dRow["itemType"] = row.Cells["itemType"].Value;
+                dRow["uomID"] = row.Cells["uomID"].Value;
+                dRow["cost"] = row.Cells["cost"].Value;
+                dRow["itemDesc"] = row.Cells["itemDesc"].Value;
+                table.Rows.Add(dRow);
+            }
+            return table;
+        }
     }
 }

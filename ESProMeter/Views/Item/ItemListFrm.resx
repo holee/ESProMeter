@@ -159,6 +159,16 @@
         TkSuQmCC
 </value>
   </data>
+  <data name="toolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADPSURBVEhL7ZLbCQIxEEUXrEQr8MM+RHyBD/RDtBkbsA39
+        ExtRG1HBx72TiCRrGCPmQ8iBAzPLZG7Y3SKSpTUZK2sycoBKDlDJASr/E1CBdVM6hAI4yzMfU4MnOJfu
+        xbsAznCWZ6JowTNcSGfwA6bwAvvSBdjDqilLtCFvN5bODehBXmAgXRnu5O7iDhssAnQhFw3hM6Bjn41g
+        CO7kbjWATCBfxQ5uIZf738cnKoDM4A1eba0RHUDWcGNKla8CYnACmpD/8S/lTgk42iKBxeEBkwJWAdF3
+        MOYAAAAASUVORK5CYII=
+</value>
+  </data>
   <metadata name="ID.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

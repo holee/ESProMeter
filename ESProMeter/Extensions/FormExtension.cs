@@ -399,15 +399,7 @@ namespace ESProMeter.Extensions
         public static void UseDataTableAsGridView(this DataTable source, DataGridView grid)
         {
             ((DataTable)grid.DataSource)?.Rows.Clear();
-            if (source != null)
-            {
-                if (source.Rows.Count > 0)
-                {
-                    grid.DataSource = source;
-                    //grid.DataMember
-                }
-            }
-           
+            grid.DataSource = source;
         }
         public static void UsePlainDataToGridView(this DataTable source, DataGridView grid) 
         {

@@ -42,9 +42,9 @@ namespace ESProMeter.Extensions
                 for (int k = 0; k < data.Columns.Count; k++)
                 {
                     xlApp.Cells[1, 1 + k].Value = data.Columns[k].ColumnName;
-                    xlApp.Cells[1, 1 + k].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlDash;
-                    xlApp.Cells[1, 1 + k].Interior.Color = Color.Yellow;
-                    xlApp.Cells[1, 1 + k].Borders.Weight = 2d;
+                    //xlApp.Cells[1, 1 + k].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlDash;
+                    //xlApp.Cells[1, 1 + k].Interior.Color = Color.Yellow;
+                    //xlApp.Cells[1, 1 + k].Borders.Weight = 2d;
                 }
                 ///write data
                 for (int i = 0; i < data.Rows.Count; i++)
@@ -52,8 +52,8 @@ namespace ESProMeter.Extensions
                     for (int k = 0; k < data.Columns.Count; k++)
                     {
                         xlApp.Range[Range1, Range2].Cells[1 + i, 1 + k].Value = data.Rows[i][k];
-                        xlApp.Range[Range1, Range2].Cells[1 + i, 1 + k].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-                        xlApp.Range[Range1, Range2].Cells[1 + i, 1 + k].Borders.Weight = 2d;
+                        //xlApp.Range[Range1, Range2].Cells[1 + i, 1 + k].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                        //xlApp.Range[Range1, Range2].Cells[1 + i, 1 + k].Borders.Weight = 2d;
                     }
 
                 }
@@ -80,9 +80,9 @@ namespace ESProMeter.Extensions
                 for (int k = 0; k < data.Columns.Count; k++)
                 {
                     xlApp.Cells[1,k+1].Value = data.Columns[k].ColumnName;
-                    xlApp.Cells[1, 1 + k].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlDash;
-                    xlApp.Cells[1, 1 + k].Interior.Color = Color.Yellow;
-                    xlApp.Cells[1, 1 + k].Borders.Weight = 2d;
+                    //xlApp.Cells[1, 1 + k].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlDash;
+                    //xlApp.Cells[1, 1 + k].Interior.Color = Color.Yellow;
+                    //xlApp.Cells[1, 1 + k].Borders.Weight = 2d;
                 }
                 //insert data to excel
                 for (int i = 0; i < data.Rows.Count; i++)
@@ -90,8 +90,8 @@ namespace ESProMeter.Extensions
                     for (int k = 0; k < data.Columns.Count; k++)
                     {
                         xlApp.Cells[2 + i, 1 + k].Value = data.Rows[i][k];
-                        xlApp.Cells[2 + i, 1 + k].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-                        xlApp.Cells[2 + i, 1 + k].Borders.Weight = 2d;
+                        //xlApp.Cells[2 + i, 1 + k].Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                        //xlApp.Cells[2 + i, 1 + k].Borders.Weight = 2d;
                     }
 
                 }
@@ -192,11 +192,6 @@ namespace ESProMeter.Extensions
             {
                 throw new Exception(ex.Message);
             }
-            finally
-            {
-               // releaseObject(xlApp);
-            }
-
         }
         private static void releaseObject(object obj)
         {
@@ -220,9 +215,8 @@ namespace ESProMeter.Extensions
         /// Import
         /// </summary>
         /// <param name="filePath"></param>
-        public static void Import(string filePath)
+        public static DataTable Import(string filePath)
         {
- 
             string extension = Path.GetExtension(filePath);
             string conString = "";
             string sheetName = "";
@@ -259,7 +253,7 @@ namespace ESProMeter.Extensions
                     DataTable dt = new DataTable();
                     oda.Fill(dt);
                     con.Close();
-                    //dgvCustomer.DataSource = dt;
+                    return dt;
                 }
             }
         }

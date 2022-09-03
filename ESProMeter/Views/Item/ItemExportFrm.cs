@@ -44,20 +44,18 @@ namespace ESProMeter.Views.Item
                 Workbook wbook = excelObj.ActiveWorkbook;
                 wbook.SaveCopyAs(textBox1.Text);
                 wbook.Close();
-                //System.Threading.Tasks.Task.Delay(100).Wait();
             });
             await System.Threading.Tasks.Task.Run(() =>
             {
                 AppService.SqlGetInstance.UseProcedure("ITEM_sp_SELECT_Export")
                            .SelectAsTable<dynamic>(null, out var table);
                 table.Export(textBox1.Text,1,1);
-                System.Threading.Tasks.Task.Delay(1000).Wait();
             });
             this.pictureBox1.Visible = false;
 
             sw.Stop();
 
-            MessageBox.Show($"Item was exported Completely {sw.ElapsedMilliseconds}.","Export");
+            MessageBox.Show($"Item was exported Completely.","Export");
             //this.Close();
 
         }
