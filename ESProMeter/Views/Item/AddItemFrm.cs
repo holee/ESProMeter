@@ -93,6 +93,10 @@ namespace ESProMeter.Views.Items
             CreateTable(ref machinaryTable);
             CreateTable(ref boqTable);
             btnSave.Text = "Save && Close";
+            btnSave.Click += (s, e) =>
+            {
+                ButtonCreateOrUpdateClick(s, e, ActionType.CREATE);
+            };
             mbtSaveNew.Visible = true;
             pnlSearch.SendToBack();
             pnlSearch.Hide();
@@ -121,7 +125,7 @@ namespace ESProMeter.Views.Items
             {
                 pnlSearch.Hide();
                 pnlSearch.SendToBack();
-                textBox1.Text = "";
+                textSearch.Text = "";
                 toggle = false;
                 btndropDown.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronUpBox;
                 this.tabControl1.Enabled = true;
@@ -159,12 +163,20 @@ namespace ESProMeter.Views.Items
                         CreateTempTable();
                         cmbType.Enabled = false;
                         btnSave.Text = "Update";
+                        btnSave.Click += (s, e) =>
+                        {
+                            ButtonCreateOrUpdateClick(s, e, ActionType.EDIT);
+                        };
                         mbtSaveNew.Visible = false;
                         break;
                     case ActionType.CreateACopy:
                         CreateTempTable();
                         cmbType.Enabled = false;
                         btnSave.Text = "Save && Close";
+                        btnSave.Click += (s, e) =>
+                        {
+                            ButtonCreateOrUpdateClick(s, e, ActionType.EDIT);
+                        };
                         textName.Text = "Copy " + textName.Text;
                         break;
                     default:
@@ -276,13 +288,12 @@ namespace ESProMeter.Views.Items
             }
             return false;
         }
-
         private void materialButton1_Click(object sender, EventArgs e)
         {
             textCost_Leave(sender, e);
             if (this.IsValid(textName, textDescription))
             {
-                if (this.IsItemExist(textName.Text))
+                if (this.IsItemExist(lblItemID.AsNumber<long>(),textName.Text))
                 {
                     MessageBox.Show("This Item already exist in database.", "Add New Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.None;
@@ -308,50 +319,65 @@ namespace ESProMeter.Views.Items
                 MessageBox.Show("Please fill(*) all required fields.", "Add New Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.None;
              }
+        }
 
+        private void ButtonCreateOrUpdateClick(object sender, EventArgs e,ActionType action)
+        {
+            textCost_Leave(sender, e);
+            if (this.IsValid(textName, textDescription))
+            {
 
-
-            //if (cmbType.Text=="BillOfQuantity")
-            //{
-            //    if (this.IsValid(textName, textDescription))
-            //    {
-
-            //        if (this.IsItemExist(textName.Text))
-            //        {
-            //            MessageBox.Show("This Item already exist in database.", "Add New Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //            this.DialogResult = DialogResult.None;
-            //        }
-            //        labourTable.Merge(machinaryTable);
-            //        materialTable.Merge(labourTable);
-            //        boqTable.Merge(materialTable);
-            //        dgvBoq.DataSource = boqTable;
-            //        this.DialogResult = DialogResult.OK;
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Please fill(*) all required fields.", "Add New Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        this.DialogResult = DialogResult.None;
-            //    }
-            //}
-            //else
-            //{
-            //    if (this.IsValid(textName, textDescription, textCost))
-            //    {
-            //        if (this.IsItemExist(textName.Text))
-            //        {
-            //            MessageBox.Show("This Item already exist in database.", "Add New Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //            this.DialogResult = DialogResult.None;
-            //        }
-            //        this.DialogResult = DialogResult.OK;
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Please fill required fields.", "Add New Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        this.DialogResult = DialogResult.None;
-            //    }
-            //}
-
-
+                if (action == ActionType.EDIT)
+                {
+                    if (this.IsItemExist(lblItemID.AsNumber<long>(), textName.Text))
+                    {
+                        MessageBox.Show("This Item already exist in database.", "Add New Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.DialogResult = DialogResult.None;
+                        textName.Focus();
+                        textName.SelectAll();
+                        return;
+                    }
+                }
+                if (action == ActionType.CreateACopy)
+                {
+                    if (this.IsItemExist(textName.Text))
+                    {
+                        MessageBox.Show("This Item already exist in database.", "Add New Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.DialogResult = DialogResult.None;
+                        textName.Focus();
+                        textName.SelectAll();
+                        return;
+                    }
+                }
+                if (action == ActionType.CREATE)
+                {
+                    if (this.IsItemExist(textName.Text))
+                    {
+                        MessageBox.Show("This Item already exist in database.", "Add New Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.DialogResult = DialogResult.None;
+                        textName.Focus();
+                        textName.SelectAll();
+                        return;
+                    }
+                }
+                if (cmbType.Text == "BillOfQuantity")
+                {
+                    labourTable.Merge(machinaryTable);
+                    materialTable.Merge(labourTable);
+                    boqTable.Merge(materialTable);
+                    dgvBoq.DataSource = boqTable;
+                    this.DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    this.DialogResult = DialogResult.OK;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please fill(*) all required fields.", "Add New Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.None;
+            }
         }
         private void dgvBoq_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -370,11 +396,11 @@ namespace ESProMeter.Views.Items
             {
                 pnlSearch.BackColor = Color.Transparent;
                 pnlSearch.BorderStyle = BorderStyle.None;
-                //pnlSearch.PointToClient
                 pnlSearch.Height = 200;
                 pnlSearch.PointToClient(new Point(btndropDown.Location.X + btndropDown.Width - pnlSearch.Width, btndropDown.Location.Y + 100));
                 pnlSearch.BringToFront();
                 pnlSearch.Show();
+                textSearch.Focus();
                 toggle = true;
                 btndropDown.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronDownBox;
                 ((DataTable)dgvItem.DataSource)?.Clear();
@@ -407,7 +433,7 @@ namespace ESProMeter.Views.Items
             {
                 pnlSearch.Hide();
                 pnlSearch.SendToBack();
-                textBox1.Text = "";
+                textSearch.Text = "";
                 toggle = false;
                 btndropDown.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronUpBox;
                 this.tabControl1.Enabled = true;
@@ -442,7 +468,7 @@ namespace ESProMeter.Views.Items
                 {
                     if (CheckItemExist(ref labourTable,id))
                     {
-                        textBox1.Text = "";
+                        textSearch.Text = "";
                         MessageBox.Show("Item Already exist in the list", "ESPRO-METER", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     }
@@ -458,7 +484,7 @@ namespace ESProMeter.Views.Items
                 {
                     if (CheckItemExist(ref machinaryTable,id))
                     {
-                        textBox1.Text = "";
+                        textSearch.Text = "";
                         MessageBox.Show("Item Already exist in the list", "ESPRO-METER", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     }
@@ -472,7 +498,7 @@ namespace ESProMeter.Views.Items
                 {
                     if (CheckItemExist(ref materialTable,id))
                     {
-                        textBox1.Text = "";
+                        textSearch.Text = "";
                         MessageBox.Show("Item Already exist in the list", "ESPRO-METER", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     }
@@ -489,7 +515,7 @@ namespace ESProMeter.Views.Items
             toggle = false;
             pnlSearch.Hide();
             pnlSearch.SendToBack();
-            textBox1.Text = "";
+            textSearch.Text = "";
             btndropDown.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronUpBox;
             
         }
@@ -634,7 +660,6 @@ namespace ESProMeter.Views.Items
                 this.DialogResult = DialogResult.None;
             }
         }
-
         private void ClearNew()
         {
             textName.Text = "";

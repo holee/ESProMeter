@@ -30,12 +30,6 @@ namespace ESProMeter.Views.Items
             
             if (form.ShowDialog() == DialogResult.OK)
             {
-                //if (this.IsItemExist(form.ITEMNAME))
-                //{
-                //    MessageBox.Show("This Item already exist in database.", "Add New Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //    return;
-                //}
-
                 if (form.ItemTypes == ItemsType.Item)
                 {
                         this.ItemCreate(form, ItemsType.Item);
@@ -44,21 +38,21 @@ namespace ESProMeter.Views.Items
                 {
                     this.ItemCreate(form,ItemsType.Boq);
                 }
-                ShowAllItems();
+                ShowAllItems(textSearch.Text.Trim());
             }
         }
 
         private void ShowAllItems(string itemName=null)
         {
-            var orderType = cbmSortType.Text.Length==0?"ASC":cbmSortType.Text;
-            var page = cmbPage.AsNumber<int>()==0?50: cmbPage.AsNumber<int>();
+            var sort = cbmSortType.GetText();
+            var page = cmbPage.AsNumber<int>();
             if (checkBox1.Checked)
             {
-                this.ShowItemList(itemName,this.dataItemList, 0, page,orderType);
+                this.ShowItemList(itemName,this.dataItemList, 0, page,sort);
             }
             else
             {
-                this.ShowItemList(itemName,this.dataItemList, 1, page, orderType);
+                this.ShowItemList(itemName,this.dataItemList, 1, page, sort);
             }
         }
         private void tlCreateACopy_Click(object sender, EventArgs e)
@@ -180,12 +174,12 @@ namespace ESProMeter.Views.Items
 
         private void cmbPage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ShowAllItems();
+            ShowAllItems(textSearch.Text.Trim());
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            ShowAllItems();
+            ShowAllItems(textSearch.Text.Trim());
         }
 
         private void dataItemList_SelectionChanged(object sender, EventArgs e)
