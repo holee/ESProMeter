@@ -62,7 +62,8 @@ namespace ESProMeter.Controllers
         }
         public static void ShowItemList(this Form form, DataGridView grid,byte isActive)
         {
-            if(AppService.GetItemInstance.GetAllItems(isActive,out var table))
+            ((DataTable)grid.DataSource)?.Rows.Clear();
+            if (AppService.GetItemInstance.GetAllItems(isActive,out var table))
             {
                 grid.DataSource = table;
             }
@@ -75,9 +76,9 @@ namespace ESProMeter.Controllers
         public static void ShowItemList(this Form form, DataGridView grid, byte isActive,
             int page,string fieldName="ItemName",string orderBy="asc")
         {
+            ((DataTable)grid.DataSource)?.Rows.Clear();
             if (AppService.GetItemInstance.GetAllItems(isActive,page,orderBy, out var table))
             {
-                table.DefaultView.Sort = $"{fieldName} {orderBy}";
                 grid.DataSource = table;
             }
 
@@ -85,6 +86,7 @@ namespace ESProMeter.Controllers
         public static void ShowItemList(this Form form, DataGridView grid, byte isActive,
            int page, string orderBy = "ASC")
         {
+            ((DataTable)grid.DataSource)?.Rows.Clear();
             if (AppService.GetItemInstance.GetAllItems(isActive, page,orderBy, out var table))
             {
                 grid.DataSource = table;
@@ -94,6 +96,8 @@ namespace ESProMeter.Controllers
         public static void ShowItemList(this Form form,string itemName, DataGridView grid, byte isActive=1,
             int page=50, string orderBy = "ASC")
         {
+
+            ((DataTable)grid.DataSource)?.Rows.Clear();
             if (AppService.GetItemInstance.GetAllItems(itemName,isActive, page,orderBy, out var table))
             {
                 grid.DataSource = table;

@@ -167,47 +167,6 @@ namespace ESProMeter.Views.Items
             }
 
         }
-        private void btnSearchClick(object sender, EventArgs e)
-        {
-            //var textField = string.IsNullOrEmpty(cmbFieldName.Text.Trim()) ? "Name" : cmbFieldName.Text.Trim();
-            //if (string.IsNullOrEmpty(textField))
-            //{
-            //    var rows = this.AsControl<ComboBox>("cmdNumberRows").AsNumber<int>();
-            //    var sortBy = string.IsNullOrEmpty(this.AsControl<ComboBox>("cmbSortBy").Text) ? "Name" : this.AsControl<ComboBox>("cmbSortBy").Text;
-            //    this.ShowItemList(dataItemList,rows, sortBy);
-            //    return;
-            //}
-            //if(textField == "Cost" || textField=="Price" || textField=="IsActive")
-            //{
-            //    var textValue = textSearch.GetVale<decimal>();
-            //    if (this.SearchByFieldName(textField, textValue, out DataTable table))
-            //    {
-            //        table.AsDataGrid(this.dataItemList);
-            //        return;
-            //    }
-            //    else
-            //    {
-            //        ((DataTable)dataItemList.DataSource).Rows.Clear();
-            //    }
-            //}
-            //else
-            //{
-            //    var textValue = textSearch.GetVale<string>();
-            //    if (this.SearchByFieldName(textField, textValue, out DataTable table))
-            //    {
-            //        table.AsDataGrid(this.dataItemList);
-            //        return;
-            //    }
-            //    else
-            //    {
-            //        var rows = this.AsControl<ComboBox>("cmdNumberRows").AsNumber<int>();
-            //        var sortBy = string.IsNullOrEmpty(this.AsControl<ComboBox>("cmbSortBy").Text) ? "Name" : this.AsControl<ComboBox>("cmbSortBy").Text;
-            //        this.ShowItemList(dataItemList,rows, sortBy);
-            //        return;
-            //    }
-            //}
-        }
-
         private void textSearch_KeyUp(object sender, KeyEventArgs e)
         {
             var searchText= ((System.Windows.Forms.TextBox)sender).Text;
