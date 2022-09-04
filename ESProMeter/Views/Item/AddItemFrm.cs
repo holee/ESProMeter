@@ -472,10 +472,10 @@ namespace ESProMeter.Views.Items
                         MessageBox.Show("Item Already exist in the list", "ESPRO-METER", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     }
-
                     this.Add(labourTable, itemRow[0], 
                             itemRow[1], itemRow[2], 
-                            itemRow[3], itemRow[4],
+                            itemRow[3], itemRow[4], 
+                            itemRow[5],
                             Utility.NumberString(1, "N2"), sesquence);
 
                     dgvLabor.DataSource = labourTable;
@@ -490,7 +490,7 @@ namespace ESProMeter.Views.Items
                     }
                     this.Add(machinaryTable, itemRow[0],
                            itemRow[1], itemRow[2],
-                           itemRow[3], itemRow[4],
+                           itemRow[3], itemRow[4], itemRow[5],
                            Utility.NumberString(1, "N2"), sesquence);
                     dgvMachinary.DataSource = machinaryTable;
                 }
@@ -504,7 +504,8 @@ namespace ESProMeter.Views.Items
                     }
                     this.Add(materialTable, itemRow[0],
                             itemRow[1], itemRow[2],
-                            itemRow[3], itemRow[4],
+                            itemRow[3], itemRow[4], 
+                            itemRow[5],
                             Utility.NumberString(1, "N2"), sesquence);
                     dgvMaterial.DataSource = materialTable;
                 }
@@ -583,6 +584,7 @@ namespace ESProMeter.Views.Items
             table.Columns.Add("BOQITEMITEMLINETYPE", typeof(string));
             table.Columns.Add("UOM", typeof(string));
             table.Columns.Add("BOQITEMLINEUOMID", typeof(long));
+            table.Columns.Add("COST", typeof(decimal));
             table.Columns.Add("BOQITEMLINEQTY", typeof(decimal));
             table.Columns.Add("BOQITEMLINESEQ", typeof(int));
         }
