@@ -630,7 +630,6 @@ namespace ESProMeter.Views.Boq
             this.btnSaveAndClose.TabIndex = 38;
             this.btnSaveAndClose.Text = "Save && Close";
             this.btnSaveAndClose.UseVisualStyleBackColor = false;
-            this.btnSaveAndClose.Click += new System.EventHandler(this.btnSaveAndClose_Click);
             // 
             // lblID
             // 
@@ -887,6 +886,7 @@ namespace ESProMeter.Views.Boq
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 464);
+            this.Controls.Add(this.dgvBoqList);
             this.Controls.Add(this.txtTermsCondition);
             this.Controls.Add(this.lblEDSEQ);
             this.Controls.Add(this.lblID);
@@ -906,7 +906,6 @@ namespace ESProMeter.Views.Boq
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlSearch);
-            this.Controls.Add(this.dgvBoqList);
             this.Name = "CreateBoQ_Step2_Frm";
             this.Text = "Create New Bill of Quantity";
             this.Load += new System.EventHandler(this.CreateBoQ_Step2_Frm_Load);

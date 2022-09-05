@@ -20,8 +20,8 @@ namespace ESProMeter.Views.Boq
             if (aCost == null)
             {
                 AppService.GetBoqInstance.GetAdditinalCost(boq_id, out aCost);
-                txtBoqCOST.SetText(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"));
-                txtSubtotalBoqItem.SetText(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"));
+                txtBoqCOST.SetText(Utility.NumberString(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"),"N3"));
+                txtSubtotalBoqItem.SetText(Utility.NumberString(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"), "N3"));
                 this.LOSSOFEFFECIENCYRATE = aCost?.LOSSOFEFFECIENCYRATE;
                 this.OPERATIONRATE = aCost?.OPERATIONRATE;
                 this.OVERHEADRATE = aCost?.OVERHEADRATE;
@@ -46,8 +46,8 @@ namespace ESProMeter.Views.Boq
             }
             else
             {
-                txtBoqCOST.SetText(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"));
-                txtSubtotalBoqItem.SetText(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"));
+                txtBoqCOST.SetText(Utility.NumberString(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"),"N3"));
+                txtSubtotalBoqItem.SetText(Utility.NumberString(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"),"N3"));
                 this.LOSSOFEFFECIENCYRATE = aCost?.LOSSOFEFFECIENCYRATE;
                 this.OPERATIONRATE = aCost?.OPERATIONRATE;
                 this.OVERHEADRATE = aCost?.OVERHEADRATE;
@@ -121,7 +121,7 @@ namespace ESProMeter.Views.Boq
         {
             var textValue = ((TextBox)sender).AsNumber<decimal>();
             var transportation = (textValue * txtBoqCOST.AsNumber<decimal>() / 100);
-            txtTransportationValue.SetText(Utility.NumberString(transportation));
+            txtTransportationValue.SetText(Utility.NumberString(transportation,"N3"));
             UpdateAdditionCost();
             UpdateMarginAndInflation();
             UpdateSalePrice();
@@ -141,7 +141,7 @@ namespace ESProMeter.Views.Boq
         {
             var textValue = ((TextBox)sender).AsNumber<decimal>();
             var margin = ((textValue / 100) * (txtBoqCOST.AsNumber<decimal>() + txtAdditionalSubTotal.AsNumber<decimal>()));
-            txtMarginValue.SetText(Utility.NumberString(margin));
+            txtMarginValue.SetText(Utility.NumberString(margin,"N3"));
             UpdateAdditionCost();
             UpdateMarginAndInflation();
             UpdateSalePrice();
@@ -151,7 +151,7 @@ namespace ESProMeter.Views.Boq
         {
             var textValue = ((TextBox)sender).AsNumber<decimal>();
             var safty = (textValue * txtBoqCOST.AsNumber<decimal>() / 100);
-            txtSaftyValue.SetText(Utility.NumberString(safty));
+            txtSaftyValue.SetText(Utility.NumberString(safty, "N3"));
             UpdateAdditionCost();
             UpdateMarginAndInflation();
             UpdateSalePrice();
@@ -161,7 +161,7 @@ namespace ESProMeter.Views.Boq
         {
             var textValue = ((TextBox)sender).AsNumber<decimal>();
             var overhead = (textValue * txtBoqCOST.AsNumber<decimal>() / 100);
-            txtOverheadValue.SetText(Utility.NumberString(overhead));
+            txtOverheadValue.SetText(Utility.NumberString(overhead, "N3"));
             UpdateAdditionCost();
             UpdateMarginAndInflation();
             UpdateSalePrice();
@@ -171,7 +171,7 @@ namespace ESProMeter.Views.Boq
         {
             var textValue = ((TextBox)sender).AsNumber<decimal>();
             var operation = (textValue * txtBoqCOST.AsNumber<decimal>() / 100);
-            txtOperationValue.SetText(Utility.NumberString(operation));
+            txtOperationValue.SetText(Utility.NumberString(operation, "N3"));
             UpdateAdditionCost();
             UpdateMarginAndInflation();
             UpdateSalePrice();
@@ -181,7 +181,7 @@ namespace ESProMeter.Views.Boq
         {
             var textValue = ((TextBox)sender).AsNumber<decimal>();
             var loe = (textValue * txtBoqCOST.AsNumber<decimal>() /100);
-            txtLoseEfficencyValue.SetText(Utility.NumberString(loe));
+            txtLoseEfficencyValue.SetText(Utility.NumberString(loe, "N3"));
             UpdateAdditionCost();
             UpdateMarginAndInflation();
             UpdateSalePrice();
@@ -220,8 +220,10 @@ namespace ESProMeter.Views.Boq
         void UpdateMarginAndInflation()
         {
             var totalCost = 0M;
-            var margin = txtMarginValue.AsNumber<decimal>();
-            var inflation = txtInflationValue.AsNumber<decimal>();
+            var margin =CalculateMargin(txtMargin.AsNumber<decimal>(),(txtAdditionalSubTotal.AsNumber<decimal>() + txtSubtotalBoqItem.AsNumber<decimal>()));
+            var inflation =CalculateInflation(txtInflation.AsNumber<decimal>(), txtAdditionalSubTotal.AsNumber<decimal>() + txtSubtotalBoqItem.AsNumber<decimal>());
+            txtMarginValue.SetText(Utility.NumberString(margin, "N3"));
+            txtInflationValue.SetText(Utility.NumberString(inflation, "N3"));
             totalCost = (margin + inflation);
             txtSubtotalMagrinAndInflation.SetText(Utility.NumberString(totalCost,"N3"));
         }
@@ -246,12 +248,12 @@ namespace ESProMeter.Views.Boq
 
         void UpdateBoqCost() 
         {
-            var totalCost = 0M;
-            var labour = txtSubtotalBoqItem.AsNumber<decimal>();
-            var material = txtAdditionalSubTotal.AsNumber<decimal>();
-            var machinery = txtSubtotalMagrinAndInflation.AsNumber<decimal>();
-            totalCost = (labour + material + machinery);
-            txtBoqCOST.SetText(Utility.NumberString(totalCost, "N3"));
+            //var totalCost = 0M;
+            //var labour = txtSubtotalBoqItem.AsNumber<decimal>();
+            //var material = txtAdditionalSubTotal.AsNumber<decimal>();
+            //var machinery = txtSubtotalMagrinAndInflation.AsNumber<decimal>();
+            //totalCost = (labour + material + machinery);
+            txtBoqCOST.SetText(Utility.NumberString(txtSubtotalBoqItem.AsNumber<decimal>(), "N3"));
         }
         #region properties
         public decimal? LOSSOFEFFECIENCYRATE 
@@ -360,22 +362,103 @@ namespace ESProMeter.Views.Boq
             
         }
 
-        private void dgvBoqItemLine_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void dgvBoqItemLineCellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dgvBoqItemLine.Columns[e.ColumnIndex].Name == "labourSubtotal")
             {
                 if(e.Value != null)
                 {
-                    e.CellStyle.Format = "N2";
+                    e.CellStyle.Format = "N3";
                 }
             }
-            if (dgvBoqItemLine.Columns[e.ColumnIndex].Name == "buttoncolumn1")
+            if (dgvBoqItemLine.Columns["ButtonColumn1"].Name == "ButtonColumn1")
             {
                 if (e.Value != null)
                 {
-                    e.CellStyle.Format = "N2";
+                    e.CellStyle.Format = "N3";
                 }
             }
+            if (dgvBoqItemLine.Columns[e.ColumnIndex].Name == "laborBOQItemLineQty")
+            {
+                if (e.Value != null)
+                {
+                    e.CellStyle.Format = "N3";
+                }
+            }
+        }
+        private void dgvBoqItemLineCellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvBoqItemLine.Rows.Count == 0) return;
+            if (dgvBoqItemLine.Columns[e.ColumnIndex].Name == "laborBOQItemLineQty")
+            {
+                var selectedRow = dgvBoqItemLine.SelectedRows[0];
+                if (selectedRow.GetValue<int>("laborBOQItemLineQty") == 0)
+                {
+                    dgvBoqItemLine.SetText(dgvBoqItemLine.CurrentRow.Index, "laborBOQItemLineQty", Utility.NumberString(0, "N3"));
+                }
+                else
+                {
+                    var selectedValue = dgvBoqItemLine.GetValue<decimal>(dgvBoqItemLine.CurrentRow.Index, "laborBOQItemLineQty");
+                    dgvBoqItemLine.SetText(dgvBoqItemLine.CurrentRow.Index, "laborBOQItemLineQty", Utility.NumberString(selectedValue, "N3"));
+                }
+            }
+            if (dgvBoqItemLine.Columns[e.ColumnIndex].Name == "ButtonColumn1")
+            {
+                var selectedRow = dgvBoqItemLine.SelectedRows[0];
+                if (selectedRow.GetValue<int>("ButtonColumn1") == 0)
+                {
+                    dgvBoqItemLine.SetText(dgvBoqItemLine.CurrentRow.Index, "ButtonColumn1", Utility.NumberString(0, "N3"));
+                }
+                else
+                {
+                    var selectedValue = dgvBoqItemLine.GetValue<decimal>(dgvBoqItemLine.CurrentRow.Index, "ButtonColumn1");
+                    dgvBoqItemLine.SetText(dgvBoqItemLine.CurrentRow.Index, "ButtonColumn1", Utility.NumberString(selectedValue, "N3"));
+                }
+            }
+        }
+        private void dgvBoqItemLineEditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (dgvBoqItemLine.Rows.Count == 0) return;
+
+            if (dgvBoqItemLine.Columns["laborBOQItemLineQty"].Name == "laborBOQItemLineQty"
+                && dgvBoqItemLine.Columns["laborBOQItemLineQty"] is DataGridViewTextBoxColumn)
+            {
+                var textbox = e.Control as TextBox;
+                textbox.KeyUp += (s, e) =>
+                {
+                    var textvalue = ((TextBox)s).AsNumber<decimal>();
+                    var cost = dgvBoqItemLine.GetValue<decimal>(dgvBoqItemLine.CurrentRow.Index, "ButtonColumn1");
+                    var subcost = textvalue * cost;
+                    dgvBoqItemLine.SetText(dgvBoqItemLine.CurrentRow.Index, "labourSubtotal", Utility.NumberString(subcost));
+                    txtSubtotalBoqItem.SetText(Utility.NumberString(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"),"N3"));
+                    UpdateBoqCost();
+                    CalculateAdditionalCost();
+                    UpdateAdditionCost();
+                    UpdateMarginAndInflation();
+                    UpdateSalePrice();
+
+                };
+            }
+            if (dgvBoqItemLine.Columns["ButtonColumn1"].Name == "ButtonColumn1"
+                && dgvBoqItemLine.Columns["ButtonColumn1"] is DataGridViewTextBoxColumn)
+            {
+                var textbox = e.Control as TextBox;
+                textbox.KeyUp += (s, e) =>
+                {
+                    var textvalue = ((TextBox)s).AsNumber<decimal>();
+                    var qty = dgvBoqItemLine.GetValue<decimal>(dgvBoqItemLine.CurrentRow.Index, "laborBOQItemLineQty");
+                    var subcost = textvalue * qty;
+                    dgvBoqItemLine.SetText(dgvBoqItemLine.CurrentRow.Index, "labourSubtotal", Utility.NumberString(subcost,"N3"));
+                    txtSubtotalBoqItem.SetText(Utility.NumberString(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"),"N3"));
+                    UpdateBoqCost();
+                    CalculateAdditionalCost();
+                    UpdateAdditionCost();
+                    UpdateMarginAndInflation();
+                    UpdateSalePrice();
+
+                };
+            }
+
         }
     }
 }

@@ -59,6 +59,21 @@ namespace ESProMeter.Controllers
             }
             
         }
+        public static void BoqLineTempCreateOrUpdate(this Form form,DataTable table, Enums.ActionType type)
+        {
+            switch (type)
+            {
+                case Enums.ActionType.CREATE:
+                    AppService.GetBoqInstance.BoqLineTempCreate(table);
+                    break;
+                case Enums.ActionType.EDIT:
+                    AppService.GetBoqInstance.BoqLineUpdate(table);
+                    break;
+                default:
+                    break;
+            }
+
+        }
         public static void BoqLineCreate(this Form form,DataGridView grid)
         {
             var table = grid.ToTable("BOQID", "BOQITEMID", "LineSeq", "NO", "BOQITEMDESC", "BOQITEMUOMID", "BOQITEMQTY",

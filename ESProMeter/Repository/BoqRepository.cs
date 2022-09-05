@@ -202,6 +202,12 @@ namespace ESProMeter.Repository
                         .UseProcedure("[TBOQLINE_sp_INSERT]")
                             .InsertFromTable("TBOQLINE", model, "TBOQLINE_udt_INSERT");
         }
+        public void BoqLineTempCreate(DataTable model)
+        {
+            AppService.SqlGetInstance
+                        .UseProcedure("[TBOQLINETemp_sp_INSERT]")
+                            .InsertFromTable("TBOQLINE", model, "TBOQLINETemp_udt_INSERT");
+        }
         public void BoqLineUpdate(DataTable model) 
         {
             AppService.SqlGetInstance

@@ -1,10 +1,10 @@
 ﻿using ESProMeter.Controllers;
-using ESProMeter.Enums;
 using ESProMeter.Extensions;
 using ESProMeter.IViews;
-using ESProMeter.Models;
 using ESProMeter.Services;
 using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using static ESProMeter.Extensions.FormExtension;
@@ -383,16 +383,21 @@ namespace ESProMeter.Views.Boq
                 var _boqcost = selectedRow.GetValue<decimal>("Column2");
                 if (dgvBoqList.SelectedRows.Count == 0)
                 {
+                ///Add
                     dgvBoqList.Rows.Add(null, _boqId, _id, _itemName, _description, Utility.NumberString(1, "N2"),
-                        _uom, _uomId, null, _boqcost, 0, this.LOSSOFEFFECIENCYRATE, this.OPERATIONRATE,
+                        _uom, _uomId, null, _boqcost,0, this.LOSSOFEFFECIENCYRATE, this.OPERATIONRATE,
                            this.OVERHEADRATE, this.SAFETYRATE, this.TRANSPORTATIONRATE, this.MARGINRATE, this.INFlATIONRATE);
+
+                
                 }
                 else
                 {
                     var index = dgvBoqList.SelectedRows[0].Index + 1;
+                    ///Add
                     dgvBoqList.Rows.Insert(index, null, _boqId, _id, _itemName, _description, Utility.NumberString(1, "N2"), _uom, _uomId,
                         null, _boqcost, 0, this.LOSSOFEFFECIENCYRATE, this.OPERATIONRATE,
                            this.OVERHEADRATE, this.SAFETYRATE, this.TRANSPORTATIONRATE, this.MARGINRATE, this.INFlATIONRATE);
+
                     dgvBoqList.Rows[index].Selected = true;
                 }
             }
@@ -405,7 +410,8 @@ namespace ESProMeter.Views.Boq
             }
             //dgvBoqList.ClearSelection();
         }
-        private void dataGridView1_MouseMove(object sender, MouseEventArgs e)
+ 
+       private void dataGridView1_MouseMove(object sender, MouseEventArgs e)
         {
             if (dgvBoqList.SelectedRows.Count <= 0) return;
             if ((e.Button & MouseButtons.Left) == MouseButtons.Left)
@@ -797,11 +803,7 @@ namespace ESProMeter.Views.Boq
                 }
             }
         }
-
-        private void btnSaveAndClose_Click(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }
 
