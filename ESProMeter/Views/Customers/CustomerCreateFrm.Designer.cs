@@ -89,7 +89,7 @@
 			this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(709, 486);
-			this.panel1.TabIndex = 0;
+			this.panel1.TabIndex = 16;
 			// 
 			// groupBox1
 			// 
@@ -122,7 +122,7 @@
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.groupBox1.Size = new System.Drawing.Size(690, 235);
-			this.groupBox1.TabIndex = 17;
+			this.groupBox1.TabIndex = 2;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "CONTACT INFORMATION";
 			// 
@@ -134,7 +134,7 @@
 			this.textLastName.Name = "textLastName";
 			this.textLastName.PlaceholderText = "Last Name";
 			this.textLastName.Size = new System.Drawing.Size(217, 23);
-			this.textLastName.TabIndex = 4;
+			this.textLastName.TabIndex = 5;
 			// 
 			// label10
 			// 
@@ -176,7 +176,7 @@
 			this.textMainPhone.Name = "textMainPhone";
 			this.textMainPhone.PlaceholderText = "Main Phone";
 			this.textMainPhone.Size = new System.Drawing.Size(165, 23);
-			this.textMainPhone.TabIndex = 6;
+			this.textMainPhone.TabIndex = 7;
 			// 
 			// textJobTitle
 			// 
@@ -185,7 +185,7 @@
 			this.textJobTitle.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.textJobTitle.Name = "textJobTitle";
 			this.textJobTitle.Size = new System.Drawing.Size(345, 23);
-			this.textJobTitle.TabIndex = 5;
+			this.textJobTitle.TabIndex = 6;
 			// 
 			// label15
 			// 
@@ -217,7 +217,7 @@
 			this.textFirstName.Name = "textFirstName";
 			this.textFirstName.PlaceholderText = "First Name";
 			this.textFirstName.Size = new System.Drawing.Size(218, 23);
-			this.textFirstName.TabIndex = 2;
+			this.textFirstName.TabIndex = 4;
 			// 
 			// label6
 			// 
@@ -236,7 +236,7 @@
 			this.textFax.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.textFax.Name = "textFax";
 			this.textFax.Size = new System.Drawing.Size(525, 23);
-			this.textFax.TabIndex = 9;
+			this.textFax.TabIndex = 10;
 			// 
 			// textCreditLimit
 			// 
@@ -258,7 +258,7 @@
 			this.textSalutation.Name = "textSalutation";
 			this.textSalutation.PlaceholderText = "Salutation";
 			this.textSalutation.Size = new System.Drawing.Size(74, 23);
-			this.textSalutation.TabIndex = 1;
+			this.textSalutation.TabIndex = 3;
 			this.textSalutation.Tag = "";
 			// 
 			// textAltPhone
@@ -270,7 +270,7 @@
 			this.textAltPhone.Name = "textAltPhone";
 			this.textAltPhone.PlaceholderText = "Alternative Phone";
 			this.textAltPhone.Size = new System.Drawing.Size(164, 23);
-			this.textAltPhone.TabIndex = 7;
+			this.textAltPhone.TabIndex = 8;
 			// 
 			// label11
 			// 
@@ -289,7 +289,7 @@
 			this.textWebsite.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.textWebsite.Name = "textWebsite";
 			this.textWebsite.Size = new System.Drawing.Size(525, 23);
-			this.textWebsite.TabIndex = 10;
+			this.textWebsite.TabIndex = 11;
 			// 
 			// textMiddleName
 			// 
@@ -308,7 +308,7 @@
 			this.textEmail.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.textEmail.Name = "textEmail";
 			this.textEmail.Size = new System.Drawing.Size(264, 23);
-			this.textEmail.TabIndex = 8;
+			this.textEmail.TabIndex = 9;
 			// 
 			// lblEditSequense
 			// 
@@ -378,7 +378,7 @@
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.groupBox2.Size = new System.Drawing.Size(691, 140);
-			this.groupBox2.TabIndex = 16;
+			this.groupBox2.TabIndex = 12;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "CONTACT ADDRESS";
 			// 
@@ -399,7 +399,7 @@
 			this.textCountry.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.textCountry.Name = "textCountry";
 			this.textCountry.Size = new System.Drawing.Size(360, 23);
-			this.textCountry.TabIndex = 12;
+			this.textCountry.TabIndex = 15;
 			// 
 			// textProvince
 			// 
@@ -408,7 +408,7 @@
 			this.textProvince.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.textProvince.Name = "textProvince";
 			this.textProvince.Size = new System.Drawing.Size(360, 23);
-			this.textProvince.TabIndex = 13;
+			this.textProvince.TabIndex = 14;
 			// 
 			// textAddress
 			// 
@@ -419,7 +419,7 @@
 			this.textAddress.Name = "textAddress";
 			this.textAddress.PlaceholderText = "Street, Village, Commune, District,....";
 			this.textAddress.Size = new System.Drawing.Size(525, 43);
-			this.textAddress.TabIndex = 11;
+			this.textAddress.TabIndex = 13;
 			// 
 			// label5
 			// 
@@ -452,7 +452,7 @@
 			this.btnclose.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.btnclose.Name = "btnclose";
 			this.btnclose.Size = new System.Drawing.Size(126, 30);
-			this.btnclose.TabIndex = 16;
+			this.btnclose.TabIndex = 18;
 			this.btnclose.Text = "Cancel";
 			this.btnclose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnclose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -470,7 +470,7 @@
 			this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.materialButton1.Name = "materialButton1";
 			this.materialButton1.Size = new System.Drawing.Size(126, 30);
-			this.materialButton1.TabIndex = 15;
+			this.materialButton1.TabIndex = 17;
 			this.materialButton1.Text = "Save";
 			this.materialButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.materialButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -484,7 +484,7 @@
 			this.textName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.textName.Name = "textName";
 			this.textName.Size = new System.Drawing.Size(361, 23);
-			this.textName.TabIndex = 0;
+			this.textName.TabIndex = 1;
 			// 
 			// panel2
 			// 
@@ -496,7 +496,7 @@
 			this.panel2.Location = new System.Drawing.Point(1, 1);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(708, 37);
-			this.panel2.TabIndex = 20;
+			this.panel2.TabIndex = 0;
 			// 
 			// label7
 			// 
@@ -516,7 +516,7 @@
 			this.checkInActive.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.checkInActive.Name = "checkInActive";
 			this.checkInActive.Size = new System.Drawing.Size(153, 21);
-			this.checkInActive.TabIndex = 14;
+			this.checkInActive.TabIndex = 1;
 			this.checkInActive.Text = "Customer is inactive";
 			this.checkInActive.UseVisualStyleBackColor = true;
 			// 
