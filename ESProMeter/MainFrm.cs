@@ -197,8 +197,11 @@ namespace ESProMeter
 		private void toolStripMenuItem5_Click(object sender, EventArgs e)
 		{
             Views.Sites.AddSiteFrm form = new Views.Sites.AddSiteFrm();
-            form.ShowDialog();
-		}
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                this.SiteCreateNewOrUpdate(form, form);
+            }
+        }
 
 		private void boqToolStripMenuItem_Click(object sender, EventArgs e)
 		{

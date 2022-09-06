@@ -39,6 +39,8 @@
 			this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+			this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.iconButton1 = new FontAwesome.Sharp.IconButton();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -56,23 +58,6 @@
 			this.label10 = new System.Windows.Forms.Label();
 			this.dtpFromDate = new System.Windows.Forms.DateTimePicker();
 			this.label9 = new System.Windows.Forms.Label();
-			this.menuStrip2 = new System.Windows.Forms.MenuStrip();
-			this.manageBOQsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.newBOQToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-			this.newQuoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.newBOQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-			this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-			this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.bOQListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.quoteListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-			this.dToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.cToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.bToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.aToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.deailsBOQToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.dtgContactList = new System.Windows.Forms.DataGridView();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -81,8 +66,6 @@
 			this.editeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.pnlDetails = new System.Windows.Forms.Panel();
-			this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-			this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
@@ -93,7 +76,6 @@
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dtgBOQList)).BeginInit();
-			this.menuStrip2.SuspendLayout();
 			this.tabPage2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dtgContactList)).BeginInit();
 			this.menuStrip1.SuspendLayout();
@@ -162,6 +144,24 @@
 			this.toolStripButton1.Size = new System.Drawing.Size(129, 36);
 			this.toolStripButton1.Text = "New Bill of Quanity";
 			this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+			// 
+			// toolStripDropDownButton1
+			// 
+			this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportToolStripMenuItem});
+			this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
+			this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+			this.toolStripDropDownButton1.Size = new System.Drawing.Size(47, 36);
+			this.toolStripDropDownButton1.Text = "Excel";
+			// 
+			// exportToolStripMenuItem
+			// 
+			this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+			this.exportToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+			this.exportToolStripMenuItem.Text = "Export";
+			this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
 			// 
 			// splitContainer1
 			// 
@@ -298,7 +298,7 @@
 			this.panel2.Location = new System.Drawing.Point(8, 284);
 			this.panel2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(899, 301);
+			this.panel2.Size = new System.Drawing.Size(915, 301);
 			this.panel2.TabIndex = 1;
 			// 
 			// tabControl1
@@ -308,7 +308,7 @@
 			this.tabControl1.Location = new System.Drawing.Point(5, 25);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(928, 244);
+			this.tabControl1.Size = new System.Drawing.Size(908, 244);
 			this.tabControl1.TabIndex = 0;
 			// 
 			// tabPage1
@@ -319,11 +319,10 @@
 			this.tabPage1.Controls.Add(this.label10);
 			this.tabPage1.Controls.Add(this.dtpFromDate);
 			this.tabPage1.Controls.Add(this.label9);
-			this.tabPage1.Controls.Add(this.menuStrip2);
 			this.tabPage1.Location = new System.Drawing.Point(4, 24);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(920, 216);
+			this.tabPage1.Size = new System.Drawing.Size(900, 216);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "BOQs";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -362,7 +361,7 @@
 			this.dtgBOQList.RowTemplate.Height = 30;
 			this.dtgBOQList.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
 			this.dtgBOQList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dtgBOQList.Size = new System.Drawing.Size(889, 152);
+			this.dtgBOQList.Size = new System.Drawing.Size(869, 152);
 			this.dtgBOQList.TabIndex = 4;
 			// 
 			// chkIncludeClosedBOQ
@@ -409,128 +408,6 @@
 			this.label9.TabIndex = 0;
 			this.label9.Text = "FROM DATE";
 			// 
-			// menuStrip2
-			// 
-			this.menuStrip2.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.manageBOQsToolStripMenuItem,
-            this.reportsToolStripMenuItem});
-			this.menuStrip2.Location = new System.Drawing.Point(3, 189);
-			this.menuStrip2.Name = "menuStrip2";
-			this.menuStrip2.Size = new System.Drawing.Size(914, 24);
-			this.menuStrip2.TabIndex = 5;
-			this.menuStrip2.Text = "menuStrip2";
-			// 
-			// manageBOQsToolStripMenuItem
-			// 
-			this.manageBOQsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newBOQToolStripMenuItem1,
-            this.newQuoteToolStripMenuItem,
-            this.newBOQToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.toolStripMenuItem2});
-			this.manageBOQsToolStripMenuItem.Name = "manageBOQsToolStripMenuItem";
-			this.manageBOQsToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
-			this.manageBOQsToolStripMenuItem.Text = "Manage BOQs";
-			// 
-			// newBOQToolStripMenuItem1
-			// 
-			this.newBOQToolStripMenuItem1.Name = "newBOQToolStripMenuItem1";
-			this.newBOQToolStripMenuItem1.Size = new System.Drawing.Size(144, 22);
-			this.newBOQToolStripMenuItem1.Text = "New BOQ";
-			// 
-			// newQuoteToolStripMenuItem
-			// 
-			this.newQuoteToolStripMenuItem.Name = "newQuoteToolStripMenuItem";
-			this.newQuoteToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-			this.newQuoteToolStripMenuItem.Text = "Edit";
-			// 
-			// newBOQToolStripMenuItem
-			// 
-			this.newBOQToolStripMenuItem.Name = "newBOQToolStripMenuItem";
-			this.newBOQToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
-			this.newBOQToolStripMenuItem.Text = "Delete";
-			// 
-			// toolStripSeparator1
-			// 
-			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(141, 6);
-			// 
-			// toolStripMenuItem2
-			// 
-			this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-			this.toolStripMenuItem2.Size = new System.Drawing.Size(144, 22);
-			this.toolStripMenuItem2.Text = "Create Quote";
-			// 
-			// reportsToolStripMenuItem
-			// 
-			this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bOQListToolStripMenuItem,
-            this.quoteListToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.dToolStripMenuItem,
-            this.cToolStripMenuItem,
-            this.bToolStripMenuItem,
-            this.aToolStripMenuItem,
-            this.deailsBOQToolStripMenuItem,
-            this.toolStripMenuItem3});
-			this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
-			this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-			this.reportsToolStripMenuItem.Text = "Reports";
-			// 
-			// bOQListToolStripMenuItem
-			// 
-			this.bOQListToolStripMenuItem.Name = "bOQListToolStripMenuItem";
-			this.bOQListToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.bOQListToolStripMenuItem.Text = "BOQ";
-			// 
-			// quoteListToolStripMenuItem
-			// 
-			this.quoteListToolStripMenuItem.Name = "quoteListToolStripMenuItem";
-			this.quoteListToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.quoteListToolStripMenuItem.Text = "Quote";
-			// 
-			// toolStripMenuItem1
-			// 
-			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-			this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
-			// 
-			// dToolStripMenuItem
-			// 
-			this.dToolStripMenuItem.Name = "dToolStripMenuItem";
-			this.dToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.dToolStripMenuItem.Text = "Details BOQ";
-			// 
-			// cToolStripMenuItem
-			// 
-			this.cToolStripMenuItem.Name = "cToolStripMenuItem";
-			this.cToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.cToolStripMenuItem.Text = "Eco Material";
-			// 
-			// bToolStripMenuItem
-			// 
-			this.bToolStripMenuItem.Name = "bToolStripMenuItem";
-			this.bToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.bToolStripMenuItem.Text = "Eco Labour";
-			// 
-			// aToolStripMenuItem
-			// 
-			this.aToolStripMenuItem.Name = "aToolStripMenuItem";
-			this.aToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.aToolStripMenuItem.Text = "Eco Machinery";
-			// 
-			// deailsBOQToolStripMenuItem
-			// 
-			this.deailsBOQToolStripMenuItem.Name = "deailsBOQToolStripMenuItem";
-			this.deailsBOQToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.deailsBOQToolStripMenuItem.Text = "Project Cost";
-			// 
-			// toolStripMenuItem3
-			// 
-			this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-			this.toolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
-			this.toolStripMenuItem3.Text = "Economic";
-			// 
 			// tabPage2
 			// 
 			this.tabPage2.Controls.Add(this.dtgContactList);
@@ -538,7 +415,7 @@
 			this.tabPage2.Location = new System.Drawing.Point(4, 24);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(920, 216);
+			this.tabPage2.Size = new System.Drawing.Size(900, 216);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Contacts";
 			this.tabPage2.UseVisualStyleBackColor = true;
@@ -563,7 +440,7 @@
             this.manageContactsToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(3, 189);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(914, 24);
+			this.menuStrip1.Size = new System.Drawing.Size(894, 24);
 			this.menuStrip1.TabIndex = 0;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -605,23 +482,6 @@
 			this.pnlDetails.Size = new System.Drawing.Size(933, 278);
 			this.pnlDetails.TabIndex = 0;
 			// 
-			// toolStripDropDownButton1
-			// 
-			this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-			this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exportToolStripMenuItem});
-			this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
-			this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-			this.toolStripDropDownButton1.Size = new System.Drawing.Size(47, 36);
-			this.toolStripDropDownButton1.Text = "Excel";
-			// 
-			// exportToolStripMenuItem
-			// 
-			this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-			this.exportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.exportToolStripMenuItem.Text = "Export";
-			// 
 			// CustomerCenterFrm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -648,8 +508,6 @@
 			this.tabPage1.ResumeLayout(false);
 			this.tabPage1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dtgBOQList)).EndInit();
-			this.menuStrip2.ResumeLayout(false);
-			this.menuStrip2.PerformLayout();
 			this.tabPage2.ResumeLayout(false);
 			this.tabPage2.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dtgContactList)).EndInit();
@@ -688,23 +546,6 @@
 		private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
 		private System.Windows.Forms.DataGridView dtgBOQList;
 		private System.Windows.Forms.CheckBox chkIncludeClosedBOQ;
-		private System.Windows.Forms.MenuStrip menuStrip2;
-		private System.Windows.Forms.ToolStripMenuItem manageBOQsToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem newBOQToolStripMenuItem1;
-		private System.Windows.Forms.ToolStripMenuItem newQuoteToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem newBOQToolStripMenuItem;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-		private System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem bOQListToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem quoteListToolStripMenuItem;
-		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-		private System.Windows.Forms.ToolStripMenuItem dToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem cToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem bToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem aToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem deailsBOQToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.Panel pnlDetails;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;

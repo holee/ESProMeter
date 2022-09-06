@@ -160,5 +160,10 @@ namespace ESProMeter.Views.Customers
             dgvCustomer.CurrentCell = null;
   
         }
-    }
+
+		private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+
+		}
+	}
 }
