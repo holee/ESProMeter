@@ -32,6 +32,7 @@ namespace ESProMeter.Views.Boq
         private decimal _tran;
         private decimal _margin;
         private decimal _inflation;
+        private bool isCompleted=false;
         #endregion
         #region properties
         public long ID
