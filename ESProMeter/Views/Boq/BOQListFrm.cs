@@ -178,5 +178,16 @@ namespace ESProMeter.Views.Boq
 			form.ShowDialog();
 
         }
+
+		private void toolStripButton10_Click(object sender, EventArgs e)
+		{
+            if (dtgBOQList.SelectedRows.Count > 0)
+            {
+                var selectedRow = dtgBOQList.SelectedRows[0];
+                var id = selectedRow.GetValue<long>("ID");
+                BoqDetailsFrm form = new BoqDetailsFrm(id);
+                OpenChildForm(form, MainFrm.ActiveForm);
+            }
+        }
 	}
 }

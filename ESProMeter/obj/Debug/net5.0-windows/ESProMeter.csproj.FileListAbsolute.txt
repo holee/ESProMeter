@@ -514,3 +514,4 @@ D:\KhDev\New\ESProMeter2\ESProMeter\obj\Debug\net5.0-windows\ESProMeter.genrunti
 D:\KhDev\New\ESProMeter2\ESProMeter\obj\Debug\net5.0-windows\ref\ESProMeter.dll
 D:\KhDev\New\ESProMeter2\ESProMeter\obj\Debug\net5.0-windows\ESProMeter.Views.Boq.BOQLINEDetailFrm.resources
 D:\KhDev\New\ESProMeter\ESProMeter\obj\Debug\net5.0-windows\ESProMeter.Views.Boq.BOQLINEDetailFrm.resources
+D:\KhDev\New\ESProMeter2\ESProMeter\obj\Debug\net5.0-windows\ESProMeter.Views.Boq.BoqDetailsFrm.resources

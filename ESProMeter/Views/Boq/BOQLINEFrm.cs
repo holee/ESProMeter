@@ -13,12 +13,16 @@ namespace ESProMeter.Views.Boq
         public BOQLINEFrm(long boq_id,long itemId,int iscompleted,int seq,ADDITIONALCOST aCost)
         {
             InitializeComponent();
+            this.dgvBoqItemLine.AutoGenerateColumns = false;
             lblBoqID.SetText(boq_id);
             lblBoqItemID.SetText(itemId);
             lblcomplete.SetText(iscompleted);
             lblLineSeq.SetText(seq);
             //this.GetItemForUpdate(itemId);
-            this.BoqLineDetailsGetByBOQID(itemId,seq);
+            //this.BoqLineDetailsGetByBOQID(itemId,seq);
+            AppService.GetItemInstance.BoqItemLineGetByBOQID(boq_id, itemId, seq, out var table);
+            table.WithColumn("BOQITEMITEMLINEID", "BOQITEMITEMLINENAME", "BOQITEMITEMLINETYPE", "UOM", "BOQITEMLINEUOMID", "BOQITEMLINEQTY", "BOQITEMLINESEQ", "COST", "SUBCOST");
+            table.UseDataTableAsGridView(this.dgvBoqItemLine);
             txtBoqCOST.SetText(Utility.NumberString(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"), "N3"));
             txtSubtotalBoqItem.SetText(Utility.NumberString(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"), "N3"));
             this.LOSSOFEFFECIENCYRATE = aCost.LOSSOFEFFECIENCYRATE;

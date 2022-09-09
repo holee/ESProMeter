@@ -51,6 +51,7 @@ namespace ESProMeter.Views.Boq
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dtgBOQList = new System.Windows.Forms.DataGridView();
@@ -69,6 +70,15 @@ namespace ESProMeter.Views.Boq
             this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
             this.txtReferenceNo = new System.Windows.Forms.TextBox();
             this.dtgBOQLine = new System.Windows.Forms.DataGridView();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSite = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -81,15 +91,6 @@ namespace ESProMeter.Views.Boq
             this.txtDate = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgQuotes)).BeginInit();
@@ -240,6 +241,7 @@ namespace ESProMeter.Views.Boq
             this.toolStripButton2,
             this.toolStripButton3,
             this.toolStripButton4,
+            this.toolStripButton10,
             this.toolStripButton5});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -290,6 +292,16 @@ namespace ESProMeter.Views.Boq
             this.toolStripButton4.Size = new System.Drawing.Size(66, 30);
             this.toolStripButton4.Text = "Refresh";
             this.toolStripButton4.Click += new System.EventHandler(this.toolRefreshClick);
+            // 
+            // toolStripButton10
+            // 
+            this.toolStripButton10.AutoSize = false;
+            this.toolStripButton10.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton10.Image")));
+            this.toolStripButton10.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton10.Name = "toolStripButton10";
+            this.toolStripButton10.Size = new System.Drawing.Size(86, 30);
+            this.toolStripButton10.Text = "Boq Detials";
+            this.toolStripButton10.Click += new System.EventHandler(this.toolStripButton10_Click);
             // 
             // toolStripButton5
             // 
@@ -571,6 +583,74 @@ namespace ESProMeter.Views.Boq
             this.dtgBOQLine.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgBOQLine_RowEnter);
             this.dtgBOQLine.SelectionChanged += new System.EventHandler(this.dtgBOQLine_SelectionChanged);
             // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "NO";
+            this.Column9.HeaderText = "NO";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            this.Column9.Width = 60;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "ITEMNAME";
+            this.Column1.HeaderText = "ITEMNAME";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column4.DataPropertyName = "BOQITEMDESC";
+            this.Column4.HeaderText = "DESCRIPTION";
+            this.Column4.MinimumWidth = 100;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "UOMNAME";
+            this.Column5.HeaderText = "UOM";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "BOQITEMQTY";
+            this.Column6.HeaderText = "QAUNTITY";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column7.DataPropertyName = "REMARKS";
+            this.Column7.HeaderText = "REMARK";
+            this.Column7.MinimumWidth = 50;
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "BOQID";
+            this.Column8.HeaderText = "BOQID";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            // 
+            // Column10
+            // 
+            this.Column10.DataPropertyName = "BOQITEMID";
+            this.Column10.HeaderText = "BOQITEMID";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            // 
+            // Column11
+            // 
+            this.Column11.DataPropertyName = "LineSeq";
+            this.Column11.HeaderText = "SEQUENCE";
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -686,74 +766,6 @@ namespace ESProMeter.Views.Boq
             this.panel4.Size = new System.Drawing.Size(910, 258);
             this.panel4.TabIndex = 16;
             // 
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "NO";
-            this.Column9.HeaderText = "NO";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            this.Column9.Width = 60;
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "ITEMNAME";
-            this.Column1.HeaderText = "ITEMNAME";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column4.DataPropertyName = "BOQITEMDESC";
-            this.Column4.HeaderText = "DESCRIPTION";
-            this.Column4.MinimumWidth = 100;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "UOMNAME";
-            this.Column5.HeaderText = "UOM";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.DataPropertyName = "BOQITEMQTY";
-            this.Column6.HeaderText = "QAUNTITY";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column7.DataPropertyName = "REMARKS";
-            this.Column7.HeaderText = "REMARK";
-            this.Column7.MinimumWidth = 50;
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.DataPropertyName = "BOQID";
-            this.Column8.HeaderText = "BOQID";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            // 
-            // Column10
-            // 
-            this.Column10.DataPropertyName = "BOQITEMID";
-            this.Column10.HeaderText = "BOQITEMID";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            // 
-            // Column11
-            // 
-            this.Column11.DataPropertyName = "LineSeq";
-            this.Column11.HeaderText = "SEQUENCE";
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            // 
             // BOQListFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -846,5 +858,6 @@ namespace ESProMeter.Views.Boq
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
+        private System.Windows.Forms.ToolStripButton toolStripButton10;
     }
 }
