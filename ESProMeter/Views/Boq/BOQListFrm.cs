@@ -161,24 +161,6 @@ namespace ESProMeter.Views.Boq
 			}
         }
 
-		private void dtgBOQLine_CellContentClick(object sender, DataGridViewCellEventArgs e)
-		{
-
-		}
-
-		private void dtgBOQLine_SelectionChanged(object sender, EventArgs e)
-		{
-			if (dtgBOQLine.SelectedRows.Count == 0) return;
-			var selectedRow = dtgBOQLine.SelectedRows[0];
-			if (selectedRow.GetValue<int>("Column10") == 0) return;
-			var boqId = selectedRow.GetValue<long>("Column8");
-			var boqItemId = selectedRow.GetValue<int>("Column10");
-			var seq = selectedRow.GetValue<int>("Column11");
-			BOQLINEDetailFrm form = new BOQLINEDetailFrm(boqId,boqItemId, seq);
-			form.ShowDialog();
-
-        }
-
 		private void toolStripButton10_Click(object sender, EventArgs e)
 		{
             if (dtgBOQList.SelectedRows.Count > 0)
@@ -188,6 +170,18 @@ namespace ESProMeter.Views.Boq
                 BoqDetailsFrm form = new BoqDetailsFrm(id);
                 OpenChildForm(form, MainFrm.ActiveForm);
             }
+        }
+
+		private void dtgBOQLine_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+            if (dtgBOQLine.SelectedRows.Count == 0) return;
+            var selectedRow = dtgBOQLine.SelectedRows[0];
+            if (selectedRow.GetValue<int>("Column10") == 0) return;
+            var boqId = selectedRow.GetValue<long>("Column8");
+            var boqItemId = selectedRow.GetValue<int>("Column10");
+            var seq = selectedRow.GetValue<int>("Column11");
+            BOQLINEDetailFrm form = new BOQLINEDetailFrm(boqId, boqItemId, seq);
+            form.ShowDialog();
         }
 	}
 }

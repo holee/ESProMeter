@@ -35,20 +35,13 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
             this.dgvBoqItemLine = new System.Windows.Forms.DataGridView();
-            this.laborBOQItemLineRefID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.laborBOQItemLineQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ButtonColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.labourSubtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.laborUomRefID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtSubtotalBoqItem = new System.Windows.Forms.TextBox();
-            this.mbtNext = new FontAwesome.Sharp.Material.MaterialButton();
-            this.mbtCancel = new FontAwesome.Sharp.Material.MaterialButton();
             this.lblBoqID = new System.Windows.Forms.Label();
             this.lblBoqItemID = new System.Windows.Forms.Label();
+            this.lblLineSeq = new System.Windows.Forms.Label();
+            this.lblcomplete = new System.Windows.Forms.Label();
+            this.mbtNext = new FontAwesome.Sharp.Material.MaterialButton();
+            this.mbtCancel = new FontAwesome.Sharp.Material.MaterialButton();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label15 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -90,8 +83,15 @@
             this.txtOperationValue = new System.Windows.Forms.TextBox();
             this.txtOverhead = new System.Windows.Forms.TextBox();
             this.txtOperation = new System.Windows.Forms.TextBox();
-            this.lblcomplete = new System.Windows.Forms.Label();
-            this.lblLineSeq = new System.Windows.Forms.Label();
+            this.laborBOQItemLineRefID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.laborBOQItemLineQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ButtonColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labourSubtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.laborUomRefID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBoqItemLine)).BeginInit();
             this.groupBox4.SuspendLayout();
@@ -107,6 +107,10 @@
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.dgvBoqItemLine);
             this.groupBox2.Controls.Add(this.txtSubtotalBoqItem);
+            this.groupBox2.Controls.Add(this.lblBoqID);
+            this.groupBox2.Controls.Add(this.lblBoqItemID);
+            this.groupBox2.Controls.Add(this.lblLineSeq);
+            this.groupBox2.Controls.Add(this.lblcomplete);
             this.groupBox2.Location = new System.Drawing.Point(12, 13);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(718, 383);
@@ -177,101 +181,6 @@
             this.dgvBoqItemLine.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvBoqItemLine_DataError);
             this.dgvBoqItemLine.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvBoqItemLineEditingControlShowing);
             // 
-            // laborBOQItemLineRefID
-            // 
-            this.laborBOQItemLineRefID.DataPropertyName = "BOQITEMITEMLINEID";
-            this.laborBOQItemLineRefID.HeaderText = "ItemID";
-            this.laborBOQItemLineRefID.MinimumWidth = 2;
-            this.laborBOQItemLineRefID.Name = "laborBOQItemLineRefID";
-            this.laborBOQItemLineRefID.ReadOnly = true;
-            this.laborBOQItemLineRefID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.laborBOQItemLineRefID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.laborBOQItemLineRefID.Width = 2;
-            // 
-            // dataGridViewComboBoxColumn1
-            // 
-            this.dataGridViewComboBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewComboBoxColumn1.DataPropertyName = "BOQITEMITEMLINENAME";
-            this.dataGridViewComboBoxColumn1.HeaderText = "Item Name";
-            this.dataGridViewComboBoxColumn1.MinimumWidth = 100;
-            this.dataGridViewComboBoxColumn1.Name = "dataGridViewComboBoxColumn1";
-            this.dataGridViewComboBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewComboBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "BOQITEMITEMLINETYPE";
-            this.dataGridViewTextBoxColumn1.HeaderText = "ItemType";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "UOM";
-            this.dataGridViewTextBoxColumn2.HeaderText = "UOM";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // laborBOQItemLineQty
-            // 
-            this.laborBOQItemLineQty.DataPropertyName = "BOQITEMLINEQTY";
-            this.laborBOQItemLineQty.HeaderText = "Quantity";
-            this.laborBOQItemLineQty.Name = "laborBOQItemLineQty";
-            this.laborBOQItemLineQty.ReadOnly = true;
-            this.laborBOQItemLineQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.laborBOQItemLineQty.Width = 80;
-            // 
-            // ButtonColumn1
-            // 
-            this.ButtonColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ButtonColumn1.DataPropertyName = "COST";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            this.ButtonColumn1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ButtonColumn1.HeaderText = "Cost";
-            this.ButtonColumn1.Name = "ButtonColumn1";
-            this.ButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ButtonColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // labourSubtotal
-            // 
-            this.labourSubtotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.labourSubtotal.DataPropertyName = "SUBCOST";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.labourSubtotal.DefaultCellStyle = dataGridViewCellStyle3;
-            this.labourSubtotal.HeaderText = "Sub Total";
-            this.labourSubtotal.Name = "labourSubtotal";
-            this.labourSubtotal.ReadOnly = true;
-            this.labourSubtotal.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.labourSubtotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // laborUomRefID
-            // 
-            this.laborUomRefID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.laborUomRefID.DataPropertyName = "BOQITEMLINEUOMID";
-            this.laborUomRefID.HeaderText = "UomID";
-            this.laborUomRefID.MinimumWidth = 2;
-            this.laborUomRefID.Name = "laborUomRefID";
-            this.laborUomRefID.ReadOnly = true;
-            this.laborUomRefID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.laborUomRefID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.laborUomRefID.Width = 2;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "BOQITEMLINESEQ";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Order";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn3.Visible = false;
-            this.dataGridViewTextBoxColumn3.Width = 60;
-            // 
             // txtSubtotalBoqItem
             // 
             this.txtSubtotalBoqItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -282,6 +191,42 @@
             this.txtSubtotalBoqItem.TabIndex = 35;
             this.txtSubtotalBoqItem.Text = "0";
             this.txtSubtotalBoqItem.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblBoqID
+            // 
+            this.lblBoqID.AutoSize = true;
+            this.lblBoqID.Location = new System.Drawing.Point(102, 196);
+            this.lblBoqID.Name = "lblBoqID";
+            this.lblBoqID.Size = new System.Drawing.Size(13, 15);
+            this.lblBoqID.TabIndex = 38;
+            this.lblBoqID.Text = "0";
+            // 
+            // lblBoqItemID
+            // 
+            this.lblBoqItemID.AutoSize = true;
+            this.lblBoqItemID.Location = new System.Drawing.Point(399, 195);
+            this.lblBoqItemID.Name = "lblBoqItemID";
+            this.lblBoqItemID.Size = new System.Drawing.Size(13, 15);
+            this.lblBoqItemID.TabIndex = 38;
+            this.lblBoqItemID.Text = "0";
+            // 
+            // lblLineSeq
+            // 
+            this.lblLineSeq.AutoSize = true;
+            this.lblLineSeq.Location = new System.Drawing.Point(638, 195);
+            this.lblLineSeq.Name = "lblLineSeq";
+            this.lblLineSeq.Size = new System.Drawing.Size(13, 15);
+            this.lblLineSeq.TabIndex = 38;
+            this.lblLineSeq.Text = "0";
+            // 
+            // lblcomplete
+            // 
+            this.lblcomplete.AutoSize = true;
+            this.lblcomplete.Location = new System.Drawing.Point(546, 196);
+            this.lblcomplete.Name = "lblcomplete";
+            this.lblcomplete.Size = new System.Drawing.Size(13, 15);
+            this.lblcomplete.TabIndex = 38;
+            this.lblcomplete.Text = "0";
             // 
             // mbtNext
             // 
@@ -321,24 +266,6 @@
             this.mbtCancel.Text = "Cancel";
             this.mbtCancel.UseVisualStyleBackColor = false;
             this.mbtCancel.Click += new System.EventHandler(this.mbtCancel_Click);
-            // 
-            // lblBoqID
-            // 
-            this.lblBoqID.AutoSize = true;
-            this.lblBoqID.Location = new System.Drawing.Point(156, 412);
-            this.lblBoqID.Name = "lblBoqID";
-            this.lblBoqID.Size = new System.Drawing.Size(13, 15);
-            this.lblBoqID.TabIndex = 38;
-            this.lblBoqID.Text = "0";
-            // 
-            // lblBoqItemID
-            // 
-            this.lblBoqItemID.AutoSize = true;
-            this.lblBoqItemID.Location = new System.Drawing.Point(453, 411);
-            this.lblBoqItemID.Name = "lblBoqItemID";
-            this.lblBoqItemID.Size = new System.Drawing.Size(13, 15);
-            this.lblBoqItemID.TabIndex = 38;
-            this.lblBoqItemID.Text = "0";
             // 
             // groupBox4
             // 
@@ -768,23 +695,99 @@
             this.txtOperation.Text = "0";
             this.txtOperation.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // lblcomplete
+            // laborBOQItemLineRefID
             // 
-            this.lblcomplete.AutoSize = true;
-            this.lblcomplete.Location = new System.Drawing.Point(600, 412);
-            this.lblcomplete.Name = "lblcomplete";
-            this.lblcomplete.Size = new System.Drawing.Size(13, 15);
-            this.lblcomplete.TabIndex = 38;
-            this.lblcomplete.Text = "0";
+            this.laborBOQItemLineRefID.DataPropertyName = "BOQITEMITEMLINEID";
+            this.laborBOQItemLineRefID.HeaderText = "ItemID";
+            this.laborBOQItemLineRefID.MinimumWidth = 2;
+            this.laborBOQItemLineRefID.Name = "laborBOQItemLineRefID";
+            this.laborBOQItemLineRefID.ReadOnly = true;
+            this.laborBOQItemLineRefID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.laborBOQItemLineRefID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.laborBOQItemLineRefID.Width = 2;
             // 
-            // lblLineSeq
+            // dataGridViewComboBoxColumn1
             // 
-            this.lblLineSeq.AutoSize = true;
-            this.lblLineSeq.Location = new System.Drawing.Point(692, 411);
-            this.lblLineSeq.Name = "lblLineSeq";
-            this.lblLineSeq.Size = new System.Drawing.Size(13, 15);
-            this.lblLineSeq.TabIndex = 38;
-            this.lblLineSeq.Text = "0";
+            this.dataGridViewComboBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewComboBoxColumn1.DataPropertyName = "BOQITEMITEMLINENAME";
+            this.dataGridViewComboBoxColumn1.HeaderText = "Item Name";
+            this.dataGridViewComboBoxColumn1.MinimumWidth = 100;
+            this.dataGridViewComboBoxColumn1.Name = "dataGridViewComboBoxColumn1";
+            this.dataGridViewComboBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewComboBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "BOQITEMITEMLINETYPE";
+            this.dataGridViewTextBoxColumn1.HeaderText = "ItemType";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "UOM";
+            this.dataGridViewTextBoxColumn2.HeaderText = "UOM";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // laborBOQItemLineQty
+            // 
+            this.laborBOQItemLineQty.DataPropertyName = "BOQITEMLINEQTY";
+            this.laborBOQItemLineQty.HeaderText = "Quantity";
+            this.laborBOQItemLineQty.Name = "laborBOQItemLineQty";
+            this.laborBOQItemLineQty.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.laborBOQItemLineQty.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ButtonColumn1
+            // 
+            this.ButtonColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ButtonColumn1.DataPropertyName = "COST";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            this.ButtonColumn1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ButtonColumn1.HeaderText = "Cost";
+            this.ButtonColumn1.Name = "ButtonColumn1";
+            this.ButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ButtonColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // labourSubtotal
+            // 
+            this.labourSubtotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.labourSubtotal.DataPropertyName = "SUBCOST";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.labourSubtotal.DefaultCellStyle = dataGridViewCellStyle3;
+            this.labourSubtotal.HeaderText = "Sub Total";
+            this.labourSubtotal.Name = "labourSubtotal";
+            this.labourSubtotal.ReadOnly = true;
+            this.labourSubtotal.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.labourSubtotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // laborUomRefID
+            // 
+            this.laborUomRefID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.laborUomRefID.DataPropertyName = "BOQITEMLINEUOMID";
+            this.laborUomRefID.HeaderText = "UomID";
+            this.laborUomRefID.MinimumWidth = 2;
+            this.laborUomRefID.Name = "laborUomRefID";
+            this.laborUomRefID.ReadOnly = true;
+            this.laborUomRefID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.laborUomRefID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.laborUomRefID.Width = 2;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "BOQITEMLINESEQ";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Order";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn3.Visible = false;
+            this.dataGridViewTextBoxColumn3.Width = 60;
             // 
             // BOQLINEFrm
             // 
@@ -795,10 +798,6 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.lblBoqID);
-            this.Controls.Add(this.lblLineSeq);
-            this.Controls.Add(this.lblcomplete);
-            this.Controls.Add(this.lblBoqItemID);
             this.Controls.Add(this.mbtNext);
             this.Controls.Add(this.mbtCancel);
             this.Name = "BOQLINEFrm";
@@ -814,7 +813,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
