@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\KhDev\\New\\ESProMeter\\DAL\\DAL.csproj": {}
+    "D:\\KhDev\\New\\ESProMeter2\\DAL\\DAL.csproj": {}
   },
   "projects": {
-    "D:\\KhDev\\New\\ESProMeter\\DAL\\DAL.csproj": {
+    "D:\\KhDev\\New\\ESProMeter2\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\KhDev\\New\\ESProMeter\\DAL\\DAL.csproj",
+        "projectUniqueName": "D:\\KhDev\\New\\ESProMeter2\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "D:\\KhDev\\New\\ESProMeter\\DAL\\DAL.csproj",
+        "projectPath": "D:\\KhDev\\New\\ESProMeter2\\DAL\\DAL.csproj",
         "packagesPath": "C:\\Users\\Covid19\\.nuget\\packages\\",
-        "outputPath": "D:\\KhDev\\New\\ESProMeter\\DAL\\obj\\",
+        "outputPath": "D:\\KhDev\\New\\ESProMeter2\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
