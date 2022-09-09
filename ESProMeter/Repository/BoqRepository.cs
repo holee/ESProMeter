@@ -308,8 +308,8 @@ namespace ESProMeter.Repository
                                 @BOQITEMID = BoqItemRefId,
                                 @LineSeq =Seq,
                             })>0;
-                        .UseProcedure("[TBOQLINETemp_sp_INSERT]")
-                            .InsertFromTable("TBOQLINE", model, "TBOQLINETemp_udt_INSERT");
+                        //.UseProcedure("[TBOQLINETemp_sp_INSERT]")
+                        //    .InsertFromTable("TBOQLINE", model, "TBOQLINETemp_udt_INSERT");
         }
         public void BoqLineUpdate(DataTable model) 
         {
