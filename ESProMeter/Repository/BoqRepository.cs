@@ -1,11 +1,11 @@
-﻿using DocumentFormat.OpenXml.Spreadsheet;
-using ESProMeter.Extensions;
+﻿using ESProMeter.Extensions;
 using ESProMeter.IVews;
 using ESProMeter.IViews;
 using ESProMeter.Models;
 using ESProMeter.Services;
 using System;
 using System.Data;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ESProMeter.Repository
 {
@@ -196,11 +196,118 @@ namespace ESProMeter.Repository
         /// BOQLINE
         /// </summary>
         /// <param name="model"></param>
+        /// 
+
+        public bool CreateSection(string no, long boqId, int order, string section)
+        {
+            return AppService.SqlGetInstance
+                        .UseProcedure("[TBOQLINETEMP_sp_INSERT_SECTION]")
+                            .InsertOrUpdate<dynamic>(new
+                            {
+                                @NO = no,
+                                @BOQID = boqId,
+                                @ORDER = order,
+                                @SECTIONNAME = section
+                            })>0;
+        }
+        public bool DeleteSection(long boqId, int order)
+        {
+            return AppService.SqlGetInstance
+                        .UseProcedure("[TBOQLINETEMP_sp_DELETE_SECTION]")
+                            .InsertOrUpdate<dynamic>(new
+                            {
+                                @BOQID = boqId,
+                                @ORDER = order,
+                            }) > 0;
+        }
         public void BoqLineCreate(DataTable model)
         {
             AppService.SqlGetInstance
                         .UseProcedure("[TBOQLINE_sp_INSERT]")
                             .InsertFromTable("TBOQLINE", model, "TBOQLINE_udt_INSERT");
+        }
+        public void BoqLineTempCreate(DataTable model)
+        {
+            AppService.SqlGetInstance
+                        .UseProcedure("[TBOQLINETEMP_sp_INSERT]")
+                            .InsertFromTable("TBOQLINE", model, "TBOQLINETEMP_udt_INSERT");
+        }
+        public void BoqLineTempChanged(long BoqId,long BoqItemRefId,string no,string description,
+              string remark,decimal qty=1,int order=1,int iscompleted=0)
+        {
+            AppService.SqlGetInstance
+                        .UseProcedure("[TBOQLINETemp_sp_CHANGE]")
+                            .InsertOrUpdate<dynamic>(new
+                            {
+                                @BOID=BoqId,
+                                @BOQITEMRefID=BoqItemRefId,
+                                @NO=no,
+                                @REMARK=remark,
+                                @BOQITEMDESC=description,
+                                @QTY=qty,
+                                @ISCOMPLETE=iscompleted,
+                                @ORDER=order
+                            });
+        }
+
+        public bool Migrate(long BoqId)
+        {
+            return AppService.SqlGetInstance
+                        .UseProcedure("[TBOQLINE_sp_MIGRATE]")
+                            .InsertOrUpdate<dynamic>(new
+                            {
+                                @BOQID = BoqId
+                            })>0;
+        }
+        public void BoqLineChangedOrder(long BoqId, long BoqItemRefId,int order = 1,int newOrder=1)
+        {
+            AppService.SqlGetInstance
+                        .UseProcedure("[TBOQLINE_sp_CHANGEORDER]")
+                            .InsertOrUpdate<dynamic>(new
+                            {
+                                @BOID = BoqId,
+                                @BOQITEMRefID = BoqItemRefId,
+                                @ORDER = order,
+                                @NEWORDER= newOrder
+                            });
+        }
+        public bool BoqTempDelete(long BoqId)
+        {
+            return AppService.SqlGetInstance
+                       .UseProcedure("[TBOQLINETEMP_sp_REMOVE]")
+                           .InsertOrUpdate<dynamic>(new
+                           {
+                               @BOQID = BoqId
+                           }) > 0;
+        }
+        
+
+        public bool BoqLineDetailChangePrice(long boqId,long boqItemId,long boqItemLineId,int order,decimal price)
+        {
+            return AppService.SqlGetInstance
+                                .UseProcedure("TBOQLINEDETAIL_sp_UPDATEPRICE")
+                                .InsertOrUpdate<dynamic>(new
+                                {
+                                    @BOID=boqId,
+                                    @BOQITEMRefID= boqItemId,
+                                    @BOQITEMLINEID= boqItemLineId,
+                                    @ORDER=order,
+                                    @NEWPRICE=price
+                                })>0;
+
+
+        }
+        //Remove boqline for update
+        public bool BoqLineTempDelete(long BoqId, long BoqItemRefId,int Seq,int iscomplete=0)
+        {
+            return AppService.SqlGetInstance
+                        .UseProcedure("[TBOQLINETemp_sp_DELETE]")
+                            .Delete<dynamic>(new
+                            {
+                                @BOQID = BoqId,
+                                @BOQITEMID = BoqItemRefId,
+                                @LineSeq =Seq,
+                            })>0;
         }
         public void BoqLineUpdate(DataTable model) 
         {
@@ -217,13 +324,13 @@ namespace ESProMeter.Repository
                                     @BODREFID = id
                                 }, out table);
         }
-        public void GetAdditinalCost(out DataTable table)
+        public void AdditinalCostGet(out DataTable table)
         {
             AppService.SqlGetInstance
                             .UseProcedure("[SETTING_sp_SELECT]")
                                 .SelectAsTable<dynamic>(null,out table);
         }
-        public void GetAdditinalCost(long boqId,long boqItemId,out ADDITIONALCOST model)
+        public void AdditinalCostGet(long boqId,long boqItemId,out ADDITIONALCOST model)
         {
             model = new();
             AppService.SqlGetInstance
@@ -234,7 +341,7 @@ namespace ESProMeter.Repository
                                     @BOQITEMRefID= boqItemId
                                 }, out model);
         }
-        public void GetAdditinalCost(long boqId, out ADDITIONALCOST model)
+        public void tAdditinalCostGet(long boqId, out ADDITIONALCOST model)
         {
             model = new();
             AppService.SqlGetInstance
@@ -246,6 +353,27 @@ namespace ESProMeter.Repository
                                     @ID = boqId,
                                 }, out model);
         }
+
+        public bool AdditinalCostBoqLineUpate(long boqId,long boqItemLineId,int seq,int complete, IADDITIONALCOSTRATE model)
+        {
+            return AppService.SqlGetInstance
+                            .UseProcedure("[TBOQLINE_sp_ADDITIONALCOST_UPDATE]")
+                                .InsertOrUpdate<dynamic>(new
+                                {
+                                    @BODREFID=boqId,
+                                    @BOQITEMRefID= boqItemLineId,
+                                    @SEQ=seq,
+                                    @COMPLETED=complete,
+                                    model.LOSSOFEFFECIENCYRATE,
+                                    model.OVERHEADRATE,
+                                    model.OPERATIONRATE,
+                                    model.SAFETYRATE,
+                                    model.TRANSPORTATIONRATE,
+                                    model.MARGINRATE,
+                                    model.INFlATIONRATE
+                                })>0;
+        }
+
     }
 }
 

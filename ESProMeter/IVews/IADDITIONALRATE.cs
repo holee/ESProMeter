@@ -8,12 +8,12 @@ namespace ESProMeter.IVews
 {
     public interface IADDITIONALCOSTRATE
     {
-        public decimal? LOSSOFEFFECIENCYRATE { get; set; }
-        public decimal? OPERATIONRATE { get; set; }
-        public decimal? OVERHEADRATE { get; set; }
-        public decimal? SAFETYRATE { get; set; }
-        public decimal? TRANSPORTATIONRATE { get; set; }
-        public decimal? MARGINRATE { get; set; }
-        public decimal? INFlATIONRATE { get; set; }
+        public decimal LOSSOFEFFECIENCYRATE { get; set; }
+        public decimal OPERATIONRATE { get; set; }
+        public decimal OVERHEADRATE { get; set; } 
+        public decimal SAFETYRATE { get; set; }
+        public decimal TRANSPORTATIONRATE { get; set; }
+        public decimal MARGINRATE { get; set; } 
+        public decimal INFlATIONRATE { get; set; } 
     }
 }

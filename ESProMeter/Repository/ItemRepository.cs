@@ -404,6 +404,44 @@ namespace ESProMeter.Repository
             }
 
         }
+
+        public void BoqItemLineGetByBOQID(long itemID,int seq,out DataTable table)
+        {
+            try
+            {
+                table = AppService.SqlGetInstance.UseProcedure("BOQITEMLINEDETAIL_sp_SELECT_BY_ID")
+                        .SelectAsTable<dynamic>(new
+                        {
+                            @BOQITEMID = itemID,
+                            @SEQ=seq
+                        });
+            }
+            catch
+            {
+                throw;
+            }
+
+        }
+
+        public void BoqItemLineGetByBOQID(long boqId,long boqItemId, int seq, out DataTable table)
+        {
+            try
+            {
+                table = AppService.SqlGetInstance.UseProcedure("BOQITEMLINEDETAIL_sp_SELECT_BYBOQID")
+                        .SelectAsTable<dynamic>(new
+                        {
+                            @BOQID=boqId,
+                            @BOQITEMID = boqItemId,
+                            @SEQ = seq
+                        });
+            }
+            catch
+            {
+                throw;
+            }
+
+        }
+
         public void BoqItemLineGetByItemID(long boq_id,long itemID, string ItemTypeName, out DataTable table)
         {
             try

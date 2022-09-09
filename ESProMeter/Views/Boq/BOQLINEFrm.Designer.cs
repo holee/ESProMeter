@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
             this.dgvBoqItemLine = new System.Windows.Forms.DataGridView();
@@ -90,6 +90,8 @@
             this.txtOperationValue = new System.Windows.Forms.TextBox();
             this.txtOverhead = new System.Windows.Forms.TextBox();
             this.txtOperation = new System.Windows.Forms.TextBox();
+            this.lblcomplete = new System.Windows.Forms.Label();
+            this.lblLineSeq = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBoqItemLine)).BeginInit();
             this.groupBox4.SuspendLayout();
@@ -131,14 +133,14 @@
             this.dgvBoqItemLine.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBoqItemLine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBoqItemLine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvBoqItemLine.ColumnHeadersHeight = 25;
             this.dgvBoqItemLine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvBoqItemLine.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -151,14 +153,14 @@
             this.labourSubtotal,
             this.laborUomRefID,
             this.dataGridViewTextBoxColumn3});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvBoqItemLine.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvBoqItemLine.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvBoqItemLine.EnableHeadersVisualStyles = false;
             this.dgvBoqItemLine.Location = new System.Drawing.Point(13, 26);
             this.dgvBoqItemLine.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -167,14 +169,17 @@
             this.dgvBoqItemLine.RowHeadersVisible = false;
             this.dgvBoqItemLine.RowTemplate.Height = 25;
             this.dgvBoqItemLine.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvBoqItemLine.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvBoqItemLine.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvBoqItemLine.Size = new System.Drawing.Size(698, 322);
             this.dgvBoqItemLine.TabIndex = 1;
-            this.dgvBoqItemLine.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvBoqItemLine_CellFormatting);
+            this.dgvBoqItemLine.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBoqItemLineCellEndEdit);
+            this.dgvBoqItemLine.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvBoqItemLineCellFormatting);
+            this.dgvBoqItemLine.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvBoqItemLine_DataError);
+            this.dgvBoqItemLine.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvBoqItemLineEditingControlShowing);
             // 
             // laborBOQItemLineRefID
             // 
-            this.laborBOQItemLineRefID.DataPropertyName = "BOQITEMLINEID";
+            this.laborBOQItemLineRefID.DataPropertyName = "BOQITEMITEMLINEID";
             this.laborBOQItemLineRefID.HeaderText = "ItemID";
             this.laborBOQItemLineRefID.MinimumWidth = 2;
             this.laborBOQItemLineRefID.Name = "laborBOQItemLineRefID";
@@ -221,15 +226,14 @@
             // 
             this.ButtonColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.ButtonColumn1.DataPropertyName = "COST";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            this.ButtonColumn1.DefaultCellStyle = dataGridViewCellStyle6;
-            this.ButtonColumn1.HeaderText = "Unit Cost";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            this.ButtonColumn1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ButtonColumn1.HeaderText = "Cost";
             this.ButtonColumn1.Name = "ButtonColumn1";
-            this.ButtonColumn1.ReadOnly = true;
             this.ButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ButtonColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
@@ -237,8 +241,8 @@
             // 
             this.labourSubtotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.labourSubtotal.DataPropertyName = "SUBCOST";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.labourSubtotal.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.labourSubtotal.DefaultCellStyle = dataGridViewCellStyle3;
             this.labourSubtotal.HeaderText = "Sub Total";
             this.labourSubtotal.Name = "labourSubtotal";
             this.labourSubtotal.ReadOnly = true;
@@ -298,7 +302,7 @@
             this.mbtNext.TabIndex = 35;
             this.mbtNext.Text = "Change";
             this.mbtNext.UseVisualStyleBackColor = false;
-            this.mbtNext.Click += new System.EventHandler(this.mbtNext_Click);
+            this.mbtNext.Click += new System.EventHandler(this.AcceptChangeClick);
             // 
             // mbtCancel
             // 
@@ -321,7 +325,7 @@
             // lblBoqID
             // 
             this.lblBoqID.AutoSize = true;
-            this.lblBoqID.Location = new System.Drawing.Point(433, 401);
+            this.lblBoqID.Location = new System.Drawing.Point(156, 412);
             this.lblBoqID.Name = "lblBoqID";
             this.lblBoqID.Size = new System.Drawing.Size(13, 15);
             this.lblBoqID.TabIndex = 38;
@@ -330,7 +334,7 @@
             // lblBoqItemID
             // 
             this.lblBoqItemID.AutoSize = true;
-            this.lblBoqItemID.Location = new System.Drawing.Point(452, 399);
+            this.lblBoqItemID.Location = new System.Drawing.Point(453, 411);
             this.lblBoqItemID.Name = "lblBoqItemID";
             this.lblBoqItemID.Size = new System.Drawing.Size(13, 15);
             this.lblBoqItemID.TabIndex = 38;
@@ -764,6 +768,24 @@
             this.txtOperation.Text = "0";
             this.txtOperation.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // lblcomplete
+            // 
+            this.lblcomplete.AutoSize = true;
+            this.lblcomplete.Location = new System.Drawing.Point(600, 412);
+            this.lblcomplete.Name = "lblcomplete";
+            this.lblcomplete.Size = new System.Drawing.Size(13, 15);
+            this.lblcomplete.TabIndex = 38;
+            this.lblcomplete.Text = "0";
+            // 
+            // lblLineSeq
+            // 
+            this.lblLineSeq.AutoSize = true;
+            this.lblLineSeq.Location = new System.Drawing.Point(692, 411);
+            this.lblLineSeq.Name = "lblLineSeq";
+            this.lblLineSeq.Size = new System.Drawing.Size(13, 15);
+            this.lblLineSeq.TabIndex = 38;
+            this.lblLineSeq.Text = "0";
+            // 
             // BOQLINEFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -774,6 +796,8 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.lblBoqID);
+            this.Controls.Add(this.lblLineSeq);
+            this.Controls.Add(this.lblcomplete);
             this.Controls.Add(this.lblBoqItemID);
             this.Controls.Add(this.mbtNext);
             this.Controls.Add(this.mbtCancel);
@@ -844,6 +868,8 @@
         private System.Windows.Forms.TextBox txtOperationValue;
         private System.Windows.Forms.TextBox txtOverhead;
         private System.Windows.Forms.TextBox txtOperation;
+        private System.Windows.Forms.Label lblcomplete;
+        private System.Windows.Forms.Label lblLineSeq;
         private System.Windows.Forms.DataGridViewTextBoxColumn laborBOQItemLineRefID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewComboBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;

@@ -150,6 +150,10 @@ namespace ESProMeter.Views.Items
                 cmbType.SelectedIndex = 3;
                 cmbType.Enabled = false;
                 btnSave.Text = "Save && Close";
+                btnSave.Click += (s, e) =>
+                {
+                    ButtonCreateOrUpdateClick(s, e, ActionType.CREATE);
+                };
                 cmbType.Enabled = false;
                 pnlSearch.SendToBack();
                 pnlSearch.Hide();
