@@ -78,6 +78,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Update="Views\Boq\BOQLINEDetailFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Boq\BoqDetailsFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Views\Item\AddItemFrm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -3,13 +3,13 @@ namespace ESProMeter.Models
 {
     public class ADDITIONALCOST:IADDITIONALCOSTRATE,IADDITIONALCOST
     {
-        public decimal? LOSSOFEFFECIENCYRATE { get; set; } = 0M;
-        public decimal? OPERATIONRATE { get; set; } = 0M;
-        public decimal? OVERHEADRATE { get; set; } = 0M;
-        public decimal? SAFETYRATE { get; set; } = 0M;
-        public decimal? TRANSPORTATIONRATE { get; set; } = 0M;
-        public decimal? MARGINRATE { get; set; } = 0M;
-        public decimal? INFlATIONRATE { get; set; } = 0M;
+        public decimal LOSSOFEFFECIENCYRATE { get; set; } = 0M;
+        public decimal OPERATIONRATE { get; set; } = 0M;
+        public decimal OVERHEADRATE { get; set; } = 0M;
+        public decimal SAFETYRATE { get; set; } = 0M;
+        public decimal TRANSPORTATIONRATE { get; set; } = 0M;
+        public decimal MARGINRATE { get; set; } = 0M;
+        public decimal INFlATIONRATE { get; set; } = 0M;
         public decimal? LOSSOFEFFECIENCY { get; set; } = 0M;
         public decimal? OPERATION { get; set; } = 0M;
         public decimal? OVERHEAD { get; set; } = 0M;

@@ -48,7 +48,7 @@ namespace ESProMeter.Views.Boq
         private void toolStripButton1_Click(object sender, EventArgs e)
 		{
             CreateBoQ_Step1_Frm form = new Views.Boq.CreateBoQ_Step1_Frm();
-            form.ShowDialog(this);
+            form.ShowDialog();
         }
 
 		private void toolStripButton2_Click(object sender, EventArgs e)
@@ -119,8 +119,8 @@ namespace ESProMeter.Views.Boq
 			{
 				if (item.GetText("Column1").Equals(string.Empty))
 				{
-					item.DefaultCellStyle.BackColor = Color.YellowGreen;
-                    item.DefaultCellStyle.ForeColor = Color.White;
+					item.DefaultCellStyle.BackColor = Color.Yellow;
+                    item.DefaultCellStyle.ForeColor = Color.Black;
                 }
 			}
         }
@@ -141,5 +141,53 @@ namespace ESProMeter.Views.Boq
 				formRpt.Show();
 			}
 		}
+
+		private void BOQListFrm_Activated(object sender, EventArgs e)
+		{
+			
+		}
+
+		private void dtgBOQLine_RowEnter(object sender, DataGridViewCellEventArgs e)
+		{
+			if (dtgBOQLine.SelectedRows.Count > 0)
+			{
+				var item = dtgBOQLine.SelectedRows[0].GetValue<int>("Column10");
+
+				if (item==0)
+				{
+					dtgBOQLine.Rows[e.RowIndex].DefaultCellStyle.SelectionBackColor = Color.Yellow;
+                    dtgBOQLine.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+				}
+			}
+        }
+
+		private void dtgBOQLine_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		{
+
+		}
+
+		private void dtgBOQLine_SelectionChanged(object sender, EventArgs e)
+		{
+			if (dtgBOQLine.SelectedRows.Count == 0) return;
+			var selectedRow = dtgBOQLine.SelectedRows[0];
+			if (selectedRow.GetValue<int>("Column10") == 0) return;
+			var boqId = selectedRow.GetValue<long>("Column8");
+			var boqItemId = selectedRow.GetValue<int>("Column10");
+			var seq = selectedRow.GetValue<int>("Column11");
+			BOQLINEDetailFrm form = new BOQLINEDetailFrm(boqId,boqItemId, seq);
+			form.ShowDialog();
+
+        }
+
+		private void toolStripButton10_Click(object sender, EventArgs e)
+		{
+            if (dtgBOQList.SelectedRows.Count > 0)
+            {
+                var selectedRow = dtgBOQList.SelectedRows[0];
+                var id = selectedRow.GetValue<long>("ID");
+                BoqDetailsFrm form = new BoqDetailsFrm(id);
+                OpenChildForm(form, MainFrm.ActiveForm);
+            }
+        }
 	}
 }

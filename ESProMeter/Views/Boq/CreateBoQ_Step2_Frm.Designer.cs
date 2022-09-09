@@ -42,6 +42,7 @@ namespace ESProMeter.Views.Boq
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateBoQ_Step2_Frm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.mbtAddSite = new FontAwesome.Sharp.Material.MaterialButton();
@@ -78,6 +79,7 @@ namespace ESProMeter.Views.Boq
             this.TRANSPORTATIONRATE1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MARGINRATE1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.INFlATIONRATE1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.COMPLETED = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ACTION = new System.Windows.Forms.DataGridViewImageColumn();
             this.REMOVE = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnSaveAndNew = new FontAwesome.Sharp.Material.MaterialButton();
@@ -317,6 +319,7 @@ namespace ESProMeter.Views.Boq
             this.TRANSPORTATIONRATE1,
             this.MARGINRATE1,
             this.INFlATIONRATE1,
+            this.COMPLETED,
             this.ACTION,
             this.REMOVE});
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -345,20 +348,21 @@ namespace ESProMeter.Views.Boq
             this.dgvBoqList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvBoqList.Size = new System.Drawing.Size(1051, 298);
             this.dgvBoqList.TabIndex = 37;
-            this.dgvBoqList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBoqList_CellContentClick);
+            this.dgvBoqList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBoqListCellContentClick);
             this.dgvBoqList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBoqList_CellEndEdit);
-            this.dgvBoqList.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBoqList_CellEnter);
+            this.dgvBoqList.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBoqListCellEnter);
             this.dgvBoqList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvBoqListCellFormatting);
-            this.dgvBoqList.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvBoqList_CellMouseDown);
-            this.dgvBoqList.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvBoqList_EditingControlShowing);
-            this.dgvBoqList.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvBoqList_RowsAdded);
-            this.dgvBoqList.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvBoqList_RowsRemoved);
-            this.dgvBoqList.SelectionChanged += new System.EventHandler(this.dgvBoqList_SelectionChanged);
-            this.dgvBoqList.DragDrop += new System.Windows.Forms.DragEventHandler(this.dataGridView1_DragDrop);
-            this.dgvBoqList.DragOver += new System.Windows.Forms.DragEventHandler(this.dataGridView1_DragOver);
-            this.dgvBoqList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDown);
-            this.dgvBoqList.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseMove);
-            this.dgvBoqList.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dgvBoqList_MouseUp);
+            this.dgvBoqList.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvBoqListCellMouseDown);
+            this.dgvBoqList.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvBoqListEditingControlShowing);
+            this.dgvBoqList.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBoqList_RowEnter);
+            this.dgvBoqList.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvBoqListRowsAdded);
+            this.dgvBoqList.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvBoqListRowsRemoved);
+            this.dgvBoqList.SelectionChanged += new System.EventHandler(this.dgvBoqListSelectionChanged);
+            this.dgvBoqList.DragDrop += new System.Windows.Forms.DragEventHandler(this.dataGridViewDragDrop);
+            this.dgvBoqList.DragOver += new System.Windows.Forms.DragEventHandler(this.dataGridViewDragOver);
+            this.dgvBoqList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dataGridViewMouseDown);
+            this.dgvBoqList.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dataGridViewMouseMove);
+            this.dgvBoqList.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dgvBoqListMouseUp);
             // 
             // NO
             // 
@@ -393,7 +397,6 @@ namespace ESProMeter.Views.Boq
             this.BOQITEMID.ReadOnly = true;
             this.BOQITEMID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.BOQITEMID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.BOQITEMID.Visible = false;
             this.BOQITEMID.Width = 50;
             // 
             // itemname
@@ -422,6 +425,7 @@ namespace ESProMeter.Views.Boq
             this.BOQITEMQTY.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.BOQITEMQTY.DataPropertyName = "BOQITEMQTY";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N3";
             this.BOQITEMQTY.DefaultCellStyle = dataGridViewCellStyle3;
             this.BOQITEMQTY.FillWeight = 8F;
             this.BOQITEMQTY.HeaderText = "QUANTITY";
@@ -466,7 +470,6 @@ namespace ESProMeter.Views.Boq
             this.BOQCOST.HeaderText = "BOQCOST";
             this.BOQCOST.Name = "BOQCOST";
             this.BOQCOST.ReadOnly = true;
-            this.BOQCOST.Visible = false;
             // 
             // LineSeq
             // 
@@ -542,6 +545,12 @@ namespace ESProMeter.Views.Boq
             this.INFlATIONRATE1.ReadOnly = true;
             this.INFlATIONRATE1.Visible = false;
             this.INFlATIONRATE1.Width = 50;
+            // 
+            // COMPLETED
+            // 
+            this.COMPLETED.HeaderText = "COMPLETED";
+            this.COMPLETED.Name = "COMPLETED";
+            this.COMPLETED.Width = 40;
             // 
             // ACTION
             // 
@@ -763,6 +772,14 @@ namespace ESProMeter.Views.Boq
             this.UomIDColumn1,
             this.Column2,
             this.Column1});
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvItem.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgvItem.EnableHeadersVisualStyles = false;
             this.dgvItem.Location = new System.Drawing.Point(0, 51);
             this.dgvItem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -778,7 +795,7 @@ namespace ESProMeter.Views.Boq
             this.dgvItem.Size = new System.Drawing.Size(585, 198);
             this.dgvItem.TabIndex = 31;
             this.dgvItem.VirtualMode = true;
-            this.dgvItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItem_CellClick);
+            this.dgvItem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItemCellClick);
             // 
             // ItemID
             // 
@@ -963,6 +980,7 @@ namespace ESProMeter.Views.Boq
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lblEDSEQ;
         private TextBox txtTermsCondition;
+        private LinkLabel linkLabel1;
         private DataGridViewTextBoxColumn NO;
         private DataGridViewTextBoxColumn BOQID;
         private DataGridViewTextBoxColumn BOQITEMID;
@@ -981,8 +999,8 @@ namespace ESProMeter.Views.Boq
         private DataGridViewTextBoxColumn TRANSPORTATIONRATE1;
         private DataGridViewTextBoxColumn MARGINRATE1;
         private DataGridViewTextBoxColumn INFlATIONRATE1;
+        private DataGridViewTextBoxColumn COMPLETED;
         private DataGridViewImageColumn ACTION;
         private DataGridViewButtonColumn REMOVE;
-        private LinkLabel linkLabel1;
     }
 }
