@@ -112,7 +112,7 @@
             this.groupBox2.Size = new System.Drawing.Size(718, 383);
             this.groupBox2.TabIndex = 41;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "BOQ ITEM LINE";
+            this.groupBox2.Text = "PRICE OF BOQ ITEM LINE PER UNIT";
             // 
             // label12
             // 

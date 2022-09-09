@@ -198,6 +198,7 @@
 			this.lblCompanyID.Size = new System.Drawing.Size(16, 17);
 			this.lblCompanyID.TabIndex = 19;
 			this.lblCompanyID.Text = "0";
+			this.lblCompanyID.Visible = false;
 			// 
 			// txtProvince
 			// 
@@ -379,6 +380,7 @@
 			this.lblcomEditSequese.Size = new System.Drawing.Size(16, 17);
 			this.lblcomEditSequese.TabIndex = 7;
 			this.lblcomEditSequese.Text = "0";
+			this.lblcomEditSequese.Visible = false;
 			// 
 			// lblContactAddressId
 			// 
@@ -388,6 +390,7 @@
 			this.lblContactAddressId.Size = new System.Drawing.Size(16, 17);
 			this.lblContactAddressId.TabIndex = 7;
 			this.lblContactAddressId.Text = "0";
+			this.lblContactAddressId.Visible = false;
 			// 
 			// pictureBox1
 			// 
@@ -520,6 +523,7 @@
 			this.legalEditSequense.Size = new System.Drawing.Size(16, 17);
 			this.legalEditSequense.TabIndex = 17;
 			this.legalEditSequense.Text = "0";
+			this.legalEditSequense.Visible = false;
 			// 
 			// lblLegalAddressId
 			// 
@@ -529,6 +533,7 @@
 			this.lblLegalAddressId.Size = new System.Drawing.Size(16, 17);
 			this.lblLegalAddressId.TabIndex = 17;
 			this.lblLegalAddressId.Text = "0";
+			this.lblLegalAddressId.Visible = false;
 			// 
 			// txtLegalAddress
 			// 

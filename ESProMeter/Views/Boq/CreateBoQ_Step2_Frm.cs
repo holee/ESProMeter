@@ -39,6 +39,7 @@ namespace ESProMeter.Views.Boq
         private decimal _inflation;
         private DataTable TempTable;
         private List<object> _obj=new List<object>();
+        private bool isCompleted=false;
         #endregion
         #region properties
         public long ID

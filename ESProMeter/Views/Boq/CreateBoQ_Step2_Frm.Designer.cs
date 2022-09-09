@@ -470,7 +470,6 @@ namespace ESProMeter.Views.Boq
             this.BOQCOST.HeaderText = "BOQCOST";
             this.BOQCOST.Name = "BOQCOST";
             this.BOQCOST.ReadOnly = true;
-            this.BOQCOST.Visible = false;
             // 
             // LineSeq
             // 
