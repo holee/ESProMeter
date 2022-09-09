@@ -466,7 +466,6 @@ namespace ESProMeter.Views.Boq
             this.BOQCOST.HeaderText = "BOQCOST";
             this.BOQCOST.Name = "BOQCOST";
             this.BOQCOST.ReadOnly = true;
-            this.BOQCOST.Visible = false;
             // 
             // LineSeq
             // 
@@ -963,6 +962,7 @@ namespace ESProMeter.Views.Boq
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lblEDSEQ;
         private TextBox txtTermsCondition;
+        private LinkLabel linkLabel1;
         private DataGridViewTextBoxColumn NO;
         private DataGridViewTextBoxColumn BOQID;
         private DataGridViewTextBoxColumn BOQITEMID;
@@ -983,6 +983,5 @@ namespace ESProMeter.Views.Boq
         private DataGridViewTextBoxColumn INFlATIONRATE1;
         private DataGridViewImageColumn ACTION;
         private DataGridViewButtonColumn REMOVE;
-        private LinkLabel linkLabel1;
     }
 }

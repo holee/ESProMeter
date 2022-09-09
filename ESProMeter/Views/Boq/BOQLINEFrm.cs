@@ -38,8 +38,8 @@ namespace ESProMeter.Views.Boq
                 this.MARGIN = CalculateInflation(this.INFlATIONRATE.Value, (this.LOSSOFEFFECIENCY.Value + this.OPERATION.Value + this.OVERHEAD.Value + this.TRANSPORTATION.Value + this.SAFETY.Value));
                 this.INFlATION =CalculateInflation(this.INFlATIONRATE.Value ,(this.LOSSOFEFFECIENCY.Value + this.OPERATION.Value + this.OVERHEAD.Value + this.TRANSPORTATION.Value + this.SAFETY.Value)) ;
                 ////Assign Total Additional Cost
-                this.TOTALADDITIONALCOST = aCost?.TOTALADDITIONALCOST;
-                this.TOTALMARINANDINFLATION = aCost?.TOTALMARINANDINFLATION;
+                //this.TOTALADDITIONALCOST = aCost?.TOTALADDITIONALCOST;
+                //this.TOTALMARINANDINFLATION = aCost?.TOTALMARINANDINFLATION;
                 //this.BOQCOST = aCost?.BOQCOST;
                 //UpdateAdditionCost();
                 UpdateMarginAndInflation();
