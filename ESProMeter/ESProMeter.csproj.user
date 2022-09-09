@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="MainFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Activies\ActivityCreateFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Boq\BOQLINEFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Boq\BOQListFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Boq\CreateBoQ_Step1_Frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Boq\CreateBoQ_Step2_Frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Boq\SectionFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Companies\CompanyInfoFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Customers\CustomerCenterFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Customers\CustomerCreateFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Customers\CustomerDetailFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Customers\CustomerFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Customers\CustomerUpdateFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\DbTools\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\FileAndLogin\BackupFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\FileAndLogin\ConnectNewCompanyFileFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\FileAndLogin\FileSelectionFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\FileAndLogin\NewCompanyFileFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\FileAndLogin\RestoreCompanyFileFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\FileAndLogin\UserLoginFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Item\CreateACopyItemFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Item\ItemExportFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Item\ItemListFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Item\ListImportFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\ReportFrm\RptBOQLineFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Reports\DetailReportFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Reports\ReportFilterFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Reports\SummaryReportFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\Server\FormRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Setting\SettingFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Site\AddSiteFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Site\SiteFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Uom\AddUoMFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Uom\UoMFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\UserManagement\ChangePasswordFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\UserManagement\UserFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\UserManagement\UserManagementFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Data\ESPRO.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+</Project>

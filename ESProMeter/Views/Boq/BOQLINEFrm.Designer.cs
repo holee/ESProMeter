@@ -90,6 +90,8 @@
             this.txtOperationValue = new System.Windows.Forms.TextBox();
             this.txtOverhead = new System.Windows.Forms.TextBox();
             this.txtOperation = new System.Windows.Forms.TextBox();
+            this.lblcomplete = new System.Windows.Forms.Label();
+            this.lblLineSeq = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBoqItemLine)).BeginInit();
             this.groupBox4.SuspendLayout();
@@ -167,16 +169,17 @@
             this.dgvBoqItemLine.RowHeadersVisible = false;
             this.dgvBoqItemLine.RowTemplate.Height = 25;
             this.dgvBoqItemLine.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvBoqItemLine.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvBoqItemLine.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvBoqItemLine.Size = new System.Drawing.Size(698, 322);
             this.dgvBoqItemLine.TabIndex = 1;
             this.dgvBoqItemLine.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBoqItemLineCellEndEdit);
             this.dgvBoqItemLine.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvBoqItemLineCellFormatting);
+            this.dgvBoqItemLine.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvBoqItemLine_DataError);
             this.dgvBoqItemLine.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvBoqItemLineEditingControlShowing);
             // 
             // laborBOQItemLineRefID
             // 
-            this.laborBOQItemLineRefID.DataPropertyName = "BOQITEMLINEID";
+            this.laborBOQItemLineRefID.DataPropertyName = "BOQITEMITEMLINEID";
             this.laborBOQItemLineRefID.HeaderText = "ItemID";
             this.laborBOQItemLineRefID.MinimumWidth = 2;
             this.laborBOQItemLineRefID.Name = "laborBOQItemLineRefID";
@@ -299,7 +302,7 @@
             this.mbtNext.TabIndex = 35;
             this.mbtNext.Text = "Change";
             this.mbtNext.UseVisualStyleBackColor = false;
-            this.mbtNext.Click += new System.EventHandler(this.mbtNext_Click);
+            this.mbtNext.Click += new System.EventHandler(this.AcceptChangeClick);
             // 
             // mbtCancel
             // 
@@ -322,7 +325,7 @@
             // lblBoqID
             // 
             this.lblBoqID.AutoSize = true;
-            this.lblBoqID.Location = new System.Drawing.Point(433, 401);
+            this.lblBoqID.Location = new System.Drawing.Point(156, 412);
             this.lblBoqID.Name = "lblBoqID";
             this.lblBoqID.Size = new System.Drawing.Size(13, 15);
             this.lblBoqID.TabIndex = 38;
@@ -331,7 +334,7 @@
             // lblBoqItemID
             // 
             this.lblBoqItemID.AutoSize = true;
-            this.lblBoqItemID.Location = new System.Drawing.Point(452, 399);
+            this.lblBoqItemID.Location = new System.Drawing.Point(453, 411);
             this.lblBoqItemID.Name = "lblBoqItemID";
             this.lblBoqItemID.Size = new System.Drawing.Size(13, 15);
             this.lblBoqItemID.TabIndex = 38;
@@ -765,6 +768,24 @@
             this.txtOperation.Text = "0";
             this.txtOperation.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // lblcomplete
+            // 
+            this.lblcomplete.AutoSize = true;
+            this.lblcomplete.Location = new System.Drawing.Point(600, 412);
+            this.lblcomplete.Name = "lblcomplete";
+            this.lblcomplete.Size = new System.Drawing.Size(13, 15);
+            this.lblcomplete.TabIndex = 38;
+            this.lblcomplete.Text = "0";
+            // 
+            // lblLineSeq
+            // 
+            this.lblLineSeq.AutoSize = true;
+            this.lblLineSeq.Location = new System.Drawing.Point(692, 411);
+            this.lblLineSeq.Name = "lblLineSeq";
+            this.lblLineSeq.Size = new System.Drawing.Size(13, 15);
+            this.lblLineSeq.TabIndex = 38;
+            this.lblLineSeq.Text = "0";
+            // 
             // BOQLINEFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -775,6 +796,8 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.lblBoqID);
+            this.Controls.Add(this.lblLineSeq);
+            this.Controls.Add(this.lblcomplete);
             this.Controls.Add(this.lblBoqItemID);
             this.Controls.Add(this.mbtNext);
             this.Controls.Add(this.mbtCancel);
@@ -845,6 +868,8 @@
         private System.Windows.Forms.TextBox txtOperationValue;
         private System.Windows.Forms.TextBox txtOverhead;
         private System.Windows.Forms.TextBox txtOperation;
+        private System.Windows.Forms.Label lblcomplete;
+        private System.Windows.Forms.Label lblLineSeq;
         private System.Windows.Forms.DataGridViewTextBoxColumn laborBOQItemLineRefID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewComboBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;

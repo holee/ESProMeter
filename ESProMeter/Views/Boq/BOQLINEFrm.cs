@@ -1,5 +1,4 @@
-﻿using Azure;
-using ESProMeter.Controllers;
+﻿using ESProMeter.Controllers;
 using ESProMeter.Extensions;
 using ESProMeter.IVews;
 using ESProMeter.Models;
@@ -11,63 +10,37 @@ namespace ESProMeter.Views.Boq
 {
     public partial class BOQLINEFrm : Form,IADDITIONALCOSTRATE,IADDITIONALCOST
     {
-        public BOQLINEFrm(long boq_id,long itemId,ADDITIONALCOST aCost)
+        public BOQLINEFrm(long boq_id,long itemId,int iscompleted,int seq,ADDITIONALCOST aCost)
         {
             InitializeComponent();
             lblBoqID.SetText(boq_id);
             lblBoqItemID.SetText(itemId);
-            this.GetItemForUpdate(itemId);
-            if (aCost == null)
-            {
-                AppService.GetBoqInstance.GetAdditinalCost(boq_id, out aCost);
-                txtBoqCOST.SetText(Utility.NumberString(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"),"N3"));
-                txtSubtotalBoqItem.SetText(Utility.NumberString(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"), "N3"));
-                this.LOSSOFEFFECIENCYRATE = aCost?.LOSSOFEFFECIENCYRATE;
-                this.OPERATIONRATE = aCost?.OPERATIONRATE;
-                this.OVERHEADRATE = aCost?.OVERHEADRATE;
-                this.TRANSPORTATIONRATE = aCost?.TRANSPORTATIONRATE;
-                this.SAFETYRATE = aCost?.SAFETYRATE;
-                this.MARGINRATE = aCost?.MARGINRATE;
-                this.INFlATIONRATE = aCost?.INFlATIONRATE;
-                ///Assign Additinal cost value
-                this.LOSSOFEFFECIENCY = aCost?.LOSSOFEFFECIENCY>0?aCost?.LOSSOFEFFECIENCY:(txtSubtotalBoqItem.AsNumber<decimal>() * (aCost.LOSSOFEFFECIENCYRATE /100));
-                this.OPERATION = aCost?.OPERATION > 0 ? aCost?.OPERATION : (txtSubtotalBoqItem.AsNumber<decimal>() * (aCost.OPERATIONRATE / 100)); ;
-                this.OVERHEAD = aCost?.OVERHEAD > 0 ? aCost?.OVERHEAD : (txtSubtotalBoqItem.AsNumber<decimal>() * (aCost.OVERHEADRATE / 100)); ;
-                this.TRANSPORTATION = aCost?.TRANSPORTATION > 0 ? aCost?.TRANSPORTATION : (txtSubtotalBoqItem.AsNumber<decimal>() * (aCost.TRANSPORTATIONRATE / 100)); ;
-                this.SAFETY = ((txtSubtotalBoqItem.AsNumber<decimal>() + (aCost.LOSSOFEFFECIENCY + aCost.OPERATION + aCost.OVERHEAD + aCost.SAFETY + aCost.TRANSPORTATION) )  * (aCost.SAFETYRATE / 100)); 
-                this.MARGIN = CalculateInflation(this.INFlATIONRATE.Value, (this.LOSSOFEFFECIENCY.Value + this.OPERATION.Value + this.OVERHEAD.Value + this.TRANSPORTATION.Value + this.SAFETY.Value));
-                this.INFlATION =CalculateInflation(this.INFlATIONRATE.Value ,(this.LOSSOFEFFECIENCY.Value + this.OPERATION.Value + this.OVERHEAD.Value + this.TRANSPORTATION.Value + this.SAFETY.Value)) ;
-                ////Assign Total Additional Cost
-                //this.TOTALADDITIONALCOST = aCost?.TOTALADDITIONALCOST;
-                //this.TOTALMARINANDINFLATION = aCost?.TOTALMARINANDINFLATION;
-                //this.BOQCOST = aCost?.BOQCOST;
-                //UpdateAdditionCost();
-                UpdateMarginAndInflation();
-            }
-            else
-            {
-                txtBoqCOST.SetText(Utility.NumberString(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"),"N3"));
-                txtSubtotalBoqItem.SetText(Utility.NumberString(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"),"N3"));
-                this.LOSSOFEFFECIENCYRATE = aCost?.LOSSOFEFFECIENCYRATE;
-                this.OPERATIONRATE = aCost?.OPERATIONRATE;
-                this.OVERHEADRATE = aCost?.OVERHEADRATE;
-                this.TRANSPORTATIONRATE = aCost?.TRANSPORTATIONRATE;
-                this.SAFETYRATE = aCost?.SAFETYRATE;
-                this.MARGINRATE = aCost?.MARGINRATE;
-                this.INFlATIONRATE = aCost?.INFlATIONRATE;
-                ///Assign Additinal cost value
-                this.LOSSOFEFFECIENCY = aCost?.LOSSOFEFFECIENCY;
-                this.OPERATION = aCost?.OPERATION;
-                this.OVERHEAD = aCost?.OVERHEAD;
-                this.TRANSPORTATION = aCost?.TRANSPORTATION;
-                this.SAFETY = aCost?.SAFETY;
-                this.MARGIN = aCost?.MARGIN;
-                this.INFlATION = aCost?.INFlATION;
-                ////Assign Total Additional Cost
-                this.TOTALADDITIONALCOST = aCost?.TOTALADDITIONALCOST;
-                this.TOTALMARINANDINFLATION = aCost?.TOTALMARINANDINFLATION;
-                this.BOQCOST = aCost?.BOQCOST;
-            }
+            lblcomplete.SetText(iscompleted);
+            lblLineSeq.SetText(seq);
+            //this.GetItemForUpdate(itemId);
+            this.BoqLineDetailsGetByBOQID(itemId,seq);
+            txtBoqCOST.SetText(Utility.NumberString(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"), "N3"));
+            txtSubtotalBoqItem.SetText(Utility.NumberString(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"), "N3"));
+            this.LOSSOFEFFECIENCYRATE = aCost.LOSSOFEFFECIENCYRATE;
+            this.OPERATIONRATE = aCost.OPERATIONRATE;
+            this.OVERHEADRATE = aCost.OVERHEADRATE;
+            this.TRANSPORTATIONRATE = aCost.TRANSPORTATIONRATE;
+            this.SAFETYRATE = aCost.SAFETYRATE;
+            this.MARGINRATE = aCost.MARGINRATE;
+            this.INFlATIONRATE = aCost.INFlATIONRATE;
+            ///Assign Additinal cost value
+            this.LOSSOFEFFECIENCY = aCost?.LOSSOFEFFECIENCY;
+            this.OPERATION = aCost?.OPERATION;
+            this.OVERHEAD = aCost?.OVERHEAD;
+            this.TRANSPORTATION = aCost?.TRANSPORTATION;
+            this.SAFETY = aCost?.SAFETY;
+            this.MARGIN = aCost?.MARGIN;
+            this.INFlATION = aCost?.INFlATION;
+            ////Assign Total Additional Cost
+            this.TOTALADDITIONALCOST = aCost?.TOTALADDITIONALCOST;
+            this.TOTALMARINANDINFLATION = aCost?.TOTALMARINANDINFLATION;
+            this.BOQCOST = aCost?.BOQCOST;
+
             ////
             txtLoseEffecency.LostFocus -= TxtLostFocus;
             txtOperation.LostFocus -= TxtLostFocus;
@@ -256,32 +229,33 @@ namespace ESProMeter.Views.Boq
             txtBoqCOST.SetText(Utility.NumberString(txtSubtotalBoqItem.AsNumber<decimal>(), "N3"));
         }
         #region properties
-        public decimal? LOSSOFEFFECIENCYRATE 
+        public decimal LOSSOFEFFECIENCYRATE 
         { 
             get => txtLoseEffecency.AsNumber<decimal>(); 
             set => txtLoseEffecency.SetText(Utility.NumberString(value,"N3")); 
         }
-        public decimal? OPERATIONRATE 
+        public decimal OPERATIONRATE 
         { get => txtOperation.AsNumber<decimal>(); 
             set => txtOperation.SetText(Utility.NumberString(value, "N3")); 
         }
-        public decimal? OVERHEADRATE 
+        public decimal OVERHEADRATE 
         { get => txtOverhead.AsNumber<decimal>(); 
             set => txtOverhead.SetText(Utility.NumberString(value, "N3")); 
         }
-        public decimal? SAFETYRATE 
-        { get => txtSafty.AsNumber<decimal>(); 
+        public decimal SAFETYRATE 
+        { 
+            get => txtSafty.AsNumber<decimal>(); 
             set => txtSafty.SetText(Utility.NumberString(value, "N3")); 
         }
-        public decimal? TRANSPORTATIONRATE 
+        public decimal TRANSPORTATIONRATE 
         { get => txtTransportation.AsNumber<decimal>(); 
             set => txtTransportation.SetText(Utility.NumberString(value, "N3")); 
         }
-        public decimal? MARGINRATE 
+        public decimal MARGINRATE 
         { get => txtMargin.AsNumber<decimal>(); 
             set => txtMargin.SetText(Utility.NumberString(value, "N3")); 
         }
-        public decimal? INFlATIONRATE 
+        public decimal INFlATIONRATE 
         { 
             get => txtInflation.AsNumber<decimal>(); 
             set => txtInflation.SetText(Utility.NumberString(value, "N3")); 
@@ -340,9 +314,14 @@ namespace ESProMeter.Views.Boq
         {
             this.Close();
         }
-        private void mbtNext_Click(object sender, EventArgs e)
+        private void AcceptChangeClick(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+            if (AppService.GetBoqInstance
+                        .AdditinalCostBoqLineUpate(lblBoqID.AsNumber<long>(), lblBoqItemID.AsNumber<long>(),
+                        lblLineSeq.AsNumber<int>(), lblcomplete.AsNumber<int>(), (IADDITIONALCOSTRATE)this))
+            {
+                this.DialogResult = DialogResult.OK;
+            }
         }
         private decimal CalculateItemPrice(DataGridView view,string columnName)
         {
@@ -361,12 +340,22 @@ namespace ESProMeter.Views.Boq
         {
             
         }
-
+        private void TextBoxKeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
         private void dgvBoqItemLineCellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dgvBoqItemLine.Columns[e.ColumnIndex].Name == "labourSubtotal")
             {
-                if(e.Value != null)
+                if (e.Value != null)
                 {
                     e.CellStyle.Format = "N3";
                 }
@@ -391,37 +380,44 @@ namespace ESProMeter.Views.Boq
             if (dgvBoqItemLine.Rows.Count == 0) return;
             if (dgvBoqItemLine.Columns[e.ColumnIndex].Name == "laborBOQItemLineQty")
             {
-                var selectedRow = dgvBoqItemLine.SelectedRows[0];
-                if (selectedRow.GetValue<int>("laborBOQItemLineQty") == 0)
+                if (dgvBoqItemLine.GetValue<int>(dgvBoqItemLine.CurrentRow.Index, "laborBOQItemLineQty") == 0)
                 {
                     dgvBoqItemLine.SetText(dgvBoqItemLine.CurrentRow.Index, "laborBOQItemLineQty", Utility.NumberString(0, "N3"));
                 }
                 else
                 {
-                    var selectedValue = dgvBoqItemLine.GetValue<decimal>(dgvBoqItemLine.CurrentRow.Index, "laborBOQItemLineQty");
-                    dgvBoqItemLine.SetText(dgvBoqItemLine.CurrentRow.Index, "laborBOQItemLineQty", Utility.NumberString(selectedValue, "N3"));
+                    var selectedValue = dgvBoqItemLine.GetValue<decimal>(e.RowIndex, "laborBOQItemLineQty");
+                    dgvBoqItemLine.SetText(e.RowIndex, "laborBOQItemLineQty", Utility.NumberString(selectedValue, "N3"));
                 }
+                return;
             }
             if (dgvBoqItemLine.Columns[e.ColumnIndex].Name == "ButtonColumn1")
             {
-                var selectedRow = dgvBoqItemLine.SelectedRows[0];
-                if (selectedRow.GetValue<int>("ButtonColumn1") == 0)
+                if (dgvBoqItemLine.GetValue<int>(e.RowIndex, "ButtonColumn1") == 0)
                 {
-                    dgvBoqItemLine.SetText(dgvBoqItemLine.CurrentRow.Index, "ButtonColumn1", Utility.NumberString(0, "N3"));
+                    dgvBoqItemLine.SetText(e.RowIndex, "ButtonColumn1", Utility.NumberString(0, "N3"));
                 }
                 else
                 {
-                    var selectedValue = dgvBoqItemLine.GetValue<decimal>(dgvBoqItemLine.CurrentRow.Index, "ButtonColumn1");
-                    dgvBoqItemLine.SetText(dgvBoqItemLine.CurrentRow.Index, "ButtonColumn1", Utility.NumberString(selectedValue, "N3"));
+                    var selectedValue = dgvBoqItemLine.GetValue<decimal>(e.RowIndex, "ButtonColumn1");
+                    dgvBoqItemLine.SetText(e.RowIndex, "ButtonColumn1", Utility.NumberString(selectedValue, "N3"));
                 }
+
+                var newPrice = dgvBoqItemLine.GetValue<decimal>(e.RowIndex, "ButtonColumn1");
+                var boqId = lblBoqID.AsNumber<long>();
+                var boqItemId = lblBoqItemID.AsNumber<long>();
+                var order = lblLineSeq.AsNumber<int>();
+                var boqItemItemLineId = dgvBoqItemLine.GetValue<long>(e.RowIndex, "laborBOQItemLineRefID");
+                AppService.GetBoqInstance
+                            .BoqLineDetailChangePrice(boqId, boqItemId, boqItemItemLineId, order, newPrice);
             }
         }
         private void dgvBoqItemLineEditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             if (dgvBoqItemLine.Rows.Count == 0) return;
 
-            if (dgvBoqItemLine.Columns["laborBOQItemLineQty"].Name == "laborBOQItemLineQty"
-                && dgvBoqItemLine.Columns["laborBOQItemLineQty"] is DataGridViewTextBoxColumn)
+            if (dgvBoqItemLine.Columns[dgvBoqItemLine.CurrentCell.ColumnIndex].Name == "laborBOQItemLineQty"
+                && dgvBoqItemLine.Columns[dgvBoqItemLine.CurrentCell.ColumnIndex] is DataGridViewTextBoxColumn)
             {
                 var textbox = e.Control as TextBox;
                 textbox.KeyUp += (s, e) =>
@@ -430,17 +426,20 @@ namespace ESProMeter.Views.Boq
                     var cost = dgvBoqItemLine.GetValue<decimal>(dgvBoqItemLine.CurrentRow.Index, "ButtonColumn1");
                     var subcost = textvalue * cost;
                     dgvBoqItemLine.SetText(dgvBoqItemLine.CurrentRow.Index, "labourSubtotal", Utility.NumberString(subcost));
-                    txtSubtotalBoqItem.SetText(Utility.NumberString(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"),"N3"));
+                    txtSubtotalBoqItem.SetText(Utility.NumberString(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"), "N3"));
                     UpdateBoqCost();
                     CalculateAdditionalCost();
                     UpdateAdditionCost();
                     UpdateMarginAndInflation();
                     UpdateSalePrice();
-
                 };
+                textbox.KeyPress -= TextBoxKeyPress;
+                textbox.KeyPress += TextBoxKeyPress;
+
+
             }
-            if (dgvBoqItemLine.Columns["ButtonColumn1"].Name == "ButtonColumn1"
-                && dgvBoqItemLine.Columns["ButtonColumn1"] is DataGridViewTextBoxColumn)
+            if (dgvBoqItemLine.Columns[dgvBoqItemLine.CurrentCell.ColumnIndex].Name == "ButtonColumn1"
+                && dgvBoqItemLine.Columns[dgvBoqItemLine.CurrentCell.ColumnIndex] is DataGridViewTextBoxColumn)
             {
                 var textbox = e.Control as TextBox;
                 textbox.KeyUp += (s, e) =>
@@ -448,8 +447,8 @@ namespace ESProMeter.Views.Boq
                     var textvalue = ((TextBox)s).AsNumber<decimal>();
                     var qty = dgvBoqItemLine.GetValue<decimal>(dgvBoqItemLine.CurrentRow.Index, "laborBOQItemLineQty");
                     var subcost = textvalue * qty;
-                    dgvBoqItemLine.SetText(dgvBoqItemLine.CurrentRow.Index, "labourSubtotal", Utility.NumberString(subcost,"N3"));
-                    txtSubtotalBoqItem.SetText(Utility.NumberString(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"),"N3"));
+                    dgvBoqItemLine.SetText(dgvBoqItemLine.CurrentRow.Index, "labourSubtotal", Utility.NumberString(subcost, "N3"));
+                    txtSubtotalBoqItem.SetText(Utility.NumberString(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"), "N3"));
                     UpdateBoqCost();
                     CalculateAdditionalCost();
                     UpdateAdditionCost();
@@ -457,7 +456,14 @@ namespace ESProMeter.Views.Boq
                     UpdateSalePrice();
 
                 };
+                textbox.KeyPress -= TextBoxKeyPress;
+                textbox.KeyPress += TextBoxKeyPress;
             }
+
+        }
+
+        private void dgvBoqItemLine_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
 
         }
     }
@@ -598,3 +604,33 @@ namespace ESProMeter.Views.Boq
 //    //    };
 //    //}
 //}
+
+//if (aCost == null)
+//{
+//    AppService.GetBoqInstance.GetAdditinalCost(boq_id, out aCost);
+//    txtBoqCOST.SetText(Utility.NumberString(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"), "N3"));
+//    txtSubtotalBoqItem.SetText(Utility.NumberString(CalculateItemPrice(dgvBoqItemLine, "labourSubtotal"), "N3"));
+//    this.LOSSOFEFFECIENCYRATE = aCost?.LOSSOFEFFECIENCYRATE;
+//    this.OPERATIONRATE = aCost?.OPERATIONRATE;
+//    this.OVERHEADRATE = aCost?.OVERHEADRATE;
+//    this.TRANSPORTATIONRATE = aCost?.TRANSPORTATIONRATE;
+//    this.SAFETYRATE = aCost?.SAFETYRATE;
+//    this.MARGINRATE = aCost?.MARGINRATE;
+//    this.INFlATIONRATE = aCost?.INFlATIONRATE;
+//    ///Assign Additinal cost value
+//    this.LOSSOFEFFECIENCY = aCost?.LOSSOFEFFECIENCY > 0 ? aCost?.LOSSOFEFFECIENCY : (txtSubtotalBoqItem.AsNumber<decimal>() * (aCost.LOSSOFEFFECIENCYRATE / 100));
+//    this.OPERATION = aCost?.OPERATION > 0 ? aCost?.OPERATION : (txtSubtotalBoqItem.AsNumber<decimal>() * (aCost.OPERATIONRATE / 100)); ;
+//    this.OVERHEAD = aCost?.OVERHEAD > 0 ? aCost?.OVERHEAD : (txtSubtotalBoqItem.AsNumber<decimal>() * (aCost.OVERHEADRATE / 100)); ;
+//    this.TRANSPORTATION = aCost?.TRANSPORTATION > 0 ? aCost?.TRANSPORTATION : (txtSubtotalBoqItem.AsNumber<decimal>() * (aCost.TRANSPORTATIONRATE / 100)); ;
+//    this.SAFETY = ((txtSubtotalBoqItem.AsNumber<decimal>() + (aCost.LOSSOFEFFECIENCY + aCost.OPERATION + aCost.OVERHEAD + aCost.SAFETY + aCost.TRANSPORTATION)) * (aCost.SAFETYRATE / 100));
+//    this.MARGIN = CalculateInflation(this.INFlATIONRATE.Value, (this.LOSSOFEFFECIENCY.Value + this.OPERATION.Value + this.OVERHEAD.Value + this.TRANSPORTATION.Value + this.SAFETY.Value));
+//    this.INFlATION = CalculateInflation(this.INFlATIONRATE.Value, (this.LOSSOFEFFECIENCY.Value + this.OPERATION.Value + this.OVERHEAD.Value + this.TRANSPORTATION.Value + this.SAFETY.Value));
+//    ////Assign Total Additional Cost
+//    this.TOTALADDITIONALCOST = aCost?.TOTALADDITIONALCOST;
+//    this.TOTALMARINANDINFLATION = aCost?.TOTALMARINANDINFLATION;
+//    //this.BOQCOST = aCost?.BOQCOST;
+//    //UpdateAdditionCost();
+//    UpdateMarginAndInflation();
+//}
+//else
+//{

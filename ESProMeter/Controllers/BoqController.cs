@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Spreadsheet;
-using ESProMeter.Extensions;
+﻿using ESProMeter.Extensions;
 using ESProMeter.IViews;
 using ESProMeter.Models;
 using ESProMeter.Services;
@@ -86,7 +85,20 @@ namespace ESProMeter.Controllers
                 "REMARKS", "UID", "BOQCOST", "LOSSEFFECENCYRATE1", "OPERATIONRATE1", "OVERHEADRATE1", "SAFETYRATE1", "TRANSPORTATIONRATE1", "MARGINRATE1", "INFlATIONRATE1");
             AppService.GetBoqInstance.BoqLineUpdate(table);
         }
+       public static bool Migrate(this Form form,long boqId)
+       {
 
+            return AppService.GetBoqInstance
+                .Migrate(boqId);
+
+
+       }
+       public static bool Unmigrate(this Form form, long boqId)
+       {
+            return AppService.GetBoqInstance.BoqTempDelete(boqId);
+       }
+        
+        
         /// <summary>
         /// GET
         /// </summary>
@@ -95,7 +107,7 @@ namespace ESProMeter.Controllers
         public static void GetAdditionalCost(this Form form,DataGridView container)
         {
             AppService.GetBoqInstance
-                            .GetAdditinalCost(out var table);
+                            .AdditinalCostGet(out var table);
             table.UseDataTableAsGridView(container);
         }
 
