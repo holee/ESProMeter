@@ -366,7 +366,7 @@ namespace ESProMeter.Views.Boq
                     e.CellStyle.ForeColor = Color.Red;
                 }
             }
-            if (dgvBoqItemLine.Columns["ButtonColumn1"].Name == "ButtonColumn1")
+            if (dgvBoqItemLine.Columns[e.ColumnIndex].Name == "ButtonColumn1")
             {
                 if (e.Value != null)
                 {

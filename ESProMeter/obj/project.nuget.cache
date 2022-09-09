@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cjDSuw+E4rs7wWKmzXmIM7xyasGqhAOLtb6v4lzs5cVxqKAlZ954hDpAdb4uS3ZnDZJ26MmyGnpjuxk5/kh7Tg==",
+  "dgSpecHash": "AHBzbw4npQI8t+kJpQVRaQpvzkzk0qmgKB/e4sHMYl30HlbnjzEwD+ggutuvWJm969EB+3aGVnyfALI+HcjIhQ==",
   "success": true,
-  "projectFilePath": "D:\\KhDev\\New\\ESProMeter\\ESProMeter\\ESProMeter.csproj",
+  "projectFilePath": "D:\\KhDev\\New\\ESProMeter2\\ESProMeter\\ESProMeter.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Covid19\\.nuget\\packages\\azure.core\\1.16.0\\azure.core.1.16.0.nupkg.sha512",
     "C:\\Users\\Covid19\\.nuget\\packages\\azure.identity\\1.3.0\\azure.identity.1.3.0.nupkg.sha512",
