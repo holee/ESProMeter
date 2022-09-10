@@ -94,9 +94,9 @@ namespace ESProMeter.Views.Boq
         {
             txtCustomerName.Text = "";
             txtTitle.Text = "";
-            txtSite.Text = "0.00";
-            txtValidDate.Text = "0";
-            txtDate.Text = "0";
+            txtSite.Text = "";
+            txtValidDate.Text = "";
+            txtDate.Text = "";
 			txtReferenceNo.Text = "";
 
         }
