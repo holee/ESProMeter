@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\SELF_EMPLOY_BIZ\\2. COMPANY OPERATION\\4. CUSTOMER PROJECT\\5.2 ES PRO\\ESProMeter\\ESProMeter\\ESProMeter.csproj": {}
+    "D:\\KhDev\\New\\ESProMeter2\\ESProMeter\\ESProMeter.csproj": {}
   },
   "projects": {
-    "D:\\SELF_EMPLOY_BIZ\\2. COMPANY OPERATION\\4. CUSTOMER PROJECT\\5.2 ES PRO\\ESProMeter\\DAL\\DAL.csproj": {
+    "D:\\KhDev\\New\\ESProMeter2\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SELF_EMPLOY_BIZ\\2. COMPANY OPERATION\\4. CUSTOMER PROJECT\\5.2 ES PRO\\ESProMeter\\DAL\\DAL.csproj",
+        "projectUniqueName": "D:\\KhDev\\New\\ESProMeter2\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "D:\\SELF_EMPLOY_BIZ\\2. COMPANY OPERATION\\4. CUSTOMER PROJECT\\5.2 ES PRO\\ESProMeter\\DAL\\DAL.csproj",
-        "packagesPath": "C:\\Users\\Kyhout\\.nuget\\packages\\",
-        "outputPath": "D:\\SELF_EMPLOY_BIZ\\2. COMPANY OPERATION\\4. CUSTOMER PROJECT\\5.2 ES PRO\\ESProMeter\\DAL\\obj\\",
+        "projectPath": "D:\\KhDev\\New\\ESProMeter2\\DAL\\DAL.csproj",
+        "packagesPath": "C:\\Users\\Covid19\\.nuget\\packages\\",
+        "outputPath": "D:\\KhDev\\New\\ESProMeter2\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Kyhout\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Covid19\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -63,7 +64,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -72,40 +74,41 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.410\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\SELF_EMPLOY_BIZ\\2. COMPANY OPERATION\\4. CUSTOMER PROJECT\\5.2 ES PRO\\ESProMeter\\ESProMeter\\ESProMeter.csproj": {
+    "D:\\KhDev\\New\\ESProMeter2\\ESProMeter\\ESProMeter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SELF_EMPLOY_BIZ\\2. COMPANY OPERATION\\4. CUSTOMER PROJECT\\5.2 ES PRO\\ESProMeter\\ESProMeter\\ESProMeter.csproj",
+        "projectUniqueName": "D:\\KhDev\\New\\ESProMeter2\\ESProMeter\\ESProMeter.csproj",
         "projectName": "ESProMeter",
-        "projectPath": "D:\\SELF_EMPLOY_BIZ\\2. COMPANY OPERATION\\4. CUSTOMER PROJECT\\5.2 ES PRO\\ESProMeter\\ESProMeter\\ESProMeter.csproj",
-        "packagesPath": "C:\\Users\\Kyhout\\.nuget\\packages\\",
-        "outputPath": "D:\\SELF_EMPLOY_BIZ\\2. COMPANY OPERATION\\4. CUSTOMER PROJECT\\5.2 ES PRO\\ESProMeter\\ESProMeter\\obj\\",
+        "projectPath": "D:\\KhDev\\New\\ESProMeter2\\ESProMeter\\ESProMeter.csproj",
+        "packagesPath": "C:\\Users\\Covid19\\.nuget\\packages\\",
+        "outputPath": "D:\\KhDev\\New\\ESProMeter2\\ESProMeter\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Kyhout\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Covid19\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net5.0-windows7.0"
+          "net5.0-windows"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0-windows7.0": {
             "targetAlias": "net5.0-windows",
             "projectReferences": {
-              "D:\\SELF_EMPLOY_BIZ\\2. COMPANY OPERATION\\4. CUSTOMER PROJECT\\5.2 ES PRO\\ESProMeter\\DAL\\DAL.csproj": {
-                "projectPath": "D:\\SELF_EMPLOY_BIZ\\2. COMPANY OPERATION\\4. CUSTOMER PROJECT\\5.2 ES PRO\\ESProMeter\\DAL\\DAL.csproj"
+              "D:\\KhDev\\New\\ESProMeter2\\DAL\\DAL.csproj": {
+                "projectPath": "D:\\KhDev\\New\\ESProMeter2\\DAL\\DAL.csproj"
               }
             }
           }
@@ -155,7 +158,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -167,7 +171,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.410\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

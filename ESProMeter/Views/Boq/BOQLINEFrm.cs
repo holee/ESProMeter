@@ -388,11 +388,11 @@ namespace ESProMeter.Views.Boq
             var boqId = lblBoqID.AsNumber<long>();
             var boqItemId = lblBoqItemID.AsNumber<long>();
             var order = lblLineSeq.AsNumber<int>();
-            if (dgvBoqItemLine.Columns[e.ColumnIndex].Name == "laborBOQItemLineQty")
+            if (dgvBoqItemLine.Columns[e.ColumnIndex].Name == "laborBOQItemLineQty" && e.ColumnIndex == 4)
             {
-                if (dgvBoqItemLine.GetValue<int>(dgvBoqItemLine.CurrentRow.Index, "laborBOQItemLineQty") == 0)
+                if (dgvBoqItemLine.GetValue<int>(e.RowIndex, "laborBOQItemLineQty") == 0)
                 {
-                    dgvBoqItemLine.SetText(dgvBoqItemLine.CurrentRow.Index, "laborBOQItemLineQty", Utility.NumberString(0, "N3"));
+                    dgvBoqItemLine.SetText(e.RowIndex, "laborBOQItemLineQty", Utility.NumberString(0, "N3"));
                 }
                 else
                 {
@@ -404,9 +404,9 @@ namespace ESProMeter.Views.Boq
                 var boqItemItemLineId = dgvBoqItemLine.GetValue<long>(e.RowIndex, "laborBOQItemLineRefID");
                 AppService.GetBoqInstance
                             .BoqLineDetailChangePrice(boqId, boqItemId, boqItemItemLineId, order, qty, newPrice);
-                return;
+                
             }
-            if (dgvBoqItemLine.Columns[e.ColumnIndex].Name == "ButtonColumn1")
+            if (dgvBoqItemLine.Columns[e.ColumnIndex].Name == "ButtonColumn1" && e.ColumnIndex == 5)
             {
                 if (dgvBoqItemLine.GetValue<int>(e.RowIndex, "ButtonColumn1") == 0)
                 {
@@ -424,13 +424,13 @@ namespace ESProMeter.Views.Boq
                 AppService.GetBoqInstance
                             .BoqLineDetailChangePrice(boqId, boqItemId, boqItemItemLineId, order,qty, newPrice);
 
-                return;
+                
             }
         }
         private void dgvBoqItemLineEditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             if (dgvBoqItemLine.Rows.Count == 0) return;
-
+            e.Control.KeyPress -= TextBoxKeyPress;
             if (dgvBoqItemLine.Columns[dgvBoqItemLine.CurrentCell.ColumnIndex].Name == "laborBOQItemLineQty"
                 && dgvBoqItemLine.Columns[dgvBoqItemLine.CurrentCell.ColumnIndex] is DataGridViewTextBoxColumn)
             {
@@ -448,7 +448,7 @@ namespace ESProMeter.Views.Boq
                     UpdateMarginAndInflation();
                     UpdateSalePrice();
                 };
-                textbox.KeyPress -= TextBoxKeyPress;
+                //textbox.KeyPress -= TextBoxKeyPress;
                 textbox.KeyPress += TextBoxKeyPress;
 
 
@@ -471,7 +471,7 @@ namespace ESProMeter.Views.Boq
                     UpdateSalePrice();
 
                 };
-                textbox.KeyPress -= TextBoxKeyPress;
+                //textbox.KeyPress -= TextBoxKeyPress;
                 textbox.KeyPress += TextBoxKeyPress;
             }
 
