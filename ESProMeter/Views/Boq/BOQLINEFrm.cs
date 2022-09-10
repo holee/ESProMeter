@@ -1,9 +1,9 @@
-﻿using ESProMeter.Controllers;
-using ESProMeter.Extensions;
+﻿using ESProMeter.Extensions;
 using ESProMeter.IVews;
 using ESProMeter.Models;
 using ESProMeter.Services;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace ESProMeter.Views.Boq
@@ -33,17 +33,17 @@ namespace ESProMeter.Views.Boq
             this.MARGINRATE = aCost.MARGINRATE;
             this.INFlATIONRATE = aCost.INFlATIONRATE;
             ///Assign Additinal cost value
-            this.LOSSOFEFFECIENCY = aCost?.LOSSOFEFFECIENCY;
-            this.OPERATION = aCost?.OPERATION;
-            this.OVERHEAD = aCost?.OVERHEAD;
-            this.TRANSPORTATION = aCost?.TRANSPORTATION;
-            this.SAFETY = aCost?.SAFETY;
-            this.MARGIN = aCost?.MARGIN;
-            this.INFlATION = aCost?.INFlATION;
+            //this.LOSSOFEFFECIENCY = aCost?.LOSSOFEFFECIENCY;
+            //this.OPERATION = aCost?.OPERATION;
+           // this.OVERHEAD = aCost?.OVERHEAD;
+            //this.TRANSPORTATION = aCost?.TRANSPORTATION;
+            //this.SAFETY = aCost?.SAFETY;
+           // this.MARGIN = aCost?.MARGIN;
+            //this.INFlATION = aCost?.INFlATION;
             ////Assign Total Additional Cost
-            this.TOTALADDITIONALCOST = aCost?.TOTALADDITIONALCOST;
-            this.TOTALMARINANDINFLATION = aCost?.TOTALMARINANDINFLATION;
-            this.BOQCOST = aCost?.BOQCOST;
+            //this.TOTALADDITIONALCOST = aCost?.TOTALADDITIONALCOST;
+            //this.TOTALMARINANDINFLATION = aCost?.TOTALMARINANDINFLATION;
+            //this.BOQCOST = aCost?.BOQCOST;
 
             ////
             txtLoseEffecency.LostFocus -= TxtLostFocus;
@@ -88,6 +88,7 @@ namespace ESProMeter.Views.Boq
 
             ////
             ///
+            CalculateAdditionalCost();
             UpdateAdditionCost();
             UpdateMarginAndInflation();
             UpdateSalePrice();
@@ -362,13 +363,15 @@ namespace ESProMeter.Views.Boq
                 if (e.Value != null)
                 {
                     e.CellStyle.Format = "N3";
+                    e.CellStyle.ForeColor = Color.Red;
                 }
             }
-            if (dgvBoqItemLine.Columns["ButtonColumn1"].Name == "ButtonColumn1")
+            if (dgvBoqItemLine.Columns[e.ColumnIndex].Name == "ButtonColumn1")
             {
                 if (e.Value != null)
                 {
                     e.CellStyle.Format = "N3";
+                    e.CellStyle.ForeColor = Color.Red;
                 }
             }
             if (dgvBoqItemLine.Columns[e.ColumnIndex].Name == "laborBOQItemLineQty")
@@ -382,6 +385,9 @@ namespace ESProMeter.Views.Boq
         private void dgvBoqItemLineCellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvBoqItemLine.Rows.Count == 0) return;
+            var boqId = lblBoqID.AsNumber<long>();
+            var boqItemId = lblBoqItemID.AsNumber<long>();
+            var order = lblLineSeq.AsNumber<int>();
             if (dgvBoqItemLine.Columns[e.ColumnIndex].Name == "laborBOQItemLineQty")
             {
                 if (dgvBoqItemLine.GetValue<int>(dgvBoqItemLine.CurrentRow.Index, "laborBOQItemLineQty") == 0)
@@ -393,6 +399,11 @@ namespace ESProMeter.Views.Boq
                     var selectedValue = dgvBoqItemLine.GetValue<decimal>(e.RowIndex, "laborBOQItemLineQty");
                     dgvBoqItemLine.SetText(e.RowIndex, "laborBOQItemLineQty", Utility.NumberString(selectedValue, "N3"));
                 }
+                var newPrice = dgvBoqItemLine.GetValue<decimal>(e.RowIndex, "ButtonColumn1");
+                var qty = dgvBoqItemLine.GetValue<decimal>(e.RowIndex, "laborBOQItemLineQty"); ; //laborBOQItemLineQty
+                var boqItemItemLineId = dgvBoqItemLine.GetValue<long>(e.RowIndex, "laborBOQItemLineRefID");
+                AppService.GetBoqInstance
+                            .BoqLineDetailChangePrice(boqId, boqItemId, boqItemItemLineId, order, qty, newPrice);
                 return;
             }
             if (dgvBoqItemLine.Columns[e.ColumnIndex].Name == "ButtonColumn1")
@@ -408,12 +419,12 @@ namespace ESProMeter.Views.Boq
                 }
 
                 var newPrice = dgvBoqItemLine.GetValue<decimal>(e.RowIndex, "ButtonColumn1");
-                var boqId = lblBoqID.AsNumber<long>();
-                var boqItemId = lblBoqItemID.AsNumber<long>();
-                var order = lblLineSeq.AsNumber<int>();
+                var qty = dgvBoqItemLine.GetValue<decimal>(e.RowIndex, "laborBOQItemLineQty"); ; //laborBOQItemLineQty
                 var boqItemItemLineId = dgvBoqItemLine.GetValue<long>(e.RowIndex, "laborBOQItemLineRefID");
                 AppService.GetBoqInstance
-                            .BoqLineDetailChangePrice(boqId, boqItemId, boqItemItemLineId, order, newPrice);
+                            .BoqLineDetailChangePrice(boqId, boqItemId, boqItemItemLineId, order,qty, newPrice);
+
+                return;
             }
         }
         private void dgvBoqItemLineEditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)

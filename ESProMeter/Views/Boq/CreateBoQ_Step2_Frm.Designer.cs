@@ -397,6 +397,7 @@ namespace ESProMeter.Views.Boq
             this.BOQITEMID.ReadOnly = true;
             this.BOQITEMID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.BOQITEMID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.BOQITEMID.Visible = false;
             this.BOQITEMID.Width = 50;
             // 
             // itemname
@@ -467,9 +468,10 @@ namespace ESProMeter.Views.Boq
             // BOQCOST
             // 
             this.BOQCOST.DataPropertyName = "BOQCOST";
-            this.BOQCOST.HeaderText = "BOQCOST";
+            this.BOQCOST.HeaderText = "COST";
             this.BOQCOST.Name = "BOQCOST";
             this.BOQCOST.ReadOnly = true;
+            this.BOQCOST.Visible = false;
             // 
             // LineSeq
             // 
@@ -480,6 +482,7 @@ namespace ESProMeter.Views.Boq
             this.LineSeq.HeaderText = "ORDER";
             this.LineSeq.Name = "LineSeq";
             this.LineSeq.ReadOnly = true;
+            this.LineSeq.Visible = false;
             this.LineSeq.Width = 50;
             // 
             // LOSSEFFECENCYRATE1
@@ -550,6 +553,7 @@ namespace ESProMeter.Views.Boq
             // 
             this.COMPLETED.HeaderText = "COMPLETED";
             this.COMPLETED.Name = "COMPLETED";
+            this.COMPLETED.Visible = false;
             this.COMPLETED.Width = 40;
             // 
             // ACTION
@@ -643,7 +647,7 @@ namespace ESProMeter.Views.Boq
             // lblID
             // 
             this.lblID.AutoSize = true;
-            this.lblID.Location = new System.Drawing.Point(600, 78);
+            this.lblID.Location = new System.Drawing.Point(211, 240);
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(13, 15);
             this.lblID.TabIndex = 40;
@@ -882,7 +886,7 @@ namespace ESProMeter.Views.Boq
             // lblEDSEQ
             // 
             this.lblEDSEQ.AutoSize = true;
-            this.lblEDSEQ.Location = new System.Drawing.Point(686, 81);
+            this.lblEDSEQ.Location = new System.Drawing.Point(297, 243);
             this.lblEDSEQ.Name = "lblEDSEQ";
             this.lblEDSEQ.Size = new System.Drawing.Size(13, 15);
             this.lblEDSEQ.TabIndex = 43;

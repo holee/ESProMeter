@@ -578,10 +578,9 @@ namespace ESProMeter.Views.Boq
             this.dtgBOQLine.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgBOQLine.Size = new System.Drawing.Size(907, 258);
             this.dtgBOQLine.TabIndex = 3;
-            this.dtgBOQLine.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgBOQLine_CellContentClick);
+            this.dtgBOQLine.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgBOQLine_CellContentDoubleClick);
             this.dtgBOQLine.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dtgBOQLine_CellFormatting);
             this.dtgBOQLine.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgBOQLine_RowEnter);
-            this.dtgBOQLine.SelectionChanged += new System.EventHandler(this.dtgBOQLine_SelectionChanged);
             // 
             // Column9
             // 

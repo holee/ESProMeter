@@ -282,7 +282,7 @@ namespace ESProMeter.Repository
         }
         
 
-        public bool BoqLineDetailChangePrice(long boqId,long boqItemId,long boqItemLineId,int order,decimal price)
+        public bool BoqLineDetailChangePrice(long boqId,long boqItemId,long boqItemLineId,int order,decimal qty=1,decimal price=0)
         {
             return AppService.SqlGetInstance
                                 .UseProcedure("TBOQLINEDETAIL_sp_UPDATEPRICE")
@@ -292,7 +292,8 @@ namespace ESProMeter.Repository
                                     @BOQITEMRefID= boqItemId,
                                     @BOQITEMLINEID= boqItemLineId,
                                     @ORDER=order,
-                                    @NEWPRICE=price
+                                    @NEWPRICE=price,
+                                    @QTY=qty
                                 })>0;
 
 
