@@ -30,13 +30,13 @@ namespace ESProMeter.Views.Items
 		private void InitializeComponent()
 		{
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.textName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -365,10 +365,10 @@ namespace ESProMeter.Views.Items
             // btnDeleteColumn
             // 
             this.btnDeleteColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.IndianRed;
-            this.btnDeleteColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.IndianRed;
+            this.btnDeleteColumn.DefaultCellStyle = dataGridViewCellStyle8;
             this.btnDeleteColumn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteColumn.HeaderText = "Delete";
             this.btnDeleteColumn.Name = "btnDeleteColumn";
@@ -476,9 +476,9 @@ namespace ESProMeter.Views.Items
             // 
             // dataGridViewTextBoxColumn3
             // 
-            dataGridViewCellStyle2.NullValue = "0.00";
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle9.NullValue = "0.00";
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.White;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridViewTextBoxColumn3.HeaderText = "Quantity";
             this.dataGridViewTextBoxColumn3.MinimumWidth = 2;
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
@@ -719,9 +719,9 @@ namespace ESProMeter.Views.Items
             // 
             // Column7
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.IndianRed;
-            this.Column7.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.IndianRed;
+            this.Column7.DefaultCellStyle = dataGridViewCellStyle10;
             this.Column7.HeaderText = "Delete";
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
@@ -803,7 +803,7 @@ namespace ESProMeter.Views.Items
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabPage1.Size = new System.Drawing.Size(638, 227);
+            this.tabPage1.Size = new System.Drawing.Size(638, 202);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Labor";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -910,10 +910,10 @@ namespace ESProMeter.Views.Items
             // ButtonColumn1
             // 
             this.ButtonColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Red;
-            this.ButtonColumn1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Red;
+            this.ButtonColumn1.DefaultCellStyle = dataGridViewCellStyle11;
             this.ButtonColumn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonColumn1.HeaderText = "Delete";
             this.ButtonColumn1.Name = "ButtonColumn1";
@@ -930,7 +930,7 @@ namespace ESProMeter.Views.Items
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabPage2.Size = new System.Drawing.Size(638, 227);
+            this.tabPage2.Size = new System.Drawing.Size(638, 202);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Machinary";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1030,9 +1030,9 @@ namespace ESProMeter.Views.Items
             // 
             // ButtonColumn2
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Red;
-            this.ButtonColumn2.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Red;
+            this.ButtonColumn2.DefaultCellStyle = dataGridViewCellStyle12;
             this.ButtonColumn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonColumn2.HeaderText = "Delete";
             this.ButtonColumn2.Name = "ButtonColumn2";
@@ -1155,9 +1155,9 @@ namespace ESProMeter.Views.Items
             // 
             // ButtonColumn3
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Red;
-            this.ButtonColumn3.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.Red;
+            this.ButtonColumn3.DefaultCellStyle = dataGridViewCellStyle13;
             this.ButtonColumn3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonColumn3.HeaderText = "Delete";
             this.ButtonColumn3.Name = "ButtonColumn3";
@@ -1278,10 +1278,10 @@ namespace ESProMeter.Views.Items
             // Column1
             // 
             this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle14;
             this.Column1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Column1.HeaderText = "Action";
             this.Column1.Name = "Column1";

@@ -31,14 +31,10 @@ namespace ESProMeter.Views.Boq
 		{
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.mbtAddSite = new FontAwesome.Sharp.Material.MaterialButton();
-            this.mbtAddCustomer = new FontAwesome.Sharp.Material.MaterialButton();
             this.cboSite = new System.Windows.Forms.ComboBox();
             this.cboCustomerName = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.mbtNext = new FontAwesome.Sharp.Material.MaterialButton();
-            this.mbtCancel = new FontAwesome.Sharp.Material.MaterialButton();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -67,8 +63,6 @@ namespace ESProMeter.Views.Boq
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panel1.Controls.Add(this.mbtAddSite);
-            this.panel1.Controls.Add(this.mbtAddCustomer);
             this.panel1.Controls.Add(this.cboSite);
             this.panel1.Controls.Add(this.cboCustomerName);
             this.panel1.Controls.Add(this.label2);
@@ -77,46 +71,6 @@ namespace ESProMeter.Views.Boq
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(910, 37);
             this.panel1.TabIndex = 0;
-            // 
-            // mbtAddSite
-            // 
-            this.mbtAddSite.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
-            this.mbtAddSite.FlatAppearance.BorderColor = System.Drawing.Color.MediumOrchid;
-            this.mbtAddSite.FlatAppearance.BorderSize = 2;
-            this.mbtAddSite.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Aqua;
-            this.mbtAddSite.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.mbtAddSite.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.mbtAddSite.IconChar = FontAwesome.Sharp.MaterialIcons.None;
-            this.mbtAddSite.IconColor = System.Drawing.Color.White;
-            this.mbtAddSite.IconSize = 1;
-            this.mbtAddSite.Location = new System.Drawing.Point(822, 6);
-            this.mbtAddSite.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.mbtAddSite.Name = "mbtAddSite";
-            this.mbtAddSite.Size = new System.Drawing.Size(26, 27);
-            this.mbtAddSite.TabIndex = 3;
-            this.mbtAddSite.Text = "+";
-            this.mbtAddSite.UseVisualStyleBackColor = false;
-            this.mbtAddSite.Click += new System.EventHandler(this.mbtAddSite_Click);
-            // 
-            // mbtAddCustomer
-            // 
-            this.mbtAddCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
-            this.mbtAddCustomer.FlatAppearance.BorderColor = System.Drawing.Color.MediumOrchid;
-            this.mbtAddCustomer.FlatAppearance.BorderSize = 2;
-            this.mbtAddCustomer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Aqua;
-            this.mbtAddCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.mbtAddCustomer.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.mbtAddCustomer.IconChar = FontAwesome.Sharp.MaterialIcons.None;
-            this.mbtAddCustomer.IconColor = System.Drawing.Color.White;
-            this.mbtAddCustomer.IconSize = 1;
-            this.mbtAddCustomer.Location = new System.Drawing.Point(477, 5);
-            this.mbtAddCustomer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.mbtAddCustomer.Name = "mbtAddCustomer";
-            this.mbtAddCustomer.Size = new System.Drawing.Size(26, 27);
-            this.mbtAddCustomer.TabIndex = 1;
-            this.mbtAddCustomer.Text = "+";
-            this.mbtAddCustomer.UseVisualStyleBackColor = false;
-            this.mbtAddCustomer.Click += new System.EventHandler(this.mbtAddCustomer_Click);
             // 
             // cboSite
             // 
@@ -151,43 +105,6 @@ namespace ESProMeter.Views.Boq
             this.label1.Size = new System.Drawing.Size(107, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "CUSTOMER NAME:";
-            // 
-            // mbtNext
-            // 
-            this.mbtNext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
-            this.mbtNext.FlatAppearance.BorderColor = System.Drawing.Color.MediumOrchid;
-            this.mbtNext.FlatAppearance.BorderSize = 2;
-            this.mbtNext.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Aqua;
-            this.mbtNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.mbtNext.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.mbtNext.IconChar = FontAwesome.Sharp.MaterialIcons.None;
-            this.mbtNext.IconColor = System.Drawing.Color.White;
-            this.mbtNext.IconSize = 1;
-            this.mbtNext.Location = new System.Drawing.Point(589, 386);
-            this.mbtNext.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.mbtNext.Name = "mbtNext";
-            this.mbtNext.Size = new System.Drawing.Size(126, 30);
-            this.mbtNext.TabIndex = 10;
-            this.mbtNext.Text = "Next";
-            this.mbtNext.UseVisualStyleBackColor = false;
-            this.mbtNext.Click += new System.EventHandler(this.mbtNext_Click);
-            // 
-            // mbtCancel
-            // 
-            this.mbtCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.mbtCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.mbtCancel.ForeColor = System.Drawing.Color.White;
-            this.mbtCancel.IconChar = FontAwesome.Sharp.MaterialIcons.None;
-            this.mbtCancel.IconColor = System.Drawing.Color.White;
-            this.mbtCancel.IconSize = 1;
-            this.mbtCancel.Location = new System.Drawing.Point(723, 386);
-            this.mbtCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.mbtCancel.Name = "mbtCancel";
-            this.mbtCancel.Size = new System.Drawing.Size(126, 30);
-            this.mbtCancel.TabIndex = 11;
-            this.mbtCancel.Text = "Cancel";
-            this.mbtCancel.UseVisualStyleBackColor = false;
-            this.mbtCancel.Click += new System.EventHandler(this.mbtCancel_Click);
             // 
             // label3
             // 
@@ -320,7 +237,8 @@ namespace ESProMeter.Views.Boq
             this.txtTermsCondition.Size = new System.Drawing.Size(467, 214);
             this.txtTermsCondition.TabIndex = 9;
             this.txtTermsCondition.Text = "Validity of offer: 2 Weeks    \r\nStage Payment:    \r\n  1- Down Payment, signature " +
-    "of contract  \r\n  2- 6 months after completion Completion  \r\n  3- Discount  ";
+    "of contract  \r\n  2- 6 months after completion Completion  \r\n  3- Discount  \r\n\r\nP" +
+    "harith SAR    \r\nDirector";
             // 
             // txtBOQTitle
             // 
@@ -386,8 +304,6 @@ namespace ESProMeter.Views.Boq
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.mbtNext);
-            this.Controls.Add(this.mbtCancel);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
