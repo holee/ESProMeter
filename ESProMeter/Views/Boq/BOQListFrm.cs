@@ -1,8 +1,9 @@
-﻿using DocumentFormat.OpenXml.Drawing.Charts;
-using ESProMeter.Controllers;
+﻿using ESProMeter.Controllers;
+using ESProMeter.Enums;
 using ESProMeter.Extensions;
 using ESProMeter.Services;
 using ESProMeter.Views.Activies;
+using Microsoft.Office.Interop.Excel;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -86,10 +87,20 @@ namespace ESProMeter.Views.Boq
 						this.ActivityGetByBoq(boq_id);
 					}
 				}
-            }
+			}
 		}
 
-		private void tlsDeleteClick(object sender, EventArgs e)
+        private void ClearNew()
+        {
+            txtCustomerName.Text = "";
+            txtTitle.Text = "";
+            txtSite.Text = "";
+            txtValidDate.Text = "";
+            txtDate.Text = "";
+			txtReferenceNo.Text = "";
+
+        }
+        private void tlsDeleteClick(object sender, EventArgs e)
 		{
 			if (dtgBOQList.SelectedRows.Count > 0)
 			{
@@ -103,6 +114,7 @@ namespace ESProMeter.Views.Boq
 						if (dtgBOQList.SelectedRows.Count == 0)
 						{
 							((System.Data.DataTable)dtgBOQLine.DataSource)?.Rows.Clear();
+							ClearNew();
 						}
 					}
 				}

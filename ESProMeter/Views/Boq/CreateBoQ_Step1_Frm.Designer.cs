@@ -43,6 +43,13 @@ namespace ESProMeter.Views.Boq
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dtgBOQCostSetting = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtTermsCondition = new System.Windows.Forms.TextBox();
             this.txtBOQTitle = new System.Windows.Forms.TextBox();
@@ -51,13 +58,6 @@ namespace ESProMeter.Views.Boq
             this.dtpValidDate = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgBOQCostSetting)).BeginInit();
@@ -242,73 +242,6 @@ namespace ESProMeter.Views.Boq
             this.dtgBOQCostSetting.TabIndex = 8;
             this.dtgBOQCostSetting.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dtgBOQCostSettingEditingControlShowing);
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.txtTermsCondition);
-            this.groupBox2.Location = new System.Drawing.Point(337, 140);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(518, 242);
-            this.groupBox2.TabIndex = 29;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "TERMS && CONDITION";
-            // 
-            // txtTermsCondition
-            // 
-            this.txtTermsCondition.Location = new System.Drawing.Point(42, 22);
-            this.txtTermsCondition.Multiline = true;
-            this.txtTermsCondition.Name = "txtTermsCondition";
-            this.txtTermsCondition.Size = new System.Drawing.Size(467, 214);
-            this.txtTermsCondition.TabIndex = 9;
-            // 
-            // txtBOQTitle
-            // 
-            this.txtBOQTitle.Location = new System.Drawing.Point(115, 53);
-            this.txtBOQTitle.Name = "txtBOQTitle";
-            this.txtBOQTitle.Size = new System.Drawing.Size(363, 23);
-            this.txtBOQTitle.TabIndex = 4;
-            // 
-            // txtBOQDesc
-            // 
-            this.txtBOQDesc.Location = new System.Drawing.Point(115, 82);
-            this.txtBOQDesc.Multiline = true;
-            this.txtBOQDesc.Name = "txtBOQDesc";
-            this.txtBOQDesc.Size = new System.Drawing.Size(734, 38);
-            this.txtBOQDesc.TabIndex = 7;
-            // 
-            // dtpDate
-            // 
-            this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDate.Location = new System.Drawing.Point(539, 53);
-            this.dtpDate.Name = "dtpDate";
-            this.dtpDate.Size = new System.Drawing.Size(109, 23);
-            this.dtpDate.TabIndex = 5;
-            // 
-            // dtpValidDate
-            // 
-            this.dtpValidDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpValidDate.Location = new System.Drawing.Point(740, 53);
-            this.dtpValidDate.Name = "dtpValidDate";
-            this.dtpValidDate.Size = new System.Drawing.Size(109, 23);
-            this.dtpValidDate.TabIndex = 6;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(496, 59);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(37, 15);
-            this.label6.TabIndex = 28;
-            this.label6.Text = "DATE:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(663, 61);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(71, 15);
-            this.label7.TabIndex = 28;
-            this.label7.Text = "VALID DATE:";
-            // 
             // Column1
             // 
             this.Column1.DataPropertyName = "CODE";
@@ -368,6 +301,75 @@ namespace ESProMeter.Views.Boq
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
             this.Column7.Visible = false;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.txtTermsCondition);
+            this.groupBox2.Location = new System.Drawing.Point(337, 140);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(518, 242);
+            this.groupBox2.TabIndex = 29;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "TERMS && CONDITION";
+            // 
+            // txtTermsCondition
+            // 
+            this.txtTermsCondition.Location = new System.Drawing.Point(42, 22);
+            this.txtTermsCondition.Multiline = true;
+            this.txtTermsCondition.Name = "txtTermsCondition";
+            this.txtTermsCondition.Size = new System.Drawing.Size(467, 214);
+            this.txtTermsCondition.TabIndex = 9;
+            this.txtTermsCondition.Text = "Validity of offer: 2 Weeks    \r\nStage Payment:    \r\n  1- Down Payment, signature " +
+    "of contract  \r\n  2- 6 months after completion Completion  \r\n  3- Discount  ";
+            // 
+            // txtBOQTitle
+            // 
+            this.txtBOQTitle.Location = new System.Drawing.Point(115, 53);
+            this.txtBOQTitle.Name = "txtBOQTitle";
+            this.txtBOQTitle.Size = new System.Drawing.Size(363, 23);
+            this.txtBOQTitle.TabIndex = 4;
+            // 
+            // txtBOQDesc
+            // 
+            this.txtBOQDesc.Location = new System.Drawing.Point(115, 82);
+            this.txtBOQDesc.Multiline = true;
+            this.txtBOQDesc.Name = "txtBOQDesc";
+            this.txtBOQDesc.Size = new System.Drawing.Size(734, 38);
+            this.txtBOQDesc.TabIndex = 7;
+            // 
+            // dtpDate
+            // 
+            this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDate.Location = new System.Drawing.Point(539, 53);
+            this.dtpDate.Name = "dtpDate";
+            this.dtpDate.Size = new System.Drawing.Size(109, 23);
+            this.dtpDate.TabIndex = 5;
+            // 
+            // dtpValidDate
+            // 
+            this.dtpValidDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpValidDate.Location = new System.Drawing.Point(740, 53);
+            this.dtpValidDate.Name = "dtpValidDate";
+            this.dtpValidDate.Size = new System.Drawing.Size(109, 23);
+            this.dtpValidDate.TabIndex = 6;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(496, 59);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(37, 15);
+            this.label6.TabIndex = 28;
+            this.label6.Text = "DATE:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(663, 61);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(71, 15);
+            this.label7.TabIndex = 28;
+            this.label7.Text = "VALID DATE:";
             // 
             // CreateBoQ_Step1_Frm
             // 

@@ -400,13 +400,15 @@ namespace ESProMeter.Views.Boq
              this.OVERHEADRATE, this.SAFETYRATE, this.TRANSPORTATIONRATE,
              this.MARGINRATE, this.INFlATIONRATE, order);
                 ///Add
+                ///
+                isNewRowAdded = true;
                 dgvBoqList.Rows.Add(null, _boqId, _id, _itemName, _description, Utility.NumberString(1, "N2"), _uom, _uomId,
                     null, _boqcost, order, this.LOSSOFEFFECIENCYRATE, this.OPERATIONRATE,
                        this.OVERHEADRATE, this.SAFETYRATE, this.TRANSPORTATIONRATE, this.MARGINRATE, this.INFlATIONRATE, 0);
                 CreateTempTable(ref TempTable, _obj.ToArray());
                 this.BoqLineTempCreateOrUpdate(TempTable, Enums.ActionType.CREATE);
                 order++;
-                isNewRowAdded = true;
+                
             }else
             {
                 var index = dgvBoqList.SelectedRows[0].Index + 1;
@@ -417,13 +419,15 @@ namespace ESProMeter.Views.Boq
                 CreateTempTable(ref TempTable, _obj.ToArray());
                 this.BoqLineTempCreateOrUpdate(TempTable, Enums.ActionType.CREATE);
                 ///Add
+                ///
+                isNewRowAdded = true;
                 dgvBoqList.Rows.Insert(index, null, _boqId, _id, _itemName, _description, Utility.NumberString(1, "N2"), _uom, _uomId,
                     null, _boqcost, order, this.LOSSOFEFFECIENCYRATE, this.OPERATIONRATE,
                     this.OVERHEADRATE, this.SAFETYRATE, this.TRANSPORTATIONRATE,
                     this.MARGINRATE, this.INFlATIONRATE, 0);
                 order++;
                 dgvBoqList.Rows[index].Selected = true;
-                isNewRowAdded = true;
+                
             }
             if (toggle)
             {
@@ -601,7 +605,7 @@ namespace ESProMeter.Views.Boq
         }
         private void dgvBoqListRowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-            if (isRowMoved)
+            if (isRowMoved || isNewRowAdded)
             {
                 for (int i = 0; i < dgvBoqList.RowCount; i++)
                 {
@@ -613,7 +617,7 @@ namespace ESProMeter.Views.Boq
                     AppService.GetBoqInstance.BoqLineChangedOrder(boqId, boqItemId, oldOrder, newOrder);
                 }
             }
-
+            
         }
         private void dgvBoqListRowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
@@ -893,6 +897,7 @@ namespace ESProMeter.Views.Boq
         }
         private void materialButton3_MouseClick(object sender, MouseEventArgs e)
         {
+            txtItemBoqSearch.Clear();
             if (!toggle)
             {
                 pnlSearch.BackColor = Color.Transparent;

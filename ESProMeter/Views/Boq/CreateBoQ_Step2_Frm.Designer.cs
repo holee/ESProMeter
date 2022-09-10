@@ -482,7 +482,6 @@ namespace ESProMeter.Views.Boq
             this.LineSeq.HeaderText = "ORDER";
             this.LineSeq.Name = "LineSeq";
             this.LineSeq.ReadOnly = true;
-            this.LineSeq.Visible = false;
             this.LineSeq.Width = 50;
             // 
             // LOSSEFFECENCYRATE1
@@ -562,7 +561,7 @@ namespace ESProMeter.Views.Boq
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Red;
-            dataGridViewCellStyle5.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle5.NullValue")));
+            dataGridViewCellStyle5.NullValue = null;
             this.ACTION.DefaultCellStyle = dataGridViewCellStyle5;
             this.ACTION.FillWeight = 8F;
             this.ACTION.HeaderText = "ACTION";
