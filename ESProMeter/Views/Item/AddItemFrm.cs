@@ -685,7 +685,7 @@ namespace ESProMeter.Views.Items
                 ((System.Data.DataTable)dgvBoq.DataSource)?.Rows.Clear();
             }
         }
-        private decimal CalculateItemPrice(DataGridView view, string columnName)
+        private decimal CalculateItemPrice(DataGridView view, string columnName,string qty)
         {
             var subtotal = 0M;
             foreach (DataGridViewRow row in view.Rows)
@@ -693,7 +693,7 @@ namespace ESProMeter.Views.Items
                 if (row.IsNewRow) continue;
                 if (row.GetValue<decimal>(columnName) >= 0)
                 {
-                    subtotal += row.GetValue<decimal>(columnName);
+                    subtotal += (row.GetValue<decimal>(columnName) * row.GetValue<decimal>(qty));
                 }
             }
             return subtotal;
@@ -702,9 +702,9 @@ namespace ESProMeter.Views.Items
         
         private void GetTotalPriceItems()
         {
-            var labour = CalculateItemPrice(this.dgvLabor, "LabourCost");
-            var material = CalculateItemPrice(this.dgvMaterial, "MaterialCost");
-            var machinery = CalculateItemPrice(this.dgvMachinary, "MachineryCost");
+            var labour = CalculateItemPrice(this.dgvLabor, "LabourCost", "laborBOQItemLineQty");
+            var material = CalculateItemPrice(this.dgvMaterial, "MaterialCost", "MaterialBOQItemLineQty");
+            var machinery = CalculateItemPrice(this.dgvMachinary, "MachineryCost", "MachineryBOQItemLineQty");
             var total = Utility.NumberString(labour + material + machinery, "N3");
             textCost.SetText(total);
         }

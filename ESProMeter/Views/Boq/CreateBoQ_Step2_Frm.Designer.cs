@@ -45,8 +45,6 @@ namespace ESProMeter.Views.Boq
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.mbtAddSite = new FontAwesome.Sharp.Material.MaterialButton();
-            this.mbtAddCustomer = new FontAwesome.Sharp.Material.MaterialButton();
             this.cboSite = new System.Windows.Forms.ComboBox();
             this.cboCustomerName = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -82,12 +80,7 @@ namespace ESProMeter.Views.Boq
             this.COMPLETED = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ACTION = new System.Windows.Forms.DataGridViewImageColumn();
             this.REMOVE = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btnSaveAndNew = new FontAwesome.Sharp.Material.MaterialButton();
-            this.mbtCancel = new FontAwesome.Sharp.Material.MaterialButton();
-            this.btnSaveAndClose = new FontAwesome.Sharp.Material.MaterialButton();
             this.lblID = new System.Windows.Forms.Label();
-            this.btnAddSection = new FontAwesome.Sharp.Material.MaterialButton();
-            this.materialButton3 = new FontAwesome.Sharp.Material.MaterialButton();
             this.pnlSearch = new System.Windows.Forms.Panel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -115,8 +108,6 @@ namespace ESProMeter.Views.Boq
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panel1.Controls.Add(this.mbtAddSite);
-            this.panel1.Controls.Add(this.mbtAddCustomer);
             this.panel1.Controls.Add(this.cboSite);
             this.panel1.Controls.Add(this.cboCustomerName);
             this.panel1.Controls.Add(this.label2);
@@ -125,46 +116,6 @@ namespace ESProMeter.Views.Boq
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1068, 37);
             this.panel1.TabIndex = 1;
-            // 
-            // mbtAddSite
-            // 
-            this.mbtAddSite.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
-            this.mbtAddSite.FlatAppearance.BorderColor = System.Drawing.Color.MediumOrchid;
-            this.mbtAddSite.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Aqua;
-            this.mbtAddSite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mbtAddSite.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.mbtAddSite.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.mbtAddSite.IconChar = FontAwesome.Sharp.MaterialIcons.None;
-            this.mbtAddSite.IconColor = System.Drawing.Color.White;
-            this.mbtAddSite.IconSize = 1;
-            this.mbtAddSite.Location = new System.Drawing.Point(873, 6);
-            this.mbtAddSite.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.mbtAddSite.Name = "mbtAddSite";
-            this.mbtAddSite.Size = new System.Drawing.Size(26, 27);
-            this.mbtAddSite.TabIndex = 3;
-            this.mbtAddSite.Text = "+";
-            this.mbtAddSite.UseVisualStyleBackColor = false;
-            this.mbtAddSite.Click += new System.EventHandler(this.mbtAddSite_Click);
-            // 
-            // mbtAddCustomer
-            // 
-            this.mbtAddCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
-            this.mbtAddCustomer.FlatAppearance.BorderColor = System.Drawing.Color.MediumOrchid;
-            this.mbtAddCustomer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Aqua;
-            this.mbtAddCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mbtAddCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.mbtAddCustomer.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.mbtAddCustomer.IconChar = FontAwesome.Sharp.MaterialIcons.None;
-            this.mbtAddCustomer.IconColor = System.Drawing.Color.White;
-            this.mbtAddCustomer.IconSize = 1;
-            this.mbtAddCustomer.Location = new System.Drawing.Point(486, 5);
-            this.mbtAddCustomer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.mbtAddCustomer.Name = "mbtAddCustomer";
-            this.mbtAddCustomer.Size = new System.Drawing.Size(26, 27);
-            this.mbtAddCustomer.TabIndex = 1;
-            this.mbtAddCustomer.Text = "+";
-            this.mbtAddCustomer.UseVisualStyleBackColor = false;
-            this.mbtAddCustomer.Click += new System.EventHandler(this.mbtAddCustomer_Click);
             // 
             // cboSite
             // 
@@ -585,64 +536,6 @@ namespace ESProMeter.Views.Boq
             this.REMOVE.UseColumnTextForButtonValue = true;
             this.REMOVE.Width = 80;
             // 
-            // btnSaveAndNew
-            // 
-            this.btnSaveAndNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveAndNew.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
-            this.btnSaveAndNew.FlatAppearance.BorderColor = System.Drawing.Color.MediumOrchid;
-            this.btnSaveAndNew.FlatAppearance.BorderSize = 2;
-            this.btnSaveAndNew.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Aqua;
-            this.btnSaveAndNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnSaveAndNew.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnSaveAndNew.IconChar = FontAwesome.Sharp.MaterialIcons.None;
-            this.btnSaveAndNew.IconColor = System.Drawing.Color.White;
-            this.btnSaveAndNew.IconSize = 1;
-            this.btnSaveAndNew.Location = new System.Drawing.Point(669, 415);
-            this.btnSaveAndNew.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnSaveAndNew.Name = "btnSaveAndNew";
-            this.btnSaveAndNew.Size = new System.Drawing.Size(126, 30);
-            this.btnSaveAndNew.TabIndex = 38;
-            this.btnSaveAndNew.Text = "Save && New";
-            this.btnSaveAndNew.UseVisualStyleBackColor = false;
-            // 
-            // mbtCancel
-            // 
-            this.mbtCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.mbtCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.mbtCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.mbtCancel.ForeColor = System.Drawing.Color.White;
-            this.mbtCancel.IconChar = FontAwesome.Sharp.MaterialIcons.None;
-            this.mbtCancel.IconColor = System.Drawing.Color.White;
-            this.mbtCancel.IconSize = 1;
-            this.mbtCancel.Location = new System.Drawing.Point(937, 415);
-            this.mbtCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.mbtCancel.Name = "mbtCancel";
-            this.mbtCancel.Size = new System.Drawing.Size(126, 30);
-            this.mbtCancel.TabIndex = 39;
-            this.mbtCancel.Text = "Cancel";
-            this.mbtCancel.UseVisualStyleBackColor = false;
-            this.mbtCancel.Click += new System.EventHandler(this.mbtCancel_Click);
-            // 
-            // btnSaveAndClose
-            // 
-            this.btnSaveAndClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveAndClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
-            this.btnSaveAndClose.FlatAppearance.BorderColor = System.Drawing.Color.MediumOrchid;
-            this.btnSaveAndClose.FlatAppearance.BorderSize = 2;
-            this.btnSaveAndClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Aqua;
-            this.btnSaveAndClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnSaveAndClose.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnSaveAndClose.IconChar = FontAwesome.Sharp.MaterialIcons.None;
-            this.btnSaveAndClose.IconColor = System.Drawing.Color.White;
-            this.btnSaveAndClose.IconSize = 1;
-            this.btnSaveAndClose.Location = new System.Drawing.Point(803, 415);
-            this.btnSaveAndClose.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnSaveAndClose.Name = "btnSaveAndClose";
-            this.btnSaveAndClose.Size = new System.Drawing.Size(126, 30);
-            this.btnSaveAndClose.TabIndex = 38;
-            this.btnSaveAndClose.Text = "Save && Close";
-            this.btnSaveAndClose.UseVisualStyleBackColor = false;
-            // 
             // lblID
             // 
             this.lblID.AutoSize = true;
@@ -651,51 +544,6 @@ namespace ESProMeter.Views.Boq
             this.lblID.Size = new System.Drawing.Size(13, 15);
             this.lblID.TabIndex = 40;
             this.lblID.Text = "0";
-            // 
-            // btnAddSection
-            // 
-            this.btnAddSection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddSection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
-            this.btnAddSection.FlatAppearance.BorderColor = System.Drawing.Color.MediumOrchid;
-            this.btnAddSection.FlatAppearance.BorderSize = 2;
-            this.btnAddSection.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Aqua;
-            this.btnAddSection.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnAddSection.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnAddSection.IconChar = FontAwesome.Sharp.MaterialIcons.None;
-            this.btnAddSection.IconColor = System.Drawing.Color.White;
-            this.btnAddSection.IconSize = 1;
-            this.btnAddSection.Location = new System.Drawing.Point(803, 78);
-            this.btnAddSection.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnAddSection.Name = "btnAddSection";
-            this.btnAddSection.Size = new System.Drawing.Size(126, 30);
-            this.btnAddSection.TabIndex = 38;
-            this.btnAddSection.Text = "Add Section";
-            this.btnAddSection.UseVisualStyleBackColor = false;
-            this.btnAddSection.Click += new System.EventHandler(this.btnAddSection_Click);
-            // 
-            // materialButton3
-            // 
-            this.materialButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialButton3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(130)))), ((int)(((byte)(200)))));
-            this.materialButton3.FlatAppearance.BorderColor = System.Drawing.Color.MediumOrchid;
-            this.materialButton3.FlatAppearance.BorderSize = 2;
-            this.materialButton3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Aqua;
-            this.materialButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.materialButton3.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.materialButton3.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronDownBox;
-            this.materialButton3.IconColor = System.Drawing.Color.White;
-            this.materialButton3.IconSize = 22;
-            this.materialButton3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.materialButton3.Location = new System.Drawing.Point(937, 79);
-            this.materialButton3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.materialButton3.Name = "materialButton3";
-            this.materialButton3.Size = new System.Drawing.Size(126, 30);
-            this.materialButton3.TabIndex = 38;
-            this.materialButton3.Text = "Add Boq Item";
-            this.materialButton3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.materialButton3.UseVisualStyleBackColor = false;
-            this.materialButton3.Click += new System.EventHandler(this.materialButton3_Click);
-            this.materialButton3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.materialButton3_MouseClick);
             // 
             // pnlSearch
             // 
@@ -910,11 +758,6 @@ namespace ESProMeter.Views.Boq
             this.Controls.Add(this.txtTermsCondition);
             this.Controls.Add(this.lblEDSEQ);
             this.Controls.Add(this.lblID);
-            this.Controls.Add(this.materialButton3);
-            this.Controls.Add(this.btnAddSection);
-            this.Controls.Add(this.btnSaveAndClose);
-            this.Controls.Add(this.btnSaveAndNew);
-            this.Controls.Add(this.mbtCancel);
             this.Controls.Add(this.dtpValidDate);
             this.Controls.Add(this.dtpDate);
             this.Controls.Add(this.txtBOQDesc);
