@@ -107,30 +107,6 @@ namespace ESProMeter.Views.Items
             textCost.LostFocus += TextCost_LostFocus;
             textCost.GotFocus += TextCost_GotFocus;
         }
-
-        private void TextCost_GotFocus(object sender, EventArgs e)
-        {
-            ((TextBox)sender)?.BeginInvoke(new Action(((TextBox)sender).SelectAll));
-        }
-
-        private void TextCost_LostFocus(object sender, EventArgs e)
-        {
-            var textValue = ((TextBox)sender).AsNumber<decimal>();
-            textCost.SetText(Utility.NumberString(textValue));
-        }
-
-        private void GroupBoq_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (toggle)
-            {
-                pnlSearch.Hide();
-                pnlSearch.SendToBack();
-                textSearch.Text = "";
-                toggle = false;
-                btndropDown.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronUpBox;
-                this.tabControl1.Enabled = true;
-            }
-        }
         public AddItemFrm(long Id, ItemsType itemType, ActionType action)
         {
             InitializeComponent();
@@ -165,6 +141,7 @@ namespace ESProMeter.Views.Items
                 {
                     case ActionType.EDIT:
                         CreateTempTable();
+                        GetTotalPriceItems();
                         cmbType.Enabled = false;
                         btnSave.Text = "Update";
                         btnSave.Click += (s, e) =>
@@ -195,6 +172,29 @@ namespace ESProMeter.Views.Items
             pnlSearch.SendToBack();
             pnlSearch.Hide();
         }
+        private void TextCost_GotFocus(object sender, EventArgs e)
+        {
+            ((TextBox)sender)?.BeginInvoke(new Action(((TextBox)sender).SelectAll));
+        }
+        private void TextCost_LostFocus(object sender, EventArgs e)
+        {
+            var textValue = ((TextBox)sender).AsNumber<decimal>();
+            textCost.SetText(Utility.NumberString(textValue));
+        }
+
+        private void GroupBoq_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (toggle)
+            {
+                pnlSearch.Hide();
+                pnlSearch.SendToBack();
+                textSearch.Text = "";
+                toggle = false;
+                btndropDown.IconChar = FontAwesome.Sharp.MaterialIcons.ChevronUpBox;
+                this.tabControl1.Enabled = true;
+            }
+        }
+       
       
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
@@ -398,6 +398,7 @@ namespace ESProMeter.Views.Items
         {
             if (!toggle)
             {
+                tabControl1.Enabled = false;
                 pnlSearch.BackColor = Color.Transparent;
                 pnlSearch.BorderStyle = BorderStyle.None;
                 pnlSearch.Height = 200;
@@ -516,6 +517,7 @@ namespace ESProMeter.Views.Items
                 tabControl1.Enabled = true;
                 sesquence++;
             }
+            GetTotalPriceItems();
             //------------------------------------
             toggle = false;
             pnlSearch.Hide();
@@ -683,7 +685,32 @@ namespace ESProMeter.Views.Items
                 ((System.Data.DataTable)dgvBoq.DataSource)?.Rows.Clear();
             }
         }
-	}
+        private decimal CalculateItemPrice(DataGridView view, string columnName)
+        {
+            var subtotal = 0M;
+            foreach (DataGridViewRow row in view.Rows)
+            {
+                if (row.IsNewRow) continue;
+                if (row.GetValue<decimal>(columnName) >= 0)
+                {
+                    subtotal += row.GetValue<decimal>(columnName);
+                }
+            }
+            return subtotal;
+        }
+    
+        
+        private void GetTotalPriceItems()
+        {
+            var labour = CalculateItemPrice(this.dgvLabor, "LabourCost");
+            var material = CalculateItemPrice(this.dgvMaterial, "MaterialCost");
+            var machinery = CalculateItemPrice(this.dgvMachinary, "MachineryCost");
+            var total = Utility.NumberString(labour + material + machinery, "N3");
+            textCost.SetText(total);
+        }
+    
+    
+    }
 }
 
 
